@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -83,24 +82,25 @@ public class LoginView {
 
     private void initializeViews() {
         applicationLogo = new ImageView();
-        Image image2 = new Image(this.getClass().getResourceAsStream("../images/titleLogo.png"));
+        Image image2 = new Image(this.getClass().getResourceAsStream("../images/login/titleLogo.png"));
         applicationLogo.setImage(image2);
         applicationLogo.setFitWidth(525);
         applicationLogo.setFitHeight(147);
 
         usernameLabel = new Label("Username");
-        usernameLabel.setTextFill(Color.web("#61402a"));
+        usernameLabel.setTextFill(Config.LABEL_TEXT_COLOR);
         usernameTextField = new TextField();
 
         passwordLabel = new Label("Password");
-        passwordLabel.setTextFill(Color.web("#61402a"));
+        passwordLabel.setTextFill(Config.LABEL_TEXT_COLOR);
         passwordTextField = new PasswordField();
 
         loginButton = new Button();
         loginButton.setMaxSize(227,50);
         loginButton.setMinSize(227,50);
-        String loginButtonImage = this.getClass().getResource("../images/loginButton.png").toExternalForm();
-        loginButton.setStyle("-fx-background-image: url('"+ loginButtonImage + "');" +
+        String loginButtonImage = this.getClass().getResource("../images/login/loginButton.png").toExternalForm();
+        loginButton.setStyle(
+                "-fx-background-image: url('"+ loginButtonImage + "');" +
                 "-fx-background-size: 227 50;" +
                 "-fx-background-color: transparent");
 
@@ -109,15 +109,17 @@ public class LoginView {
         ds.setColor(Color.color(0,0,0));
         registerText = new Text("Don't have an account yet?");
         registerText.setEffect(ds);
-        registerText.setStyle("-fx-fill: #d0b494;" +
+        registerText.setStyle(
+                "-fx-fill: #d0b494;" +
                 "-fx-font: 20px Caspian");
 
 
         registerButton = new Button();
         registerButton.setMaxSize(148,50);
         registerButton.setMinSize(148,50);
-        String registerButtonImage = this.getClass().getResource("../images/registerButton.png").toExternalForm();
-        registerButton.setStyle("-fx-background-image: url('"+ registerButtonImage + "');" +
+        String registerButtonImage = this.getClass().getResource("../images/login/registerButton.png").toExternalForm();
+        registerButton.setStyle(
+                "-fx-background-image: url('"+ registerButtonImage + "');" +
                 "-fx-background-size: 148 50;" +
                 "-fx-background-color: transparent");
         HBox.setHgrow(loginButton, Priority.ALWAYS);
@@ -147,8 +149,9 @@ public class LoginView {
         contentVBox.getChildren().add(textFieldsGridPane);
         contentVBox.getChildren().add(buttonsVBox);
 
-        String image = this.getClass().getResource("../images/loginBackground.jpg").toExternalForm();
-        basePane.setStyle("-fx-background-image: url('" + image + "'); " +
+        String image = this.getClass().getResource("../images/background.jpg").toExternalForm();
+        basePane.setStyle(
+                "-fx-background-image: url('" + image + "'); " +
          "-fx-background-position: center center; " +
          "-fx-background-repeat: stretch;" +
          "-fx-background-size: 1024 576");

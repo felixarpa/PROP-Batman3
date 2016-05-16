@@ -26,7 +26,7 @@ public class LoginPresenter extends Presenter {
             loginView.displaySuccessMessage();
             //loginView.destroy();
             loginView = null;
-            BatmanChiliPepper.changePresenter(new MainViewPresenter());
+            BatmanChiliPepper.changePresenter(new MainPresenter());
         } catch (IncorrectPassword | NonExistentUser exception) {
             System.out.println(exception.getMessage());
             loginView.displayErrorMessage();

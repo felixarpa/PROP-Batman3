@@ -4,7 +4,7 @@ import domain.DomainController;
 import util.ProjectConstants;
 
 
-public class BaseViewPresenter extends Presenter {
+public class BasePresenter extends Presenter {
 
     DomainController god = new DomainController();
 

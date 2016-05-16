@@ -1,13 +1,8 @@
 package presentation;
 
-import domain.DomainController;
+public class MainPresenter extends BasePresenter {
 
-import java.util.ArrayList;
-import java.util.TreeSet;
-
-public class MainViewPresenter extends BaseViewPresenter {
-
-     MainViewPresenter() {
+     MainPresenter() {
        // MainView.onCreate(this);
     }
 

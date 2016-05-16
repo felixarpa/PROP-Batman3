@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import main.TestView;
 import presentation.LoginPresenter;
 import presentation.Presenter;
 
@@ -25,7 +26,12 @@ public class MyApp extends Application {
         baseStage.setHeight(Config.WINDOW_HEIGHT);
         baseStage.setResizable(false);
 
-        batsign();
+        //batsign();
+        testView();
+    }
+
+    private void testView() {
+        currentPresenter = new TestView();
     }
 
     public static void startScene(Pane pane) {
