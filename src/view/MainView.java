@@ -12,10 +12,7 @@ public class MainView extends BaseView {
     private GridPane searchGridPane;
     private VBox buttonsVBox;
 
-    private Label searchLabel;
-    private TextField searchTextField;
-
-    //private HBox
+    private EditText searchEditText;
 
     private MainPresenter mainPresenter;
 

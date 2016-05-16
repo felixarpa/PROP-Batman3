@@ -27,9 +27,7 @@ public class LoginView {
 
     private ImageView applicationLogo;
 
-    private HBox usernameHBox;
-    private Label usernameLabel;
-    private TextField usernameTextField;
+    private EditText usernameEditText;
 
     private HBox passwordHBox;
     private Label passwordLabel;
@@ -65,8 +63,7 @@ public class LoginView {
         textFieldsVBox = new VBox();
         textFieldsVBox.setSpacing(4);
 
-        usernameHBox = new HBox();
-        usernameHBox.setSpacing(4);
+        usernameEditText = new EditText("Username");
 
         passwordHBox = new HBox();
         passwordHBox.setSpacing(4);
@@ -82,10 +79,6 @@ public class LoginView {
         applicationLogo.setImage(image2);
         applicationLogo.setFitWidth(525);
         applicationLogo.setFitHeight(147);
-
-        usernameLabel = new Label("Username");
-        usernameLabel.setTextFill(Config.LABEL_TEXT_COLOR);
-        usernameTextField = new TextField();
 
         passwordLabel = new Label("Password");
         passwordLabel.setTextFill(Config.LABEL_TEXT_COLOR);
@@ -127,15 +120,11 @@ public class LoginView {
         titleVBox.getChildren().add(applicationLogo);
         titleVBox.setAlignment(Pos.CENTER);
 
-        usernameHBox.getChildren().add(usernameLabel);
-        usernameHBox.getChildren().add(usernameTextField);
-        usernameHBox.setAlignment(Pos.CENTER);
-
         passwordHBox.getChildren().add(passwordLabel);
         passwordHBox.getChildren().add(passwordTextField);
         passwordHBox.setAlignment(Pos.CENTER);
 
-        textFieldsVBox.getChildren().add(usernameHBox);
+        textFieldsVBox.getChildren().add(usernameEditText.getBase());
         textFieldsVBox.getChildren().add(passwordHBox);
         textFieldsVBox.setAlignment(Pos.CENTER);
 
@@ -184,7 +173,7 @@ public class LoginView {
     }
 
     public String getUsername(){
-        return usernameTextField.getText();
+        return usernameEditText.getText();
     }
 
     public String getPassword(){
