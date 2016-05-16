@@ -20,24 +20,23 @@ import presentation.LoginPresenter;
 public class LoginView {
 
     private BorderPane basePane;
-    private HBox titleHBox;
+    private VBox titleVBox;
     private VBox contentVBox;
-    private GridPane textFieldsGridPane;
+    private VBox textFieldsVBox;
     private VBox buttonsVBox;
 
     private ImageView applicationLogo;
 
+    private HBox usernameHBox;
     private Label usernameLabel;
     private TextField usernameTextField;
 
+    private HBox passwordHBox;
     private Label passwordLabel;
     private PasswordField passwordTextField;
 
-    private HBox loginButtonHBox;
     private Button loginButton;
-    private HBox registerTextHBox;
     private Text registerText;
-    private HBox registerButtonHBox;
     private Button registerButton;
 
     private LoginPresenter loginPresenter;
@@ -56,28 +55,25 @@ public class LoginView {
 
     private void initializePanes(){
         basePane = new BorderPane();
-        basePane.setPadding(new Insets(50, 300, 100, 250));
+        basePane.setPadding(new Insets(50, 0, 100, 0));
 
-        titleHBox = new HBox();
-        titleHBox.setPadding(new Insets(0, 150, 0, 0));
+        titleVBox = new VBox();
 
         contentVBox = new VBox();
-        contentVBox.setPadding(new Insets(75, 100, 50, 150));
+        contentVBox.setPadding(new Insets(75, 0, 50, 0));
 
-        textFieldsGridPane = new GridPane();
-        textFieldsGridPane.setHgap(4);
-        textFieldsGridPane.setVgap(4);
+        textFieldsVBox = new VBox();
+        textFieldsVBox.setSpacing(4);
+
+        usernameHBox = new HBox();
+        usernameHBox.setSpacing(4);
+
+        passwordHBox = new HBox();
+        passwordHBox.setSpacing(4);
 
         buttonsVBox = new VBox();
         buttonsVBox.setPadding(new Insets(20, 0, 50, 0));
         buttonsVBox.setSpacing(4);
-
-        loginButtonHBox = new HBox();
-        loginButtonHBox.setPadding(new Insets(5, 0, 5, 10));
-        registerTextHBox = new HBox();
-        registerTextHBox.setPadding(new Insets(5, 190, 5, 0));
-        registerButtonHBox = new HBox();
-        registerButtonHBox.setPadding(new Insets(5, 0, 5, 45));
     }
 
     private void initializeViews() {
@@ -128,34 +124,38 @@ public class LoginView {
     }
 
     private void buildPanes() {
-        titleHBox.getChildren().add(applicationLogo);
+        titleVBox.getChildren().add(applicationLogo);
+        titleVBox.setAlignment(Pos.CENTER);
 
-        textFieldsGridPane.add(usernameLabel, 0, 0);
-        textFieldsGridPane.add(usernameTextField, 1, 0);
+        usernameHBox.getChildren().add(usernameLabel);
+        usernameHBox.getChildren().add(usernameTextField);
+        usernameHBox.setAlignment(Pos.CENTER);
 
-        textFieldsGridPane.add(passwordLabel, 0, 1);
-        textFieldsGridPane.add(passwordTextField, 1, 1);
+        passwordHBox.getChildren().add(passwordLabel);
+        passwordHBox.getChildren().add(passwordTextField);
+        passwordHBox.setAlignment(Pos.CENTER);
 
-        loginButtonHBox.getChildren().add(loginButton);
-        registerTextHBox.getChildren().add(registerText);
-        registerButtonHBox.getChildren().add(registerButton);
+        textFieldsVBox.getChildren().add(usernameHBox);
+        textFieldsVBox.getChildren().add(passwordHBox);
+        textFieldsVBox.setAlignment(Pos.CENTER);
 
-        registerTextHBox.setAlignment(Pos.CENTER);
+        buttonsVBox.getChildren().add(loginButton);
+        buttonsVBox.getChildren().add(registerText);
+        buttonsVBox.getChildren().add(registerButton);
+        buttonsVBox.setAlignment(Pos.CENTER);
 
-        buttonsVBox.getChildren().add(loginButtonHBox);
-        buttonsVBox.getChildren().add(registerTextHBox);
-        buttonsVBox.getChildren().add(registerButtonHBox);
-
-        contentVBox.getChildren().add(textFieldsGridPane);
+        contentVBox.getChildren().add(textFieldsVBox);
         contentVBox.getChildren().add(buttonsVBox);
+        contentVBox.setAlignment(Pos.CENTER);
 
         String image = this.getClass().getResource("../images/background.jpg").toExternalForm();
         basePane.setStyle(
                 "-fx-background-image: url('" + image + "'); " +
-         "-fx-background-position: center center; " +
-         "-fx-background-repeat: stretch;" +
-         "-fx-background-size: 1024 576");
-        basePane.setTop(titleHBox);
+                "-fx-background-position: center center; " +
+                "-fx-background-repeat: stretch;" +
+                "-fx-background-size: 1024 576"
+        );
+        basePane.setTop(titleVBox);
         basePane.setCenter(contentVBox);
     }
 

@@ -1,10 +1,9 @@
 package view;
 
-import javafx.geometry.Insets;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import presentation.Presenter;
+import javafx.geometry.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import presentation.MainPresenter;
 
 public class MainView extends BaseView {
 
@@ -13,11 +12,16 @@ public class MainView extends BaseView {
     private GridPane searchGridPane;
     private VBox buttonsVBox;
 
-    private Presenter mainViewPresenter;
+    private Label searchLabel;
+    private TextField searchTextField;
 
-    public MainView(Presenter mainViewPresenter) {
-        super(mainViewPresenter);
-        this.mainViewPresenter = mainViewPresenter;
+    //private HBox
+
+    private MainPresenter mainPresenter;
+
+    public MainView(MainPresenter mainPresenter) {
+        super(mainPresenter);
+        this.mainPresenter = mainPresenter;
         initializePanes();
         initializeViews();
         buildPanes();
@@ -27,7 +31,7 @@ public class MainView extends BaseView {
 
     private void initializePanes() {
         basePane = new BorderPane();
-        basePane.setPadding(new Insets(0, 292, 0, 292));
+        basePane.setPadding(new Insets(133, 292, 0, 292));
     }
 
     private void initializeViews() {
