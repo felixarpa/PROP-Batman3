@@ -11,6 +11,7 @@ import domain.graph.*;
 import comparators.RelevanceComparator;
 import exceptions.IncorrectPassword;
 import exceptions.NonExistentUser;
+import exceptions.ProjectError;
 
 public class DriverPageRank {
 
@@ -18,7 +19,7 @@ public class DriverPageRank {
 		try {
 			UserController.logIn("hola","123");
 		} catch (IncorrectPassword | NonExistentUser incorrectPassword) {
-			throw new Error(incorrectPassword.getMessage());
+			throw new ProjectError(incorrectPassword.getMessage());
 		}
 		Graph test = Graph.getInstance();
 		ArrayList<Node> vnode = new ArrayList<>();

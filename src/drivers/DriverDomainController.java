@@ -450,7 +450,7 @@ public class DriverDomainController {
 	}
 
 	private static void removeUser() {
-		if (!god.currentUser.getAdmin()) {
+		if (!DomainController.getCurrentUser().getAdmin()) {
 			pl("Only admin users can edit");
 			return;
 		}
@@ -464,7 +464,7 @@ public class DriverDomainController {
 	}
 
 	private static void edit() {
-		if (!god.currentUser.getAdmin()) {
+		if (!DomainController.getCurrentUser().getAdmin()) {
 			pl("only admin users can edit");
 			return;
 		}
@@ -663,7 +663,7 @@ public class DriverDomainController {
 	}
 
 	private static void pi(String mode) {
-		p(god.currentUser.getUsername() + ":" + mode + "~$ ");
+		p(DomainController.getCurrentUser().getUsername() + ":" + mode + "~$ ");
 	}
 
 	private static void pl(String s) {

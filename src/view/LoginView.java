@@ -28,10 +28,10 @@ public class LoginView {
     private ImageView applicationLogo;
 
     private Label usernameLabel;
-    private static TextField usernameTextField;
+    private TextField usernameTextField;
 
     private Label passwordLabel;
-    private static PasswordField passwordTextField;
+    private PasswordField passwordTextField;
 
     private HBox loginButtonHBox;
     private Button loginButton;

@@ -13,12 +13,12 @@ import presentation.Presenter;
 public class MyApp extends Application {
 
     private static Stage baseStage;
-    public static Group root;
+    //public static Group root;
     private static Presenter currentPresenter;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        root = new Group();
+        //root = new Group();
         baseStage = primaryStage;
 
         baseStage.setTitle(Config.APPLICATION_NAME);

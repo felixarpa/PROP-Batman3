@@ -276,7 +276,7 @@ public class DriverSearch {
 		for (Map.Entry<Double,TreeSet<Node[]>> entry : result.entrySet()) {
 			System.out.println('\n' + "RELEVANCE: " + entry.getKey());
 			for (Node[] pair: entry.getValue()) {
-				if (pair.length != 2) throw new Error("Search didn't geat a coherent result.");
+				if (pair.length != 2) throw new ProjectError("Search didn't geat a coherent result.");
 				System.out.println("Edge " + i + ':');
 				System.out.println(pair[0] + "\n" + pair[1]);
 				toSelect.add(pair);
@@ -322,7 +322,7 @@ public class DriverSearch {
 			for (Map.Entry<Double,TreeSet<Node[]>> entryordered : similar.entrySet()) {
 				System.out.println("RELEVANCE: " + entryordered.getKey() + '\n');
 				for (Node[] pair: entryordered.getValue()) {
-					if (pair.length != 2) throw new Error("Search didn't geat a coherent result.");
+					if (pair.length != 2) throw new ProjectError("Search didn't geat a coherent result.");
 					System.out.println(pair[0] + "\n" + pair[1] + '\n');
 				}
 			}

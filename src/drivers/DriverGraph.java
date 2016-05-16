@@ -282,7 +282,7 @@ public class DriverGraph {
         try {
             UserController.logIn("Mario","123");
         } catch (IncorrectPassword | NonExistentUser incorrectPassword) {
-            throw new Error(incorrectPassword.getMessage());
+            throw new ProjectError(incorrectPassword.getMessage());
         }
 
         vnode.add(new Author("Mario",1,1));

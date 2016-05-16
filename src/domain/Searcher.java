@@ -1,11 +1,10 @@
 package domain;
 
-import comparators.NodeVectorComparator;
 import comparators.RelevanceComparator;
 import domain.graph.*;
+import exceptions.ProjectError;
 import util.ProjectConstants;
 
-import java.io.IOException;
 import java.util.*;
 
 import static java.lang.StrictMath.abs;
@@ -42,7 +41,7 @@ public abstract class Searcher {
         else if (node.asPaper() != null) resultPaper.remove(node.asPaper());
         else if (node.asConference() != null) resultConference.remove(node.asConference());
         else if (node.asTerm() != null) resultTerm.remove(node.asTerm());
-        else throw new Error("FATAL ERROR: Node " + node + " it's not a valid type");
+        else throw new ProjectError("FATAL ERROR: Node " + node + " it's not a valid type");
     }
 
     private static void addToResult(Node node, TreeSet<Conference> resultConference, TreeSet<Author> resultAuthor, TreeSet<Term> resultTerm) {

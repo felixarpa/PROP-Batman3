@@ -40,7 +40,7 @@ public class Graph {
 			}
 			nodes.add(node);
 		}
-		if (idMap.put(node.getId(),node) != null) throw new Error("Graph not coherent with the id map");
+		if (idMap.put(node.getId(),node) != null) throw new ProjectError("Graph not coherent with the id map");
     }
 
 	public void deleteNode(Node node) throws NonExistentNode {
@@ -55,11 +55,11 @@ public class Graph {
 
 		node.deleteNode();
 		graph.remove(node);
-		if (idMap.remove(node.getId()) == null) throw new Error("Graph not coherent with the id map");
+		if (idMap.remove(node.getId()) == null) throw new ProjectError("Graph not coherent with the id map");
 	}
 
 	public void addSingleEdge(Node src, Node dst, double weight) throws ExistingEdge, NonExistentEdgeNodes {
-		if (src.asPaper() != null || dst.asPaper() != null) throw new Error("Attempted to add a single edge between two directly connected nodes");
+		if (src.asPaper() != null || dst.asPaper() != null) throw new ProjectError("Attempted to add a single edge between two directly connected nodes");
         if (!existsNode(src)) throw new NonExistentEdgeNodes(src, null);
 		src.addEdge(dst, weight);
 		++edges;
@@ -142,7 +142,7 @@ public class Graph {
                         try {
                             node.deleteEdge(adjacent);
                         } catch (NonExistentEdge nonExistentEdge) {
-                            throw new Error("FATAL ERROR: UNEXPECTED ERROR ERASING ADJACENT NODES IN RESET");
+                            throw new ProjectError("FATAL ERROR: UNEXPECTED ERROR ERASING ADJACENT NODES IN RESET");
                         }
                     }
                 }

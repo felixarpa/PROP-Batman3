@@ -1,5 +1,7 @@
 package domain;
 
+import exceptions.ProjectError;
+
 import java.util.TreeSet;
 
 public class User implements Comparable<User> {
@@ -37,7 +39,7 @@ public class User implements Comparable<User> {
 	 */
 	User(String DBline) {
 		String[] fields = DBline.split("\t");
-        if (fields.length < 3) throw new Error("FATAL ERROR: CORRUPTED DATABASA D:D:D:D:D");
+        if (fields.length < 3) throw new ProjectError("FATAL ERROR: CORRUPTED DATABASA D:D:D:D:D");
 		username = fields[0];
 		password = fields[1];
 		isAdmin = (fields[2].equals("true"));

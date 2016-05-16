@@ -22,9 +22,9 @@ public class LoginPresenter extends Presenter {
         String password = loginView.getPassword();
         try {
             UserController.logIn(username, password);
-            System.out.println("Successz");
+            System.out.println("Success");
             loginView.displaySuccessMessage();
-            //loginView.destroy();
+            loginView.destroy();
             loginView = null;
             BatmanChiliPepper.changePresenter(new MainPresenter());
         } catch (IncorrectPassword | NonExistentUser exception) {
