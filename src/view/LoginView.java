@@ -123,8 +123,6 @@ public class LoginView {
         HBox.setHgrow(loginButton, Priority.ALWAYS);
         HBox.setHgrow(registerButton, Priority.ALWAYS);
 
-       //loginButton.setMaxWidth(Double.MAX_VALUE);
-       // registerButton.setMaxWidth(Double.MAX_VALUE);
     }
 
     private void buildPanes() {

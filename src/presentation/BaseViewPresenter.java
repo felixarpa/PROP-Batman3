@@ -12,38 +12,38 @@ public class BaseViewPresenter extends Presenter {
         BaseView.onCreate(this);
     }*/
 
-    public void ManageFavoriteTopics() {
+    public void manageFavoriteTopics() {
 
     }
 
-    public void Search() {
+    public void search() {
 
     }
 
-    public void Settings(){
+    public void settings(){
 
     }
 
-    public void RelationshipSearch(){
+    public void relationshipSearch(){
 
     }
 
-    public void ClickAuthors() {
+    public void clickAuthors() {
     }
 
-    public void ClickPapers() {
-
-    }
-
-    public void ClickConferences() {
+    public void clickPapers() {
 
     }
 
-    public void ClickTerms() {
+    public void clickConferences() {
 
     }
 
-    public void Logout() {
+    public void clickTerms() {
+
+    }
+
+    public void logout() {
 
     }
 
