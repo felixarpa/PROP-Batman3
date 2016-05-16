@@ -1,0 +1,89 @@
+show
+
+search 1 0 node
+search 1 0 relation
+
+search 1 4 node
+search 1 4 relation
+
+search 1 9 node
+search 1 9 relation
+
+search 1 11 node
+search 1 11 relation
+
+search 2 author yes 1 less
+search 2 author yes 1 more
+search 2 author yes 1 equal
+
+search 2 conference yes 0 less
+search 2 conference yes 1 more
+search 2 conference yes 0 equal
+
+search 2 paper yes 1 less
+search 2 paper yes 1 more
+search 2 paper yes 1 equal
+
+search 2 term yes 2 less
+search 2 term yes 2 more
+search 2 term yes 2 equal
+
+search 3 author author yes 0 less
+search 3 author author yes 0 more
+search 3 author author yes 0 equal
+
+search 3 author conference yes 0 less
+search 3 author conference yes 0 more
+search 3 author conference yes 0 equal
+
+search 3 author paper yes 0 less
+search 3 author paper yes 0 more
+search 3 author paper yes 0 equal
+
+search 3 author term yes 0 less
+search 3 author term yes 0 more
+search 3 author term yes 0 equal
+
+search 3 conference author yes 0 less
+search 3 conference author yes 0 more
+search 3 conference author yes 0 equal
+
+search 3 conference conference yes 0 less
+search 3 conference conference yes 0 more
+search 3 conference conference yes 0 equal
+
+search 3 conference paper yes 0 less
+search 3 conference paper yes 0 more
+search 3 conference paper yes 0 equal
+
+search 3 conference term yes 0 less
+search 3 conference term yes 0 more
+search 3 conference term yes 0 equal
+
+search 3 paper author yes 0 less
+search 3 paper author yes 0 more
+search 3 paper author yes 0 equal
+
+search 3 paper conference yes 0 less
+search 3 paper conference yes 0 more
+search 3 paper conference yes 0 equal
+
+search 3 paper term yes 0 less
+search 3 paper term yes 0 more
+search 3 paper term yes 0 equal
+
+search 3 term author yes 0 less
+search 3 term author yes 0 more
+search 3 term author yes 0 equal
+
+search 3 term conference yes 0 less
+search 3 term conference yes 0 more
+search 3 term conference yes 0 equal
+
+search 3 term paper yes 0 less
+search 3 term paper yes 0 more
+search 3 term paper yes 0 equal
+
+search 3 term term yes 0 less
+search 3 term term yes 0 more
+search 3 term term yes 0 equal
