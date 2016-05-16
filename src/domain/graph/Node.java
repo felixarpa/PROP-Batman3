@@ -3,6 +3,7 @@ package domain.graph;
 import comparators.IdComparator;
 import exceptions.ExistingEdge;
 import exceptions.NonExistentEdge;
+import exceptions.ProjectError;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -369,7 +370,7 @@ public abstract class Node implements Comparable<Node> {
 	 * @return No
 	 */
 	private void deleteAdjacentNode(Node node) {
-		if (adjacent.remove(node) == null && (asPaper() != null || node.asPaper() != null)) throw new Error(node+ " adjacent to "+this+"but edge not found in graph");
+		if (adjacent.remove(node) == null && (asPaper() != null || node.asPaper() != null)) throw new ProjectError(node+ " adjacent to "+this+"but edge not found in graph");
 		deleteAdjacent(node);
 	}
 
@@ -417,7 +418,7 @@ public abstract class Node implements Comparable<Node> {
 		else if (node.asConference() != null) ++adjacentConferences;
 		else if (node.asPaper() != null) ++adjacentPapers;
 		else if (node.asTerm() != null) ++adjacentTerms;
-		else throw new Error("FATAL ERROR: Node "+ node +" it's not a valid type");
+		else throw new ProjectError("FATAL ERROR: Node "+ node +" it's not a valid type");
 	}
 
 	/**
@@ -433,7 +434,7 @@ public abstract class Node implements Comparable<Node> {
 		else if (node.asConference() != null) --adjacentConferences;
 		else if (node.asPaper() != null) --adjacentPapers;
 		else if (node.asTerm() != null) --adjacentTerms;
-		else throw new Error("Node "+ node +" it's not a valid type");
+		else throw new ProjectError("Node "+ node +" it's not a valid type");
 	}
 
 	void resetRelevance() {

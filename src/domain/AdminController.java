@@ -27,7 +27,7 @@ public class AdminController {
             else if (node.asTerm() != null) {
                 if (lastIdTerm < id) lastIdTerm = id;
             }
-            else throw new Error("FATAL ERROR: Node "+ node +" it's not a valid type");
+            else throw new ProjectError("FATAL ERROR: Node "+ node +" it's not a valid type");
         }
 
         ++lastIdAuthor;
@@ -64,7 +64,7 @@ public class AdminController {
             	else throw new ExistingNode(existent);
                 break;
             default:
-                throw new Error("Invalid parameter type: "+type);
+                throw new ProjectError("Invalid parameter type: "+type);
         }
         Graph.getInstance().addNode(nodeToInsert);
     }
@@ -85,7 +85,7 @@ public class AdminController {
                 n = Graph.getInstance().getNode(Term.makeId(id));
                 break;
             default:
-                throw new Error("Invalid parameter type: "+type);
+                throw new ProjectError("Invalid parameter type: "+type);
         }
         Graph.getInstance().deleteNode(n);
     }
@@ -106,7 +106,7 @@ public class AdminController {
                 id1 = Term.makeId(i1);
                 break;
             default:
-                throw new Error("Invalid parameter type1: "+type1);
+                throw new ProjectError("Invalid parameter type1: "+type1);
         }
         switch (type2) {
             case "author":
@@ -122,7 +122,7 @@ public class AdminController {
                 id2 = Term.makeId(i2);
                 break;
             default:
-                throw new Error("Invalid parameter type2: "+ type2);
+                throw new ProjectError("Invalid parameter type2: "+ type2);
         }
         Graph.getInstance().addEdge(id1, id2);
     }
@@ -143,7 +143,7 @@ public class AdminController {
                 id1 = Term.makeId(i1);
                 break;
             default:
-                throw new Error("Invalid parameter type1: "+type1);
+                throw new ProjectError("Invalid parameter type1: "+type1);
         }
         switch (type2) {
             case "author":
@@ -159,7 +159,7 @@ public class AdminController {
                 id2 = Term.makeId(i2);
                 break;
             default:
-                throw new Error("Invalid parameter type2: "+ type2);
+                throw new ProjectError("Invalid parameter type2: "+ type2);
         }
         Node n1 = Graph.getInstance().getNode(id1);
         Node n2 = Graph.getInstance().getNode(id2);

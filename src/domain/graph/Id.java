@@ -1,11 +1,13 @@
 package domain.graph;
 
+import exceptions.ProjectError;
+
 public class Id implements Comparable<Id>{
 
 	private int id;
 
 	public Id(int id, int type){
-		if(type < 0 || type > 3) throw new Error("Type must be between 0 and 3");
+		if(type < 0 || type > 3) throw new ProjectError("Type must be between 0 and 3");
 		this.id = (id << 2) + type;
 	}
 	

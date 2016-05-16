@@ -129,7 +129,7 @@ public class DomainController {
 
 				break;
 			default:
-				throw new Error("Invalid parameter typeOfResult: " + typeOfResult);
+				throw new ProjectError("Invalid parameter typeOfResult: " + typeOfResult);
 
 		}
 
@@ -157,7 +157,7 @@ public class DomainController {
 			case "domain.graph.Paper":
 				return Paper.makeId(ide);
 			default:
-				throw new Error("Invalid type: "+type);
+				throw new ProjectError("Invalid type: "+type);
 		}
 	}
 
@@ -176,7 +176,7 @@ public class DomainController {
 				aux = new TreeSet<>(new RelevanceComparator());
 				break;
 			default:
-				throw new Error("Invalid parameter typeOfEntity");
+				throw new ProjectError("Invalid parameter typeOfEntity");
 		}
 
 		switch (typeOfSearch) {
@@ -195,14 +195,14 @@ public class DomainController {
 						aux.addAll(resultTerm);
 						break;
 					default:
-						throw new Error("Invalid parameter typeOfEntity: " + typeOfEntity);
+						throw new ProjectError("Invalid parameter typeOfEntity: " + typeOfEntity);
 				}
 				break;
 			case 2:
 				aux.addAll(lastSearchResult);
 				break;
 			default:
-				throw new Error("Invalid parameter typeOfSearch: "+ typeOfSearch);
+				throw new ProjectError("Invalid parameter typeOfSearch: "+ typeOfSearch);
 		}
 
 		result = new ArrayList<>(aux.size());
@@ -248,7 +248,7 @@ public class DomainController {
                 aux = new TreeSet<>(new RelationRelevanceComparator());
                 break;
             default:
-                throw new Error("Invalid parameter typeOfOrdering: "+typeOfOrdering);
+                throw new ProjectError("Invalid parameter typeOfOrdering: "+typeOfOrdering);
         }
 
         aux.addAll(lastRelevanceResult);
@@ -258,7 +258,7 @@ public class DomainController {
     }
 
 	public ArrayList<String> secondSearch(int type) {
-		if (type < 0 || type > 3) throw new Error("Invalid parameter type, must be between 0 and 3, we got "+type);
+		if (type < 0 || type > 3) throw new ProjectError("Invalid parameter type, must be between 0 and 3, we got "+type);
 		lastSearchResult = Searcher.allTypeNodes(type);
 		ArrayList<String> result = new ArrayList<>(lastSearchResult.size());
 		for (Node n : lastSearchResult) {

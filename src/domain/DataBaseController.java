@@ -64,7 +64,7 @@ public abstract class DataBaseController {
                 }
                 bf.close();
             } catch (IOException | ExistingNode e) {
-                throw new Error(e.getMessage());
+                throw new ProjectError(e.getMessage());
             }
         }
         System.out.println("End loadNodes");
@@ -120,7 +120,7 @@ public abstract class DataBaseController {
                     graph.addEdge(identifier1, identifier2);
                 }
             } catch (IOException | ExistingEdge | NonExistentEdgeNodes e) {
-                throw new Error(e.getMessage());
+                throw new ProjectError(e.getMessage());
             }
         }
         System.out.println("End loadEdges");
@@ -169,7 +169,7 @@ public abstract class DataBaseController {
                     sc.close();
                 }
             } catch (IOException e) {
-                throw new Error(e.getMessage());
+                throw new ProjectError(e.getMessage());
             }
         }
         System.out.println("End loadLabels");
@@ -212,7 +212,7 @@ public abstract class DataBaseController {
                         } else if (adjacent.asConference() != null) {
                             paperConference.write(data);
                         }
-                        else throw new Error("FATAL ERROR: Node "+ node +" it's not a valid type");
+                        else throw new ProjectError("FATAL ERROR: Node "+ node +" it's not a valid type");
                     }
                     paper.write(string);
                     if (node.getLabel() != -1) {
@@ -242,7 +242,7 @@ public abstract class DataBaseController {
             paperLabel.close();
             conferenceLabel.close();
         } catch (IOException e) {
-            throw new Error(e.getMessage());
+            throw new ProjectError(e.getMessage());
         }
         System.out.println("End downloadNodes");
     }
@@ -274,14 +274,14 @@ public abstract class DataBaseController {
     		register.close();
     		
     	} catch (IOException e) {
-            throw new Error(e.getMessage());
+            throw new ProjectError(e.getMessage());
         }
     }
     
     public static void deleteUser(User user) throws NonExistentUser {
 
         if (DomainController.currentUser.equals(user)) {
-            throw new Error("ERROR: You cannot delete the actual user.");
+            throw new ProjectError("ERROR: You cannot delete the actual user.");
         }
         LinkedList<User> users = new LinkedList<>();
     	String fileName;
@@ -294,7 +294,7 @@ public abstract class DataBaseController {
                 User dbUser = new User(actual);
     			if (!dbUser.equals(user)) users.add(dbUser);
                 else if (!found) found = true;
-                else throw new Error("FATAL ERROR: CORRUPTED DATA BASE, FOUND TWO EQUAL USERS");
+                else throw new ProjectError("FATAL ERROR: CORRUPTED DATA BASE, FOUND TWO EQUAL USERS");
     		}
             if (!found) throw new NonExistentUser(user);
     		reader.close();
@@ -306,7 +306,7 @@ public abstract class DataBaseController {
     		register.close();
     		
     	} catch (IOException e) {
-            throw new Error(e.getMessage());
+            throw new ProjectError(e.getMessage());
         }
     }
     
@@ -331,7 +331,7 @@ public abstract class DataBaseController {
             reader.close();
             throw new NonExistentUser(user);
     	} catch (IOException e) {
-            throw new Error(e.getMessage());
+            throw new ProjectError(e.getMessage());
         }
     }
     

@@ -2,6 +2,7 @@ package domain;
 
 import domain.graph.*;
 import exceptions.NonExistentEdge;
+import exceptions.ProjectError;
 
 public abstract class MugendoAlgorithm {
 
@@ -9,13 +10,13 @@ public abstract class MugendoAlgorithm {
         Graph graph = Graph.getInstance();
         double weight = src.getWeight(dst);
         if (weight > 0.0) return weight; // Ya existe una conexion
-        if (src.equal(dst)) throw new Error("Attempted to compute the relevance between a node and itself"); // Mismo nodo
+        if (src.equal(dst)) throw new ProjectError("Attempted to compute the relevance between a node and itself"); // Mismo nodo
         if (src.asPaper() == null && dst.asPaper() == null) { // Ninguno de los dos es Paper: 2 hops
             weight = get2HopsRelevance(src, dst);
             try {
                 graph.addSingleEdge(src, dst, weight);
             } catch (Exception graphException) {
-                throw new Error("In Mugendo algorithm, we got the next exception :\n"+graphException.getMessage());
+                throw new ProjectError("In Mugendo algorithm, we got the next exception :\n"+graphException.getMessage());
             }
         }
         else if (src.asPaper() != null ^ dst.asPaper() != null) { // Nomes un paper: 1 hop
@@ -23,10 +24,10 @@ public abstract class MugendoAlgorithm {
             try {
                 graph.setWeight(src, dst, weight);
             } catch (NonExistentEdge nonExistentEdge) {
-                throw new Error("In Mugendo algorithm, we got the next exception :\n"+nonExistentEdge.getMessage());
+                throw new ProjectError("In Mugendo algorithm, we got the next exception :\n"+nonExistentEdge.getMessage());
             }
         }
-        else throw new Error("Tried to compute relevance between two papers");
+        else throw new ProjectError("Tried to compute relevance between two papers");
         return weight;
     }
 
