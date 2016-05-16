@@ -104,7 +104,7 @@ public class BaseView {
         sidebarBottom.getChildren().add(username);
         sidebarBottom.getChildren().add(sidebarBottomIcons);
 
-        String sidebarBG = this.getClass().getResource("../images/sidebarBackground.jpg").toExternalForm();
+        String sidebarBG = this.getClass().getResource("../images/sidebarBackground.png").toExternalForm();
         sidebar.setStyle("-fx-background-image: url('" + sidebarBG + "'); " +
                 "-fx-background-position: center center; " +
                 "-fx-background-repeat: stretch;" +

@@ -4,7 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import presentation.MainPresenter;
+import presentation.Presenter;
 
 public class MainView extends BaseView {
 
@@ -13,9 +13,10 @@ public class MainView extends BaseView {
     private GridPane searchGridPane;
     private VBox buttonsVBox;
 
-    private MainPresenter mainViewPresenter;
+    private Presenter mainViewPresenter;
 
-    public MainView(MainPresenter mainViewPresenter) {
+    public MainView(Presenter mainViewPresenter) {
+        super(mainViewPresenter);
         this.mainViewPresenter = mainViewPresenter;
         initializePanes();
         initializeViews();
