@@ -1,11 +1,9 @@
 package domain;
 
-import comparators.NodeVectorComparator;
 import comparators.RelevanceComparator;
 import domain.graph.*;
 import util.ProjectConstants;
 
-import java.io.IOException;
 import java.util.*;
 
 import static java.lang.StrictMath.abs;
