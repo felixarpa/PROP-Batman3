@@ -30,10 +30,6 @@ public class MyApp extends Application {
         testView();
     }
 
-    private void testView() {
-        currentPresenter = new TestView();
-    }
-
     public static void startScene(Pane pane) {
         baseStage.setScene(new Scene(pane));
         baseStage.show();
@@ -43,12 +39,18 @@ public class MyApp extends Application {
         currentPresenter = nextPresenter;
     }
 
-
     public void batsign() {
         currentPresenter = new LoginPresenter();
     }
 
+
     public static void prueba() {
         Platform.exit();
+    }
+
+
+    // THIS IS A TESTING METHOD //
+    private void testView() {
+        currentPresenter = new TestView();
     }
 }
