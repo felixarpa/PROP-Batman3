@@ -9,7 +9,7 @@ import java.util.*;
 
 public class DomainController {
 
-    public static User currentUser;
+    static User currentUser;
 
     private Graph graf = Graph.getInstance();
 
@@ -26,6 +26,10 @@ public class DomainController {
 	    DataBaseController.load();
 	    PageRank.execute();
 	 }
+
+	public static User getCurrentUser() {
+		return currentUser;
+	}
 
 	public ArrayList<String> searchingANode(String name) {
 		Set<Node> result = graf.getNode(name);

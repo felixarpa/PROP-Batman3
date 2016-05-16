@@ -12,7 +12,7 @@ public class Term extends Node {
 	public Term(String name, int id) {
 		super(name);
         this.id = new Id(id, ProjectConstants.TERM_TYPE);
-        if (DomainController.currentUser.isFavorite(id)) {
+        if (DomainController.getCurrentUser().isFavorite(id)) {
         	relevance = Graph.getInstance().size();
         }
 	}
@@ -36,7 +36,7 @@ public class Term extends Node {
 
 	@Override
 	void resetRelevance() {
-		if (DomainController.currentUser.isFavorite(id.getId())) {
+		if (DomainController.getCurrentUser().isFavorite(id.getId())) {
 			relevance = Graph.getInstance().size();
 		}
 		else relevance = 1;
