@@ -310,7 +310,9 @@ public class DomainController {
 			++count;
 			i += 2;
         }
-		result.set(pos, Integer.toString(count));
+		if (pos != -1) {
+			result.set(pos, Integer.toString(count));
+		}
         return result;
     }
 
