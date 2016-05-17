@@ -56,5 +56,6 @@ public class LoginPresenter extends Presenter {
             }
         });
         thread.start();
+
     }
 }

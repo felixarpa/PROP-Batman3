@@ -1,5 +1,7 @@
 package view;
 
+import com.sun.javafx.iio.gif.GIFDescriptor;
+import javafx.animation.Animation;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,6 +18,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import presentation.LoginPresenter;
+
+import javax.swing.*;
 
 
 public class LoginView {
@@ -39,6 +43,8 @@ public class LoginView {
     private Button registerButton;
 
     private LoginPresenter loginPresenter;
+
+    private Animation loadingIcon;
 
     public LoginView(LoginPresenter loginPresenter) {
         this.loginPresenter = loginPresenter;
@@ -75,8 +81,10 @@ public class LoginView {
     }
 
     private void initializeViews() {
+
         applicationLogo = new ImageView();
         Image image2 = new Image(this.getClass().getResourceAsStream("../images/login/titleLogo.png"));
+
         applicationLogo.setImage(image2);
         applicationLogo.setFitWidth(525);
         applicationLogo.setFitHeight(147);
