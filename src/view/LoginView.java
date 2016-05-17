@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -44,7 +41,7 @@ public class LoginView {
 
     private LoginPresenter loginPresenter;
 
-    private Animation loadingIcon;
+    private ProgressIndicator progressIndicator;
 
     public LoginView(LoginPresenter loginPresenter) {
         this.loginPresenter = loginPresenter;
@@ -123,6 +120,11 @@ public class LoginView {
         HBox.setHgrow(loginButton, Priority.ALWAYS);
         HBox.setHgrow(registerButton, Priority.ALWAYS);
 
+        progressIndicator = new ProgressIndicator();
+        progressIndicator.setMaxSize(227, 50);
+        progressIndicator.setMinSize(227, 50);
+        progressIndicator.setProgress(-1.0f);
+
     }
 
     private void buildPanes() {
@@ -157,6 +159,14 @@ public class LoginView {
         basePane.setCenter(contentVBox);
     }
 
+    public void startProgress() {
+        contentVBox.getChildren().set(0, progressIndicator);
+    }
+
+    public void stopProgress() {
+        contentVBox.getChildren().set(0, textFieldsVBox);
+    }
+
     public void displayErrorMessage(){
         System.out.println("Login Failure");
     }
@@ -165,7 +175,8 @@ public class LoginView {
         System.out.println("Login Success");
     }
 
-    private void setListeners(){
+
+    private void setListeners() {
 
         loginButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override

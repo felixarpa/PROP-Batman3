@@ -4,9 +4,13 @@ import domain.UserController;
 import exceptions.ExistingUser;
 import exceptions.IncorrectPassword;
 import exceptions.NonExistentUser;
+import javafx.application.Platform;
 import main.BatmanChiliPepper;
 import view.LoginView;
 import view.MyApp;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.RunnableFuture;
 
 public class LoginPresenter extends Presenter {
 
@@ -20,9 +24,7 @@ public class LoginPresenter extends Presenter {
     public void login() {
         String username = loginView.getUsername();
         String password = loginView.getPassword();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        loginView.startProgress();
                 try {
                     UserController.logIn(username, password);
                     System.out.println("Success");
@@ -32,30 +34,21 @@ public class LoginPresenter extends Presenter {
                     BatmanChiliPepper.changePresenter(new MainPresenter());
                 } catch (IncorrectPassword | NonExistentUser exception) {
                     System.out.println(exception.getMessage());
+                    loginView.stopProgress();
                     loginView.displayErrorMessage();
                 }
-            }
-        });
-        thread.start();
     }
 
     public void register() {
         String username = loginView.getUsername();
         String password = loginView.getPassword();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    UserController.register(username, password);
-                    System.out.println("Success");
-                    loginView.displaySuccessMessage();
-                } catch (ExistingUser existingUser) {
-                    System.out.println(existingUser.getMessage());
-                    loginView.displayErrorMessage();
-                }
-            }
-        });
-        thread.start();
-
+        try{
+            UserController.register(username, password);
+            System.out.println("Success");
+            loginView.displaySuccessMessage();
+        } catch (ExistingUser existingUser) {
+            System.out.println(existingUser.getMessage());
+            loginView.displayErrorMessage();
+        }
     }
 }
