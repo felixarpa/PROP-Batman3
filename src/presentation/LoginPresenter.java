@@ -25,18 +25,29 @@ public class LoginPresenter extends Presenter {
         String username = loginView.getUsername();
         String password = loginView.getPassword();
         loginView.startProgress();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
                 try {
                     UserController.logIn(username, password);
                     System.out.println("Success");
                     loginView.displaySuccessMessage();
                     loginView.destroy();
                     loginView = null;
-                    BatmanChiliPepper.changePresenter(new MainPresenter());
+                    MyApp.changePresenter(new MainPresenter());
                 } catch (IncorrectPassword | NonExistentUser exception) {
                     System.out.println(exception.getMessage());
-                    loginView.stopProgress();
-                    loginView.displayErrorMessage();
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            loginView.stopProgress();
+                            loginView.displayErrorMessage();
+                        }
+                    });
                 }
+            }
+        });
+        thread.start();
     }
 
     public void register() {
