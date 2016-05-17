@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -157,16 +158,33 @@ public class LoginView {
     }
 
     private void setListeners(){
-        loginButton.setOnAction(new EventHandler<ActionEvent>() {
+
+        loginButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(MouseEvent event) {
+                MyApp.changeButtonImage(loginButton, "login/loginButtonPressed", "227", "50", getClass());
+            }
+        });
+
+        loginButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MyApp.changeButtonImage(loginButton, "login/loginButton", "227", "50", getClass());
                 loginPresenter.login();
             }
         });
 
-        registerButton.setOnAction(new EventHandler<ActionEvent>() {
+        registerButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(MouseEvent event) {
+                MyApp.changeButtonImage(registerButton, "login/registerButtonPressed", "148", "50", getClass());
+            }
+        });
+
+        registerButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MyApp.changeButtonImage(registerButton, "login/registerButton", "148", "50", getClass());
                 loginPresenter.register();
             }
         });

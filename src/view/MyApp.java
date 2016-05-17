@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import main.TestView;
@@ -43,14 +44,20 @@ public class MyApp extends Application {
         currentPresenter = new LoginPresenter();
     }
 
-
-    public static void prueba() {
-        Platform.exit();
+    public static void changeButtonImage(Button button, String imageName, String width, String height, Class clas) {
+        String loginButtonImage = clas.getResource("../images/"+imageName+".png").toExternalForm();
+        button.setStyle(
+                "-fx-background-image: url('"+ loginButtonImage + "');" +
+                        "-fx-background-size: "+width+" "+height+";" +
+                        "-fx-background-color: transparent");
     }
-
 
     // THIS IS A TESTING METHOD //
     private void testView() {
         currentPresenter = new TestView();
+    }
+    //THIS TOO
+    public static void prueba() {
+        Platform.exit();
     }
 }

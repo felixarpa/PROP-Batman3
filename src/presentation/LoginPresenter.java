@@ -20,29 +20,41 @@ public class LoginPresenter extends Presenter {
     public void login() {
         String username = loginView.getUsername();
         String password = loginView.getPassword();
-        try {
-            UserController.logIn(username, password);
-            System.out.println("Success");
-            loginView.displaySuccessMessage();
-            loginView.destroy();
-            loginView = null;
-            BatmanChiliPepper.changePresenter(new MainPresenter());
-        } catch (IncorrectPassword | NonExistentUser exception) {
-            System.out.println(exception.getMessage());
-            loginView.displayErrorMessage();
-        }
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    UserController.logIn(username, password);
+                    System.out.println("Success");
+                    loginView.displaySuccessMessage();
+                    loginView.destroy();
+                    loginView = null;
+                    BatmanChiliPepper.changePresenter(new MainPresenter());
+                } catch (IncorrectPassword | NonExistentUser exception) {
+                    System.out.println(exception.getMessage());
+                    loginView.displayErrorMessage();
+                }
+            }
+        });
+        thread.start();
     }
 
     public void register() {
         String username = loginView.getUsername();
         String password = loginView.getPassword();
-        try {
-            UserController.register(username, password);
-            System.out.println("Success");
-            loginView.displaySuccessMessage();
-        } catch (ExistingUser existingUser) {
-            System.out.println(existingUser.getMessage());
-            loginView.displayErrorMessage();
-        }
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    UserController.register(username, password);
+                    System.out.println("Success");
+                    loginView.displaySuccessMessage();
+                } catch (ExistingUser existingUser) {
+                    System.out.println(existingUser.getMessage());
+                    loginView.displayErrorMessage();
+                }
+            }
+        });
+        thread.start();
     }
 }
