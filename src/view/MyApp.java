@@ -27,8 +27,8 @@ public class MyApp extends Application {
         baseStage.setHeight(Config.WINDOW_HEIGHT);
         baseStage.setResizable(false);
 
-        batsign();
-        //testView();
+        //batsign();
+        testView();
     }
 
     public static void startScene(Pane pane) {
