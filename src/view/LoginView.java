@@ -2,6 +2,7 @@ package view;
 
 import com.sun.javafx.iio.gif.GIFDescriptor;
 import javafx.animation.Animation;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -160,11 +161,25 @@ public class LoginView {
     }
 
     public void startProgress() {
-        contentVBox.getChildren().set(0, progressIndicator);
+        if (Platform.isFxApplicationThread()) {
+            contentVBox.getChildren().set(0, progressIndicator);
+        }
+        else {
+            Platform.runLater(() -> {
+                contentVBox.getChildren().set(0, progressIndicator);
+            });
+        }
     }
 
     public void stopProgress() {
-        contentVBox.getChildren().set(0, textFieldsVBox);
+        if (Platform.isFxApplicationThread()) {
+            contentVBox.getChildren().set(0, textFieldsVBox);
+        }
+        else {
+            Platform.runLater(() -> {
+                contentVBox.getChildren().set(0, textFieldsVBox);
+            });
+        }
     }
 
     public void displayErrorMessage(){

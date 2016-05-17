@@ -32,8 +32,16 @@ public class MyApp extends Application {
     }
 
     public static void startScene(Pane pane) {
-        baseStage.setScene(new Scene(pane));
-        baseStage.show();
+        if (Platform.isFxApplicationThread()) {
+            baseStage.setScene(new Scene(pane));
+            baseStage.show();
+        }
+        else {
+            Platform.runLater(() ->{
+                baseStage.setScene(new Scene(pane));
+                baseStage.show();
+            });
+        }
     }
 
     public static void changePresenter(Presenter nextPresenter) {
@@ -53,7 +61,7 @@ public class MyApp extends Application {
     }
 
     // THIS IS A TESTING METHOD //
-    private void testView() {
+    public static void testView() {
         currentPresenter = new TestView();
     }
     //THIS TOO
