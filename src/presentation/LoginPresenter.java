@@ -4,13 +4,9 @@ import domain.UserController;
 import exceptions.ExistingUser;
 import exceptions.IncorrectPassword;
 import exceptions.NonExistentUser;
-import javafx.application.Platform;
-import main.BatmanChiliPepper;
 import view.LoginView;
 import view.MyApp;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.RunnableFuture;
 
 public class LoginPresenter extends Presenter {
 

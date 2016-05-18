@@ -161,6 +161,8 @@ public class LoginView {
     }
 
     public void startProgress() {
+        loginButton.setDisable(true);
+        registerButton.setDisable(true);
         if (Platform.isFxApplicationThread()) {
             contentVBox.getChildren().set(0, progressIndicator);
         }
@@ -172,6 +174,8 @@ public class LoginView {
     }
 
     public void stopProgress() {
+        loginButton.setDisable(false);
+        registerButton.setDisable(false);
         if (Platform.isFxApplicationThread()) {
             contentVBox.getChildren().set(0, textFieldsVBox);
         }
@@ -189,7 +193,6 @@ public class LoginView {
     public void displaySuccessMessage(){
         System.out.println("Login Success");
     }
-
 
     private void setListeners() {
 
