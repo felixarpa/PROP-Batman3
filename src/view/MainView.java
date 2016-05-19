@@ -9,10 +9,11 @@ import presentation.MainPresenter;
 
 public class MainView extends BaseView {
 
-    private BorderPane basePane;
     private VBox contentVBox;
 
     private EditText searchEditText;
+    private TextField searchText;
+    private HBox searchTextHBox;
 
     private ImageButton searchButton;
 
@@ -25,6 +26,7 @@ public class MainView extends BaseView {
         initializeViews();
         buildPanes();
         setListeners();
+        topBarPane.setCenter(contentVBox);
     }
 
     public void destroy() {
@@ -32,22 +34,25 @@ public class MainView extends BaseView {
     }
 
     private void initializePanes() {
-        basePane = new BorderPane();
-        basePane.setPadding(new Insets(133, 292, 0, 292));
-
         contentVBox = new VBox();
-
-        searchEditText = new EditText("Search");
+        searchTextHBox = new HBox();
+        searchTextHBox.setPadding(new Insets(0,0,10,0));
     }
 
     private void initializeViews() {
-        searchButton = new ImageButton("", 1, 1);
-
-        HBox.setHgrow(searchButton, Priority.ALWAYS);
+        searchButton = new ImageButton("../images/login/loginButton.png", 250, 50);
+        searchText = new TextField();
     }
 
     private void buildPanes() {
-        contentVBox.getChildren().add(searchEditText);
+
+        searchTextHBox.getChildren().add(searchText);
+        searchTextHBox.setMinWidth(500);
+        searchTextHBox.setMaxWidth(500);
+        searchTextHBox.setAlignment(Pos.CENTER);
+        HBox.setHgrow(searchText, Priority.ALWAYS);
+
+        contentVBox.getChildren().add(searchTextHBox);
         contentVBox.getChildren().add(searchButton);
         contentVBox.setAlignment(Pos.CENTER);
     }
@@ -73,13 +78,5 @@ public class MainView extends BaseView {
             }
         );
     }
-
-    @Override
-    public Pane getContent() {
-        BorderPane baseViewBasePane = (BorderPane) super.getContent();
-        baseViewBasePane.setCenter(basePane);
-        return baseViewBasePane;
-    }
-
 
 }

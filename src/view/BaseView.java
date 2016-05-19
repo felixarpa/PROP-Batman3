@@ -19,7 +19,7 @@ import presentation.Presenter;
 public class BaseView {
 
     private BorderPane basePane;
-    private BorderPane topBarPane;
+    protected BorderPane topBarPane;
 
     private ImageView applicationLogo;
     private ImageView exitIcon;
@@ -235,7 +235,5 @@ public class BaseView {
     public Pane getContent() {
         return basePane;
     }
-
-
 
 }
