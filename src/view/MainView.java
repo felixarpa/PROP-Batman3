@@ -14,7 +14,7 @@ public class MainView extends BaseView {
 
     private EditText searchEditText;
 
-    private Button searchButton;
+    private ImageButton searchButton;
 
     private MainPresenter mainPresenter;
 
@@ -41,14 +41,7 @@ public class MainView extends BaseView {
     }
 
     private void initializeViews() {
-        searchButton = new Button();
-        searchButton.setMaxSize(1,1);
-        searchButton.setMinSize(1,1);
-        String searchButtonImage = this.getClass().getResource("").toExternalForm();
-        searchButton.setStyle(
-                "-fx-background-image: url('"+ searchButtonImage + "');" +
-                "-fx-background-size: 1 1;" +
-                "-fx-background-color: transparent");
+        searchButton = new ImageButton("", 1, 1);
 
         HBox.setHgrow(searchButton, Priority.ALWAYS);
     }
@@ -84,7 +77,7 @@ public class MainView extends BaseView {
     @Override
     public Pane getContent() {
         BorderPane baseViewBasePane = (BorderPane) super.getContent();
-        baseViewBasePane.setBottom(basePane);
+        baseViewBasePane.setCenter(basePane);
         return baseViewBasePane;
     }
 

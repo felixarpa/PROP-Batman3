@@ -49,7 +49,7 @@ public class BaseView {
     private Presenter baseViewPresenter;
 
     public BaseView(Presenter baseViewPresenter){
-        this.baseViewPresenter = new Presenter();
+        this.baseViewPresenter = baseViewPresenter;
         initializePanes();
         initializeViews();
         buildPanes();
@@ -57,36 +57,24 @@ public class BaseView {
     }
 
     private void setListeners() {
-        authorsButton.setOnMousePressed(
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-
-                    }
+        authorsButton.setOnMouseReleased(
+                event -> {
                 }
         );
 
+
         conferencesButton.setOnMouseReleased(
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                    }
+                event -> {
                 }
         );
 
         papersButton.setOnMousePressed(
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                    }
+                event -> {
                 }
         );
 
         termsButton.setOnMouseReleased(
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                    }
+                event -> {
                 }
         );
     }
