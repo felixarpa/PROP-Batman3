@@ -6,11 +6,10 @@ import view.MyApp;
 
 public class MainPresenter extends BasePresenter {
 
-    private MainView mainView;
 
      public MainPresenter() {
-         mainView = new MainView(this);
-         MyApp.startScene(mainView.getContent());
+         actualView = new MainView(this);
+         MyApp.startScene(actualView.getContent());
      }
 
     public void ClickSearchButton() {
