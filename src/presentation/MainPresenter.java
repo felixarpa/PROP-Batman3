@@ -8,7 +8,7 @@ public class MainPresenter extends BasePresenter {
 
     private MainView mainView;
 
-     MainPresenter() {
+     public MainPresenter() {
          mainView = new MainView(this);
          MyApp.startScene(mainView.getContent());
      }
@@ -17,8 +17,6 @@ public class MainPresenter extends BasePresenter {
        // String nombre = MainView.getSearchText();
         //MainView.hideSearchButton();
         //ArrayList<String> result = god.searchingANode(nombre);
-
-
     }
 
 }

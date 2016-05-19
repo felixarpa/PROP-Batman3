@@ -36,7 +36,7 @@ public class MyApp extends Application {
             baseStage.show();
         }
         else {
-            Platform.runLater(() ->{
+            Platform.runLater(() -> {
                 baseStage.setScene(new Scene(pane));
                 baseStage.show();
             });
