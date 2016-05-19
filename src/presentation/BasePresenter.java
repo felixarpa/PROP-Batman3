@@ -10,7 +10,7 @@ import view.MyApp;
 
 public abstract class  BasePresenter extends Presenter {
 
-    DomainController god = new DomainController();
+    static DomainController god = new DomainController();
     private BaseView actualView;
 
 
@@ -29,43 +29,43 @@ public abstract class  BasePresenter extends Presenter {
     public void search() {
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new LoginPresenter());
+        MyApp.changePresenter(new MainPresenter());
     }
 
     public void settings(){
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new LoginPresenter());
+        MyApp.changePresenter(new SettingsPresenter());
     }
 
     public void relationshipSearch(){
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new LoginPresenter());
+        MyApp.changePresenter(new SimilarRelevancePresenter());
     }
 
     public void clickAuthors() {
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new LoginPresenter());
+        MyApp.changePresenter(new CategoryResultPresenter());
     }
 
     public void clickPapers() {
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new LoginPresenter());
+        MyApp.changePresenter(new CategoryResultPresenter());
     }
 
     public void clickConferences() {
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new LoginPresenter());
+        MyApp.changePresenter(new CategoryResultPresenter());
     }
 
     public void clickTerms() {
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new LoginPresenter());
+        MyApp.changePresenter(new CategoryResultPresenter());
     }
 
     public void logout() {
