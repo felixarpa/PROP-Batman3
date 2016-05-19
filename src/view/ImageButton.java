@@ -1,9 +1,6 @@
 package view;
 
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 
 public class ImageButton extends Button {
 
