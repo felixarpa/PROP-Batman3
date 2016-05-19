@@ -9,6 +9,10 @@ public abstract class UserController {
         DataBaseController.logIn(user);
     }
 
+    public static void logOut(){
+        DomainController.currentUser = null;
+    }
+
     public static void register(String username, String password) throws ExistingUser {
         User user = new User(username, password);
         DataBaseController.registerUser(user);

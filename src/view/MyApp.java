@@ -65,7 +65,7 @@ public class MyApp extends Application {
         currentPresenter = new TestView();
     }
     //THIS TOO
-    public static void prueba() {
+    public static void exit() {
         Platform.exit();
     }
 }

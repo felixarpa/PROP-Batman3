@@ -1,10 +1,17 @@
 package presentation;
 
+import view.BaseView;
+import view.MainView;
+import view.MyApp;
+
 public class MainPresenter extends BasePresenter {
 
+    private MainView mainView;
+
      MainPresenter() {
-       // MainView.onCreate(this);
-    }
+         mainView = new MainView(this);
+         MyApp.startScene(mainView.getContent());
+     }
 
     public void ClickSearchButton() {
        // String nombre = MainView.getSearchText();

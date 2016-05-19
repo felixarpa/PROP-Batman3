@@ -203,7 +203,7 @@ public class DriverDomainController {
 			type = ProjectConstants.CONFERENCE_TYPE;
 		}
 		else if (command.equals("paper")) {
-			type = ProjectConstants.TERM_TYPE;
+			type = ProjectConstants.PAPER_TYPE;
 		}
 		else if (command.equals("term")) {
 			type = ProjectConstants.TERM_TYPE;

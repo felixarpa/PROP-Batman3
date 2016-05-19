@@ -57,7 +57,43 @@ public class BaseView {
     }
 
     private void setListeners() {
+        authorsButton.setOnMousePressed(
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        MyApp.changeButtonImage(loginButton, "login/loginButtonPressed", "227", "50", getClass());
+                    }
+                }
+        );
 
+        conferencesButton.setOnMouseReleased(
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        MyApp.changeButtonImage(loginButton, "login/loginButton", "227", "50", getClass());
+                        loginPresenter.login();
+                    }
+                }
+        );
+
+        papersButton.setOnMousePressed(
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        MyApp.changeButtonImage(registerButton, "login/registerButtonPressed", "148", "50", getClass());
+                    }
+                }
+        );
+
+        termsButton.setOnMouseReleased(
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        MyApp.changeButtonImage(registerButton, "login/registerButton", "148", "50", getClass());
+                        loginPresenter.register();
+                    }
+                }
+        );
     }
 
     public void destroy() { baseViewPresenter = null; }
