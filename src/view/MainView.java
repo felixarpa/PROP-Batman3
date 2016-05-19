@@ -71,12 +71,7 @@ public class MainView extends BaseView {
         );
     }
 
-/*    @Override
-    public Pane getContent() {
-        BorderPane baseViewBasePane = (BorderPane) super.getContent();
-        BorderPane centerPane = baseViewBasePane;
-        return baseViewBasePane;
-    }
+    public String getSearchText() { return searchEditText.getText();}
 
-*/
+
 }

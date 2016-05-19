@@ -4,6 +4,8 @@ import view.BaseView;
 import view.MainView;
 import view.MyApp;
 
+import java.util.ArrayList;
+
 public class MainPresenter extends BasePresenter {
 
 
@@ -12,10 +14,12 @@ public class MainPresenter extends BasePresenter {
          MyApp.startScene(actualView.getContent());
      }
 
-    public void ClickSearchButton() {
-       // String nombre = MainView.getSearchText();
-        //MainView.hideSearchButton();
-        //ArrayList<String> result = god.searchingANode(nombre);
+    public void clickSearchButton() {
+        String nombre = ((MainView)actualView).getSearchText();
+        ArrayList<String> result = god.searchingANode(nombre);
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new RelevanceTypeSelectorPresenter(result));
     }
 
 }
