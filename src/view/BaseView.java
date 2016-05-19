@@ -53,7 +53,11 @@ public class BaseView {
         initializePanes();
         initializeViews();
         buildPanes();
-        //setListeners();
+        setListeners();
+    }
+
+    private void setListeners() {
+
     }
 
     public void destroy() { baseViewPresenter = null; }
