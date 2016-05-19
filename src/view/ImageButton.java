@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public class ImageButton extends Pane {
+public class ImageButton extends Button {
 
     private Button button;
 
