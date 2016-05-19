@@ -66,12 +66,12 @@ public class MainView extends BaseView {
         searchButton.setOnMouseReleased(
                 event -> {
                     searchButton.changeButtonImage("../images/searchButton.png");
-                    mainPresenter.search();
+                    mainPresenter.clickSearchButton();
                 }
         );
     }
 
-    public String getSearchText() { return searchEditText.getText();}
+    public String getSearchText() { return searchText.getText();}
 
 
 }

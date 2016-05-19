@@ -19,6 +19,7 @@ public class MainPresenter extends BasePresenter {
         ArrayList<String> result = god.searchingANode(nombre);
         actualView.destroy();
         actualView = null;
+        System.out.println("Starting search");
         MyApp.changePresenter(new RelevanceTypeSelectorPresenter(result));
     }
 
