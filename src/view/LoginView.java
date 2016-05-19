@@ -106,7 +106,7 @@ public class LoginView {
         registerText.setStyle(
                 "-fx-fill: #d0b494;" +
                 "-fx-font: 20px Caspian");
-        
+
 
 
         registerButton = new ImageButton("../images/login/registerButton.png", 148, 50);
