@@ -206,7 +206,6 @@ public class LoginView {
 
         registerButton.setOnMouseReleased(
                 event -> {
-
                     registerButton.changeButtonImage("../images/login/registerButton.png");
                     loginPresenter.register();
                 }
