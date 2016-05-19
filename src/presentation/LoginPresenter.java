@@ -32,7 +32,7 @@ public class LoginPresenter extends Presenter {
             } catch (IncorrectPassword | NonExistentUser exception) {
                 System.out.println(exception.getMessage());
                 loginView.stopProgress();
-                loginView.displayErrorMessage();
+                loginView.displayErrorMessage("Invalid password or username");
             }
         });
         thread.start();
@@ -41,12 +41,12 @@ public class LoginPresenter extends Presenter {
     public void register() {
         String username = loginView.getUsername();
         if (username.length() < 1) {
-            loginView.displayErrorMessage();
+            loginView.displayErrorMessage("Username must have at least 1 character");
             return;
         }
         String password = loginView.getPassword();
         if (password.length() < 1) {
-            loginView.displayErrorMessage();
+            loginView.displayErrorMessage("Password must have at least 1 character");
             return;
         }
         loginView.startProgress();
@@ -57,7 +57,7 @@ public class LoginPresenter extends Presenter {
                 loginView.displaySuccessMessage();
             } catch (ExistingUser existingUser) {
                 System.out.println(existingUser.getMessage());
-                loginView.displayErrorMessage();
+                loginView.displayErrorMessage("User "+username+" already exists");
             }
             finally {
                 loginView.stopProgress();
