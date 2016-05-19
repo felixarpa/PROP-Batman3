@@ -44,10 +44,10 @@ public class BaseView {
     private HBox categoryButtons;
     private VBox titleAndButtons;
 
-    private Button authorsButton;
-    private Button conferencesButton;
-    private Button papersButton;
-    private Button termsButton;
+    private ImageButton authorsButton;
+    private ImageButton conferencesButton;
+    private ImageButton papersButton;
+    private ImageButton termsButton;
 
     private Presenter baseViewPresenter;
 
@@ -62,6 +62,7 @@ public class BaseView {
     private void setListeners() {
         authorsButton.setOnMouseReleased(
                 event -> {
+
                 }
         );
 
@@ -148,42 +149,13 @@ public class BaseView {
         appTitleImage.setFitWidth(409);
         appTitleImage.setFitHeight(106);
 
-        authorsButton = new Button();
-        authorsButton.setMaxSize(225,75);
-        authorsButton.setMinSize(225,75);
-        String authorsButtonImage = this.getClass().getResource("../images/authorsButton.png").toExternalForm();
-        authorsButton.setStyle(
-                "-fx-background-image: url('"+ authorsButtonImage + "');" +
-                        "-fx-background-size: 225 75;" +
-                        "-fx-background-color: transparent");
-        String conferencesButtonImage = this.getClass().getResource("../images/conferencesButton.png").toExternalForm();
+        authorsButton = new  ImageButton("../images/authorsButton.png", 225, 75);
 
-        conferencesButton = new Button();
-        conferencesButton.setMaxSize(225,75);
-        conferencesButton.setMinSize(225,75);
-        conferencesButton.setStyle(
-                "-fx-background-image: url('"+ conferencesButtonImage + "');" +
-                        "-fx-background-size: 225 75;" +
-                        "-fx-background-color: transparent");
-        String papersButtonImage = this.getClass().getResource("../images/papersButton.png").toExternalForm();
+        conferencesButton = new ImageButton("../images/conferencesButton.png", 225, 75);
 
-        papersButton = new Button();
-        papersButton.setMaxSize(225,75);
-        papersButton.setMinSize(225,75);
-        papersButton.setStyle(
-                "-fx-background-image: url('"+ papersButtonImage + "');" +
-                        "-fx-background-size: 225 75;" +
-                        "-fx-background-color: transparent");
-        String termsButtonImage = this.getClass().getResource("../images/termsButton.png").toExternalForm();
+        papersButton = new ImageButton("../images/papersButton.png", 227, 75);
 
-
-        termsButton = new Button();
-        termsButton.setMaxSize(225,75);
-        termsButton.setMinSize(225,75);
-        termsButton.setStyle(
-                "-fx-background-image: url('"+ termsButtonImage + "');" +
-                        "-fx-background-size: 225 75;" +
-                        "-fx-background-color: transparent");
+        termsButton = new ImageButton("../images/termsButton.png", 225, 75);
 
     }
 

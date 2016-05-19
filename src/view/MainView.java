@@ -60,22 +60,14 @@ public class MainView extends BaseView {
     private void setListeners() {
 
         searchButton.setOnMousePressed(
-            new EventHandler<MouseEvent>() {
-               @Override
-               public void handle(MouseEvent event) {
-                   searchButton.changeButtonImage("../images/searchButtonPressed.png");
-               }
-            }
+                event -> searchButton.changeButtonImage("../images/searchButtonPressed.png")
         );
 
         searchButton.setOnMouseReleased(
-            new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
+                event -> {
                     searchButton.changeButtonImage("../images/searchButton.png");
                     mainPresenter.search();
                 }
-            }
         );
     }
 
