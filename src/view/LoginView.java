@@ -1,23 +1,16 @@
 package view;
 
-import com.sun.javafx.iio.gif.GIFDescriptor;
-import javafx.animation.Animation;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import presentation.LoginPresenter;
-
-import javax.swing.*;
 
 
 public class LoginView {
@@ -43,8 +36,8 @@ public class LoginView {
     private LoginPresenter loginPresenter;
 
     private ProgressIndicator progressIndicator;
-    private Text ErrorText;
-    private HBox ErrorHBox;
+    private Text errorText;
+    private HBox errorHBox;
 
     public LoginView(LoginPresenter loginPresenter) {
         this.loginPresenter = loginPresenter;
@@ -79,8 +72,8 @@ public class LoginView {
         buttonsVBox.setPadding(new Insets(20, 0, 50, 0));
         buttonsVBox.setSpacing(4);
 
-        ErrorHBox = new HBox();
-        ErrorHBox.setPadding(new Insets(0,0,10,0));
+        errorHBox = new HBox();
+        errorHBox.setPadding(new Insets(0,0,10,0));
     }
 
     private void initializeViews() {
@@ -115,14 +108,14 @@ public class LoginView {
         progressIndicator.setMinSize(227, 50);
         progressIndicator.setProgress(-1.0f);
 
-        ErrorText = new Text();
-        ErrorText.setFill(Color.valueOf("#6E0000"));
+        errorText = new Text();
+        errorText.setFill(Color.valueOf("#6E0000"));
 
     }
 
     private void buildPanes() {
-        ErrorHBox.getChildren().add(ErrorText);
-        ErrorHBox.setAlignment(Pos.CENTER);
+        errorHBox.getChildren().add(errorText);
+        errorHBox.setAlignment(Pos.CENTER);
         titleVBox.getChildren().add(applicationLogo);
 
         titleVBox.setAlignment(Pos.CENTER);
@@ -131,7 +124,7 @@ public class LoginView {
         passwordHBox.getChildren().add(passwordTextField);
         passwordHBox.setAlignment(Pos.CENTER);
 
-        textFieldsVBox.getChildren().add(ErrorHBox);
+        textFieldsVBox.getChildren().add(errorHBox);
         textFieldsVBox.getChildren().add(usernameEditText.getBase());
         textFieldsVBox.getChildren().add(passwordHBox);
         textFieldsVBox.setAlignment(Pos.CENTER);
@@ -183,7 +176,7 @@ public class LoginView {
     }
 
     public void displayErrorMessage(String errorMessage){
-        ErrorText.setText(errorMessage);
+        errorText.setText(errorMessage);
         System.out.println("Login Failure");
     }
 
