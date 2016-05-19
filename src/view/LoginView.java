@@ -43,6 +43,8 @@ public class LoginView {
     private LoginPresenter loginPresenter;
 
     private ProgressIndicator progressIndicator;
+    private Text ErrorText;
+    private HBox ErrorHBox;
 
     public LoginView(LoginPresenter loginPresenter) {
         this.loginPresenter = loginPresenter;
@@ -63,7 +65,7 @@ public class LoginView {
         titleVBox = new VBox();
 
         contentVBox = new VBox();
-        contentVBox.setPadding(new Insets(75, 0, 50, 0));
+        contentVBox.setPadding(new Insets(45, 0, 50, 0));
 
         textFieldsVBox = new VBox();
         textFieldsVBox.setSpacing(4);
@@ -76,6 +78,9 @@ public class LoginView {
         buttonsVBox = new VBox();
         buttonsVBox.setPadding(new Insets(20, 0, 50, 0));
         buttonsVBox.setSpacing(4);
+
+        ErrorHBox = new HBox();
+        ErrorHBox.setPadding(new Insets(0,0,10,0));
     }
 
     private void initializeViews() {
@@ -110,16 +115,23 @@ public class LoginView {
         progressIndicator.setMinSize(227, 50);
         progressIndicator.setProgress(-1.0f);
 
+        ErrorText = new Text();
+        ErrorText.setFill(Color.valueOf("#6E0000"));
+
     }
 
     private void buildPanes() {
+        ErrorHBox.getChildren().add(ErrorText);
+        ErrorHBox.setAlignment(Pos.CENTER);
         titleVBox.getChildren().add(applicationLogo);
+
         titleVBox.setAlignment(Pos.CENTER);
 
         passwordHBox.getChildren().add(passwordLabel);
         passwordHBox.getChildren().add(passwordTextField);
         passwordHBox.setAlignment(Pos.CENTER);
 
+        textFieldsVBox.getChildren().add(ErrorHBox);
         textFieldsVBox.getChildren().add(usernameEditText.getBase());
         textFieldsVBox.getChildren().add(passwordHBox);
         textFieldsVBox.setAlignment(Pos.CENTER);
@@ -170,7 +182,9 @@ public class LoginView {
         }
     }
 
-    public void displayErrorMessage(){
+    public void displayErrorMessage(String errorMessage){
+
+        ErrorText.setText(errorMessage);
         System.out.println("Login Failure");
     }
 
@@ -197,6 +211,7 @@ public class LoginView {
 
         registerButton.setOnMouseReleased(
                 event -> {
+
                     registerButton.changeButtonImage("../images/login/registerButton.png");
                     loginPresenter.register();
                 }
