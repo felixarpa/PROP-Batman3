@@ -1,9 +1,7 @@
 package view;
 
-import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import presentation.MainPresenter;
 
@@ -11,17 +9,13 @@ public class MainView extends BaseView {
 
     private VBox contentVBox;
 
-    private EditText searchEditText;
     private TextField searchText;
     private HBox searchTextHBox;
 
     private ImageButton searchButton;
 
-    private MainPresenter mainPresenter;
-
     public MainView(MainPresenter mainPresenter) {
-        super(mainPresenter);
-        this.mainPresenter = mainPresenter;
+        presenter = mainPresenter;
         initializePanes();
         initializeViews();
         buildPanes();
@@ -30,7 +24,7 @@ public class MainView extends BaseView {
     }
 
     public void destroy() {
-        mainPresenter = null;
+        presenter = null;
     }
 
     private void initializePanes() {
@@ -66,7 +60,7 @@ public class MainView extends BaseView {
         searchButton.setOnMouseReleased(
                 event -> {
                     searchButton.changeButtonImage("../images/searchButton.png");
-                    mainPresenter.clickSearchButton();
+                    ((MainPresenter)presenter).clickSearchButton();
                 }
         );
     }

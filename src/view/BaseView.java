@@ -1,19 +1,16 @@
 package view;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import presentation.BasePresenter;
 import presentation.Presenter;
 
 import java.awt.*;
@@ -49,10 +46,9 @@ public class BaseView {
     private ImageButton papersButton;
     private ImageButton termsButton;
 
-    private Presenter baseViewPresenter;
+    protected BasePresenter presenter;
 
-    public BaseView(Presenter baseViewPresenter){
-        this.baseViewPresenter = baseViewPresenter;
+    public BaseView() {
         initializePanes();
         initializeViews();
         buildPanes();
@@ -81,9 +77,17 @@ public class BaseView {
                 event -> {
                 }
         );
+
+        logoutIcon.setOnMouseReleased(
+                event -> presenter.logout()
+        );
+
+        exitIcon.setOnMouseReleased(
+                event -> presenter.exit()
+        );
     }
 
-    public void destroy() { baseViewPresenter = null; }
+    public void destroy() { presenter = null; }
 
     private void initializePanes(){
         basePane = new BorderPane();
