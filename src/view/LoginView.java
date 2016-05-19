@@ -1,23 +1,16 @@
 package view;
 
-import com.sun.javafx.iio.gif.GIFDescriptor;
-import javafx.animation.Animation;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import presentation.LoginPresenter;
-
-import javax.swing.*;
 
 
 public class LoginView {

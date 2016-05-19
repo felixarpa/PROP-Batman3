@@ -58,34 +58,22 @@ public class BaseView {
 
     private void setListeners() {
         authorsButton.setOnMousePressed(
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                    }
+                event -> {
                 }
         );
 
         conferencesButton.setOnMouseReleased(
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                    }
+                event -> {
                 }
         );
 
         papersButton.setOnMousePressed(
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                    }
+                event -> {
                 }
         );
 
         termsButton.setOnMouseReleased(
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                    }
+                event -> {
                 }
         );
     }
