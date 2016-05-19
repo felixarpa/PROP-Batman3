@@ -11,59 +11,74 @@ import view.MyApp;
 public abstract class  BasePresenter extends Presenter {
 
     DomainController god = new DomainController();
-    private BaseView baseView;
     private BaseView actualView;
 
 
 
     public BasePresenter() {
-        baseView = new BaseView(this);
 
     }
 
 
     public void manageFavoriteTopics() {
-        MyApp.changePresenter(new LoginPresenter());
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new FavoriteTopicsPresenter());
     }
 
     public void search() {
-
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new LoginPresenter());
     }
 
     public void settings(){
-
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new LoginPresenter());
     }
 
     public void relationshipSearch(){
-
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new LoginPresenter());
     }
 
     public void clickAuthors() {
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new LoginPresenter());
     }
 
     public void clickPapers() {
-
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new LoginPresenter());
     }
 
     public void clickConferences() {
-
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new LoginPresenter());
     }
 
     public void clickTerms() {
-
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new LoginPresenter());
     }
 
     public void logout() {
         UserController.logOut();
-        baseView.destroy();
-        baseView = null;
+        actualView.destroy();
+        actualView = null;
         MyApp.changePresenter(new LoginPresenter());
     }
 
     public void exit() {
         UserController.logOut();
-        baseView.destroy();
-        baseView = null;
+        actualView.destroy();
+        actualView = null;
         MyApp.exit();
     }
 
