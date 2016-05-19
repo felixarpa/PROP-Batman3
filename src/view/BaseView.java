@@ -49,7 +49,7 @@ public class BaseView {
     private Presenter baseViewPresenter;
 
     public BaseView(Presenter baseViewPresenter){
-        this.baseViewPresenter = new Presenter();
+        this.baseViewPresenter = baseViewPresenter;
         initializePanes();
         initializeViews();
         buildPanes();
@@ -57,10 +57,11 @@ public class BaseView {
     }
 
     private void setListeners() {
-        authorsButton.setOnMousePressed(
+        authorsButton.setOnMouseReleased(
                 event -> {
                 }
         );
+
 
         conferencesButton.setOnMouseReleased(
                 event -> {
