@@ -23,8 +23,6 @@ public abstract class  BasePresenter extends Presenter {
 
 
     public void manageFavoriteTopics() {
-        actualViewView.destroy();
-        actualView= null;
         MyApp.changePresenter(new LoginPresenter());
     }
 
