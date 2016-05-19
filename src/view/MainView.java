@@ -73,10 +73,12 @@ public class MainView extends BaseView {
                 @Override
                 public void handle(MouseEvent event) {
                     // TODO change image
-                    mainPresenter.search();
+                    mainPresenter.clickSearchButton();
                 }
             }
         );
     }
+
+    public String getSearchText() { return searchEditText.getText();}
 
 }

@@ -12,8 +12,8 @@ public class MainPresenter extends BasePresenter {
          MyApp.startScene(actualView.getContent());
      }
 
-    public void ClickSearchButton() {
-       // String nombre = MainView.getSearchText();
+    public void clickSearchButton() {
+        String nombre = actualView.ge
         //MainView.hideSearchButton();
         //ArrayList<String> result = god.searchingANode(nombre);
     }
