@@ -57,10 +57,11 @@ public class BaseView {
     }
 
     private void setListeners() {
-     /*   authorsButton.setOnMousePressed(
+        authorsButton.setOnMousePressed(
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
+
                     }
                 }
         );
@@ -87,7 +88,7 @@ public class BaseView {
                     public void handle(MouseEvent event) {
                     }
                 }
-        );*/
+        );
     }
 
     public void destroy() { baseViewPresenter = null; }

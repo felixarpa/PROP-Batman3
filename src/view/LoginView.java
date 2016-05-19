@@ -43,8 +43,8 @@ public class LoginView {
     private LoginPresenter loginPresenter;
 
     private ProgressIndicator progressIndicator;
-    private Text ErrorText;
-    private HBox ErrorHBox;
+    private Text errorText;
+    private HBox errorHBox;
 
     public LoginView(LoginPresenter loginPresenter) {
         this.loginPresenter = loginPresenter;
@@ -79,8 +79,8 @@ public class LoginView {
         buttonsVBox.setPadding(new Insets(20, 0, 50, 0));
         buttonsVBox.setSpacing(4);
 
-        ErrorHBox = new HBox();
-        ErrorHBox.setPadding(new Insets(0,0,10,0));
+        errorHBox = new HBox();
+        errorHBox.setPadding(new Insets(0,0,10,0));
     }
 
     private void initializeViews() {
@@ -106,6 +106,7 @@ public class LoginView {
         registerText.setStyle(
                 "-fx-fill: #d0b494;" +
                 "-fx-font: 20px Caspian");
+        
 
 
         registerButton = new ImageButton("../images/login/registerButton.png", 148, 50);
@@ -115,14 +116,14 @@ public class LoginView {
         progressIndicator.setMinSize(227, 50);
         progressIndicator.setProgress(-1.0f);
 
-        ErrorText = new Text();
-        ErrorText.setFill(Color.valueOf("#6E0000"));
+        errorText = new Text();
+        errorText.setFill(Color.valueOf("#6E0000"));
 
     }
 
     private void buildPanes() {
-        ErrorHBox.getChildren().add(ErrorText);
-        ErrorHBox.setAlignment(Pos.CENTER);
+        errorHBox.getChildren().add(errorText);
+        errorHBox.setAlignment(Pos.CENTER);
         titleVBox.getChildren().add(applicationLogo);
 
         titleVBox.setAlignment(Pos.CENTER);
@@ -131,7 +132,7 @@ public class LoginView {
         passwordHBox.getChildren().add(passwordTextField);
         passwordHBox.setAlignment(Pos.CENTER);
 
-        textFieldsVBox.getChildren().add(ErrorHBox);
+        textFieldsVBox.getChildren().add(errorHBox);
         textFieldsVBox.getChildren().add(usernameEditText.getBase());
         textFieldsVBox.getChildren().add(passwordHBox);
         textFieldsVBox.setAlignment(Pos.CENTER);
@@ -184,7 +185,7 @@ public class LoginView {
 
     public void displayErrorMessage(String errorMessage){
 
-        ErrorText.setText(errorMessage);
+        errorText.setText(errorMessage);
         System.out.println("Login Failure");
     }
 
