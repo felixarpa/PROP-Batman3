@@ -28,7 +28,6 @@ public class MyApp extends Application {
         baseStage.setResizable(false);
 
         batsign();
-        //testView();
     }
 
     public static void startScene(Pane pane) {
@@ -48,23 +47,10 @@ public class MyApp extends Application {
         currentPresenter = nextPresenter;
     }
 
-    public void batsign() {
+    private void batsign() {
         currentPresenter = new LoginPresenter();
     }
 
-    public static void changeButtonImage(Button button, String imageName, String width, String height, Class clas) {
-        String loginButtonImage = clas.getResource("../images/"+imageName+".png").toExternalForm();
-        button.setStyle(
-                "-fx-background-image: url('"+ loginButtonImage + "');" +
-                        "-fx-background-size: "+width+" "+height+";" +
-                        "-fx-background-color: transparent");
-    }
-
-    // THIS IS A TESTING METHOD //
-    public static void testView() {
-        currentPresenter = new TestView();
-    }
-    //THIS TOO
     public static void exit() {
         Platform.exit();
     }
