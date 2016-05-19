@@ -56,26 +56,21 @@ public class BaseView {
     }
 
     private void setListeners() {
-        authorsButton.setOnMouseReleased(
-                event -> {
 
-                }
+        authorsButton.setOnMouseReleased(
+                event -> presenter.clickAuthors()
         );
 
-
         conferencesButton.setOnMouseReleased(
-                event -> {
-                }
+                event -> presenter.clickConferences()
         );
 
         papersButton.setOnMousePressed(
-                event -> {
-                }
+                event -> presenter.clickPapers()
         );
 
         termsButton.setOnMouseReleased(
-                event -> {
-                }
+                event -> presenter.clickTerms()
         );
 
         logoutIcon.setOnMouseReleased(
@@ -84,6 +79,22 @@ public class BaseView {
 
         exitIcon.setOnMouseReleased(
                 event -> presenter.exit()
+        );
+
+        manageFavoriteTopicsText.setOnMouseReleased(
+                event -> presenter.manageFavoriteTopics()
+        );
+
+        settingsText.setOnMouseReleased(
+                event -> presenter.settings()
+        );
+
+        searchText.setOnMouseReleased(
+                event -> presenter.search()
+        );
+
+        relationshipSearchText.setOnMouseReleased(
+                event -> presenter.relationshipSearch()
         );
     }
 

@@ -14,12 +14,6 @@ public abstract class  BasePresenter extends Presenter {
     public BaseView actualView;
 
 
-
-    public BasePresenter() {
-
-    }
-
-
     public void manageFavoriteTopics() {
         actualView.destroy();
         actualView = null;
