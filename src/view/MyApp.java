@@ -2,12 +2,9 @@ package view;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import main.TestView;
 import presentation.LoginPresenter;
 import presentation.Presenter;
 
