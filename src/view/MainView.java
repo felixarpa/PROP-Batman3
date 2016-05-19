@@ -9,10 +9,11 @@ import presentation.MainPresenter;
 
 public class MainView extends BaseView {
 
-    private BorderPane basePane;
     private VBox contentVBox;
 
     private EditText searchEditText;
+    private TextField searchText;
+    private HBox searchTextHBox;
 
     private ImageButton searchButton;
 
@@ -25,6 +26,7 @@ public class MainView extends BaseView {
         initializeViews();
         buildPanes();
         setListeners();
+        topBarPane.setCenter(contentVBox);
     }
 
     public void destroy() {
@@ -32,22 +34,25 @@ public class MainView extends BaseView {
     }
 
     private void initializePanes() {
-        basePane = new BorderPane();
-        basePane.setPadding(new Insets(133, 292, 0, 292));
-
         contentVBox = new VBox();
-
-        searchEditText = new EditText("Search");
+        searchTextHBox = new HBox();
+        searchTextHBox.setPadding(new Insets(0,0,10,0));
     }
 
     private void initializeViews() {
-        searchButton = new ImageButton("", 1, 1);
-
-        HBox.setHgrow(searchButton, Priority.ALWAYS);
+        searchButton = new ImageButton("../images/searchButton.png", 143, 51);
+        searchText = new TextField();
     }
 
     private void buildPanes() {
-        contentVBox.getChildren().add(searchEditText);
+
+        searchTextHBox.getChildren().add(searchText);
+        searchTextHBox.setMinWidth(500);
+        searchTextHBox.setMaxWidth(500);
+        searchTextHBox.setAlignment(Pos.CENTER);
+        HBox.setHgrow(searchText, Priority.ALWAYS);
+
+        contentVBox.getChildren().add(searchTextHBox);
         contentVBox.getChildren().add(searchButton);
         contentVBox.setAlignment(Pos.CENTER);
     }
@@ -58,7 +63,7 @@ public class MainView extends BaseView {
             new EventHandler<MouseEvent>() {
                @Override
                public void handle(MouseEvent event) {
-                   // TODO change image
+                   searchButton.changeButtonImage("../images/searchButtonPressed.png");
                }
             }
         );
@@ -67,19 +72,19 @@ public class MainView extends BaseView {
             new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    // TODO change image
+                    searchButton.changeButtonImage("../images/searchButton.png");
                     mainPresenter.search();
                 }
             }
         );
     }
 
-    @Override
+/*    @Override
     public Pane getContent() {
         BorderPane baseViewBasePane = (BorderPane) super.getContent();
         BorderPane centerPane = baseViewBasePane;
         return baseViewBasePane;
     }
 
-
+*/
 }

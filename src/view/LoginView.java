@@ -64,7 +64,7 @@ public class LoginView {
         textFieldsVBox.setSpacing(4);
 
         usernameEditText = new EditText("Username");
-        
+
         passwordHBox = new HBox();
         passwordHBox.setSpacing(6);
 
