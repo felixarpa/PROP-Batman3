@@ -47,25 +47,25 @@ public abstract class  BasePresenter extends Presenter {
     public void clickAuthors() {
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new CategoryResultPresenter());
+        MyApp.changePresenter(new CategoryResultPresenter(ProjectConstants.AUTHOR_TYPE));
     }
 
     public void clickPapers() {
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new CategoryResultPresenter());
+        MyApp.changePresenter(new CategoryResultPresenter(ProjectConstants.PAPER_TYPE));
     }
 
     public void clickConferences() {
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new CategoryResultPresenter());
+        MyApp.changePresenter(new CategoryResultPresenter(ProjectConstants.CONFERENCE_TYPE));
     }
 
     public void clickTerms() {
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new CategoryResultPresenter());
+        MyApp.changePresenter(new CategoryResultPresenter(ProjectConstants.TERM_TYPE));
     }
 
     public void logout() {
