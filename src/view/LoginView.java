@@ -183,13 +183,8 @@ public class LoginView {
     }
 
     public void displayErrorMessage(String errorMessage){
-
         ErrorText.setText(errorMessage);
         System.out.println("Login Failure");
-    }
-
-    public void displaySuccessMessage(){
-        System.out.println("Login Success");
     }
 
     private void setListeners() {

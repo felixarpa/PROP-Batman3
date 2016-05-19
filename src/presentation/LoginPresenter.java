@@ -24,8 +24,7 @@ public class LoginPresenter extends Presenter {
         Thread thread = new Thread(() -> {
             try {
                 UserController.logIn(username, password);
-                System.out.println("Success");
-                loginView.displaySuccessMessage();
+                System.out.println("Success login");
                 loginView.destroy();
                 loginView = null;
                 MyApp.changePresenter(new MainPresenter());
@@ -53,8 +52,7 @@ public class LoginPresenter extends Presenter {
         Thread thread = new Thread(() -> {
             try {
                 UserController.register(username, password);
-                System.out.println("Success");
-                loginView.displaySuccessMessage();
+                System.out.println("Success register");
             } catch (ExistingUser existingUser) {
                 System.out.println(existingUser.getMessage());
                 loginView.displayErrorMessage("User "+username+" already exists");
