@@ -36,9 +36,9 @@ public class LoginView {
     private Label passwordLabel;
     private PasswordField passwordTextField;
 
-    private Button loginButton;
+    private ImageButton loginButton;
+    private ImageButton registerButton;
     private Text registerText;
-    private Button registerButton;
 
     private LoginPresenter loginPresenter;
 
@@ -81,7 +81,7 @@ public class LoginView {
     private void initializeViews() {
 
         applicationLogo = new ImageView();
-        Image image2 = new Image(this.getClass().getResourceAsStream("../images/login/titleLogo.png"));
+        Image image2 = new Image(getClass().getResourceAsStream("../images/login/titleLogo.png"));
 
         applicationLogo.setImage(image2);
         applicationLogo.setFitWidth(525);
@@ -91,14 +91,7 @@ public class LoginView {
         passwordLabel.setTextFill(Config.LABEL_TEXT_COLOR);
         passwordTextField = new PasswordField();
 
-        loginButton = new Button();
-        loginButton.setMaxSize(227,50);
-        loginButton.setMinSize(227,50);
-        String loginButtonImage = this.getClass().getResource("../images/login/loginButton.png").toExternalForm();
-        loginButton.setStyle(
-                "-fx-background-image: url('"+ loginButtonImage + "');" +
-                "-fx-background-size: 227 50;" +
-                "-fx-background-color: transparent");
+        loginButton = new ImageButton("../images/login/loginButton.png", 227, 50);
 
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
@@ -110,16 +103,7 @@ public class LoginView {
                 "-fx-font: 20px Caspian");
 
 
-        registerButton = new Button();
-        registerButton.setMaxSize(148,50);
-        registerButton.setMinSize(148,50);
-        String registerButtonImage = this.getClass().getResource("../images/login/registerButton.png").toExternalForm();
-        registerButton.setStyle(
-                "-fx-background-image: url('"+ registerButtonImage + "');" +
-                "-fx-background-size: 148 50;" +
-                "-fx-background-color: transparent");
-        HBox.setHgrow(loginButton, Priority.ALWAYS);
-        HBox.setHgrow(registerButton, Priority.ALWAYS);
+        registerButton = new ImageButton("../images/login/registerButton.png", 148, 50);
 
         progressIndicator = new ProgressIndicator();
         progressIndicator.setMaxSize(227, 50);
@@ -197,41 +181,25 @@ public class LoginView {
     private void setListeners() {
 
         loginButton.setOnMousePressed(
-            new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    MyApp.changeButtonImage(loginButton, "login/loginButtonPressed", "227", "50", getClass());
-                }
-            }
+                event -> loginButton.changeButtonImage("../images/login/loginButtonPressed.png")
         );
 
         loginButton.setOnMouseReleased(
-            new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    MyApp.changeButtonImage(loginButton, "login/loginButton", "227", "50", getClass());
+                event -> {
+                    loginButton.changeButtonImage("../images/login/loginButton.png");
                     loginPresenter.login();
                 }
-            }
         );
 
         registerButton.setOnMousePressed(
-            new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    MyApp.changeButtonImage(registerButton, "login/registerButtonPressed", "148", "50", getClass());
-                }
-            }
+                event -> registerButton.changeButtonImage("../images/login/registerButtonPressed.png")
         );
 
         registerButton.setOnMouseReleased(
-            new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    MyApp.changeButtonImage(registerButton, "login/registerButton", "148", "50", getClass());
+                event -> {
+                    registerButton.changeButtonImage("../images/login/registerButton.png");
                     loginPresenter.register();
                 }
-            }
         );
     }
 

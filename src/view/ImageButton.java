@@ -7,33 +7,27 @@ import javafx.scene.layout.Pane;
 
 public class ImageButton extends Button {
 
-    private Button button;
+    private int width, height;
 
-    public ImageButton(String path, int width, int height, Class c) {
-        String image = c.getResource(path).toExternalForm();
-        button = new Button();
-        button.setMaxSize(width, height);
-        button.setMaxSize(width, height);
-        button.setStyle(
+    public ImageButton(String path, int width, int height) {
+        this.width = width;
+        this.height = height;
+        String image = getClass().getResource(path).toExternalForm();
+        setMaxSize(width, height);
+        setMinSize(width, height);
+        setStyle(
                 "-fx-background-image: url('" + image + "');" +
                 "-fx-background-size: " + width + " " + height + ";" +
                 "-fx-background-color: transparent"
         );
     }
 
-    public Button getButton() {
-        return button;
-    }
 
-    public void setOnClickListener(EventHandler<MouseEvent> action) {
-        button.setOnMouseClicked(action);
-    }
-
-    public void changeButtonImage(String path, int width, int height, Class c) {
-        String image = c.getResource(path).toExternalForm();
-        button.setMaxSize(width, height);
-        button.setMaxSize(width, height);
-        button.setStyle(
+    public void changeButtonImage(String path) {
+        String image = getClass().getResource(path).toExternalForm();
+        setMaxSize(width, height);
+        setMaxSize(width, height);
+        setStyle(
                 "-fx-background-image: url('" + image + "');" +
                 "-fx-background-size: " + width + " " + height + ";" +
                 "-fx-background-color: transparent"

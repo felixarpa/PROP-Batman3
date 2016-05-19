@@ -51,7 +51,7 @@ public class LoginPresenter extends Presenter {
         }
         loginView.startProgress();
         Thread thread = new Thread(() -> {
-            try{
+            try {
                 UserController.register(username, password);
                 System.out.println("Success");
                 loginView.displaySuccessMessage();
