@@ -11,9 +11,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import presentation.Presenter;
+
+import java.awt.*;
 
 
 public class BaseView {
@@ -135,6 +138,7 @@ public class BaseView {
         searchText = new Text("Search");
         relationshipSearchText = new Text("Relationship\nSearch");
         username = new Text("Username");
+        username.setFill(javafx.scene.paint.Color.valueOf("#fdddc8"));
         username.setTextAlignment(TextAlignment.CENTER);
 
         appTitleImage = new ImageView();

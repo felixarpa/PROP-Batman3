@@ -40,7 +40,7 @@ public class MainView extends BaseView {
     }
 
     private void initializeViews() {
-        searchButton = new ImageButton("../images/login/loginButton.png", 250, 50);
+        searchButton = new ImageButton("../images/searchButton.png", 143, 51);
         searchText = new TextField();
     }
 
@@ -63,7 +63,7 @@ public class MainView extends BaseView {
             new EventHandler<MouseEvent>() {
                @Override
                public void handle(MouseEvent event) {
-                   // TODO change image
+                   searchButton.changeButtonImage("../images/searchButtonPressed.png");
                }
             }
         );
@@ -72,13 +72,21 @@ public class MainView extends BaseView {
             new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    // TODO change image
-                    mainPresenter.clickSearchButton();
+
+                    searchButton.changeButtonImage("../images/searchButton.png");
+                    mainPresenter.search();
                 }
             }
         );
     }
 
     public String getSearchText() { return searchEditText.getText();}
+
+ @Override
+    public Pane getContent() {
+        BorderPane baseViewBasePane = (BorderPane) super.getContent();
+        BorderPane centerPane = baseViewBasePane;
+        return baseViewBasePane;
+    }
 
 }
