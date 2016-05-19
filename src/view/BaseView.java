@@ -57,8 +57,14 @@ public class BaseView {
 
     private void setListeners() {
 
+        authorsButton.setOnMousePressed(
+                event -> authorsButton.changeButtonImage("../images/authorsButtonPressed.png")
+        );
+
         authorsButton.setOnMouseReleased(
-                event -> presenter.clickAuthors()
+                event -> {
+                    presenter.clickAuthors();
+                }
         );
 
         conferencesButton.setOnMouseReleased(
