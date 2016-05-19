@@ -71,7 +71,7 @@ public class LoginView {
         usernameEditText = new EditText("Username");
 
         passwordHBox = new HBox();
-        passwordHBox.setSpacing(4);
+        passwordHBox.setSpacing(6);
 
         buttonsVBox = new VBox();
         buttonsVBox.setPadding(new Insets(20, 0, 50, 0));
@@ -196,35 +196,43 @@ public class LoginView {
 
     private void setListeners() {
 
-        loginButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                MyApp.changeButtonImage(loginButton, "login/loginButtonPressed", "227", "50", getClass());
+        loginButton.setOnMousePressed(
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    MyApp.changeButtonImage(loginButton, "login/loginButtonPressed", "227", "50", getClass());
+                }
             }
-        });
+        );
 
-        loginButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                MyApp.changeButtonImage(loginButton, "login/loginButton", "227", "50", getClass());
-                loginPresenter.login();
+        loginButton.setOnMouseReleased(
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    MyApp.changeButtonImage(loginButton, "login/loginButton", "227", "50", getClass());
+                    loginPresenter.login();
+                }
             }
-        });
+        );
 
-        registerButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                MyApp.changeButtonImage(registerButton, "login/registerButtonPressed", "148", "50", getClass());
+        registerButton.setOnMousePressed(
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    MyApp.changeButtonImage(registerButton, "login/registerButtonPressed", "148", "50", getClass());
+                }
             }
-        });
+        );
 
-        registerButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                MyApp.changeButtonImage(registerButton, "login/registerButton", "148", "50", getClass());
-                loginPresenter.register();
+        registerButton.setOnMouseReleased(
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    MyApp.changeButtonImage(registerButton, "login/registerButton", "148", "50", getClass());
+                    loginPresenter.register();
+                }
             }
-        });
+        );
     }
 
     public String getUsername(){
