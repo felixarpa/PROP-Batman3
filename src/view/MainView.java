@@ -43,5 +43,12 @@ public class MainView extends BaseView {
 
     }
 
+    @Override
+    public Pane getContent() {
+        BorderPane baseViewBasePane = (BorderPane) super.getContent();
+        baseViewBasePane.setCenter(basePane);
+        return baseViewBasePane;
+    }
+
 
 }

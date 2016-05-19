@@ -29,7 +29,6 @@ public class LoginPresenter extends Presenter {
                 loginView.destroy();
                 loginView = null;
                 MyApp.changePresenter(new MainPresenter());
-                MyApp.testView();
             } catch (IncorrectPassword | NonExistentUser exception) {
                 System.out.println(exception.getMessage());
                 loginView.stopProgress();
@@ -41,7 +40,15 @@ public class LoginPresenter extends Presenter {
 
     public void register() {
         String username = loginView.getUsername();
+        if (username.length() < 1) {
+            loginView.displayErrorMessage();
+            return;
+        }
         String password = loginView.getPassword();
+        if (password.length() < 1) {
+            loginView.displayErrorMessage();
+            return;
+        }
         loginView.startProgress();
         Thread thread = new Thread(() -> {
             try{
