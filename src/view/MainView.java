@@ -1,7 +1,5 @@
 package view;
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -56,9 +54,7 @@ public class MainView extends BaseView {
     private void setListeners() {
 
         searchText.setOnAction(
-                event -> {
-                    ((MainPresenter)presenter).clickSearchButton();
-                }
+                event -> ((MainPresenter)presenter).clickSearchButton()
         );
 
         searchButton.setOnMousePressed(

@@ -10,7 +10,7 @@ import view.MyApp;
 
 public abstract class  BasePresenter extends Presenter {
 
-    static DomainController god = new DomainController();
+    static DomainController domainController = new DomainController();
     public BaseView actualView;
 
 

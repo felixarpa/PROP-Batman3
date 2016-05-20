@@ -11,15 +11,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import presentation.BasePresenter;
-import presentation.Presenter;
-
-import java.awt.*;
-
 
 public class BaseView {
 
     private BorderPane basePane;
-    protected BorderPane topBarPane;
+    BorderPane topBarPane;
 
     private ImageView applicationLogo;
     private ImageView exitIcon;
@@ -48,7 +44,7 @@ public class BaseView {
 
     protected BasePresenter presenter;
 
-    public BaseView() {
+    BaseView() {
         initializePanes();
         initializeViews();
         buildPanes();
@@ -62,9 +58,7 @@ public class BaseView {
         );
 
         authorsButton.setOnMouseReleased(
-                event -> {
-                    presenter.clickAuthors();
-                }
+                event -> presenter.clickAuthors()
         );
 
         conferencesButton.setOnMouseReleased(

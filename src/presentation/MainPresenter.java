@@ -1,6 +1,5 @@
 package presentation;
 
-import view.BaseView;
 import view.MainView;
 import view.MyApp;
 
@@ -16,7 +15,7 @@ public class MainPresenter extends BasePresenter {
 
     public void clickSearchButton() {
         String nombre = ((MainView)actualView).getSearchText();
-        ArrayList<String> result = god.searchingANode(nombre);
+        ArrayList<String> result = domainController.searchingANode(nombre);
         actualView.destroy();
         actualView = null;
         System.out.println("Starting search");

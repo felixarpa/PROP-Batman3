@@ -10,7 +10,7 @@ public class CategoryResultPresenter extends BasePresenter  {
 
     CategoryResultPresenter(int type) {
 //        actualView = new CategoryResultView(this);
-        result = god.secondSearch(type);
+        result = domainController.secondSearch(type);
     }
 
 }

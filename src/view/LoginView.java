@@ -158,9 +158,7 @@ public class LoginView {
             contentVBox.getChildren().set(0, progressIndicator);
         }
         else {
-            Platform.runLater(() -> {
-                contentVBox.getChildren().set(0, progressIndicator);
-            });
+            Platform.runLater(() -> contentVBox.getChildren().set(0, progressIndicator));
         }
     }
 
@@ -171,9 +169,7 @@ public class LoginView {
             contentVBox.getChildren().set(0, textFieldsVBox);
         }
         else {
-            Platform.runLater(() -> {
-                contentVBox.getChildren().set(0, textFieldsVBox);
-            });
+            Platform.runLater(() -> contentVBox.getChildren().set(0, textFieldsVBox));
         }
     }
 
@@ -186,9 +182,7 @@ public class LoginView {
     private void setListeners() {
 
         passwordTextField.setOnAction(
-                event -> {
-                    loginPresenter.login();
-                }
+                event -> loginPresenter.login()
         );
 
         loginButton.setOnMousePressed(
