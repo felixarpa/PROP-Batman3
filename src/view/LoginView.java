@@ -185,6 +185,12 @@ public class LoginView {
 
     private void setListeners() {
 
+        passwordTextField.setOnAction(
+                event -> {
+                    loginPresenter.login();
+                }
+        );
+
         loginButton.setOnMousePressed(
                 event -> loginButton.changeButtonImage("../images/login/loginButtonPressed.png")
         );
