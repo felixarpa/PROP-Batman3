@@ -1,7 +1,6 @@
 package presentation;
 
 //import view.CategoryResultView;
-
 import java.util.ArrayList;
 
 public class CategoryResultPresenter extends BasePresenter  {
