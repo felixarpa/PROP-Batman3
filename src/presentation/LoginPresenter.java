@@ -27,7 +27,9 @@ public class LoginPresenter extends Presenter {
                 System.out.println("Success login");
                 loginView.destroy();
                 loginView = null;
-                MyApp.changePresenter(new MainPresenter());
+                MainPresenter mainPresenter = new MainPresenter();
+                mainPresenter.startSession();
+                MyApp.changePresenter(mainPresenter);
             } catch (IncorrectPassword | NonExistentUser exception) {
                 System.out.println(exception.getMessage());
                 loginView.stopProgress();
