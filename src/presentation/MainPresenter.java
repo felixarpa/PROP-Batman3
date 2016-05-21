@@ -15,11 +15,17 @@ public class MainPresenter extends BasePresenter {
 
     public void clickSearchButton() {
         String nombre = ((MainView)actualView).getSearchText();
-        ArrayList<String> result = domainController.searchingANode(nombre);
-        actualView.destroy();
-        actualView = null;
-        System.out.println("Starting search");
-        MyApp.changePresenter(new RelevanceTypeSelectorPresenter(result));
+        Thread thread = new Thread(() -> {
+            ArrayList<String> result = domainController.searchingANode(nombre);
+            if (result == null) {
+                System.out.println("No results found");
+                return;
+            }
+            actualView.destroy();
+            actualView = null;
+            MyApp.changePresenter(new RelevanceTypeSelectorPresenter(result));
+        });
+        thread.start();
     }
 
 }

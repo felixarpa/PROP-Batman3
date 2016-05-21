@@ -10,9 +10,14 @@ import view.MyApp;
 
 public abstract class  BasePresenter extends Presenter {
 
-    static DomainController domainController = new DomainController();
+    protected static DomainController domainController = new DomainController();
+    private static boolean sessionClosed = false;
     public BaseView actualView;
 
+    public BasePresenter() {
+        if (sessionClosed) domainController.recalculate();
+        else sessionClosed = true;
+    }
 
     public void manageFavoriteTopics() {
         actualView.destroy();

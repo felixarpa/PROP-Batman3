@@ -390,7 +390,7 @@ public abstract class Node implements Comparable<Node> {
 
 	@Override
 	public String toString(){
-		return ("Name: " + name + " Id: " + id + " Relevance: " + relevance + (label == -1 ? "":" Label: " +label) + " " + getClass());
+		return ("Name: " + name + " Id: " + id + " Relevance: " + relevance + (label == -1 ? "":" Label: " +label) + " " + getClass().getName());
 	}
 
 	@Override

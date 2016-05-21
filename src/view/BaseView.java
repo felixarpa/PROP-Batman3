@@ -54,11 +54,25 @@ public class BaseView {
     private void setListeners() {
 
         authorsButton.setOnMousePressed(
-                event -> authorsButton.changeButtonImage("../images/authorsButtonPressed.png")
+                event -> {
+                    authorsButton.changeButtonImage("../images/authorsButtonPressed.png");
+                    conferencesButton.changeButtonImage("../images/conferencesButton.png");
+                    papersButton.changeButtonImage("../images/papersButton.png");
+                    termsButton.changeButtonImage("../images/termsButton.png");
+                }
         );
 
         authorsButton.setOnMouseReleased(
                 event -> presenter.clickAuthors()
+        );
+
+        conferencesButton.setOnMousePressed(
+                event -> {
+                    authorsButton.changeButtonImage("../images/authorsButton.png");
+                    conferencesButton.changeButtonImage("../images/conferencesButtonPressed.png");
+                    papersButton.changeButtonImage("../images/papersButton.png");
+                    termsButton.changeButtonImage("../images/termsButton.png");
+                }
         );
 
         conferencesButton.setOnMouseReleased(
@@ -66,7 +80,25 @@ public class BaseView {
         );
 
         papersButton.setOnMousePressed(
+                event -> {
+                    authorsButton.changeButtonImage("../images/authorsButton.png");
+                    conferencesButton.changeButtonImage("../images/conferencesButton.png");
+                    papersButton.changeButtonImage("../images/papersButtonPressed.png");
+                    termsButton.changeButtonImage("../images/termsButton.png");
+                }
+        );
+
+        papersButton.setOnMouseReleased(
                 event -> presenter.clickPapers()
+        );
+
+        termsButton.setOnMousePressed(
+                event -> {
+                    authorsButton.changeButtonImage("../images/authorsButton.png");
+                    conferencesButton.changeButtonImage("../images/conferencesButton.png");
+                    papersButton.changeButtonImage("../images/papersButton.png");
+                    termsButton.changeButtonImage("../images/termsButtonPressed.png");
+                }
         );
 
         termsButton.setOnMouseReleased(

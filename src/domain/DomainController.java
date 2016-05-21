@@ -24,7 +24,7 @@ public class DomainController {
 
 	public DomainController() {
 	    DataBaseController.load();
-	    PageRank.execute();
+        PageRank.execute();
 	 }
 
 	public static User getCurrentUser() {
@@ -33,18 +33,16 @@ public class DomainController {
 
 	public ArrayList<String> searchingANode(String name) {
 		Set<Node> result = graf.getNode(name);
-		if (result.size() == 0) {
+		if (result.isEmpty()) {
 			//ENVIA AL VISTA CONTROLER QUE NO HAY RESULTADOS
 			return null;
 		}
-		else {
-			ArrayList<String> selected = new ArrayList<>(result.size());
-			//DICE AL VISTA CONTROLLER QUE ELIGA EL RESULTADO
-			for (Node n : result) {
-				selected.add(n.toString());
-			}
-			return selected;
-		}
+        ArrayList<String> selected = new ArrayList<>(result.size());
+        //DICE AL VISTA CONTROLLER QUE ELIGA EL RESULTADO
+        for (Node n : result) {
+            selected.add(n.toString());
+        }
+        return selected;
 	}
 
 	private Node stringToNode(String node) {
@@ -148,13 +146,13 @@ public class DomainController {
 	private Id toId(String id, String type) {
 		int ide = Integer.parseInt(id);
 		switch (type) {
-			case "domain.graph.Author":
+			case  "Author":
 				return Author.makeId(ide);
-			case "domain.graph.Conference":
+			case "Conference":
 				return Conference.makeId(ide);
-			case "domain.graph.Term":
+			case "Term":
 				return Term.makeId(ide);
-			case "domain.graph.Paper":
+			case "Paper":
 				return Paper.makeId(ide);
 			default:
 				throw new ProjectError("Invalid type: "+type);

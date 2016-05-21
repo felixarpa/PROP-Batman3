@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 public class ImageButton extends Button {
 
     private int width, height;
+    private String name;
 
     public ImageButton(String path, int width, int height) {
         this.width = width;
@@ -18,7 +19,6 @@ public class ImageButton extends Button {
                 "-fx-background-color: transparent"
         );
     }
-
 
     public void changeButtonImage(String path) {
         String image = getClass().getResource(path).toExternalForm();
