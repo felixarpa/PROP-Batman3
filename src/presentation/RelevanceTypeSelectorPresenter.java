@@ -42,14 +42,15 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     }
 
     public void showMore() {
-        int max = index+10;
+        int max = index + 10;
         if (max > result.size()) max = result.size();
-        for (int i = index; i < max; ++i) {
-            actualView.setContent(i-index, result.get(i));
+
+        for (; index < max; ++index) {
+            ((RelevanceTypeSelectorView) actualView).setContent(index % 10, result.get(index));
         }
 
         for (;max < index+10; ++max) {
-            actualView.setContent(max, "");
+            ((RelevanceTypeSelectorView) actualView).setContent(max, "");
         }
     }
 
