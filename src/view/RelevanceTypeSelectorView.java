@@ -47,7 +47,6 @@ public class RelevanceTypeSelectorView extends BaseView {
     private void setListeners() {
     }
 
-    public void setContentList(ArrayList<String> nodes) {
-
+    public void setContent(int index, String node) {
     }
 }
