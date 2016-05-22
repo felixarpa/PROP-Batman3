@@ -41,8 +41,16 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         thread.start();
     }
 
-    public boolean showMore() {
+    public void showMore() {
+        int max = index+10;
+        if (max > result.size()) max = result.size();
+        for (int i = index; i < max; ++i) {
+            actualView.setContent(i-index, result.get(i));
+        }
 
+        for (;max < index+10; ++max) {
+            actualView.setContent(max, "");
+        }
     }
 
     public void showLess() {

@@ -12,7 +12,7 @@ public abstract class  BasePresenter extends Presenter {
 
     protected static DomainController domainController = new DomainController();
     private static boolean sessionClosed = false;
-    public BaseView actualView;
+    protected BaseView actualView;
 
     public void startSession() {
         if (sessionClosed) domainController.recalculate();
