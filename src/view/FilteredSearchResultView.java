@@ -23,7 +23,7 @@ public class FilteredSearchResultView extends BaseView {
     private Label paperText;
     private Label termText;
 
-
+    public final int numToShow = 10;
 
 
     public FilteredSearchResultView(FilteredSearchResultPresenter filteredSearchResultPresenter) {
@@ -41,7 +41,11 @@ public class FilteredSearchResultView extends BaseView {
         contents = new ArrayList<>(4);
         results = new ArrayList<>(4);
         for (int i = 0; i < 4; ++i) {
-            results.add(new ArrayList<>());
+            ArrayList<HBox> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                aux.add(new HBox());
+            }
+            results.add(aux);
         }
     }
 
@@ -89,12 +93,11 @@ public class FilteredSearchResultView extends BaseView {
         System.out.print(node);
         String[] elements = node.split("\t");
         System.out.println(elements[1]);
-        //for (String s: elements) System.out.println(s);
         Label number = new Label(Integer.toString(index+1));
         Label name = new Label(elements[0]);
         Label id = new Label(elements[1]);
         Label relevance =  new Label(elements[2]);
-        Label label = null;
+        Label label = new Label("");
         if (elements.length == 5) {
             label = new Label(elements[3]);
         }
@@ -104,7 +107,7 @@ public class FilteredSearchResultView extends BaseView {
         aux.getChildren().add(label);
         aux.getChildren().add(id);
         aux.getChildren().add(relevance);
-        results.get(type).add(index,aux);
+        results.get(type).set(index,aux);
     }
 
 }

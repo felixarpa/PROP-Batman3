@@ -22,12 +22,12 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
     public void showMore() {
         int max = index + 10;
         if (max > result.size()) max = result.size();
-
+        int nextindex = index + 10;
         for (; index < max; ++index) {
             ((FilteredSearchResultView) actualView).setContent(index % 10, result.get(0).get(index), 0);
         }
 
-        for (;max < index+10; ++max) {
+        for (;max < nextindex; ++max) {
             ((FilteredSearchResultView) actualView).setContent(max, "\t \t \t",0);
         }
     }
