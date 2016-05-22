@@ -146,13 +146,13 @@ public class DomainController {
 	private Id toId(String id, String type) {
 		int ide = Integer.parseInt(id);
 		switch (type) {
-			case  "Author":
+			case  "domain.graph.Author":
 				return Author.makeId(ide);
-			case "Conference":
+			case "domain.graph.Conference":
 				return Conference.makeId(ide);
-			case "Term":
+			case "domain.graph.Term":
 				return Term.makeId(ide);
-			case "Paper":
+			case "domain.graph.Paper":
 				return Paper.makeId(ide);
 			default:
 				throw new ProjectError("Invalid type: "+type);
