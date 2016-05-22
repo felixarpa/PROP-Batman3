@@ -7,6 +7,9 @@ import exceptions.NonExistentUser;
 import view.LoginView;
 import view.MyApp;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 public class LoginPresenter extends Presenter {
 
@@ -27,9 +30,14 @@ public class LoginPresenter extends Presenter {
                 System.out.println("Success login");
                 loginView.destroy();
                 loginView = null;
-                MainPresenter mainPresenter = new MainPresenter();
-                mainPresenter.startSession();
-                MyApp.changePresenter(mainPresenter);
+                //MainPresenter mainPresenter = new MainPresenter();
+                //mainPresenter.startSession();
+                ArrayList<ArrayList<String>> aux = new ArrayList<>();
+                ArrayList<String> aux2 = new ArrayList<>();
+                aux2.add("hola");
+                aux2.add("aDIOOS");
+                aux.add(aux2);
+                MyApp.changePresenter(new FilteredSearchResultPresenter(aux));
             } catch (IncorrectPassword | NonExistentUser exception) {
                 System.out.println(exception.getMessage());
                 loginView.stopProgress();
