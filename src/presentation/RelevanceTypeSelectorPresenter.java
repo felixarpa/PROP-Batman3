@@ -7,10 +7,10 @@ import view.RelevanceTypeSelectorView;
 import java.util.ArrayList;
 
 public class RelevanceTypeSelectorPresenter extends BasePresenter  {
-    ArrayList<String> result;
-    int index;
+    private ArrayList<String> result;
+    private int index;
 
-    RelevanceTypeSelectorPresenter(ArrayList<String> result) {
+    public RelevanceTypeSelectorPresenter(ArrayList<String> result) {
         this.result = result;
         actualView = new RelevanceTypeSelectorView(this);
         index = 0;
