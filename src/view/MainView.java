@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -12,6 +13,8 @@ public class MainView extends BaseView {
     private TextField searchText;
     private HBox searchTextHBox;
 
+    private ProgressIndicator progressIndicator;
+
     private ImageButton searchButton;
 
     public MainView(MainPresenter mainPresenter) {
@@ -23,10 +26,6 @@ public class MainView extends BaseView {
         topBarPane.setCenter(contentVBox);
     }
 
-    public void destroy() {
-        presenter = null;
-    }
-
     private void initializePanes() {
         contentVBox = new VBox();
         searchTextHBox = new HBox();
@@ -36,6 +35,8 @@ public class MainView extends BaseView {
     private void initializeViews() {
         searchButton = new ImageButton("../images/searchButton.png", 143, 51);
         searchText = new TextField();
+        progressIndicator = new ProgressIndicator();
+        progressIndicator.setProgress(-1);
     }
 
     private void buildPanes() {
@@ -69,6 +70,25 @@ public class MainView extends BaseView {
         );
     }
 
+    public void startProgress() {
+        searchButton.setDisable(true);
+        if (Platform.isFxApplicationThread()) {
+            searchTextHBox.getChildren().set(0, progressIndicator);
+        }
+        else {
+            Platform.runLater(() -> searchTextHBox.getChildren().set(0, progressIndicator));
+        }
+    }
+
+    public void stopProgress() {
+        searchButton.setDisable(false);
+        if (Platform.isFxApplicationThread()) {
+            searchTextHBox.getChildren().set(0, searchText);
+        }
+        else {
+            Platform.runLater(() -> searchTextHBox.getChildren().set(0, searchText));
+        }
+    }
     public String getSearchText() { return searchText.getText();}
 
 

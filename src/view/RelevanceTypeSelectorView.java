@@ -1,13 +1,8 @@
 package view;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import presentation.MainPresenter;
 import presentation.RelevanceTypeSelectorPresenter;
 
 import java.util.ArrayList;
@@ -16,7 +11,12 @@ public class RelevanceTypeSelectorView extends BaseView {
 
     private VBox contentVBox;
 
-    private HBox titlesVBox;
+    private HBox titlesHBox;
+    private Label numberLabel;
+    private Label nameLabel;
+    private Label labelLabel;
+    private Label idLabel;
+
     private ArrayList<HBox> results;
     private ArrayList<Label> numbers;
     private ArrayList<Label> names;
@@ -36,6 +36,10 @@ public class RelevanceTypeSelectorView extends BaseView {
     }
 
     private void initializePanes() {
+        contentVBox = new VBox();
+        titlesHBox = new HBox();
+        results = new ArrayList<>();
+
     }
 
     private void initializeViews() {

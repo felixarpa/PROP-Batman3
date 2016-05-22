@@ -15,10 +15,12 @@ public class MainPresenter extends BasePresenter {
 
     public void clickSearchButton() {
         String nombre = ((MainView)actualView).getSearchText();
+        ((MainView)actualView).startProgress();
         Thread thread = new Thread(() -> {
             ArrayList<String> result = domainController.searchingANode(nombre);
             if (result == null) {
                 System.out.println("No results found");
+                ((MainView)actualView).stopProgress();
                 return;
             }
             actualView.destroy();

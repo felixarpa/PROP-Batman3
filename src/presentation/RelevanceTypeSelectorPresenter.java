@@ -33,7 +33,6 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         String node = result.get(id);
         Thread thread = new Thread(()-> {
             ArrayList<ArrayList<String>> selected = domainController.firstSearch(node, ProjectConstants.RELATION_RELEVANCE_RESULT);
-
             actualView.destroy();
             actualView = null;
             MyApp.changePresenter(new FilteredRelevanceResultPresenter(selected));
@@ -55,7 +54,11 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     }
 
     public void showLess() {
+        int min = index-10;
 
+        for (; index >= 0; --index) {
+            ((RelevanceTypeSelectorView) actualView).setContent(index%10, result.get(index));
+        }
     }
 
 }

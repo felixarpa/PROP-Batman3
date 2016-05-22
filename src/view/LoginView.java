@@ -90,7 +90,7 @@ public class LoginView {
         passwordLabel.setTextFill(Config.LABEL_TEXT_COLOR);
         passwordTextField = new PasswordField();
 
-        loginButton = new ImageButton("../images/login/loginButton.png", 227, 50);
+        loginButton = new ImageButton("../images/login", "loginButton", 227, 50);
 
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
@@ -186,12 +186,12 @@ public class LoginView {
         );
 
         loginButton.setOnMousePressed(
-                event -> loginButton.changeButtonImage("../images/login/loginButtonPressed.png")
+                event -> loginButton.press()
         );
 
         loginButton.setOnMouseReleased(
                 event -> {
-                    loginButton.changeButtonImage("../images/login/loginButton.png");
+                    loginButton.release();
                     loginPresenter.login();
                 }
         );
