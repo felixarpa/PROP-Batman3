@@ -21,9 +21,10 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
 
     public void showMore() {
         int max = index + 10;
-        if (max > result.size()) max = result.size();
+        if (max > result.get(0).size()) max = result.get(0).size();
         int nextindex = index + 10;
         for (; index < max; ++index) {
+            System.out.println(result.get(0).get(index));
             ((FilteredSearchResultView) actualView).setContent(index % 10, result.get(0).get(index), 0);
         }
 

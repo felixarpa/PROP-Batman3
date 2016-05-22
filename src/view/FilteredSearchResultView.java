@@ -75,7 +75,10 @@ public class FilteredSearchResultView extends BaseView {
                     break;
             }
             vaux.getChildren().add(haux);
-            vaux.getChildren().addAll(results.get(i));
+            //vaux.getChildren().addAll(results.get(i));
+            for (HBox aux : results.get(i)) {
+                vaux.getChildren().add(aux);
+            }
             vaux.setAlignment(Pos.CENTER);
             contents.add(vaux);
 
@@ -90,9 +93,8 @@ public class FilteredSearchResultView extends BaseView {
     }
 
     public void setContent(int index, String node, int type) {
-        System.out.print(node);
+        System.out.println(node);
         String[] elements = node.split("\t");
-        System.out.println(elements[1]);
         Label number = new Label(Integer.toString(index+1));
         Label name = new Label(elements[0]);
         Label id = new Label(elements[1]);
