@@ -17,15 +17,13 @@ public class FilteredSearchResultView extends BaseView {
     private ArrayList<VBox> contents;
 
     private ArrayList<ArrayList<HBox>> results;
-    private ArrayList<ArrayList<Label>> numbers;
-    private ArrayList<ArrayList<Label>> names;
-    private ArrayList<ArrayList<Label>> labels;
-    private ArrayList<ArrayList<Label>> ids;
 
     private Label authorText;
     private Label conferenceText;
     private Label paperText;
     private Label termText;
+
+
 
 
     public FilteredSearchResultView(FilteredSearchResultPresenter filteredSearchResultPresenter) {
@@ -52,10 +50,6 @@ public class FilteredSearchResultView extends BaseView {
         conferenceText = new Label("RELATED CONFERENCES");
         paperText = new Label("RELATED PAPERS");
         termText = new Label("RELATED TERMS");
-        numbers = new ArrayList<>(4);
-        names = new ArrayList<>(4);
-        labels = new ArrayList<>(4);
-        ids = new ArrayList<>(4);
     }
 
     private void buildPanes() {
@@ -93,15 +87,15 @@ public class FilteredSearchResultView extends BaseView {
 
     public void setContent(int index, String node, int type) {
         String[] elements = node.split("\t");
-        numbers.get(type).add(index, new Label(Integer.toString(index+1)));
-        names.get(type).add(index, new Label(elements[0]));
-        labels.get(type).add(index, new Label(elements[1]));
-        ids.get(type).add(index, new Label(elements[2]));
+        Label number = new Label(Integer.toString(index+1));
+        Label name = new Label(elements[0]);
+        Label label = new Label(elements[1]);
+        Label id =  new Label(elements[2]);
         HBox aux = new HBox();
-        aux.getChildren().add(numbers.get(type).get(index));
-        aux.getChildren().add(names.get(type).get(index));
-        aux.getChildren().add(labels.get(type).get(index));
-        aux.getChildren().add(ids.get(type).get(index));
+        aux.getChildren().add(number);
+        aux.getChildren().add(name);
+        aux.getChildren().add(label);
+        aux.getChildren().add(id);
         results.get(type).add(index,aux);
     }
 
