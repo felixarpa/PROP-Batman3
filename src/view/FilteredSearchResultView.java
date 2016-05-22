@@ -86,16 +86,24 @@ public class FilteredSearchResultView extends BaseView {
     }
 
     public void setContent(int index, String node, int type) {
+        System.out.print(node);
         String[] elements = node.split("\t");
+        System.out.println(elements[1]);
+        //for (String s: elements) System.out.println(s);
         Label number = new Label(Integer.toString(index+1));
         Label name = new Label(elements[0]);
-        Label label = new Label(elements[1]);
-        Label id =  new Label(elements[2]);
+        Label id = new Label(elements[1]);
+        Label relevance =  new Label(elements[2]);
+        Label label = null;
+        if (elements.length == 5) {
+            label = new Label(elements[3]);
+        }
         HBox aux = new HBox();
         aux.getChildren().add(number);
         aux.getChildren().add(name);
         aux.getChildren().add(label);
         aux.getChildren().add(id);
+        aux.getChildren().add(relevance);
         results.get(type).add(index,aux);
     }
 

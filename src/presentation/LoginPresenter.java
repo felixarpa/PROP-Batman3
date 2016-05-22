@@ -34,8 +34,8 @@ public class LoginPresenter extends Presenter {
                 //mainPresenter.startSession();
                 ArrayList<ArrayList<String>> aux = new ArrayList<>();
                 ArrayList<String> aux2 = new ArrayList<>();
-                aux2.add("hola");
-                aux2.add("aDIOOS");
+                aux2.add("Mario A. Nascimento\t113885\t2449.0518623648363\t3\tclass domain.graph.Author");
+                aux2.add("Mario Marchand\t40245\t707.1466569609166\tclass domain.graph.Author");
                 aux.add(aux2);
                 MyApp.changePresenter(new FilteredSearchResultPresenter(aux));
             } catch (IncorrectPassword | NonExistentUser exception) {

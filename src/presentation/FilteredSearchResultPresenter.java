@@ -28,7 +28,7 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
         }
 
         for (;max < index+10; ++max) {
-            ((RelevanceTypeSelectorView) actualView).setContent(max, "");
+            ((FilteredSearchResultView) actualView).setContent(max, "",0);
         }
     }
 
