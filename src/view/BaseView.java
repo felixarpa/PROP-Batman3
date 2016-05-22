@@ -42,6 +42,8 @@ public class BaseView {
     private ImageButton papersButton;
     private ImageButton termsButton;
 
+    private ImageButton lastPressed;
+
     protected BasePresenter presenter;
 
     BaseView() {
@@ -55,10 +57,9 @@ public class BaseView {
 
         authorsButton.setOnMousePressed(
                 event -> {
-                    authorsButton.changeButtonImage("../images/authorsButtonPressed.png");
-                    conferencesButton.changeButtonImage("../images/conferencesButton.png");
-                    papersButton.changeButtonImage("../images/papersButton.png");
-                    termsButton.changeButtonImage("../images/termsButton.png");
+                    authorsButton.press();
+                    lastPressed.release();
+                    lastPressed = authorsButton;
                 }
         );
 
@@ -68,10 +69,9 @@ public class BaseView {
 
         conferencesButton.setOnMousePressed(
                 event -> {
-                    authorsButton.changeButtonImage("../images/authorsButton.png");
-                    conferencesButton.changeButtonImage("../images/conferencesButtonPressed.png");
-                    papersButton.changeButtonImage("../images/papersButton.png");
-                    termsButton.changeButtonImage("../images/termsButton.png");
+                    conferencesButton.press();
+                    lastPressed.release();
+                    lastPressed = conferencesButton;
                 }
         );
 
@@ -81,10 +81,9 @@ public class BaseView {
 
         papersButton.setOnMousePressed(
                 event -> {
-                    authorsButton.changeButtonImage("../images/authorsButton.png");
-                    conferencesButton.changeButtonImage("../images/conferencesButton.png");
-                    papersButton.changeButtonImage("../images/papersButtonPressed.png");
-                    termsButton.changeButtonImage("../images/termsButton.png");
+                    papersButton.press();
+                    lastPressed.release();
+                    lastPressed = papersButton;
                 }
         );
 
@@ -94,10 +93,9 @@ public class BaseView {
 
         termsButton.setOnMousePressed(
                 event -> {
-                    authorsButton.changeButtonImage("../images/authorsButton.png");
-                    conferencesButton.changeButtonImage("../images/conferencesButton.png");
-                    papersButton.changeButtonImage("../images/papersButton.png");
-                    termsButton.changeButtonImage("../images/termsButtonPressed.png");
+                    termsButton.press();
+                    lastPressed.release();
+                    lastPressed = termsButton;
                 }
         );
 
@@ -196,14 +194,15 @@ public class BaseView {
         appTitleImage.setFitWidth(409);
         appTitleImage.setFitHeight(106);
 
-        authorsButton = new  ImageButton("../images/authorsButton.png", 225, 75);
+        authorsButton = new  ImageButton("../images", "authorsButton", 225, 75);
 
-        conferencesButton = new ImageButton("../images/conferencesButton.png", 225, 75);
+        conferencesButton = new ImageButton("../images", "conferencesButton", 225, 75);
 
-        papersButton = new ImageButton("../images/papersButton.png", 227, 75);
+        papersButton = new ImageButton("../images", "papersButton", 227, 75);
 
-        termsButton = new ImageButton("../images/termsButton.png", 225, 75);
+        termsButton = new ImageButton("../images", "termsButton", 225, 75);
 
+        lastPressed = new ImageButton("../images", "authorsButton", 225, 75);
     }
 
     private void buildPanes(){
