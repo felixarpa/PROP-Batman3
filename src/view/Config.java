@@ -9,4 +9,11 @@ public class Config {
     // factor "imagen-pixel" 1.334
 
     public final static Color LABEL_TEXT_COLOR = Color.web("#61402a");
+
+    /*
+     * TAMAÑO VENTANA DE DENTRO:
+     * width = 900
+     * height =
+     */
+
 }

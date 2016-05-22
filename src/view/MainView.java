@@ -23,10 +23,6 @@ public class MainView extends BaseView {
         topBarPane.setCenter(contentVBox);
     }
 
-    public void destroy() {
-        presenter = null;
-    }
-
     private void initializePanes() {
         contentVBox = new VBox();
         searchTextHBox = new HBox();
