@@ -8,11 +8,14 @@ import java.util.ArrayList;
 
 public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     ArrayList<String> result;
+    int index;
 
     RelevanceTypeSelectorPresenter(ArrayList<String> result) {
         this.result = result;
         actualView = new RelevanceTypeSelectorView(this);
+        index = 0;
         MyApp.startScene(actualView.getContent());
+
     }
 
     public void onClickEntityRelevance(int id) {
@@ -36,6 +39,14 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
             MyApp.changePresenter(new FilteredRelevanceResultPresenter(selected));
         });
         thread.start();
+    }
+
+    public boolean showMore() {
+
+    }
+
+    public void showLess() {
+
     }
 
 }

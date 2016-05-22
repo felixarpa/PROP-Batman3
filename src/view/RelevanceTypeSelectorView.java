@@ -25,13 +25,9 @@ public class RelevanceTypeSelectorView extends BaseView {
     private ArrayList<ImageButton> entityButtons;
     private ArrayList<ImageButton> relationshipButtons;
 
-    private int firstResult;
-    private int lastResult;
 
     public RelevanceTypeSelectorView(RelevanceTypeSelectorPresenter relevanceTypeSelectorPresenter) {
         presenter = relevanceTypeSelectorPresenter;
-        firstResult = 0;
-        lastResult = 9;
         initializePanes();
         initializeViews();
         buildPanes();
