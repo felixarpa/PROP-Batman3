@@ -42,13 +42,16 @@ public class FilteredSearchResultView extends BaseView {
         contentVBox = new VBox();
         contents = new ArrayList<>(4);
         results = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            results.add(new ArrayList<>());
+        }
     }
 
     private void initializeViews() {
-        authorText = new Label("AUTHOR");
-        conferenceText = new Label("CONFERENCE");
-        paperText = new Label("PAPER");
-        termText = new Label("TERM");
+        authorText = new Label("RELATED AUTHORS");
+        conferenceText = new Label("RELATED CONFERENCES");
+        paperText = new Label("RELATED PAPERS");
+        termText = new Label("RELATED TERMS");
         numbers = new ArrayList<>(4);
         names = new ArrayList<>(4);
         labels = new ArrayList<>(4);
@@ -77,8 +80,9 @@ public class FilteredSearchResultView extends BaseView {
             vaux.getChildren().addAll(results.get(i));
             vaux.setAlignment(Pos.CENTER);
             contents.add(vaux);
-            contentVBox.getChildren().add(contents.get(i));
+
         }
+        contentVBox.getChildren().addAll(contents);
         contentVBox.setAlignment(Pos.CENTER);
 
 
