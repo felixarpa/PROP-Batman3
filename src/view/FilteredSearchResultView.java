@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class FilteredSearchResultView extends BaseView {
 
+    //TODO: Padding de las HBOXES; añadir el nodo arriba del todo, añadir listeners, añadir botones de show more y show less, cambiar fuentes.
 
     private VBox contentVBox;
     private ArrayList<VBox> contents;
 
-    private ArrayList<ArrayList<HBox>> results;
 
     private Label authorText;
     private Label conferenceText;
@@ -40,14 +40,6 @@ public class FilteredSearchResultView extends BaseView {
     private void initializePanes() {
         contentVBox = new VBox();
         contents = new ArrayList<>(4);
-        results = new ArrayList<>(4);
-        for (int i = 0; i < 4; ++i) {
-            ArrayList<HBox> aux = new ArrayList<>(numToShow);
-            for (int j = 0; j < numToShow; ++j) {
-                aux.add(new HBox());
-            }
-            results.add(aux);
-        }
     }
 
     private void initializeViews() {
@@ -58,7 +50,7 @@ public class FilteredSearchResultView extends BaseView {
     }
 
     private void buildPanes() {
-        for (int i = 0; i < 1; ++i) {
+        for (int i = 0; i < 4; ++i) {
             VBox vaux = new VBox();
             HBox haux = new HBox();
             switch (i) {
@@ -76,20 +68,12 @@ public class FilteredSearchResultView extends BaseView {
                     break;
             }
             vaux.getChildren().add(haux);
-            vaux.getChildren().addAll(results.get(i));
-            /*for (int j = 0; j < 10; ++j) {
-                Label label = new Label(Integer.toString(j));
-                HBox aux = new HBox();
-                aux.getChildren().add(label);
-                aux.setAlignment(Pos.CENTER);
-                vaux.getChildren().add(aux);
-            }*/
-            for (Node n : vaux.getChildren()) {
-                System.out.println(n);
+            for (int j = 0; j < numToShow; ++j) {
+                vaux.getChildren().add(new HBox());
             }
             contents.add(vaux);
         }
-        contentVBox.getChildren().add(contents.get(0));
+        contentVBox.getChildren().addAll(contents);
     }
 
     private void setListeners() {
@@ -112,7 +96,7 @@ public class FilteredSearchResultView extends BaseView {
         aux.getChildren().add(label);
         aux.getChildren().add(id);
         aux.getChildren().add(relevance);
-        results.get(type).set(index,aux);
+        contents.get(type).getChildren().set(index+1,aux);
     }
 
 }
