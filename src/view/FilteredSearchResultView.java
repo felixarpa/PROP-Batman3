@@ -60,7 +60,6 @@ public class FilteredSearchResultView extends BaseView {
     private void buildPanes() {
         for (int i = 0; i < 1; ++i) {
             VBox vaux = new VBox();
-            vaux.setMinSize(50, 50);
             HBox haux = new HBox();
             switch (i) {
                 case ProjectConstants.AUTHOR_TYPE:
@@ -77,17 +76,17 @@ public class FilteredSearchResultView extends BaseView {
                     break;
             }
             vaux.getChildren().add(haux);
-            //vaux.getChildren().addAll(results.get(i));
-            Label label = new Label(Integer.toString(i));
-            for (HBox aux : results.get(i)) {
+            vaux.getChildren().addAll(results.get(i));
+            /*for (int j = 0; j < 10; ++j) {
+                Label label = new Label(Integer.toString(j));
+                HBox aux = new HBox();
                 aux.getChildren().add(label);
                 aux.setAlignment(Pos.CENTER);
                 vaux.getChildren().add(aux);
-            }
+            }*/
             for (Node n : vaux.getChildren()) {
                 System.out.println(n);
             }
-            //vaux.setAlignment(Pos.CENTER);
             contents.add(vaux);
         }
         contentVBox.getChildren().add(contents.get(0));
