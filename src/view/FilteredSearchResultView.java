@@ -2,6 +2,7 @@ package view;
 
 
 import javafx.geometry.*;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import presentation.FilteredRelevanceResultPresenter;
@@ -57,8 +58,9 @@ public class FilteredSearchResultView extends BaseView {
     }
 
     private void buildPanes() {
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 1; ++i) {
             VBox vaux = new VBox();
+            vaux.setMinSize(50, 50);
             HBox haux = new HBox();
             switch (i) {
                 case ProjectConstants.AUTHOR_TYPE:
@@ -76,17 +78,19 @@ public class FilteredSearchResultView extends BaseView {
             }
             vaux.getChildren().add(haux);
             //vaux.getChildren().addAll(results.get(i));
+            Label label = new Label(Integer.toString(i));
             for (HBox aux : results.get(i)) {
+                aux.getChildren().add(label);
+                aux.setAlignment(Pos.CENTER);
                 vaux.getChildren().add(aux);
             }
-            vaux.setAlignment(Pos.CENTER);
+            for (Node n : vaux.getChildren()) {
+                System.out.println(n);
+            }
+            //vaux.setAlignment(Pos.CENTER);
             contents.add(vaux);
-
         }
-        contentVBox.getChildren().addAll(contents);
-        contentVBox.setAlignment(Pos.CENTER);
-
-
+        contentVBox.getChildren().add(contents.get(0));
     }
 
     private void setListeners() {

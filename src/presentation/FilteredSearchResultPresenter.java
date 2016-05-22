@@ -15,7 +15,7 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
         this.result = result;
         actualView = new FilteredSearchResultView(this);
         index = 0;
-        showMore();
+        //showMore();
         MyApp.startScene(actualView.getContent());
     }
 
