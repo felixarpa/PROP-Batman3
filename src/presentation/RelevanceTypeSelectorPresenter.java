@@ -18,7 +18,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         resultStack = new Stack<>();
         ArrayList<SearchString> firstResult = new ArrayList<>();
         for (String string : result) {
-
+            
         }
         this.result = result;
         actualView = new RelevanceTypeSelectorView(this);
