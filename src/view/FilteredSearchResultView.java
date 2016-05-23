@@ -5,6 +5,8 @@ import javafx.geometry.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import presentation.FilteredRelevanceResultPresenter;
 import presentation.FilteredSearchResultPresenter;
 import util.ProjectConstants;
@@ -13,18 +15,25 @@ import java.util.ArrayList;
 
 public class FilteredSearchResultView extends BaseView {
 
+    //TODO: Padding de las HBOXES; añadir el nodo arriba del todo, añadir listeners, añadir botones de show more y show less, cambiar fuentes.
 
     private VBox contentVBox;
     private ArrayList<VBox> contents;
 
-    private ArrayList<ArrayList<HBox>> results;
 
     private Label authorText;
     private Label conferenceText;
     private Label paperText;
     private Label termText;
 
-    public final int numToShow = 10;
+    private ArrayList<ArrayList<Label>> number;
+    private ArrayList<ArrayList<Label>> name;
+    private ArrayList<ArrayList<Label>> id;
+    private ArrayList<ArrayList<Label>> relevance;
+    private ArrayList<ArrayList<Label>> label;
+
+
+    public final static int numToShow = 4;
 
 
     public FilteredSearchResultView(FilteredSearchResultPresenter filteredSearchResultPresenter) {
@@ -40,25 +49,46 @@ public class FilteredSearchResultView extends BaseView {
     private void initializePanes() {
         contentVBox = new VBox();
         contents = new ArrayList<>(4);
-        results = new ArrayList<>(4);
+    }
+
+    private ArrayList<ArrayList<Label>> initializeArrayLabel() {
+        ArrayList<ArrayList<Label>> arrayList = new ArrayList<>(4);
         for (int i = 0; i < 4; ++i) {
-            ArrayList<HBox> aux = new ArrayList<>(numToShow);
+            ArrayList<Label> aux = new ArrayList<>(numToShow);
             for (int j = 0; j < numToShow; ++j) {
-                aux.add(new HBox());
+                Label laux = new Label();
+                laux.setFont(new Font(20));
+                laux.setTextFill(Paint.valueOf("white"));
+                laux.setFont(new Font("Microsoft Sans Serif",20));
+                for (String s : Font.getFamilies()) {
+                    System.out.println(s);
+                    for (String t : Font.getFontNames(s)) System.out.println(t);
+                }
+                aux.add(laux);
             }
-            results.add(aux);
+            arrayList.add(aux);
         }
+        return arrayList;
     }
 
     private void initializeViews() {
         authorText = new Label("RELATED AUTHORS");
+        authorText.setTextFill(Paint.valueOf("white"));
         conferenceText = new Label("RELATED CONFERENCES");
+        conferenceText.setTextFill(Paint.valueOf("white"));
         paperText = new Label("RELATED PAPERS");
+        paperText.setTextFill(Paint.valueOf("white"));
         termText = new Label("RELATED TERMS");
+        termText.setTextFill(Paint.valueOf("white"));
+        number = initializeArrayLabel();
+        name = initializeArrayLabel();
+        id = initializeArrayLabel();
+        relevance = initializeArrayLabel();
+        label = initializeArrayLabel();
     }
 
     private void buildPanes() {
-        for (int i = 0; i < 1; ++i) {
+        for (int i = 0; i < 4; ++i) {
             VBox vaux = new VBox();
             HBox haux = new HBox();
             switch (i) {
@@ -76,20 +106,20 @@ public class FilteredSearchResultView extends BaseView {
                     break;
             }
             vaux.getChildren().add(haux);
-            vaux.getChildren().addAll(results.get(i));
-            /*for (int j = 0; j < 10; ++j) {
-                Label label = new Label(Integer.toString(j));
-                HBox aux = new HBox();
-                aux.getChildren().add(label);
-                aux.setAlignment(Pos.CENTER);
-                vaux.getChildren().add(aux);
-            }*/
-            for (Node n : vaux.getChildren()) {
-                System.out.println(n);
+            for (int j = 0; j < numToShow; ++j) {
+                haux = new HBox();
+                haux.getChildren().add(number.get(i).get(j));
+                haux.getChildren().add(name.get(i).get(j));
+                haux.getChildren().add(id.get(i).get(j));
+                haux.getChildren().add(relevance.get(i).get(j));
+                haux.getChildren().add(label.get(i).get(j));
+                vaux.getChildren().add(haux);
             }
+
             contents.add(vaux);
+
         }
-        contentVBox.getChildren().add(contents.get(0));
+        contentVBox.getChildren().addAll(contents);
     }
 
     private void setListeners() {
@@ -98,22 +128,11 @@ public class FilteredSearchResultView extends BaseView {
     public void setContent(int index, String node, int type) {
         System.out.println(node);
         String[] elements = node.split("\t");
-        Label number = new Label(Integer.toString(index+1));
-        Label name = new Label(elements[0]);
-        Label id = new Label(elements[1]);
-        Label relevance =  new Label(elements[2]);
-        Label label = new Label("");
-        if (elements.length == 5) {
-            label = new Label(elements[3]);
-        }
-        HBox aux = new HBox();
-        aux.getChildren().add(number);
-        aux.getChildren().add(name);
-        aux.getChildren().add(label);
-        aux.getChildren().add(id);
-        aux.getChildren().add(relevance);
-        aux.getChildren().add(new Label("dafsdf"));
-        results.get(type).set(index,aux);
+        number.get(type).get(index%10).setText(Integer.toString(index+1));
+        name.get(type).get(index%10).setText(elements[0]);
+        id.get(type).get(index%10).setText(elements[1]);
+        relevance.get(type).get(index%10).setText(elements[2]);
+        label.get(type).get(index%10).setText(elements[3]);
     }
 
 }

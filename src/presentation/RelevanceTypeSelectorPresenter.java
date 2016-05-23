@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     private ArrayList<String> result;
+
     private int index;
 
     public RelevanceTypeSelectorPresenter(ArrayList<String> result) {
@@ -41,20 +42,20 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     }
 
     public void showMore() {
-        int max = index + 10;
+        int max = index + RelevanceTypeSelectorView.numToShow;
         if (max > result.size()) max = result.size();
-
+        int nextindex = index + RelevanceTypeSelectorView.numToShow;
         for (; index < max; ++index) {
-            ((RelevanceTypeSelectorView) actualView).setContent(index % 10, result.get(index));
+            ((RelevanceTypeSelectorView) actualView).setContent(index, result.get(index));
         }
 
-        for (;max < index+10; ++max) {
-            ((RelevanceTypeSelectorView) actualView).setContent(max, "");
+        for (; max < nextindex; ++max) {
+            ((RelevanceTypeSelectorView) actualView).setContent(max, " \t \t ");
         }
     }
 
     public void showLess() {
-        int min = index-10;
+        int min = index - 10;
 
         for (; index >= 0; --index) {
             ((RelevanceTypeSelectorView) actualView).setContent(index%10, result.get(index));
