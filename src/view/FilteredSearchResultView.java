@@ -5,6 +5,8 @@ import javafx.geometry.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import presentation.FilteredRelevanceResultPresenter;
 import presentation.FilteredSearchResultPresenter;
 import util.ProjectConstants;
@@ -55,7 +57,9 @@ public class FilteredSearchResultView extends BaseView {
             ArrayList<Label> aux = new ArrayList<>(numToShow);
             for (int j = 0; j < numToShow; ++j) {
                 Label laux = new Label();
-
+                laux.setFont(new Font(20));
+                laux.setTextFill(Paint.valueOf("white"));
+                laux.setFont(new Font("Comic Sans",  14));
                 aux.add(laux);
             }
             arrayList.add(aux);
@@ -65,9 +69,13 @@ public class FilteredSearchResultView extends BaseView {
 
     private void initializeViews() {
         authorText = new Label("RELATED AUTHORS");
+        authorText.setTextFill(Paint.valueOf("white"));
         conferenceText = new Label("RELATED CONFERENCES");
+        conferenceText.setTextFill(Paint.valueOf("white"));
         paperText = new Label("RELATED PAPERS");
+        paperText.setTextFill(Paint.valueOf("white"));
         termText = new Label("RELATED TERMS");
+        termText.setTextFill(Paint.valueOf("white"));
         number = initializeArrayLabel();
         name = initializeArrayLabel();
         id = initializeArrayLabel();
