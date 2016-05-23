@@ -24,7 +24,14 @@ public class FilteredSearchResultView extends BaseView {
     private Label paperText;
     private Label termText;
 
-    public final int numToShow = 10;
+    private ArrayList<ArrayList<Label>> number;
+    private ArrayList<ArrayList<Label>> name;
+    private ArrayList<ArrayList<Label>> id;
+    private ArrayList<ArrayList<Label>> relevance;
+    private ArrayList<ArrayList<Label>> label;
+
+
+    public final static int numToShow = 4;
 
 
     public FilteredSearchResultView(FilteredSearchResultPresenter filteredSearchResultPresenter) {
@@ -47,6 +54,51 @@ public class FilteredSearchResultView extends BaseView {
         conferenceText = new Label("RELATED CONFERENCES");
         paperText = new Label("RELATED PAPERS");
         termText = new Label("RELATED TERMS");
+        number = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<Label> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                Label laux = new Label();
+                aux.add(laux);
+            }
+            number.add(aux);
+        }
+        name = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<Label> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                Label laux = new Label();
+                aux.add(laux);
+            }
+            name.add(aux);
+        }
+        id = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<Label> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                Label laux = new Label();
+                aux.add(laux);
+            }
+            id.add(aux);
+        }
+        relevance = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<Label> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                Label laux = new Label();
+                aux.add(laux);
+            }
+            relevance.add(aux);
+        }
+        label = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<Label> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                Label laux = new Label();
+                aux.add(laux);
+            }
+            label.add(aux);
+        }
     }
 
     private void buildPanes() {
@@ -69,9 +121,17 @@ public class FilteredSearchResultView extends BaseView {
             }
             vaux.getChildren().add(haux);
             for (int j = 0; j < numToShow; ++j) {
-                vaux.getChildren().add(new HBox());
+                haux = new HBox();
+                haux.getChildren().add(number.get(i).get(j));
+                haux.getChildren().add(name.get(i).get(j));
+                haux.getChildren().add(id.get(i).get(j));
+                haux.getChildren().add(relevance.get(i).get(j));
+                haux.getChildren().add(label.get(i).get(j));
+                vaux.getChildren().add(haux);
             }
+
             contents.add(vaux);
+
         }
         contentVBox.getChildren().addAll(contents);
     }
@@ -82,21 +142,14 @@ public class FilteredSearchResultView extends BaseView {
     public void setContent(int index, String node, int type) {
         System.out.println(node);
         String[] elements = node.split("\t");
-        Label number = new Label(Integer.toString(index+1));
-        Label name = new Label(elements[0]);
-        Label id = new Label(elements[1]);
-        Label relevance =  new Label(elements[2]);
-        Label label = new Label("");
+        number.get(type).get(index%10).setText(Integer.toString(index+1));
+        name.get(type).get(index%10).setText(elements[0]);
+        id.get(type).get(index%10).setText(elements[1]);
+        relevance.get(type).get(index%10).setText(elements[2]);
+        label.get(type).get(index%10).setText("");
         if (elements.length == 5) {
-            label = new Label(elements[3]);
+            label.get(type).get(index%10).setText(elements[3]);
         }
-        HBox aux = new HBox();
-        aux.getChildren().add(number);
-        aux.getChildren().add(name);
-        aux.getChildren().add(label);
-        aux.getChildren().add(id);
-        aux.getChildren().add(relevance);
-        contents.get(type).getChildren().set(index+1,aux);
     }
 
 }

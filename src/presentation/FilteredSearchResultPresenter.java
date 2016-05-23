@@ -20,12 +20,12 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
     }
 
     public void showMore() {
-        int max = index + 10;
+        int max = index + FilteredSearchResultView.numToShow;
         if (max > result.get(0).size()) max = result.get(0).size();
-        int nextindex = index + 10;
+        int nextindex = index + FilteredSearchResultView.numToShow;
         for (; index < max; ++index) {
             System.out.println(result.get(0).get(index));
-            ((FilteredSearchResultView) actualView).setContent(index % 10, result.get(0).get(index), 0);
+            ((FilteredSearchResultView) actualView).setContent(index, result.get(0).get(index), 0);
         }
 
         for (;max < nextindex; ++max) {
@@ -34,10 +34,10 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
     }
 
     public void showLess() {
-        int min = index-10;
+        int min = index-FilteredSearchResultView.numToShow;
 
         for (; index >= 0; --index) {
-            ((RelevanceTypeSelectorView) actualView).setContent(index%10, result.get(0).get(index));
+            ((RelevanceTypeSelectorView) actualView).setContent(index, result.get(0).get(index));
         }
     }
 

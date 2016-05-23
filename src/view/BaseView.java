@@ -198,7 +198,7 @@ public class BaseView {
 
         conferencesButton = new ImageButton("../images", "conferencesButton", 225, 75);
 
-        papersButton = new ImageButton("../images", "papersButton", 227, 75);
+        papersButton = new ImageButton("../images", "papersButton", 225, 75);
 
         termsButton = new ImageButton("../images", "termsButton", 225, 75);
 
