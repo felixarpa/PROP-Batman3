@@ -1,7 +1,9 @@
 package view;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -31,7 +33,7 @@ public class RelevanceTypeSelectorView extends BaseView {
     private ImageButton nextPageButton;
     private ImageButton prevPageButton;
 
-    public final static int numToShow = 10;
+    public final static int numToShow = 8;
 
     public RelevanceTypeSelectorView(RelevanceTypeSelectorPresenter relevanceTypeSelectorPresenter) {
         presenter = relevanceTypeSelectorPresenter;
@@ -41,7 +43,7 @@ public class RelevanceTypeSelectorView extends BaseView {
         setListeners();
         topBarPane.setCenter(contentVBox);
     }
-
+ //158 29
     private void initializePanes() {
         contentVBox = new VBox();
         contentVBox.setPadding(new Insets(18, 100, 17, 100));
@@ -70,12 +72,20 @@ public class RelevanceTypeSelectorView extends BaseView {
         labelLabel = new Label("Label");
         labelLabel.setTextFill(Config.LABEL_TEXT_COLOR);
 
-        numbers = initializeArrayLabel();
-        names = initializeArrayLabel();
-        ids = initializeArrayLabel();
-        labels = initializeArrayLabel();
+        numbers = initializeArrayLabel(10);
+        names = initializeArrayLabel(200);
+        ids = initializeArrayLabel(90);
+        labels = initializeArrayLabel(50);
         entityButtons = new ArrayList<>(numToShow);
+        for(int j = 0;j<numToShow;++j){
+            ImageButton entityButton = new ImageButton("../images","entityRelevanceButton",158,29);
+            entityButtons.add(entityButton);
+        }
         relationshipButtons = new ArrayList<>(numToShow);
+        for(int j = 0;j<numToShow;++j){
+            ImageButton relationshipButton = new ImageButton("../images","relationshipRelevanceButton",158,29);
+            relationshipButtons.add(relationshipButton);
+        }
 
         // TODO: Imagenes de next y prev
     }
@@ -92,15 +102,44 @@ public class RelevanceTypeSelectorView extends BaseView {
             line.getChildren().addAll(
                     numbers.get(i),
                     names.get(i),
-                    ids.get(i)
+                    labels.get(i),
+                    ids.get(i),
+                    entityButtons.get(i),
+                    relationshipButtons.get(i)
             );
             ++i;
         }
+        contentVBox.getChildren().addAll(titlesHBox);
         contentVBox.getChildren().addAll(results);
         // TODO: Botones next i prev
     }
 
     private void setListeners() {
+        for(int i = 0; i < numToShow; ++i){
+            ImageButton button = entityButtons.get(i);
+            int index = i;
+            button.setOnMousePressed(
+                    event -> button.press()
+            );
+            button.setOnMouseReleased(
+                    event -> {
+                        button.release();
+                        ((RelevanceTypeSelectorPresenter)presenter).onClickEntityRelevance(index);
+                    }
+            );
+            ImageButton button2 = relationshipButtons.get(i);
+            int index2 = i;
+            button2.setOnMousePressed(
+                    event -> button2.press()
+            );
+            button2.setOnMouseReleased(
+                    event -> {
+                        button2.release();
+                        ((RelevanceTypeSelectorPresenter)presenter).onClickRelationshipRelevance(index2);
+                    }
+            );
+
+        }
     }
 
     public void setContent(int index, String node) {
@@ -110,16 +149,18 @@ public class RelevanceTypeSelectorView extends BaseView {
         numbers.get(i).setText(index+ "");
         names.get(i).setText(elements[0]);
         ids.get(i).setText(elements[1]);
-        labels.get(i).setText(elements[2]);
+        labels.get(i).setText(elements[3]);
     }
 
-    private ArrayList<Label> initializeArrayLabel() {
+    private ArrayList<Label> initializeArrayLabel(int width) {
         ArrayList<Label> arrayList = new ArrayList<>(numToShow);
         for (int j = 0; j < numToShow; ++j) {
                 Label laux = new Label();
                 laux.setFont(new Font(20));
                 laux.setTextFill(Paint.valueOf("white"));
                 laux.setFont(new Font("Comic Sans MS",15));
+                //laux.setMinWidth(width);
+                //laux.setMaxWidth(width);
                 arrayList.add(laux);
         }
         return arrayList;
