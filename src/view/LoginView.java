@@ -101,8 +101,6 @@ public class LoginView {
                 "-fx-fill: #d0b494;" +
                 "-fx-font: 20px Caspian");
 
-
-
         registerButton = new ImageButton("../images/login/registerButton.png", 148, 50);
 
         progressIndicator = new ProgressIndicator();
@@ -174,7 +172,6 @@ public class LoginView {
     }
 
     public void displayErrorMessage(String errorMessage){
-
         errorText.setText(errorMessage);
         System.out.println("Login Failure");
     }

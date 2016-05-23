@@ -25,7 +25,7 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
         if (max > result.get(0).size()) max = result.get(0).size();
         int nextindex = index.get(i) + FilteredSearchResultView.numToShow;
         for (; index.get(i) < max; index.set(i, index.get(i)+1)) {
-            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(0).get(index.get(i)), i);
+            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(1).get(index.get(i)), i);
         }
 
         for (;max < nextindex; ++max) {
@@ -37,7 +37,7 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
         int min = index.get(i)-FilteredSearchResultView.numToShow;
 
         for (; index.get(i) >= 0; index.set(i, index.get(i)-1)) {
-            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(0).get(index.get(i)),i);
+            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(1).get(index.get(i)),i);
         }
     }
 
