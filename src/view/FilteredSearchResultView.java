@@ -59,7 +59,7 @@ public class FilteredSearchResultView extends BaseView {
                 Label laux = new Label();
                 laux.setFont(new Font(20));
                 laux.setTextFill(Paint.valueOf("white"));
-                laux.setFont(new Font("Microsoft Sans Serif",20));
+                laux.setFont(new Font("Microsoft Sans Serif",15));
                 aux.add(laux);
             }
             arrayList.add(aux);

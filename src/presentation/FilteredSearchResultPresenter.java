@@ -22,14 +22,15 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
 
     public void showMore(int i) {
         int max = index.get(i) + FilteredSearchResultView.numToShow;
-        if (max > result.get(0).size()) max = result.get(0).size();
+        if (max > result.get(i).size()) max = result.get(i).size();
         int nextindex = index.get(i) + FilteredSearchResultView.numToShow;
+
         for (; index.get(i) < max; index.set(i, index.get(i)+1)) {
-            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(1).get(index.get(i)), i);
+            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(i).get(index.get(i)), i);
         }
 
         for (;max < nextindex; ++max) {
-            ((FilteredSearchResultView) actualView).setContent(max, "\t \t \t \t",0);
+            ((FilteredSearchResultView) actualView).setContent(max, "\t \t \t \t",i);
         }
     }
 
@@ -37,7 +38,7 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
         int min = index.get(i)-FilteredSearchResultView.numToShow;
 
         for (; index.get(i) >= 0; index.set(i, index.get(i)-1)) {
-            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(1).get(index.get(i)),i);
+            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(i).get(index.get(i)),i);
         }
     }
 
