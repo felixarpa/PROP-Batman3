@@ -4,6 +4,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import presentation.RelevanceTypeSelectorPresenter;
 
 import java.util.ArrayList;
@@ -48,9 +50,11 @@ public class RelevanceTypeSelectorView extends BaseView {
         titlesHBox.setPadding(new Insets(4, 100, 4, 50));
 
         results = new ArrayList<>(numToShow);
-        for (HBox res : results) {
-            res.setPadding(new Insets(4, 5, 4, 5));
-            res.setSpacing(5);
+        for (int i = 0 ; i < numToShow; ++i) {
+            HBox haux = new HBox();
+            haux.setPadding(new Insets(4, 5, 4, 5));
+            haux.setSpacing(5);
+            results.add(haux);
         }
 
         pagingButtonsHbox = new HBox();
@@ -67,10 +71,10 @@ public class RelevanceTypeSelectorView extends BaseView {
         labelLabel = new Label("Label");
         labelLabel.setTextFill(Config.LABEL_TEXT_COLOR);
 
-        numbers = new ArrayList<>(numToShow);
-        names = new ArrayList<>(numToShow);
-        ids = new ArrayList<>(numToShow);
-        labels = new ArrayList<>(numToShow);
+        numbers = initializeArrayLabel();
+        names = initializeArrayLabel();
+        ids = initializeArrayLabel();
+        labels = initializeArrayLabel();
         entityButtons = new ArrayList<>(numToShow);
         relationshipButtons = new ArrayList<>(numToShow);
 
@@ -91,8 +95,9 @@ public class RelevanceTypeSelectorView extends BaseView {
                     names.get(i),
                     ids.get(i)
             );
+            ++i;
         }
-
+        contentVBox.getChildren().addAll(results);
         // TODO: Botones next i prev
     }
 
@@ -108,6 +113,18 @@ public class RelevanceTypeSelectorView extends BaseView {
         ids.get(i).setText(elements[1]);
         labels.get(i).setText("");
         if (elements.length > 2) labels.get(i).setText(elements[2]);
+    }
+
+    private ArrayList<Label> initializeArrayLabel() {
+        ArrayList<Label> arrayList = new ArrayList<>(numToShow);
+        for (int j = 0; j < numToShow; ++j) {
+                Label laux = new Label();
+                /*laux.setFont(new Font(20));
+                laux.setTextFill(Paint.valueOf("white"));
+                laux.setFont(new Font("Microsoft Sans Serif",20));*/
+                arrayList.add(laux);
+        }
+        return arrayList;
     }
 }
 
