@@ -29,6 +29,8 @@ public class RelevanceTypeSelectorView extends BaseView {
     private ImageButton nextPageButton;
     private ImageButton prevPageButton;
 
+    public final static int numToShow = 10;
+
     public RelevanceTypeSelectorView(RelevanceTypeSelectorPresenter relevanceTypeSelectorPresenter) {
         presenter = relevanceTypeSelectorPresenter;
         initializePanes();
@@ -45,7 +47,7 @@ public class RelevanceTypeSelectorView extends BaseView {
         titlesHBox = new HBox();
         titlesHBox.setPadding(new Insets(4, 100, 4, 50));
 
-        results = new ArrayList<>(10);
+        results = new ArrayList<>(numToShow);
         for (HBox res : results) {
             res.setPadding(new Insets(4, 5, 4, 5));
             res.setSpacing(5);
@@ -65,12 +67,12 @@ public class RelevanceTypeSelectorView extends BaseView {
         labelLabel = new Label("Label");
         labelLabel.setTextFill(Config.LABEL_TEXT_COLOR);
 
-        numbers = new ArrayList<>(10);
-        names = new ArrayList<>(10);
-        ids = new ArrayList<>(10);
-        labels = new ArrayList<>(10);
-        entityButtons = new ArrayList<>(10);
-        relationshipButtons = new ArrayList<>(10);
+        numbers = new ArrayList<>(numToShow);
+        names = new ArrayList<>(numToShow);
+        ids = new ArrayList<>(numToShow);
+        labels = new ArrayList<>(numToShow);
+        entityButtons = new ArrayList<>(numToShow);
+        relationshipButtons = new ArrayList<>(numToShow);
 
         // TODO: Imagenes de next y prev
     }
