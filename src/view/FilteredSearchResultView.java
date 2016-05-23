@@ -60,10 +60,6 @@ public class FilteredSearchResultView extends BaseView {
                 laux.setFont(new Font(20));
                 laux.setTextFill(Paint.valueOf("white"));
                 laux.setFont(new Font("Microsoft Sans Serif",20));
-                for (String s : Font.getFamilies()) {
-                    System.out.println(s);
-                    for (String t : Font.getFontNames(s)) System.out.println(t);
-                }
                 aux.add(laux);
             }
             arrayList.add(aux);
