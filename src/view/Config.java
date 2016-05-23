@@ -13,7 +13,7 @@ public class Config {
     /*
      * TAMAÑO VENTANA DE DENTRO:
      * width = 900
-     * height =
+     * height = 395
      */
 
 }

@@ -45,16 +45,16 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         if (max > result.size()) max = result.size();
 
         for (; index < max; ++index) {
-            ((RelevanceTypeSelectorView) actualView).setContent(index % 10, result.get(index));
+            ((RelevanceTypeSelectorView) actualView).setContent(index, result.get(index));
         }
 
-        for (;max < index+10; ++max) {
-            ((RelevanceTypeSelectorView) actualView).setContent(max, "");
+        for (; max < index + 10; ++max) {
+            ((RelevanceTypeSelectorView) actualView).setContent(max, " \t \t ");
         }
     }
 
     public void showLess() {
-        int min = index-10;
+        int min = index - 10;
 
         for (; index >= 0; --index) {
             ((RelevanceTypeSelectorView) actualView).setContent(index%10, result.get(index));
