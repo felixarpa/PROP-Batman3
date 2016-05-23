@@ -21,6 +21,8 @@ public class RelevanceTypeSelectorView extends BaseView {
     private Label idLabel;
     private Label labelLabel;
 
+    private Pane separacionSuperioPane;
+
     private ArrayList<HBox> results;
     private ArrayList<Label> numbers;
     private ArrayList<Label> names;
@@ -28,6 +30,8 @@ public class RelevanceTypeSelectorView extends BaseView {
     private ArrayList<Label> labels;
     private ArrayList<ImageButton> entityButtons;
     private ArrayList<ImageButton> relationshipButtons;
+
+    private Pane separacionInferiorPane;
 
     private HBox pagingButtonsHbox;
     private ImageButton nextPageButton;
@@ -44,7 +48,7 @@ public class RelevanceTypeSelectorView extends BaseView {
 
     private void initializePanes() {
         contentVBox = new VBox();
-        contentVBox.setPadding(new Insets(17, 90, 17, 90));
+        contentVBox.setPadding(new Insets(10, 90, 10, 90));
         contentVBox.setSpacing(4);
 
         titlesHBox = new HBox();
@@ -54,7 +58,6 @@ public class RelevanceTypeSelectorView extends BaseView {
         for (int i = 0 ; i < Config.LISTS_SIZE; ++i) {
             results.add(new HBox());
             results.get(i).setPadding(new Insets(0, 10, 0, 10));
-//            results.get(i).setSpacing(4);
         }
         pagingButtonsHbox = new HBox();
         pagingButtonsHbox.setPadding(new Insets(0, 185, 0, 185));
@@ -68,6 +71,8 @@ public class RelevanceTypeSelectorView extends BaseView {
         labelLabel = new Label("Label");
         initializeTitleLabels();
 
+        separacionSuperioPane = new Pane();
+
         numbers = new ArrayList<>(Config.LISTS_SIZE);
         names = new ArrayList<>(Config.LISTS_SIZE);
         ids = new ArrayList<>(Config.LISTS_SIZE);
@@ -75,6 +80,8 @@ public class RelevanceTypeSelectorView extends BaseView {
         initializeArrayLabel();
         entityButtons = new ArrayList<>(Config.LISTS_SIZE);
         relationshipButtons = new ArrayList<>(Config.LISTS_SIZE);
+
+        separacionInferiorPane = new Pane();
 
         // TODO: Imagenes de next y prev
     }
@@ -96,14 +103,18 @@ public class RelevanceTypeSelectorView extends BaseView {
             ++i;
         }
 
-        Pane troll = new Pane();
-        troll.setMinSize(720, 1);
-        troll.setMaxSize(720, 1);
-        troll.setStyle("-fx-background-color: #ffffff");
+        separacionSuperioPane.setMinSize(720, 1);
+        separacionSuperioPane.setMaxSize(720, 1);
+        separacionSuperioPane.setStyle("-fx-background-color: #ffffff");
+
+        separacionInferiorPane.setMinSize(720, 1);
+        separacionInferiorPane.setMaxSize(720, 1);
+        separacionInferiorPane.setStyle("-fx-background-color: #ffffff");
 
         contentVBox.getChildren().add(titlesHBox);
-        contentVBox.getChildren().add(troll);
+        contentVBox.getChildren().add(separacionSuperioPane);
         contentVBox.getChildren().addAll(results);
+        contentVBox.getChildren().add(separacionInferiorPane);
         // TODO: Botones next i prev
     }
 
