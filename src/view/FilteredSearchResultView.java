@@ -112,6 +112,7 @@ public class FilteredSearchResultView extends BaseView {
         aux.getChildren().add(label);
         aux.getChildren().add(id);
         aux.getChildren().add(relevance);
+        aux.getChildren().add(new Label("dafsdf"));
         results.get(type).set(index,aux);
     }
 
