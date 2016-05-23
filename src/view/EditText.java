@@ -32,7 +32,7 @@ public class EditText extends Pane {
     }
 
     private void build() {
-        label.setTextFill(Config.LABEL_TEXT_COLOR);
+        label.setTextFill(Config.LABEL_DARK_COLOR);
         hBox.setSpacing(4);
         hBox.getChildren().add(label);
         hBox.getChildren().add(textField);

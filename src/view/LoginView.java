@@ -87,7 +87,7 @@ public class LoginView {
         applicationLogo.setFitHeight(147);
 
         passwordLabel = new Label("Password");
-        passwordLabel.setTextFill(Config.LABEL_TEXT_COLOR);
+        passwordLabel.setTextFill(Config.LABEL_DARK_COLOR);
         passwordTextField = new PasswordField();
 
         loginButton = new ImageButton("../images/login", "loginButton", 227, 50);

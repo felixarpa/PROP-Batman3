@@ -1,11 +1,11 @@
 package view;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.RelevanceTypeSelectorPresenter;
@@ -33,8 +33,6 @@ public class RelevanceTypeSelectorView extends BaseView {
     private ImageButton nextPageButton;
     private ImageButton prevPageButton;
 
-    public final static int numToShow = 8;
-
     public RelevanceTypeSelectorView(RelevanceTypeSelectorPresenter relevanceTypeSelectorPresenter) {
         presenter = relevanceTypeSelectorPresenter;
         initializePanes();
@@ -43,49 +41,40 @@ public class RelevanceTypeSelectorView extends BaseView {
         setListeners();
         topBarPane.setCenter(contentVBox);
     }
- //158 29
+
     private void initializePanes() {
         contentVBox = new VBox();
-        contentVBox.setPadding(new Insets(18, 100, 17, 100));
+        contentVBox.setPadding(new Insets(17, 90, 17, 90));
+        contentVBox.setSpacing(4);
 
         titlesHBox = new HBox();
-        titlesHBox.setPadding(new Insets(4, 100, 4, 50));
+        titlesHBox.setPadding(new Insets(0, 10, 0, 60));
 
-        results = new ArrayList<>(numToShow);
-        for (int i = 0 ; i < numToShow; ++i) {
-            HBox haux = new HBox();
-            haux.setPadding(new Insets(4, 5, 4, 5));
-            haux.setSpacing(5);
-            results.add(haux);
+        results = new ArrayList<>(Config.LISTS_SIZE);
+        for (int i = 0 ; i < Config.LISTS_SIZE; ++i) {
+            results.add(new HBox());
+            results.get(i).setPadding(new Insets(0, 10, 0, 10));
+//            results.get(i).setSpacing(4);
         }
         pagingButtonsHbox = new HBox();
-        pagingButtonsHbox.setPadding(new Insets(4, 175, 4, 175));
+        pagingButtonsHbox.setPadding(new Insets(0, 185, 0, 185));
         pagingButtonsHbox.setSpacing(50);
 
     }
 
     private void initializeViews() {
         nameLabel = new Label("Name");
-        nameLabel.setTextFill(Config.LABEL_TEXT_COLOR);
         idLabel = new Label("ID");
-        idLabel.setTextFill(Config.LABEL_TEXT_COLOR);
         labelLabel = new Label("Label");
-        labelLabel.setTextFill(Config.LABEL_TEXT_COLOR);
+        initializeTitleLabels();
 
-        numbers = initializeArrayLabel(10);
-        names = initializeArrayLabel(200);
-        ids = initializeArrayLabel(90);
-        labels = initializeArrayLabel(50);
-        entityButtons = new ArrayList<>(numToShow);
-        for(int j = 0;j<numToShow;++j){
-            ImageButton entityButton = new ImageButton("../images","entityRelevanceButton",158,29);
-            entityButtons.add(entityButton);
-        }
-        relationshipButtons = new ArrayList<>(numToShow);
-        for(int j = 0;j<numToShow;++j){
-            ImageButton relationshipButton = new ImageButton("../images","relationshipRelevanceButton",158,29);
-            relationshipButtons.add(relationshipButton);
-        }
+        numbers = new ArrayList<>(Config.LISTS_SIZE);
+        names = new ArrayList<>(Config.LISTS_SIZE);
+        ids = new ArrayList<>(Config.LISTS_SIZE);
+        labels = new ArrayList<>(Config.LISTS_SIZE);
+        initializeArrayLabel();
+        entityButtons = new ArrayList<>(Config.LISTS_SIZE);
+        relationshipButtons = new ArrayList<>(Config.LISTS_SIZE);
 
         // TODO: Imagenes de next y prev
     }
@@ -102,73 +91,86 @@ public class RelevanceTypeSelectorView extends BaseView {
             line.getChildren().addAll(
                     numbers.get(i),
                     names.get(i),
-                    labels.get(i),
-                    ids.get(i),
-                    entityButtons.get(i),
-                    relationshipButtons.get(i)
+                    ids.get(i)
             );
             ++i;
         }
-        contentVBox.getChildren().addAll(titlesHBox);
+
+        Pane troll = new Pane();
+        troll.setMinSize(720, 1);
+        troll.setMaxSize(720, 1);
+        troll.setStyle("-fx-background-color: #ffffff");
+
+        contentVBox.getChildren().add(titlesHBox);
+        contentVBox.getChildren().add(troll);
         contentVBox.getChildren().addAll(results);
         // TODO: Botones next i prev
     }
 
     private void setListeners() {
-        for(int i = 0; i < numToShow; ++i){
-            ImageButton button = entityButtons.get(i);
-            int index = i;
-            button.setOnMousePressed(
-                    event -> button.press()
-            );
-            button.setOnMouseReleased(
-                    event -> {
-                        button.release();
-                        ((RelevanceTypeSelectorPresenter)presenter).onClickEntityRelevance(index);
-                    }
-            );
-            ImageButton button2 = relationshipButtons.get(i);
-            int index2 = i;
-            button2.setOnMousePressed(
-                    event -> button2.press()
-            );
-            button2.setOnMouseReleased(
-                    event -> {
-                        button2.release();
-                        ((RelevanceTypeSelectorPresenter)presenter).onClickRelationshipRelevance(index2);
-                    }
-            );
-
-        }
     }
 
     public void setContent(int index, String node) {
-        int i = index++ % numToShow;
+        int i = index++ % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
 
-        numbers.get(i).setText(index+ "");
+        numbers.get(i).setText(index + "");
         names.get(i).setText(elements[0]);
         ids.get(i).setText(elements[1]);
-        labels.get(i).setText(elements[3]);
+        labels.get(i).setText(elements[2]);
     }
 
-    private ArrayList<Label> initializeArrayLabel(int width) {
-        ArrayList<Label> arrayList = new ArrayList<>(numToShow);
-        for (int j = 0; j < numToShow; ++j) {
-                Label laux = new Label();
-                laux.setFont(new Font(20));
-                laux.setTextFill(Paint.valueOf("white"));
-                laux.setFont(new Font("Comic Sans MS",15));
-                //laux.setMinWidth(width);
-                //laux.setMaxWidth(width);
-                arrayList.add(laux);
+    private void initializeArrayLabel() {
+        for (int i = 0; i < 10; ++i) {
+            numbers.add(new Label());
+            numbers.get(i).setMinSize(50, 20);
+            numbers.get(i).setMaxSize(50, 24);
+            numbers.get(i).setFont(new Font(18));
+            numbers.get(i).setTextFill(Paint.valueOf("white"));
+
+            names.add(new Label());
+            names.get(i).setMinSize(250, 20);
+            names.get(i).setMaxSize(250, 24);
+            names.get(i).setFont(new Font(18));
+            names.get(i).setTextFill(Paint.valueOf("white"));
+
+            ids.add(new Label());
+            ids.get(i).setMinSize(100, 20);
+            ids.get(i).setMaxSize(100, 24);
+            ids.get(i).setFont(new Font(18));
+            ids.get(i).setTextFill(Paint.valueOf("white"));
+
+            labels.add(new Label());
+            labels.get(i).setMinSize(75, 20);
+            labels.get(i).setMaxSize(75, 24);
+            labels.get(i).setFont(new Font(18));
+            labels.get(i).setTextFill(Paint.valueOf("white"));
+
         }
-        return arrayList;
+    }
+
+    private void initializeTitleLabels() {
+        nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        nameLabel.setMinSize(250, 20);
+        nameLabel.setMaxSize(250, 24);
+        nameLabel.setFont(new Font("Arial bold", 24));
+
+        idLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        idLabel.setMinSize(100, 20);
+        idLabel.setMaxSize(100, 24);
+        idLabel.setFont(new Font("Arial bold", 24));
+
+        labelLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        labelLabel.setMinSize(75, 20);
+        labelLabel.setMaxSize(75, 24);
+        labelLabel.setFont(new Font("Arial bold", 24));
+
+
     }
 }
 
 /*
-     * TAMAÑO VENTANA DE DENTRO:
-     * width = 900
-     * height = 383
-     */
+ * TAMAÑO VENTANA DE DENTRO:
+ * width = 900
+ * height = 370
+ */

@@ -1,6 +1,7 @@
 package presentation;
 
 import util.ProjectConstants;
+import view.Config;
 import view.MyApp;
 import view.RelevanceTypeSelectorView;
 
@@ -71,15 +72,11 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     }
 
     public void showMore() {
-        int max = index + RelevanceTypeSelectorView.numToShow;
+        int max = index + Config.LISTS_SIZE;
         if (max > result.size()) max = result.size();
-        int nextindex = index + RelevanceTypeSelectorView.numToShow;
+        int nextindex = index + Config.LISTS_SIZE;
         for (; index < max; ++index) {
             ((RelevanceTypeSelectorView) actualView).setContent(index, result.get(index));
-        }
-
-        for (; max < nextindex; ++max) {
-            ((RelevanceTypeSelectorView) actualView).setContent(max, " \t \t \t ");
         }
     }
 

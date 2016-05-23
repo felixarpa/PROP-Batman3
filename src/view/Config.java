@@ -8,12 +8,15 @@ public class Config {
     public final static double WINDOW_HEIGHT = 576;
     // factor "imagen-pixel" 1.334
 
-    public final static Color LABEL_TEXT_COLOR = Color.web("#61402a");
+    public final static Color LABEL_DARK_COLOR = Color.web("#61402a");
+    public final static Color LABEL_CLEAR_COLOR = Color.web("#fdddc8");
+
+    public final static int LISTS_SIZE = 10;
 
     /*
      * TAMAÑO VENTANA DE DENTRO:
      * width = 900
-     * height = 395
+     * height = 370
      */
 
 }
