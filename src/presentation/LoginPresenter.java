@@ -31,9 +31,9 @@ public class LoginPresenter extends Presenter {
                 loginView.destroy();
                 loginView = null;
                 //ESTO ES LO GUAY
-                /*MainPresenter mainPresenter = new MainPresenter();
+                MainPresenter mainPresenter = new MainPresenter();
                 mainPresenter.startSession();
-                MyApp.changePresenter(mainPresenter);*/
+                MyApp.changePresenter(mainPresenter);
 
                 //PRUEBA DE FILTEREDSEARCHRESULT
                 /* ArrayList<ArrayList<String>> aux = new ArrayList<>();
@@ -44,10 +44,10 @@ public class LoginPresenter extends Presenter {
                 MyApp.changePresenter(new FilteredSearchResultPresenter(aux));*/
 
                 //PRUEBA DE RELEVANCETYPESELECTOR
-                ArrayList<String> aux2 = new ArrayList<>();
+                /*ArrayList<String> aux2 = new ArrayList<>();
                 aux2.add("Mario A. Nascimento\t113885\t2449.0518623648363\t3\tclass domain.graph.Author");
                 aux2.add("Mario Marchand\t40245\t707.1466569609166\t \tclass domain.graph.Author");
-                MyApp.changePresenter(new RelevanceTypeSelectorPresenter(aux2));
+                MyApp.changePresenter(new RelevanceTypeSelectorPresenter(aux2));*/
 
             } catch (IncorrectPassword | NonExistentUser exception) {
                 System.out.println(exception.getMessage());

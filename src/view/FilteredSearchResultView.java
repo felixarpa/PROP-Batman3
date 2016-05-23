@@ -124,11 +124,11 @@ public class FilteredSearchResultView extends BaseView {
     public void setContent(int index, String node, int type) {
         System.out.println(node);
         String[] elements = node.split("\t");
-        number.get(type).get(index%10).setText(Integer.toString(index+1));
-        name.get(type).get(index%10).setText(elements[0]);
-        id.get(type).get(index%10).setText(elements[1]);
-        relevance.get(type).get(index%10).setText(elements[2]);
-        label.get(type).get(index%10).setText(elements[3]);
+        number.get(type).get(index%numToShow).setText(Integer.toString(index+1));
+        name.get(type).get(index%numToShow).setText(elements[0]);
+        id.get(type).get(index%numToShow).setText(elements[1]);
+        relevance.get(type).get(index%numToShow).setText(elements[2]);
+        label.get(type).get(index%numToShow).setText(elements[3]);
     }
 
 }

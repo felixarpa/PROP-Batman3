@@ -15,6 +15,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         this.result = result;
         actualView = new RelevanceTypeSelectorView(this);
         index = 0;
+        showMore();
         MyApp.startScene(actualView.getContent());
 
     }
@@ -50,7 +51,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         }
 
         for (; max < nextindex; ++max) {
-            ((RelevanceTypeSelectorView) actualView).setContent(max, " \t \t ");
+            ((RelevanceTypeSelectorView) actualView).setContent(max, " \t \t \t ");
         }
     }
 

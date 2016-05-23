@@ -56,7 +56,6 @@ public class RelevanceTypeSelectorView extends BaseView {
             haux.setSpacing(5);
             results.add(haux);
         }
-
         pagingButtonsHbox = new HBox();
         pagingButtonsHbox.setPadding(new Insets(4, 175, 4, 175));
         pagingButtonsHbox.setSpacing(50);
@@ -108,20 +107,19 @@ public class RelevanceTypeSelectorView extends BaseView {
         int i = index++ % 10;
         String[] elements = node.split("\t");
 
-        numbers.get(i).setText(index + "");
+        numbers.get(i).setText(index%numToShow + "");
         names.get(i).setText(elements[0]);
         ids.get(i).setText(elements[1]);
-        labels.get(i).setText("");
-        if (elements.length > 2) labels.get(i).setText(elements[2]);
+        labels.get(i).setText(elements[2]);
     }
 
     private ArrayList<Label> initializeArrayLabel() {
         ArrayList<Label> arrayList = new ArrayList<>(numToShow);
         for (int j = 0; j < numToShow; ++j) {
                 Label laux = new Label();
-                /*laux.setFont(new Font(20));
+                laux.setFont(new Font(20));
                 laux.setTextFill(Paint.valueOf("white"));
-                laux.setFont(new Font("Microsoft Sans Serif",20));*/
+                laux.setFont(new Font("Comic Sans MS",15));
                 arrayList.add(laux);
         }
         return arrayList;
