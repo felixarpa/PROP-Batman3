@@ -49,56 +49,30 @@ public class FilteredSearchResultView extends BaseView {
         contents = new ArrayList<>(4);
     }
 
+    private ArrayList<ArrayList<Label>> initializeArrayLabel() {
+        ArrayList<ArrayList<Label>> arrayList = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<Label> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                Label laux = new Label();
+
+                aux.add(laux);
+            }
+            arrayList.add(aux);
+        }
+        return arrayList;
+    }
+
     private void initializeViews() {
         authorText = new Label("RELATED AUTHORS");
         conferenceText = new Label("RELATED CONFERENCES");
         paperText = new Label("RELATED PAPERS");
         termText = new Label("RELATED TERMS");
-        number = new ArrayList<>(4);
-        for (int i = 0; i < 4; ++i) {
-            ArrayList<Label> aux = new ArrayList<>(numToShow);
-            for (int j = 0; j < numToShow; ++j) {
-                Label laux = new Label();
-                aux.add(laux);
-            }
-            number.add(aux);
-        }
-        name = new ArrayList<>(4);
-        for (int i = 0; i < 4; ++i) {
-            ArrayList<Label> aux = new ArrayList<>(numToShow);
-            for (int j = 0; j < numToShow; ++j) {
-                Label laux = new Label();
-                aux.add(laux);
-            }
-            name.add(aux);
-        }
-        id = new ArrayList<>(4);
-        for (int i = 0; i < 4; ++i) {
-            ArrayList<Label> aux = new ArrayList<>(numToShow);
-            for (int j = 0; j < numToShow; ++j) {
-                Label laux = new Label();
-                aux.add(laux);
-            }
-            id.add(aux);
-        }
-        relevance = new ArrayList<>(4);
-        for (int i = 0; i < 4; ++i) {
-            ArrayList<Label> aux = new ArrayList<>(numToShow);
-            for (int j = 0; j < numToShow; ++j) {
-                Label laux = new Label();
-                aux.add(laux);
-            }
-            relevance.add(aux);
-        }
-        label = new ArrayList<>(4);
-        for (int i = 0; i < 4; ++i) {
-            ArrayList<Label> aux = new ArrayList<>(numToShow);
-            for (int j = 0; j < numToShow; ++j) {
-                Label laux = new Label();
-                aux.add(laux);
-            }
-            label.add(aux);
-        }
+        number = initializeArrayLabel();
+        name = initializeArrayLabel();
+        id = initializeArrayLabel();
+        relevance = initializeArrayLabel();
+        label = initializeArrayLabel();
     }
 
     private void buildPanes() {
