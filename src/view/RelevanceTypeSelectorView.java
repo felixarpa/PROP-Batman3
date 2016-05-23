@@ -104,10 +104,10 @@ public class RelevanceTypeSelectorView extends BaseView {
     }
 
     public void setContent(int index, String node) {
-        int i = index++ % 10;
+        int i = index++ % numToShow;
         String[] elements = node.split("\t");
 
-        numbers.get(i).setText(index%numToShow + "");
+        numbers.get(i).setText(index+ "");
         names.get(i).setText(elements[0]);
         ids.get(i).setText(elements[1]);
         labels.get(i).setText(elements[2]);
