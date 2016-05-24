@@ -121,6 +121,16 @@ public class Graph {
 		return result;
 	}
 
+	public Collection<Term> getTerm(String name) {
+		LinkedList<Term> result = new LinkedList<>();
+		for (Node node : graph) {
+			if (node.asTerm() != null && node.getName().toLowerCase().contains(name.toLowerCase())) {
+				result.add(node.asTerm());
+			}
+		}
+		return result;
+	}
+
 	public Node getNode(Id id) {
 		return idMap.get(id);
 	}

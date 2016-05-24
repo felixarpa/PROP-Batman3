@@ -10,7 +10,7 @@ public class FavoriteTopicsView extends BaseView {
 
     VBox contentVBox;
 
-    FavoriteTopicsView(FavoriteTopicsPresenter favoriteTopicsPresenter) {
+    public FavoriteTopicsView(FavoriteTopicsPresenter favoriteTopicsPresenter) {
         presenter = favoriteTopicsPresenter;
         initializePanes();
         initializeViews();

@@ -334,5 +334,37 @@ public abstract class DataBaseController {
             throw new ProjectError(e.getMessage());
         }
     }
+
+    public static void logOut(User user) {
+        String fileName = "users.txt";
+        LinkedList<User> auxiliar = new LinkedList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)));
+            String actual;
+            while ((actual = reader.readLine()) != null) {
+                User dbUser = new User(actual);
+                if (user.equals(dbUser)) {
+                    auxiliar.add(user);
+                }
+                else {
+                    auxiliar.add(dbUser);
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            throw new ProjectError(e.getMessage());
+        }
+        try {
+            BufferedWriter writter = new BufferedWriter(new FileWriter(new File(fileName)));
+            for (User u : auxiliar) {
+                writter.write(u.toString());
+            }
+            writter.close();
+        } catch(IOException e) {
+            throw new ProjectError(e.getMessage());
+        }
+
+    }
+
     
 }
