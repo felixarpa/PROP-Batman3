@@ -10,16 +10,9 @@ import java.util.Stack;
 public class RelevanceTypeSelectorPresenter extends BasePresenter  {
 
     private ArrayList<String> result;
-    private Stack<ArrayList<SearchString>> resultStack;
-    private int lastSearchLenght;
     private int index;
 
     public RelevanceTypeSelectorPresenter(ArrayList<String> result) {
-        resultStack = new Stack<>();
-        ArrayList<SearchString> firstResult = new ArrayList<>();
-        for (String string : result) {
-            
-        }
         this.result = result;
         actualView = new RelevanceTypeSelectorView(this);
         index = 0;
@@ -28,24 +21,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     }
 
     public void onKeyEntered(String newString) {
-        if (lastSearchLenght > newString.length()) {
-            ArrayList<SearchString> lastResult = resultStack.peek();
 
-            ArrayList<SearchString> newResult = new ArrayList<>(lastResult.size());
-
-            for (SearchString s : lastResult) {
-                int i = s.getLastIndex();
-                int newI = s.getString().indexOf(newString, i);
-                newResult.add(new SearchString(s.getString(), newI));
-            }
-
-            resultStack.push(newResult);
-        }
-        else if (lastSearchLenght < newString.length()) {
-            resultStack.pop();
-        }
-
-        lastSearchLenght = newString.length();
     }
 
     public void onClickEntityRelevance(int id) {

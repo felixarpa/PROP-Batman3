@@ -9,9 +9,9 @@ import java.util.*;
 
 public class DomainController {
 
-    static User currentUser;
+	static User currentUser;
 
-    private Graph graf = Graph.getInstance();
+	private Graph graf = Graph.getInstance();
 
 	private TreeSet<Conference> resultConference;
 	private TreeSet<Author> resultAuthor;
@@ -22,10 +22,43 @@ public class DomainController {
 
 	private TreeSet<Relation> lastRelevanceResult;
 
+	private Stack<LinkedList<SearchString>> searchStack;
+	private int lastSearchLenght = 0;
+
 	public DomainController() {
-	    DataBaseController.load();
-        PageRank.execute();
-	 }
+		DataBaseController.load();
+		PageRank.execute();
+
+		searchStack = new Stack<>();
+		LinkedList<SearchString> allNodeNames = new LinkedList<>();
+		for (Node node : Graph.getInstance().allNodes()) {
+			allNodeNames.add(new SearchString(node.getName(), 0));
+		}
+		searchStack.push(allNodeNames);
+	}
+
+	public ArrayList<String> searchPredictor(String newString) {
+		ArrayList<String> result = new ArrayList<>();
+		if(lastSearchLenght < newString.length()) {
+			LinkedList<SearchString> lastResult = searchStack.peek();
+			LinkedList<SearchString> newResult = new LinkedList<>();
+			result = new ArrayList<>(lastResult.size());
+			for (SearchString s : lastResult) {
+				int i = s.getLastIndex();
+				int newI = s.getString().indexOf(newString, i);
+				if (newI > 0) {
+					result.add(s.getString());
+					newResult.add(new SearchString(s.getString(), newI));
+				}
+			}
+			searchStack.push(newResult);
+		}
+		else if(lastSearchLenght > newString.length()) {
+			searchStack.pop();
+		}
+		lastSearchLenght=newString.length();
+		return result;
+	}
 
 	public static User getCurrentUser() {
 		return currentUser;

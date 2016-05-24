@@ -2,7 +2,6 @@ package presentation;
 
 import view.FilteredSearchResultView;
 import view.MyApp;
-import view.RelevanceTypeSelectorView;
 
 import java.util.ArrayList;
 

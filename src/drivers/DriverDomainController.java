@@ -417,7 +417,7 @@ public class DriverDomainController {
 		pl();
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		sc = new Scanner(System.in);
 		// Iniciar sesion
 		while (!login()) {
@@ -441,6 +441,16 @@ public class DriverDomainController {
 			else if (command.equals("help")) help();
 			else if (command.equals("delete user")) removeUser();
 			else if (command.equals("edit")) edit();
+			else if (command.equals("predictor")) {
+				String search = sc.next();
+				for (String s : god.searchPredictor(search)) {
+					System.out.println(s);
+				}
+
+			}
+			else {
+				System.out.println("CXommand error");
+			}
 		} while (!command.equals("exit"));
 
 		god.close();

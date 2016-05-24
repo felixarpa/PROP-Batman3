@@ -124,9 +124,10 @@ public class LoginView {
         passwordHBox.getChildren().add(passwordTextField);
         passwordHBox.setAlignment(Pos.CENTER);
 
-        textFieldsVBox.getChildren().add(errorHBox);
-        textFieldsVBox.getChildren().add(usernameEditText.getBase());
-        textFieldsVBox.getChildren().add(passwordHBox);
+        //textFieldsVBox.getChildren().add(errorHBox);
+        //textFieldsVBox.getChildren().add(usernameEditText.getBase());
+        //textFieldsVBox.getChildren().add(passwordHBox);
+        Predictor predictor = new Predictor();
         textFieldsVBox.setAlignment(Pos.CENTER);
 
         buttonsVBox.getChildren().add(loginButton);
