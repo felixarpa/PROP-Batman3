@@ -1,4 +1,4 @@
 package presentation;
 
-public class FavoriteTopicsPresenter extends Presenter  {
+public class FavoriteTopicsPresenter extends BasePresenter  {
 }
