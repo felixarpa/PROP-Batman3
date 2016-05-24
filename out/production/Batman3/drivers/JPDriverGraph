@@ -1,0 +1,72 @@
+help
+
+show Graph size
+show Graph nodes
+show Graph edges
+
+show Node 0 id
+show Node 0 name
+show Node 0 relevance
+show Node 0 label
+
+set 0 2
+show Node 0 label
+set 3 2
+show Node 3 label
+
+
+create Author Horacio
+2 1 
+show Node 4 id
+show Node 4 name
+show Node 4 relevance
+show Node 4 label
+
+search Mario
+add Edge 
+add Node 0 
+add Node 0
+search Mario
+add Node 1
+show Graph size
+show Graph nodes
+show Graph edges
+
+
+add Edge 0 1 
+show Graph edges 
+add Edge 1 0 
+show Graph edges
+
+add Node 2 
+add Edge 2 1 
+add Edge 1 2 
+add Node 3
+add Edge 3 1 
+add Edge 1 3
+show Graph edges
+
+calculate 1 
+show Node 1 relevance
+
+
+create Author Jose
+3 1
+create Paper Jose
+1 1
+create Conference The life of Jose
+2 1
+add Node 5
+add Node 6
+add Node 7
+search Jose
+
+remove Node 0
+show Graph nodes
+show Graph edges 
+search Mario
+
+remove Edge 1 2
+show Graph edges
+
+exit

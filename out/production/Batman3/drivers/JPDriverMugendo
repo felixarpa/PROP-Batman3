@@ -1,0 +1,16 @@
+show
+
+calculate 0 4
+calculate 0 9
+calculate 0 11
+
+calculate 4 9
+calculate 4 11
+calculate 4 5
+
+calculate 9 11
+calculate 9 10
+
+calculate 11 12
+
+show
