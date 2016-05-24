@@ -1,5 +1,9 @@
 package domain;
 
+import comparators.IdComparator;
+import domain.graph.Graph;
+import domain.graph.Node;
+import domain.graph.Term;
 import exceptions.ProjectError;
 
 import java.util.TreeSet;
@@ -10,7 +14,7 @@ public class User implements Comparable<User> {
 	private String username;
 	private String password;
 	private boolean isAdmin;	//true => es administrador
-	private TreeSet<Integer> favorites;
+	private TreeSet<Term> favorites;
 	
 	/**
 	 * Función que crea un usuario vacío.
@@ -23,13 +27,12 @@ public class User implements Comparable<User> {
 	 * 
 	 * @param name nombre de usuario que se le quiere dar al nuevo usuario.
 	 * @param password password que se le quiere dar al nuevo usuario.
-	 * @param admin nivel de privilegio que se le quiere dar al nuevo usuario. True si admin, false en cualquier otro caso.
 	 */
 	public User(String name, String password) {
 		this.username = name;
 		this.password = password;
 		this.isAdmin = false;
-		favorites = new TreeSet<>();
+		favorites = new TreeSet<>(new IdComparator());
 	}
 	
 	/**
@@ -45,8 +48,8 @@ public class User implements Comparable<User> {
 		isAdmin = (fields[2].equals("true"));
 		favorites = new TreeSet<>();
 		if (fields.length > 3) {
-			for (int i = 3; i < fields.length; ++i) {
-				favorites.add(Integer.parseInt(fields[i]));
+			for (int i = 4; i < fields.length; ++i) {
+				Term t = Graph.getInstance().getNode(Term.makeId(Integer.parseInt(fields[i]))).asTerm();
 			}
 		}
 	}
@@ -120,11 +123,9 @@ public class User implements Comparable<User> {
 		isAdmin = admin;
 	}
 
-	public void addFavorite(int term) {
-		favorites.add(term);
-	}
+	public void addFavorite(Term term) {	favorites.add(term);}
 
-	public void deleteFavorite(int term) {
+	public void deleteFavorite(Term term) {
 		favorites.remove(term);
 	}
 	
@@ -132,7 +133,7 @@ public class User implements Comparable<User> {
 		return favorites.contains(term);
 	}
 	
-	public TreeSet<Integer> getFavorites() {
+	public TreeSet<Term> getFavorites() {
 		return favorites;
 	}
 
@@ -149,8 +150,8 @@ public class User implements Comparable<User> {
 	@Override
 	public String toString() {
 		String result = (username + '\t' + password + '\t' + isAdmin );
-		for (int s : favorites) {
-			result += ('\t' + s);
+		for (Term term : favorites) {
+			result += ('\t' + term.getId().toString());
 		}
 		return result;
 	}

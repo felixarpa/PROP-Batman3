@@ -1,5 +1,6 @@
 package view;
 
+import domain.DomainController;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -87,7 +88,7 @@ public class LoginView {
         applicationLogo.setFitHeight(147);
 
         passwordLabel = new Label("Password");
-        passwordLabel.setTextFill(Config.LABEL_TEXT_COLOR);
+        passwordLabel.setTextFill(Config.LABEL_DARK_COLOR);
         passwordTextField = new PasswordField();
 
         loginButton = new ImageButton("../images/login", "loginButton", 227, 50);
@@ -124,10 +125,9 @@ public class LoginView {
         passwordHBox.getChildren().add(passwordTextField);
         passwordHBox.setAlignment(Pos.CENTER);
 
-        //textFieldsVBox.getChildren().add(errorHBox);
-        //textFieldsVBox.getChildren().add(usernameEditText.getBase());
-        //textFieldsVBox.getChildren().add(passwordHBox);
-        Predictor predictor = new Predictor();
+        textFieldsVBox.getChildren().add(errorHBox);
+        textFieldsVBox.getChildren().add(usernameEditText.getBase());
+        textFieldsVBox.getChildren().add(passwordHBox);
         textFieldsVBox.setAlignment(Pos.CENTER);
 
         buttonsVBox.getChildren().add(loginButton);

@@ -22,41 +22,18 @@ public class DomainController {
 
 	private TreeSet<Relation> lastRelevanceResult;
 
-	private Stack<LinkedList<SearchString>> searchStack;
-	private int lastSearchLenght = 0;
-
 	public DomainController() {
 		DataBaseController.load();
 		PageRank.execute();
-
-		searchStack = new Stack<>();
-		LinkedList<SearchString> allNodeNames = new LinkedList<>();
-		for (Node node : Graph.getInstance().allNodes()) {
-			allNodeNames.add(new SearchString(node.getName(), 0));
-		}
-		searchStack.push(allNodeNames);
 	}
 
-	public ArrayList<String> searchPredictor(String newString) {
-		ArrayList<String> result = new ArrayList<>();
-		if(lastSearchLenght < newString.length()) {
-			LinkedList<SearchString> lastResult = searchStack.peek();
-			LinkedList<SearchString> newResult = new LinkedList<>();
-			result = new ArrayList<>(lastResult.size());
-			for (SearchString s : lastResult) {
-				int i = s.getLastIndex();
-				int newI = s.getString().indexOf(newString, i);
-				if (newI > 0) {
-					result.add(s.getString());
-					newResult.add(new SearchString(s.getString(), newI));
-				}
-			}
-			searchStack.push(newResult);
+	public static Set<String> allNames() {
+		TreeSet<String> result = new TreeSet<>();
+
+		for (Node node : Graph.getInstance().allNodes()) {
+			result.add(node.getName());
 		}
-		else if(lastSearchLenght > newString.length()) {
-			searchStack.pop();
-		}
-		lastSearchLenght=newString.length();
+
 		return result;
 	}
 
@@ -65,7 +42,7 @@ public class DomainController {
 	}
 
 	public ArrayList<String> searchingANode(String name) {
-		Set<Node> result = graf.getNode(name);
+		Collection<Node> result = graf.getNode(name);
 		if (result.isEmpty()) {
 			//ENVIA AL VISTA CONTROLER QUE NO HAY RESULTADOS
 			return null;
@@ -78,11 +55,25 @@ public class DomainController {
         return selected;
 	}
 
-	private Node stringToNode(String node) {
+	public ArrayList<String> searchingATerm(String name) {
+    		Collection<Term> result = graf.getTerm(name);
+    		if (result.isEmpty()) {
+    			//ENVIA AL VISTA CONTROLER QUE NO HAY RESULTADOS
+    			return null;
+    		}
+            ArrayList<String> selected = new ArrayList<>(result.size());
+            //DICE AL VISTA CONTROLLER QUE ELIGA EL RESULTADO
+            for (Term n : result) {
+                selected.add(n.toString());
+            }
+            return selected;
+    }
+
+	public static Node stringToNode(String node) {
 		String[] aux = node.split("\t");
 		String id = aux[1];
 		String type = aux[4];
-		return graf.getNode(toId(id,type));
+		return Graph.getInstance().getNode(toId(id,type));
 	}
 
 	public ArrayList<ArrayList<String>> firstSearch(String node, int typeOfResult) {
@@ -175,7 +166,7 @@ public class DomainController {
 	    DataBaseController.download();
 	 }
 
-	private Id toId(String id, String type) {
+	private static Id toId(String id, String type) {
 		int ide = Integer.parseInt(id);
 		switch (type) {
 			case  "domain.graph.Author":

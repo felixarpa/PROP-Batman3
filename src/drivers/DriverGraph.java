@@ -1,5 +1,6 @@
 package drivers;
 
+import java.util.Collection;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Set;
@@ -124,7 +125,7 @@ public class DriverGraph {
     private static void search() {
     	  System.out.println("Introduce the name of the desired node.");
           String name = sc.next();
-          Set<Node> aux = test.getNode(name);
+          Collection<Node> aux = test.getNode(name);
           System.out.println(name);
           System.out.println("----------");
           if (aux == null || aux.size() == 0) System.out.println("The search found 0 results.");

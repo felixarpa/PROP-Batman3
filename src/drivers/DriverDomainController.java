@@ -441,13 +441,6 @@ public class DriverDomainController {
 			else if (command.equals("help")) help();
 			else if (command.equals("delete user")) removeUser();
 			else if (command.equals("edit")) edit();
-			else if (command.equals("predictor")) {
-				String search = sc.next();
-				for (String s : god.searchPredictor(search)) {
-					System.out.println(s);
-				}
-
-			}
 			else {
 				System.out.println("CXommand error");
 			}
