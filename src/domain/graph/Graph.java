@@ -13,13 +13,11 @@ public class Graph {
 	private static Graph instance = new Graph();
     private TreeMap<Id, Node> idMap;
 	private TreeSet<Node> graph;
-	private TreeMap<String,TreeSet<Node>> names;
 	private int edges = 0;
 
 	private Graph() {
 		graph = new TreeSet<>();
         idMap = new TreeMap<>();
-        names = new TreeMap<>();
 	}
 
 	public static Graph getInstance() {
@@ -31,7 +29,7 @@ public class Graph {
 		if (replace != null) throw new ExistingNode(replace);
 		graph.add(node);
 		// Esto es exactamente lo que queria hacer para buscar por palabras <3
-		String[] substrings = node.getName().split(" ");
+		/*String[] substrings = node.getName().split(" ");
 		for (String s : substrings) {
             TreeSet<Node> nodes = names.get(s);
 			if (nodes == null) {
@@ -39,19 +37,19 @@ public class Graph {
 				names.put(s, nodes);
 			}
 			nodes.add(node);
-		}
+		}*/
 		if (idMap.put(node.getId(),node) != null) throw new ProjectError("Graph not coherent with the id map");
     }
 
 	public void deleteNode(Node node) throws NonExistentNode {
 		if (!existsNode(node)) throw new NonExistentNode(node);
 
-		String[] substrings = node.getName().split(" ");
+		/*String[] substrings = node.getName().split(" ");
 		for (String s : substrings) {
             TreeSet<Node> nodes = names.get(s);
 			nodes.remove(node);
 			if (nodes.size() == 0) names.remove(s);
-		}
+		}*/
 
 		node.deleteNode();
 		graph.remove(node);
@@ -110,10 +108,17 @@ public class Graph {
 		return null;
 	}
 	
-	public Set<Node> getNode(String name) {
-		Set<Node> result = names.get(name);
+	public Collection<Node> getNode(String name) {
+		LinkedList<Node> result = new LinkedList<>();
+		for (Node node : graph) {
+			if (node.getName().toLowerCase().contains(name.toLowerCase())) {
+				result.add(node);
+			}
+		}
+		/*Set<Node> result = names.get(name);
 		if (result != null) return result;
-	    return graph.subSet(new Author(name, 0), true, new Term(name, 536870911), true);
+	    return graph.subSet(new Author(name, 0), true, new Term(name, 536870911), true);*/
+		return result;
 	}
 
 	public Node getNode(Id id) {
