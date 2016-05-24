@@ -18,6 +18,7 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
     }
 
     public void setType(int type) {
+        index = 0;
         actualType = type;
     }
 
