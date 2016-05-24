@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.RelevanceTypeSelectorPresenter;
@@ -48,7 +47,7 @@ public class RelevanceTypeSelectorView extends BaseView {
 
     private void initializePanes() {
         contentVBox = new VBox();
-        contentVBox.setPadding(new Insets(10, 90, 10, 90));
+        contentVBox.setPadding(new Insets(10, 40, 10, 40));
         contentVBox.setSpacing(4);
 
         titlesHBox = new HBox();
@@ -103,12 +102,12 @@ public class RelevanceTypeSelectorView extends BaseView {
             ++i;
         }
 
-        separacionSuperioPane.setMinSize(720, 1);
-        separacionSuperioPane.setMaxSize(720, 1);
+        separacionSuperioPane.setMinSize(770, 1);
+        separacionSuperioPane.setMaxSize(770, 1);
         separacionSuperioPane.setStyle("-fx-background-color: #ffffff");
 
-        separacionInferiorPane.setMinSize(720, 1);
-        separacionInferiorPane.setMaxSize(720, 1);
+        separacionInferiorPane.setMinSize(770, 1);
+        separacionInferiorPane.setMaxSize(770, 1);
         separacionInferiorPane.setStyle("-fx-background-color: #ffffff");
 
         contentVBox.getChildren().add(titlesHBox);
@@ -140,8 +139,8 @@ public class RelevanceTypeSelectorView extends BaseView {
             numbers.get(i).setTextFill(Paint.valueOf("white"));
 
             names.add(new Label());
-            names.get(i).setMinSize(250, 20);
-            names.get(i).setMaxSize(250, 24);
+            names.get(i).setMinSize(350, 20);
+            names.get(i).setMaxSize(350, 24);
             names.get(i).setFont(new Font(18));
             names.get(i).setTextFill(Paint.valueOf("white"));
 
@@ -162,8 +161,8 @@ public class RelevanceTypeSelectorView extends BaseView {
 
     private void initializeTitleLabels() {
         nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        nameLabel.setMinSize(250, 20);
-        nameLabel.setMaxSize(250, 24);
+        nameLabel.setMinSize(350, 20);
+        nameLabel.setMaxSize(350, 24);
         nameLabel.setFont(new Font("Arial bold", 24));
 
         idLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
