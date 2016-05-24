@@ -14,7 +14,7 @@ import presentation.BasePresenter;
 
 public class BaseView {
 
-    private BorderPane basePane;
+    protected BorderPane basePane;
     BorderPane topBarPane;
 
     private ImageView applicationLogo;

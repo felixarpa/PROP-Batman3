@@ -1,7 +1,10 @@
 package view;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -33,6 +36,8 @@ public class RelevanceTypeSelectorView extends BaseView {
     private HBox pagingButtonsHbox;
     private ImageButton nextPageButton;
     private ImageButton prevPageButton;
+    private Button next;
+    private Button prev;
 
     public RelevanceTypeSelectorView(RelevanceTypeSelectorPresenter relevanceTypeSelectorPresenter) {
         presenter = relevanceTypeSelectorPresenter;
@@ -92,7 +97,9 @@ public class RelevanceTypeSelectorView extends BaseView {
             results.get(i).getChildren().addAll(
                     numbers.get(i),
                     names.get(i),
-                    ids.get(i)
+                    ids.get(i),
+                    entityButtons.get(i),
+                    relationshipButtons.get(i)
             );
             ++i;
         }
@@ -109,7 +116,17 @@ public class RelevanceTypeSelectorView extends BaseView {
         contentVBox.getChildren().add(separacionSuperioPane);
         contentVBox.getChildren().addAll(results);
         contentVBox.getChildren().add(separacionInferiorPane);
+
+
         // TODO: Botones next i prev
+        //PRUEBA DE MIERDA QUE NO SE USARA Y LA VOY A QUITAR AHORA
+        HBox hbox = new HBox();
+        next = new Button("Next");
+        prev = new Button("Prev");
+        hbox.getChildren().add(next);
+        hbox.getChildren().add(prev);
+        contentVBox.getChildren().add(hbox);
+
     }
 
     private void setListeners() {
@@ -136,18 +153,45 @@ public class RelevanceTypeSelectorView extends BaseView {
                 }
             );
         }
+        next.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ((RelevanceTypeSelectorPresenter)presenter).showMore();
+            }
+        });
 
+        prev.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ((RelevanceTypeSelectorPresenter)presenter).showLess();
+            }
+        });
     }
 
     public void setContent(int index, String node) {
         int i = index++ % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
-        numbers.get(i).setText(index + "");
+        if (elements[0].equals("")) numbers.get(i).setText("");
+        else numbers.get(i).setText(index + "");
         names.get(i).setText(elements[0]);
         ids.get(i).setText(elements[1]);
 
-        results.get(i).getChildren().add(entityButtons.get(i));
-        results.get(i).getChildren().add(relationshipButtons.get(i));
+        if (elements[0].equals("")) {
+            entityButtons.get(i).setDisable(true);
+            entityButtons.get(i).setVisible(false);
+        }
+        else {
+            entityButtons.get(i).setDisable(false);
+            entityButtons.get(i).setVisible(true);
+        }
+        if (elements[0].equals("")) {
+            relationshipButtons.get(i).setDisable(true);
+            relationshipButtons.get(i).setVisible(false);
+        }
+        else {
+            relationshipButtons.get(i).setDisable(false);
+            relationshipButtons.get(i).setVisible(true);
+        }
 
     }
 
