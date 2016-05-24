@@ -256,8 +256,6 @@ public class BaseView {
         );
     }
 
-    public Pane getContent() {
-        return basePane;
-    }
+    public Pane getContent() {return basePane;}
 
 }
