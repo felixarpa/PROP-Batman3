@@ -184,7 +184,7 @@ public class BaseView {
         searchText = new Text("Search");
         relationshipSearchText = new Text("Relationship\nSearch");
         username = new Text("Username");
-        username.setFill(javafx.scene.paint.Color.valueOf("#fdddc8"));
+        username.setFill(Config.LABEL_CLEAR_COLOR);
         username.setTextAlignment(TextAlignment.CENTER);
 
         appTitleImage = new ImageView();
@@ -198,7 +198,7 @@ public class BaseView {
 
         conferencesButton = new ImageButton("../images", "conferencesButton", 225, 75);
 
-        papersButton = new ImageButton("../images", "papersButton", 227, 75);
+        papersButton = new ImageButton("../images", "papersButton", 225, 75);
 
         termsButton = new ImageButton("../images", "termsButton", 225, 75);
 
@@ -220,11 +220,13 @@ public class BaseView {
         sidebarBottom.setAlignment(Pos.CENTER);
 
         String sidebarBG = this.getClass().getResource("../images/sidebarBackground.png").toExternalForm();
-        sidebar.setStyle("-fx-background-image: url('" + sidebarBG + "'); " +
+        sidebar.setStyle(
+                "-fx-background-image: url('" + sidebarBG + "'); " +
                 "-fx-background-position: center center; " +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-size: 147 576;" +
-                "-fx-font: 16 Gotham;");
+                "-fx-font: 16 Gotham;"
+        );
         sidebar.getChildren().add(applicationLogo);
         sidebar.getChildren().add(sidebarOptions);
         sidebar.getChildren().add(sidebarBottom);
@@ -248,9 +250,9 @@ public class BaseView {
         String image = this.getClass().getResource("../images/background.jpg").toExternalForm();
         topBarPane.setStyle(
                 "-fx-background-image: url('" + image + "'); " +
-                        "-fx-background-position: center center; " +
-                        "-fx-background-repeat: stretch;" +
-                        "-fx-background-size: 900 576"
+                "-fx-background-position: center center; " +
+                "-fx-background-repeat: stretch;" +
+                "-fx-background-size: " + Config.WINDOW_WIDTH + " " + Config.WINDOW_HEIGHT
         );
     }
 

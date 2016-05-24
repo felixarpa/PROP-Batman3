@@ -46,10 +46,9 @@ public class DomainController {
 	}
 
 	private Node stringToNode(String node) {
-		String[] aux = node.split("Id: ");
-		aux = aux[1].split(" ");
-		String id = aux[0];
-		String type = aux[aux.length - 1];
+		String[] aux = node.split("\t");
+		String id = aux[1];
+		String type = aux[4];
 		return graf.getNode(toId(id,type));
 	}
 

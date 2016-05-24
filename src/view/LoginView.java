@@ -87,7 +87,7 @@ public class LoginView {
         applicationLogo.setFitHeight(147);
 
         passwordLabel = new Label("Password");
-        passwordLabel.setTextFill(Config.LABEL_TEXT_COLOR);
+        passwordLabel.setTextFill(Config.LABEL_DARK_COLOR);
         passwordTextField = new PasswordField();
 
         loginButton = new ImageButton("../images/login", "loginButton", 227, 50);
@@ -100,8 +100,6 @@ public class LoginView {
         registerText.setStyle(
                 "-fx-fill: #d0b494;" +
                 "-fx-font: 20px Caspian");
-
-
 
         registerButton = new ImageButton("../images/login/registerButton.png", 148, 50);
 
@@ -174,7 +172,6 @@ public class LoginView {
     }
 
     public void displayErrorMessage(String errorMessage){
-
         errorText.setText(errorMessage);
         System.out.println("Login Failure");
     }

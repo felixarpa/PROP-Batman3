@@ -219,9 +219,6 @@ public abstract class Node implements Comparable<Node> {
 		if (adjacent.put(dst, weight) == null) throw new NonExistentEdge(this, dst);
 	}
 
-
-
-
 	//////// NODE FUNTIONS ////////
 
 	/**
@@ -390,7 +387,7 @@ public abstract class Node implements Comparable<Node> {
 
 	@Override
 	public String toString(){
-		return (name + "\t" + id + "\t" + relevance  + (label == -1 ? "" : "\t" + label) + "\t" + getClass());
+		return (name + "\t" + id + "\t" + relevance  + "\t" + (label == -1 ? " " :  label) + "\t" + getClass().getName());
 	}
 
 	@Override

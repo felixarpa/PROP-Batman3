@@ -9,35 +9,36 @@ import java.util.ArrayList;
 public class FilteredSearchResultPresenter  extends BasePresenter {
 
     ArrayList<ArrayList<String>> result;
-    int index;
+    ArrayList<Integer> index;
 
     public FilteredSearchResultPresenter(ArrayList<ArrayList<String>> result) {
         this.result = result;
         actualView = new FilteredSearchResultView(this);
-        index = 0;
-        showMore();
+        index = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) index.add(0);
+        for (int i = 0; i < 4; ++i) showMore(i);
         MyApp.startScene(actualView.getContent());
     }
 
-    public void showMore() {
-        int max = index + 10;
-        if (max > result.get(0).size()) max = result.get(0).size();
-        int nextindex = index + 10;
-        for (; index < max; ++index) {
-            System.out.println(result.get(0).get(index));
-            ((FilteredSearchResultView) actualView).setContent(index % 10, result.get(0).get(index), 0);
+    public void showMore(int i) {
+        int max = index.get(i) + FilteredSearchResultView.numToShow;
+        if (max > result.get(i).size()) max = result.get(i).size();
+        int nextindex = index.get(i) + FilteredSearchResultView.numToShow;
+
+        for (; index.get(i) < max; index.set(i, index.get(i)+1)) {
+            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(i).get(index.get(i)), i);
         }
 
         for (;max < nextindex; ++max) {
-            ((FilteredSearchResultView) actualView).setContent(max, "\t \t \t",0);
+            ((FilteredSearchResultView) actualView).setContent(max, "\t \t \t \t",i);
         }
     }
 
-    public void showLess() {
-        int min = index-10;
+    public void showLess(int i) {
+        int min = index.get(i)-FilteredSearchResultView.numToShow;
 
-        for (; index >= 0; --index) {
-            ((RelevanceTypeSelectorView) actualView).setContent(index%10, result.get(0).get(index));
+        for (; index.get(i) >= 0; index.set(i, index.get(i)-1)) {
+            ((FilteredSearchResultView) actualView).setContent(index.get(i), result.get(i).get(index.get(i)),i);
         }
     }
 
