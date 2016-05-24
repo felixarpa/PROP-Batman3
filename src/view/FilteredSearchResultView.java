@@ -3,14 +3,11 @@ package view;
 
 import javafx.event.EventHandler;
 import javafx.geometry.*;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import presentation.FilteredRelevanceResultPresenter;
 import presentation.FilteredSearchResultPresenter;
 import util.ProjectConstants;
 
@@ -38,6 +35,9 @@ public class FilteredSearchResultView extends BaseView {
     private Font font;
     private Font titleFont;
 
+    private Button next;
+    private Button prev;
+
     public final static int numToShow = 4;
 
 
@@ -54,13 +54,14 @@ public class FilteredSearchResultView extends BaseView {
 
     private void initializeFonts() {
         font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
-        titleFont = Font.font("Arial",18);
+        titleFont = Font.loadFont(this.getClass().getResource("../fonts/Universal Serif.ttf").toExternalForm(),18);
     }
 
     private void initializePanes() {
         topBarPane.setTop(null);
         contentVBox = new VBox();
         contents = new ArrayList<>(4);
+
 
     }
 
@@ -99,6 +100,8 @@ public class FilteredSearchResultView extends BaseView {
         id = initializeArrayLabel();
         relevance = initializeArrayLabel();
         label = initializeArrayLabel();
+        next = new Button("Next");
+        prev = new Button("Prev");
     }
 
     private void buildPanes() {
@@ -180,6 +183,20 @@ public class FilteredSearchResultView extends BaseView {
             @Override
             public void handle(MouseEvent event) {
                 ((FilteredSearchResultPresenter)presenter).setType(ProjectConstants.TERM_TYPE);
+            }
+        });
+
+        next.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ((FilteredSearchResultPresenter)presenter).showMore();
+            }
+        });
+
+        prev.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ((FilteredSearchResultPresenter)presenter).showLess();
             }
         });
     }
@@ -285,6 +302,10 @@ public class FilteredSearchResultView extends BaseView {
 
         }
         contentVBox.getChildren().add(vaux);
+        HBox hbox = new HBox();
+        hbox.getChildren().add(prev);
+        hbox.getChildren().add(next);
+        contentVBox.getChildren().add(hbox);
     }
 
 
