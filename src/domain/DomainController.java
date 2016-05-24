@@ -156,7 +156,7 @@ public class DomainController {
 	    DataBaseController.download();
 	 }
 
-	private Id toId(String id, String type) {
+	private static Id toId(String id, String type) {
 		int ide = Integer.parseInt(id);
 		switch (type) {
 			case  "domain.graph.Author":
