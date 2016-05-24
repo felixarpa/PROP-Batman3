@@ -23,7 +23,6 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         MyApp.startScene(actualView.getContent());
     }
 
-
     public void onClickEntityRelevance(int id) {
         String node = result.get(id);
         Thread thread = new Thread(()-> {

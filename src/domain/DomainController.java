@@ -9,9 +9,9 @@ import java.util.*;
 
 public class DomainController {
 
-    static User currentUser;
+	static User currentUser;
 
-    private Graph graf = Graph.getInstance();
+	private Graph graf = Graph.getInstance();
 
 	private TreeSet<Conference> resultConference;
 	private TreeSet<Author> resultAuthor;
@@ -23,9 +23,19 @@ public class DomainController {
 	private TreeSet<Relation> lastRelevanceResult;
 
 	public DomainController() {
-	    DataBaseController.load();
-        PageRank.execute();
-	 }
+		DataBaseController.load();
+		PageRank.execute();
+	}
+
+	public static Set<String> allNames() {
+		TreeSet<String> result = new TreeSet<>();
+
+		for (Node node : Graph.getInstance().allNodes()) {
+			result.add(node.getName());
+		}
+
+		return result;
+	}
 
 	public static User getCurrentUser() {
 		return currentUser;

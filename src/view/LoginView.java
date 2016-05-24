@@ -1,5 +1,6 @@
 package view;
 
+import domain.DomainController;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
