@@ -129,23 +129,25 @@ public class RelevanceTypeSelectorView extends BaseView {
     }
 
     private void initializeArrayLabel() {
+        Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 18);
         for (int i = 0; i < 10; ++i) {
             numbers.add(new Label());
             numbers.get(i).setMinSize(50, 20);
             numbers.get(i).setMaxSize(50, 24);
-            numbers.get(i).setFont(new Font(18));
+
+            numbers.get(i).setFont(font);
             numbers.get(i).setTextFill(Paint.valueOf("white"));
 
             names.add(new Label());
             names.get(i).setMinSize(380, 20);
             names.get(i).setMaxSize(380, 24);
-            names.get(i).setFont(new Font(18));
+            names.get(i).setFont(font);
             names.get(i).setTextFill(Paint.valueOf("white"));
 
             ids.add(new Label());
             ids.get(i).setMinSize(75, 20);
             ids.get(i).setMaxSize(75, 24);
-            ids.get(i).setFont(new Font(18));
+            ids.get(i).setFont(font);
             ids.get(i).setTextFill(Paint.valueOf("white"));
 
             entityButtons.add(new ImageButton("../images/entityRelevanceButton.png", 140, 24));
