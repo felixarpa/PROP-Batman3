@@ -18,7 +18,6 @@ public class RelevanceTypeSelectorView extends BaseView {
     private HBox titlesHBox;
     private Label nameLabel;
     private Label idLabel;
-    private Label labelLabel;
 
     private Pane separacionSuperioPane;
 
@@ -26,7 +25,6 @@ public class RelevanceTypeSelectorView extends BaseView {
     private ArrayList<Label> numbers;
     private ArrayList<Label> names;
     private ArrayList<Label> ids;
-    private ArrayList<Label> labels;
     private ArrayList<ImageButton> entityButtons;
     private ArrayList<ImageButton> relationshipButtons;
 
@@ -67,7 +65,6 @@ public class RelevanceTypeSelectorView extends BaseView {
     private void initializeViews() {
         nameLabel = new Label("Name");
         idLabel = new Label("ID");
-        labelLabel = new Label("Label");
         initializeTitleLabels();
 
         separacionSuperioPane = new Pane();
@@ -75,10 +72,9 @@ public class RelevanceTypeSelectorView extends BaseView {
         numbers = new ArrayList<>(Config.LISTS_SIZE);
         names = new ArrayList<>(Config.LISTS_SIZE);
         ids = new ArrayList<>(Config.LISTS_SIZE);
-        labels = new ArrayList<>(Config.LISTS_SIZE);
-        initializeArrayLabel();
         entityButtons = new ArrayList<>(Config.LISTS_SIZE);
         relationshipButtons = new ArrayList<>(Config.LISTS_SIZE);
+        initializeArrayLabel();
 
         separacionInferiorPane = new Pane();
 
@@ -88,13 +84,12 @@ public class RelevanceTypeSelectorView extends BaseView {
     private void buildPanes() {
         titlesHBox.getChildren().addAll(
                 nameLabel,
-                idLabel,
-                labelLabel
+                idLabel
         );
 
         int i = 0;
         for (HBox line : results) {
-            line.getChildren().addAll(
+            results.get(i).getChildren().addAll(
                     numbers.get(i),
                     names.get(i),
                     ids.get(i)
@@ -102,12 +97,12 @@ public class RelevanceTypeSelectorView extends BaseView {
             ++i;
         }
 
-        separacionSuperioPane.setMinSize(770, 1);
-        separacionSuperioPane.setMaxSize(770, 1);
+        separacionSuperioPane.setMinSize(800, 1);
+        separacionSuperioPane.setMaxSize(800, 1);
         separacionSuperioPane.setStyle("-fx-background-color: #ffffff");
 
-        separacionInferiorPane.setMinSize(770, 1);
-        separacionInferiorPane.setMaxSize(770, 1);
+        separacionInferiorPane.setMinSize(800, 1);
+        separacionInferiorPane.setMaxSize(800, 1);
         separacionInferiorPane.setStyle("-fx-background-color: #ffffff");
 
         contentVBox.getChildren().add(titlesHBox);
@@ -127,7 +122,10 @@ public class RelevanceTypeSelectorView extends BaseView {
         numbers.get(i).setText(index + "");
         names.get(i).setText(elements[0]);
         ids.get(i).setText(elements[1]);
-        labels.get(i).setText(elements[2]);
+
+        results.get(i).getChildren().add(entityButtons.get(i));
+        results.get(i).getChildren().add(relationshipButtons.get(i));
+
     }
 
     private void initializeArrayLabel() {
@@ -139,43 +137,32 @@ public class RelevanceTypeSelectorView extends BaseView {
             numbers.get(i).setTextFill(Paint.valueOf("white"));
 
             names.add(new Label());
-            names.get(i).setMinSize(350, 20);
-            names.get(i).setMaxSize(350, 24);
+            names.get(i).setMinSize(380, 20);
+            names.get(i).setMaxSize(380, 24);
             names.get(i).setFont(new Font(18));
             names.get(i).setTextFill(Paint.valueOf("white"));
 
             ids.add(new Label());
-            ids.get(i).setMinSize(100, 20);
-            ids.get(i).setMaxSize(100, 24);
+            ids.get(i).setMinSize(75, 20);
+            ids.get(i).setMaxSize(75, 24);
             ids.get(i).setFont(new Font(18));
             ids.get(i).setTextFill(Paint.valueOf("white"));
 
-            labels.add(new Label());
-            labels.get(i).setMinSize(75, 20);
-            labels.get(i).setMaxSize(75, 24);
-            labels.get(i).setFont(new Font(18));
-            labels.get(i).setTextFill(Paint.valueOf("white"));
-
+            entityButtons.add(new ImageButton("../images/entityRelevanceButton.png", 140, 24));
+            relationshipButtons.add(new ImageButton("../images/relationshipRelevanceButton.png", 140, 24));
         }
     }
 
     private void initializeTitleLabels() {
         nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        nameLabel.setMinSize(350, 20);
-        nameLabel.setMaxSize(350, 24);
+        nameLabel.setMinSize(380, 20);
+        nameLabel.setMaxSize(380, 24);
         nameLabel.setFont(new Font("Arial bold", 24));
 
         idLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        idLabel.setMinSize(100, 20);
-        idLabel.setMaxSize(100, 24);
+        idLabel.setMinSize(75, 20);
+        idLabel.setMaxSize(75, 24);
         idLabel.setFont(new Font("Arial bold", 24));
-
-        labelLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        labelLabel.setMinSize(75, 20);
-        labelLabel.setMaxSize(75, 24);
-        labelLabel.setFont(new Font("Arial bold", 24));
-
-
     }
 }
 
