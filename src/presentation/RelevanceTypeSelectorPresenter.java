@@ -16,6 +16,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     private int index;
 
     public RelevanceTypeSelectorPresenter(ArrayList<String> result) {
+
         this.result = result;
         actualView = new RelevanceTypeSelectorView(this);
         index = 0;
