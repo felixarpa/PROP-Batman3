@@ -1,5 +1,6 @@
 package presentation;
 
+import view.Config;
 import view.FilteredSearchResultView;
 import view.MyApp;
 
@@ -20,6 +21,8 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
     public void setType(int type) {
         index = 0;
         actualType = type;
+        ((FilteredSearchResultView)actualView).changeType(type);
+        show();
     }
 
     private void initialFill(int i) {
@@ -28,34 +31,42 @@ public class FilteredSearchResultPresenter  extends BasePresenter {
         int nextIndex = FilteredSearchResultView.numToShow;
 
         for (int index = 0; index < max; ++index) {
-            ((FilteredSearchResultView) actualView).setContent(index, result.get(i).get(index), i);
+            ((FilteredSearchResultView) actualView).setContent(index, result.get(i).get(index), i,FilteredSearchResultView.numToShow);
         }
 
         for (;max < nextIndex; ++max) {
-            ((FilteredSearchResultView) actualView).setContent(max, "\t \t \t \t",i);
+            ((FilteredSearchResultView) actualView).setContent(max, "\t \t \t \t",i,FilteredSearchResultView.numToShow);
         }
     }
 
     public void showMore() {
-        int max = index + FilteredSearchResultView.numToShow;
-        if (max > result.get(actualType).size()) max = result.get(actualType).size();
-        int nextIndex = index + FilteredSearchResultView.numToShow;
+        if (index + Config.LISTS_SIZE <= result.size()) {
+            index += Config.LISTS_SIZE;
+            show();
 
-        for (; index < max; ++index) {
-            ((FilteredSearchResultView) actualView).setContent(index, result.get(actualType).get(index), 0);
         }
 
-        for (;max < nextIndex; ++max) {
-            ((FilteredSearchResultView) actualView).setContent(max, "\t \t \t \t",0);
-        }
     }
 
     public void showLess() {
-
-        for (; index >= 0; --index) {
-            ((FilteredSearchResultView) actualView).setContent(index, result.get(actualType).get(index),0);
+        if (index - Config.LISTS_SIZE >= 0) {
+            index = index - Config.LISTS_SIZE;
+            show();
         }
 
+
+    }
+
+    private void show() {
+        int max = index+ Config.LISTS_SIZE;
+        if (max> result.get(actualType).size()) max = result.get(actualType).size();
+        for (int i = 0; i < max-index; ++i) {
+            System.out.println(i);
+            ((FilteredSearchResultView)actualView).setContent(index+i, result.get(actualType).get(index+i),actualType,Config.LISTS_SIZE);
+        }
+        for (;max < index+Config.LISTS_SIZE; ++max) {
+            ((FilteredSearchResultView)actualView).setContent(max, "\t \t \t \t",actualType,Config.LISTS_SIZE);
+        }
     }
 
 }
