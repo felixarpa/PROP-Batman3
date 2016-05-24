@@ -142,7 +142,6 @@ public class RelevanceTypeSelectorView extends BaseView {
     public void setContent(int index, String node) {
         int i = index++ % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
-
         numbers.get(i).setText(index + "");
         names.get(i).setText(elements[0]);
         ids.get(i).setText(elements[1]);

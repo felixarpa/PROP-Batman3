@@ -32,7 +32,7 @@ public class DomainController {
 	}
 
 	public ArrayList<String> searchingANode(String name) {
-		Set<Node> result = graf.getNode(name);
+		Collection<Node> result = graf.getNode(name);
 		if (result.isEmpty()) {
 			//ENVIA AL VISTA CONTROLER QUE NO HAY RESULTADOS
 			return null;
