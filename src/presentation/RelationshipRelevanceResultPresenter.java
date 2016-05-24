@@ -1,4 +1,4 @@
 package presentation;
 
-public class RelationshipRelevanceResultPresenter extends Presenter  {
+public class RelationshipRelevanceResultPresenter extends BasePresenter  {
 }
