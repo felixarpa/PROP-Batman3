@@ -189,7 +189,7 @@ public abstract class Searcher {
             if (node.getId().getType() == typesrc) {
                 LinkedList<Node> copy = new LinkedList<>(node.getAdjacentNode());
                 for (Node adjacentNode : copy) {
-                    if (typedst != ProjectConstants.TERM_TYPE && adjacentNode.asPaper() != null) {
+                    if (typedst != ProjectConstants.PAPER_TYPE && adjacentNode.asPaper() != null) {
                         for (Node adjacentPaper : adjacentNode.getAdjacentNode()) {
                             if (!node.equal(adjacentPaper) && adjacentPaper.getId().getType() == typedst) {
                                 addToResult(node, adjacentPaper, result);

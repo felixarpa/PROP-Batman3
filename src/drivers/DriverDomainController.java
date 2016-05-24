@@ -264,7 +264,7 @@ public class DriverDomainController {
 			type = ProjectConstants.CONFERENCE_TYPE;
 		}
 		else if (command.equals("paper")) {
-			type = ProjectConstants.TERM_TYPE;
+			type = ProjectConstants.PAPER_TYPE;
 		}
 		else if (command.equals("term")) {
 			type = ProjectConstants.TERM_TYPE;
@@ -283,7 +283,7 @@ public class DriverDomainController {
 			type2 = ProjectConstants.CONFERENCE_TYPE;
 		}
 		else if (command.equals("paper")) {
-			type2 = ProjectConstants.TERM_TYPE;
+			type2 = ProjectConstants.PAPER_TYPE;
 		}
 		else if (command.equals("term")) {
 			type2 = ProjectConstants.TERM_TYPE;
@@ -538,7 +538,7 @@ public class DriverDomainController {
 				}
 				else if (qwer.equals("paper")) {
 					try {
-						adminController.addNewNode(name, label, ProjectConstants.TERM_TYPE);
+						adminController.addNewNode(name, label, ProjectConstants.PAPER_TYPE);
 					} catch (ExistingNode existingNode) {
 						existingNode.printStackTrace();
 					}

@@ -1,12 +1,17 @@
 package presentation;
 
+import org.omg.CORBA.CODESET_INCOMPATIBLE;
 import util.ProjectConstants;
+import view.Config;
+import view.FilteredSearchResultView;
 import view.MyApp;
 import view.RelevanceTypeSelectorView;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class RelevanceTypeSelectorPresenter extends BasePresenter  {
+
     private ArrayList<String> result;
     private int index;
 
@@ -14,9 +19,10 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         this.result = result;
         actualView = new RelevanceTypeSelectorView(this);
         index = 0;
+        show();
         MyApp.startScene(actualView.getContent());
-
     }
+
 
     public void onClickEntityRelevance(int id) {
         String node = result.get(id);
@@ -41,24 +47,34 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     }
 
     public void showMore() {
-        int max = index + 10;
-        if (max > result.size()) max = result.size();
+        if (index + Config.LISTS_SIZE <= result.size()) {
+            index += Config.LISTS_SIZE;
+            show();
 
-        for (; index < max; ++index) {
-            ((RelevanceTypeSelectorView) actualView).setContent(index, result.get(index));
         }
 
-        for (; max < index + 10; ++max) {
-            ((RelevanceTypeSelectorView) actualView).setContent(max, " \t \t ");
-        }
     }
 
     public void showLess() {
-        int min = index - 10;
+        if (index - Config.LISTS_SIZE >= 0) {
+            index = index - Config.LISTS_SIZE;
+            show();
+        }
 
-        for (; index >= 0; --index) {
-            ((RelevanceTypeSelectorView) actualView).setContent(index%10, result.get(index));
+
+    }
+
+    private void show() {
+        int max = index+Config.LISTS_SIZE;
+        if (max> result.size()) max = result.size();
+        for (int i = 0; i < max-index; ++i) {
+            ((RelevanceTypeSelectorView) actualView).setContent(index+i, result.get(index+i));
+        }
+        for (;max < index+Config.LISTS_SIZE; ++max) {
+            ((RelevanceTypeSelectorView) actualView).setContent(max, "\t \t \t \t");
         }
     }
+
+
 
 }

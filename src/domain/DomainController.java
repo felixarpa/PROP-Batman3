@@ -32,7 +32,7 @@ public class DomainController {
 	}
 
 	public ArrayList<String> searchingANode(String name) {
-		Set<Node> result = graf.getNode(name);
+		Collection<Node> result = graf.getNode(name);
 		if (result.isEmpty()) {
 			//ENVIA AL VISTA CONTROLER QUE NO HAY RESULTADOS
 			return null;
@@ -45,12 +45,25 @@ public class DomainController {
         return selected;
 	}
 
-	private Node stringToNode(String node) {
-		String[] aux = node.split("Id: ");
-		aux = aux[1].split(" ");
-		String id = aux[0];
-		String type = aux[aux.length - 1];
-		return graf.getNode(toId(id,type));
+	public ArrayList<String> searchingATerm(String name) {
+    		Collection<Term> result = graf.getTerm(name);
+    		if (result.isEmpty()) {
+    			//ENVIA AL VISTA CONTROLER QUE NO HAY RESULTADOS
+    			return null;
+    		}
+            ArrayList<String> selected = new ArrayList<>(result.size());
+            //DICE AL VISTA CONTROLLER QUE ELIGA EL RESULTADO
+            for (Term n : result) {
+                selected.add(n.toString());
+            }
+            return selected;
+    }
+
+	public static Node stringToNode(String node) {
+		String[] aux = node.split("\t");
+		String id = aux[1];
+		String type = aux[4];
+		return Graph.getInstance().getNode(toId(id,type));
 	}
 
 	public ArrayList<ArrayList<String>> firstSearch(String node, int typeOfResult) {
@@ -143,7 +156,7 @@ public class DomainController {
 	    DataBaseController.download();
 	 }
 
-	private Id toId(String id, String type) {
+	private static Id toId(String id, String type) {
 		int ide = Integer.parseInt(id);
 		switch (type) {
 			case  "domain.graph.Author":
