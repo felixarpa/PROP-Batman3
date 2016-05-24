@@ -5,6 +5,7 @@ import javafx.geometry.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.FilteredRelevanceResultPresenter;
@@ -19,6 +20,7 @@ public class FilteredSearchResultView extends BaseView {
 
     private VBox contentVBox;
     private ArrayList<VBox> contents;
+    private HBox line;
 
 
     private Label authorText;
@@ -31,13 +33,15 @@ public class FilteredSearchResultView extends BaseView {
     private ArrayList<ArrayList<Label>> id;
     private ArrayList<ArrayList<Label>> relevance;
     private ArrayList<ArrayList<Label>> label;
-
+    private Font font;
+    private Font titleFont;
 
     public final static int numToShow = 4;
 
 
     public FilteredSearchResultView(FilteredSearchResultPresenter filteredSearchResultPresenter) {
         presenter = filteredSearchResultPresenter;
+        initializeFonts();
         initializePanes();
         initializeViews();
         buildPanes();
@@ -46,9 +50,16 @@ public class FilteredSearchResultView extends BaseView {
 
     }
 
+    private void initializeFonts() {
+        font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
+        titleFont = Font.font("Arial",18);
+    }
+
     private void initializePanes() {
+        topBarPane.setTop(null);
         contentVBox = new VBox();
         contents = new ArrayList<>(4);
+
     }
 
     private ArrayList<ArrayList<Label>> initializeArrayLabel() {
@@ -59,7 +70,8 @@ public class FilteredSearchResultView extends BaseView {
                 Label laux = new Label();
                 laux.setFont(new Font(20));
                 laux.setTextFill(Paint.valueOf("white"));
-                laux.setFont(new Font("Microsoft Sans Serif",15));
+                laux.setFont(font);
+                //laux.setFont(new Font("Microsoft Sans Serif",15));
                 aux.add(laux);
             }
             arrayList.add(aux);
@@ -70,12 +82,16 @@ public class FilteredSearchResultView extends BaseView {
     private void initializeViews() {
         authorText = new Label("RELATED AUTHORS");
         authorText.setTextFill(Paint.valueOf("white"));
+        authorText.setFont(titleFont);
         conferenceText = new Label("RELATED CONFERENCES");
         conferenceText.setTextFill(Paint.valueOf("white"));
+        conferenceText.setFont(titleFont);
         paperText = new Label("RELATED PAPERS");
         paperText.setTextFill(Paint.valueOf("white"));
+        paperText.setFont(titleFont);
         termText = new Label("RELATED TERMS");
         termText.setTextFill(Paint.valueOf("white"));
+        termText.setFont(titleFont);
         number = initializeArrayLabel();
         name = initializeArrayLabel();
         id = initializeArrayLabel();
@@ -86,7 +102,10 @@ public class FilteredSearchResultView extends BaseView {
     private void buildPanes() {
         for (int i = 0; i < 4; ++i) {
             VBox vaux = new VBox();
+
             HBox haux = new HBox();
+            haux.setPadding(new Insets(0,0,0,50));
+
             switch (i) {
                 case ProjectConstants.AUTHOR_TYPE:
                     haux.getChildren().add(authorText);
@@ -104,15 +123,33 @@ public class FilteredSearchResultView extends BaseView {
             vaux.getChildren().add(haux);
             for (int j = 0; j < numToShow; ++j) {
                 haux = new HBox();
+                haux.setPadding(new Insets(4,0,4,50));
                 haux.getChildren().add(number.get(i).get(j));
                 haux.getChildren().add(name.get(i).get(j));
+                haux.getChildren().add(label.get(i).get(j));
                 haux.getChildren().add(id.get(i).get(j));
                 haux.getChildren().add(relevance.get(i).get(j));
-                haux.getChildren().add(label.get(i).get(j));
+
                 vaux.getChildren().add(haux);
+
             }
 
+            if(i<3){
+                HBox aux = new HBox();
+                line = new HBox();
+                line.setAlignment(Pos.CENTER);
+                line.setMinSize(800,1);
+                line.setMaxSize(800,1);
+                line.setStyle("-fx-background-color: #ffffff;");
+                aux.getChildren().add(line);
+                aux.setMinSize(900,1);
+                aux.setMinSize(900,1);
+                aux.setPadding(new Insets(0,0,0,50));
+
+                vaux.getChildren().add(aux);
+            }
             contents.add(vaux);
+
 
         }
         contentVBox.getChildren().addAll(contents);
@@ -124,10 +161,26 @@ public class FilteredSearchResultView extends BaseView {
     public void setContent(int index, String node, int type) {
         String[] elements = node.split("\t");
         number.get(type).get(index%numToShow).setText(Integer.toString(index+1));
+        number.get(type).get(index%numToShow).setMinWidth(10);
+        number.get(type).get(index%numToShow).setMaxWidth(10);
+        //number.get(type).get(index%numToShow).setPadding(new Insets(0,50,0,0));
         name.get(type).get(index%numToShow).setText(elements[0]);
-        id.get(type).get(index%numToShow).setText(elements[1]);
-        relevance.get(type).get(index%numToShow).setText(elements[2]);
-        label.get(type).get(index%numToShow).setText(elements[3]);
+        name.get(type).get(index%numToShow).setMinWidth(400);
+        name.get(type).get(index%numToShow).setMaxWidth(400);
+        //name.get(type).get(index%numToShow).setPadding(new Insets(0,50,0,0));
+        id.get(type).get(index%numToShow).setText("Id: " + elements[1]);
+        id.get(type).get(index%numToShow).setMinWidth(100);
+        id.get(type).get(index%numToShow).setMaxWidth(100);
+        //id.get(type).get(index%numToShow).setPadding(new Insets(0,50,0,0));
+        relevance.get(type).get(index%numToShow).setText("Relevance: " + elements[2]);
+        relevance.get(type).get(index%numToShow).setMinWidth(300);
+        relevance.get(type).get(index%numToShow).setMaxWidth(300);
+        //relevance.get(type).get(index%numToShow).setPadding(new Insets(0,50,0,0));
+        label.get(type).get(index%numToShow).setText("Label: " + elements[3]);
+        label.get(type).get(index%numToShow).setMinWidth(75);
+        label.get(type).get(index%numToShow).setMaxWidth(75);
+        //label.get(type).get(index%numToShow).setPadding(new Insets(0,50,0,0));
+
     }
 
 }

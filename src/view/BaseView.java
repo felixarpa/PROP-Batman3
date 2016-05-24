@@ -14,7 +14,7 @@ import presentation.BasePresenter;
 
 public class BaseView {
 
-    private BorderPane basePane;
+    protected BorderPane basePane;
     BorderPane topBarPane;
 
     private ImageView applicationLogo;
@@ -194,7 +194,7 @@ public class BaseView {
         appTitleImage.setFitWidth(409);
         appTitleImage.setFitHeight(106);
 
-        authorsButton = new  ImageButton("../images", "authorsButton", 225, 75);
+        authorsButton = new  ImageButton("../images", "authorsButton", 220, 75);
 
         conferencesButton = new ImageButton("../images", "conferencesButton", 225, 75);
 
