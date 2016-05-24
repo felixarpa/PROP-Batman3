@@ -113,6 +113,30 @@ public class RelevanceTypeSelectorView extends BaseView {
     }
 
     private void setListeners() {
+
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
+            final int index = i;
+            entityButtons.get(i).setOnMousePressed(
+                event -> entityButtons.get(index).changeButtonImage("../images/entityRelevanceButtonPressed.png")
+            );
+            entityButtons.get(i).setOnMouseReleased(
+                event -> {
+                    entityButtons.get(index).changeButtonImage("../images/entityRelevanceButton.png");
+                    ((RelevanceTypeSelectorPresenter) presenter).onClickEntityRelevance(index);
+                }
+            );
+
+            relationshipButtons.get(i).setOnMousePressed(
+                event -> relationshipButtons.get(index).changeButtonImage("../images/relationshipRelevanceButtonPressed.png")
+            );
+            relationshipButtons.get(i).setOnMouseReleased(
+                event -> {
+                    relationshipButtons.get(index).changeButtonImage("../images/relationshipRelevanceButton.png");
+                    ((RelevanceTypeSelectorPresenter) presenter).onClickRelationshipRelevance(index);
+                }
+            );
+        }
+
     }
 
     public void setContent(int index, String node) {
@@ -130,6 +154,7 @@ public class RelevanceTypeSelectorView extends BaseView {
 
     private void initializeArrayLabel() {
         Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 18);
+
         for (int i = 0; i < 10; ++i) {
             numbers.add(new Label());
             numbers.get(i).setMinSize(50, 20);
