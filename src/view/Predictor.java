@@ -1,10 +1,10 @@
 package view;
 
-import javafx.event.EventHandler;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.util.*;
 
@@ -36,7 +36,8 @@ public class Predictor extends VBox {
 
     private Stack<LinkedList<SearchString>>  resultStack;
 
-    private int lastLenght;
+    private int lastLength;
+    private int selected;
 
     public Predictor(Collection<String> data, int resultsToShow) {
         this.resultsToShow = resultsToShow;
@@ -44,39 +45,76 @@ public class Predictor extends VBox {
         textToPredict = new TextField();
         resultStack = new Stack<>();
         resultBox = new VBox();
-        lastLenght = 0;
-
-        for (int i = 0; i < resultsToShow; ++i) {
-            resultBox.getChildren().add(new Label());
-        }
-
+        resultBox.setStyle("-fx-background-color: #FFFFFF;");
+        lastLength = -1;
+        selected = -1;
         getChildren().add(textToPredict);
         getChildren().add(resultBox);
-        textToPredict.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                int lenght = textToPredict.getText().length();
-                if (lenght > lastLenght) {
-                    nextStep();
+        textToPredict.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.UP) {
+                if (selected > 0) {
+                    ((Text)resultBox.getChildren().get(selected)).setFill(Color.BLACK);
+                    --selected;
+                    ((Text)resultBox.getChildren().get(selected)).setFill(Color.GRAY);
                 }
-                else if (lenght < lastLenght) {
-                    previousStep();
+            }
+            else if (event.getCode() == KeyCode.DOWN) {
+                if (selected < resultBox.getChildren().size()-1) {
+                    if (selected >= 0)((Text)resultBox.getChildren().get(selected)).setFill(Color.BLACK);
+                    ++selected;
+                    ((Text)resultBox.getChildren().get(selected)).setFill(Color.GRAY);
                 }
-                lastLenght = lenght;
+            }
+            else if (event.getCode() == KeyCode.ENTER) {
+                if (selected >= 0 && selected < resultBox.getChildren().size()) {
+                    textToPredict.setText(((Text)resultBox.getChildren().get(selected)).getText());
+                    if (selected >= 0 && selected < resultBox.getChildren().size()) {
+                        textToPredict.setText(((Text)resultBox.getChildren().get(selected)).getText());
+                        resultBox.getChildren().remove(0,resultBox.getChildren().size());
+                    }
+                }
+            }
+            else {
+                int length = textToPredict.getText().length();
+                if (length == 0) {
+                    resultBox.getChildren().remove(0, resultBox.getChildren().size());
+                }
+                else if (length != lastLength) {
+                    slowStep();
+                }
+                lastLength = length;
             }
         });
 
     }
 
+    private void slowStep() {
+        int count = 0;
+        selected = -1;
+        resultBox.getChildren().remove(0,resultBox.getChildren().size());
+        for (String word : data) {
+            if (word.contains(textToPredict.getText())) {
+                if (count < resultsToShow) {
+                    Text predicted = new Text(word);
+                    resultBox.getChildren().add(predicted);
+                    ++count;
+                }
+            }
+        }
+    }
+
     private void nextStep() {
+        selected = -1;
         LinkedList<SearchString> result = new LinkedList<>();
-        Label predicted;
+        Text predicted;
+        resultBox.getChildren().remove(0,resultBox.getChildren().size());
         int count = 0;
         if (resultStack.isEmpty()) {
             for (String word : data) {
                 if (word.contains(textToPredict.getText())) {
                     if (count < resultsToShow) {
-                        ((Label)resultBox.getChildren().get(count)).setText(word);
+                        predicted = new Text(word);
+                        resultBox.getChildren().add(predicted);
                         ++count;
                     }
                     result.add(new SearchString(word, 0));
@@ -90,7 +128,8 @@ public class Predictor extends VBox {
                 String word = searchString.getString();
                 if (word.contains(textToPredict.getText())) {
                     if (count < resultsToShow) {
-                        ((Label)resultBox.getChildren().get(count)).setText(word);
+                        predicted = new Text(word);
+                        resultBox.getChildren().add(predicted);
                         ++count;
                     }
                     result.add(new SearchString(word, 0));
@@ -98,17 +137,19 @@ public class Predictor extends VBox {
             }
         }
 
-        for (; count < resultsToShow; ++count) {
-            ((Label)resultBox.getChildren().get(count)).setText("");
-        }
+        /*for (; count < resultsToShow; ++count) {
+            ((Text)resultBox.getChildren().get(count)).setText("");
+        }*/
         resultStack.push(result);
     }
 
     private void previousStep() {
+        selected = -1;
+        resultBox.getChildren().remove(0,resultBox.getChildren().size());
         if (resultStack.size() <= 1) {
-            for (int count = 0; count < resultsToShow; ++count) {
-                ((Label)resultBox.getChildren().get(count)).setText("");
-            }
+            /*for (int count = 0; count < resultsToShow; ++count) {
+                ((Text)resultBox.getChildren().get(count)).setText("");
+            }*/
             return;
         }
         resultStack.pop();
@@ -116,12 +157,13 @@ public class Predictor extends VBox {
         ListIterator<SearchString> it = previousResult.listIterator();
         int count = 0;
         for (; count < resultsToShow && it.hasNext(); ++count) {
-            ((Label)resultBox.getChildren().get(count)).setText(it.next().getString());
+            Text predicted = new Text(it.next().getString());
+            resultBox.getChildren().add(predicted);
         }
 
-        for (; count < resultsToShow; ++count) {
-            ((Label)resultBox.getChildren().get(count)).setText("");
-        }
+        /*for (; count < resultsToShow; ++count) {
+            ((Text)resultBox.getChildren().get(count)).setText("");
+        }*/
     }
 
 
