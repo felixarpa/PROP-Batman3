@@ -1,48 +1,53 @@
 package view;
 
-
 import javafx.event.EventHandler;
-import javafx.geometry.*;
-import javafx.scene.control.*;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import presentation.FilteredSearchResultPresenter;
+import presentation.FilteredSearchPresenter;
 import util.ProjectConstants;
 
 import java.util.ArrayList;
 
-public class FilteredSearchResultView extends BaseView {
+/**
+ * Created by mario.fernandez on 25/05/2016.
+ */
+public abstract class FilteredSearchView extends BaseView {
 
     //TODO: Padding de las HBOXES; añadir el nodo arriba del todo, añadir listeners, añadir botones de show more y show less, cambiar fuentes.
 
-    private VBox contentVBox;
-    private ArrayList<VBox> contents;
-    private HBox line;
+    protected VBox contentVBox;
+    protected ArrayList<VBox> contents;
+    protected HBox line;
 
 
-    private Label authorText;
-    private Label conferenceText;
-    private Label paperText;
-    private Label termText;
+    protected Label authorText;
+    protected Label conferenceText;
+    protected Label paperText;
+    protected Label termText;
 
-    private ArrayList<ArrayList<Label>> number;
-    private ArrayList<ArrayList<Label>> name;
-    private ArrayList<ArrayList<Label>> id;
-    private ArrayList<ArrayList<Label>> relevance;
-    private ArrayList<ArrayList<Label>> label;
-    private Font font;
-    private Font titleFont;
+    protected ArrayList<ArrayList<Label>> number;
+    protected ArrayList<ArrayList<Label>> name;
+    protected ArrayList<ArrayList<Label>> id;
+    protected ArrayList<ArrayList<Label>> relevance;
+    protected ArrayList<ArrayList<Label>> label;
+    protected Font font;
+    protected Font titleFont;
 
-    private Button next;
-    private Button prev;
+    protected Button next;
+    protected Button prev;
 
     public final static int numToShow = 4;
 
 
-    public FilteredSearchResultView(FilteredSearchResultPresenter filteredSearchResultPresenter) {
-        presenter = filteredSearchResultPresenter;
+    public FilteredSearchView(FilteredSearchPresenter filteredSearchPresenter) {
+        presenter = filteredSearchPresenter;
         initializeFonts();
         initializePanes();
         initializeViews();
@@ -54,7 +59,7 @@ public class FilteredSearchResultView extends BaseView {
 
     private void initializeFonts() {
         font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
-        titleFont = Font.loadFont(this.getClass().getResource("../fonts/Universal Serif.ttf").toExternalForm(),18);
+        titleFont = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(),18);
     }
 
     private void initializePanes() {
@@ -164,89 +169,45 @@ public class FilteredSearchResultView extends BaseView {
         authorText.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).setType(ProjectConstants.AUTHOR_TYPE);
+                ((FilteredSearchPresenter)presenter).setType(ProjectConstants.AUTHOR_TYPE);
             }
         });
         conferenceText.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).setType(ProjectConstants.CONFERENCE_TYPE);
+                ((FilteredSearchPresenter)presenter).setType(ProjectConstants.CONFERENCE_TYPE);
             }
         });
         paperText.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).setType(ProjectConstants.PAPER_TYPE);
+                ((FilteredSearchPresenter)presenter).setType(ProjectConstants.PAPER_TYPE);
             }
         });
         termText.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).setType(ProjectConstants.TERM_TYPE);
+                ((FilteredSearchPresenter)presenter).setType(ProjectConstants.TERM_TYPE);
             }
         });
 
         next.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).showMore();
+                ((FilteredSearchPresenter)presenter).showMore();
             }
         });
 
         prev.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).showLess();
+                ((FilteredSearchPresenter)presenter).showLess();
             }
         });
     }
 
 
-    public void setContent(int index, String node, int type, int listSize) {
-        String[] elements = node.split("\t");
-        if (!elements[0].equals("")) {
-            number.get(type).get(index%listSize).setText(Integer.toString(index+1));
-            number.get(type).get(index%listSize).setMinWidth(50);
-            number.get(type).get(index%listSize).setMaxWidth(50);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
-            id.get(type).get(index%listSize).setText("Id: " + elements[1]);
-            id.get(type).get(index%listSize).setMinWidth(100);
-            id.get(type).get(index%listSize).setMaxWidth(100);
-            //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            relevance.get(type).get(index%listSize).setText("Relevance: " + elements[2]);
-            relevance.get(type).get(index%listSize).setMinWidth(300);
-            relevance.get(type).get(index%listSize).setMaxWidth(300);
-            //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-
-            label.get(type).get(index%listSize).setText("Label: " + elements[3]);
-            label.get(type).get(index%listSize).setMinWidth(75);
-            label.get(type).get(index%listSize).setMaxWidth(75);
-            //label.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-        }
-        else {
-            number.get(type).get(index%listSize).setText("");
-            number.get(type).get(index%listSize).setMinWidth(10);
-            number.get(type).get(index%listSize).setMaxWidth(10);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            id.get(type).get(index%listSize).setText("");
-            id.get(type).get(index%listSize).setMinWidth(100);
-            id.get(type).get(index%listSize).setMaxWidth(100);
-            //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            relevance.get(type).get(index%listSize).setText("");
-            relevance.get(type).get(index%listSize).setMinWidth(300);
-            relevance.get(type).get(index%listSize).setMaxWidth(300);
-            //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            label.get(type).get(index%listSize).setText("");
-            label.get(type).get(index%listSize).setMinWidth(75);
-            label.get(type).get(index%listSize).setMaxWidth(75);
-            //label.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-        }
-        name.get(type).get(index%listSize).setText(elements[0]);
-        name.get(type).get(index%listSize).setMinWidth(400);
-        name.get(type).get(index%listSize).setMaxWidth(400);
-        //name.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-
-    }
+    public abstract void setContent(int index, String node, int type, int listSize);
 
     public void changeType(int type) {
         for (int i = 0; i < Config.LISTS_SIZE - numToShow; ++i) {
@@ -307,6 +268,5 @@ public class FilteredSearchResultView extends BaseView {
         hbox.getChildren().add(next);
         contentVBox.getChildren().add(hbox);
     }
-
 
 }

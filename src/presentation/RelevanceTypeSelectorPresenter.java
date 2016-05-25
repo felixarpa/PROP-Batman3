@@ -1,14 +1,11 @@
 package presentation;
 
-import org.omg.CORBA.CODESET_INCOMPATIBLE;
 import util.ProjectConstants;
 import view.Config;
-import view.FilteredSearchResultView;
 import view.MyApp;
 import view.RelevanceTypeSelectorView;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class RelevanceTypeSelectorPresenter extends BasePresenter  {
 
@@ -30,7 +27,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
             ArrayList<ArrayList<String>> selected = domainController.firstSearch(node, ProjectConstants.NODE_RELEVANCE_RESULT);
             actualView.destroy();
             actualView = null;
-            MyApp.changePresenter(new FilteredSearchResultPresenter(selected));
+            MyApp.changePresenter(new FilteredSearchEntityPresenter(selected));
         });
         thread.start();
     }
@@ -41,7 +38,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
             ArrayList<ArrayList<String>> selected = domainController.firstSearch(node, ProjectConstants.RELATION_RELEVANCE_RESULT);
             actualView.destroy();
             actualView = null;
-            MyApp.changePresenter(new FilteredRelevanceResultPresenter(selected));
+            MyApp.changePresenter(new FilteredSearchRelationPresenter(selected));
         });
         thread.start();
     }
