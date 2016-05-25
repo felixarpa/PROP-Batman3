@@ -171,28 +171,26 @@ public class RelevanceTypeSelectorView extends BaseView {
     public void setContent(int index, String node) {
         int i = index++ % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
-        if (elements[0].equals("")) numbers.get(i).setText("");
-        else numbers.get(i).setText(index + "");
         names.get(i).setText(elements[0]);
         ids.get(i).setText(elements[1]);
-
         if (elements[0].equals("")) {
+            numbers.get(i).setText("");
+
             entityButtons.get(i).setDisable(true);
             entityButtons.get(i).setVisible(false);
-        }
-        else {
-            entityButtons.get(i).setDisable(false);
-            entityButtons.get(i).setVisible(true);
-        }
-        if (elements[0].equals("")) {
+
             relationshipButtons.get(i).setDisable(true);
             relationshipButtons.get(i).setVisible(false);
         }
         else {
+            numbers.get(i).setText(index + "");
+
+            entityButtons.get(i).setDisable(false);
+            entityButtons.get(i).setVisible(true);
+
             relationshipButtons.get(i).setDisable(false);
             relationshipButtons.get(i).setVisible(true);
         }
-
     }
 
     private void initializeArrayLabel() {
