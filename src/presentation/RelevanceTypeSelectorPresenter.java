@@ -16,7 +16,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         this.result = result;
         actualView = new RelevanceTypeSelectorView(this);
         index = 0;
-        showMore();
+        show();
         MyApp.startScene(actualView.getContent());
     }
 
