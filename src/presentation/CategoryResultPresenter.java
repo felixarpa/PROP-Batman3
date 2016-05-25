@@ -1,5 +1,7 @@
 package presentation;
 
+import domain.DomainController;
+import util.ProjectConstants;
 import view.CategoryResultView;
 import view.Config;
 import view.MyApp;
@@ -33,7 +35,13 @@ public class CategoryResultPresenter extends BasePresenter  {
         ArrayList<String> nextResult = domainController.searchSimilarRelevance(result.get(lastSelected), op);
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new SimilarRelevancePresenter(result));
+        MyApp.changePresenter(new SimilarRelevancePresenter(nextResult));
+    }
+
+    public void reorder(int typeOfOrder, boolean ascending) {
+        result = domainController.reorderSearch(2, -1, typeOfOrder, ascending);
+        index = 0;
+        show();
     }
 
     public void showMore() {
