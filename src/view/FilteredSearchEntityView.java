@@ -1,17 +1,63 @@
 package view;
 
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import presentation.FilteredSearchEntityPresenter;
+import presentation.FilteredSearchPresenter;
 
 import java.util.ArrayList;
 
 public class FilteredSearchEntityView extends FilteredSearchView {
     public FilteredSearchEntityView(FilteredSearchEntityPresenter filteredSearchEntityPresenter) {
         super(filteredSearchEntityPresenter);
+        initializeActualNode();
+        topBarPane.setTop(actualNodeBox);
     }
+
+    @Override
+    protected void initializeActualNode() {
+        actualNodeBox = new HBox();
+        actualNodeBox.setMaxSize(900,110);
+        actualNodeBox.setMinSize(900,110);
+        actualNodeBox.setPadding(new Insets(4,0,4,100));
+        actualNodeBox.setAlignment(Pos.CENTER_LEFT);
+        String actualNodeBG =  this.getClass().getResource("../images/blueTopBar.png").toExternalForm();
+        actualNodeBox.setStyle(
+                "-fx-background-image: url('" + actualNodeBG + "'); " +
+                        "-fx-background-position: center center; " +
+                        "-fx-background-repeat: stretch;" +
+                        "-fx-background-size: 900 110;"
+        );
+        actualNodeName = new Label(((FilteredSearchPresenter)presenter).nodeName);
+        actualNodeName.setFont(font);
+        actualNodeName.setTextFill(Paint.valueOf("white"));
+        actualNodeName.setMaxWidth(400);
+        actualNodeName.setMinWidth(400);
+        actualNodeRelevance = new Label(((FilteredSearchPresenter)presenter).nodeRelevance);
+        actualNodeRelevance.setFont(font);
+        actualNodeRelevance.setTextFill(Paint.valueOf("white"));
+        actualNodeId = new Label(((FilteredSearchPresenter)presenter).nodeId);
+        actualNodeId.setFont(font);
+        actualNodeId.setTextFill(Paint.valueOf("white"));
+        actualNodeId.setMinWidth(100);
+        actualNodeId.setMaxWidth(100);
+        actualNodeLabel = new Label(((FilteredSearchPresenter)presenter).nodeLabel);
+        actualNodeLabel.setFont(font);
+        actualNodeLabel.setTextFill(Paint.valueOf("white"));
+        actualNodeLabel.setMaxWidth(74);
+        actualNodeLabel.setMinWidth(74);
+        actualNodeBox.getChildren().addAll(
+                actualNodeName,
+                actualNodeLabel,
+                actualNodeId,
+                actualNodeRelevance
+        );
+    }
+
     @Override
     public void setContent(int index, String node, int type, int listSize) {
         String[] elements = node.split("\t");
