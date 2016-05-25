@@ -36,8 +36,6 @@ public class RelevanceTypeSelectorView extends BaseView {
     private HBox pagingButtonsHbox;
     private ImageButton nextPageButton;
     private ImageButton prevPageButton;
-    private Button next;
-    private Button prev;
 
     public RelevanceTypeSelectorView(RelevanceTypeSelectorPresenter relevanceTypeSelectorPresenter) {
         presenter = relevanceTypeSelectorPresenter;
@@ -50,7 +48,7 @@ public class RelevanceTypeSelectorView extends BaseView {
 
     private void initializePanes() {
         contentVBox = new VBox();
-        contentVBox.setPadding(new Insets(10, 40, 10, 40));
+        contentVBox.setPadding(new Insets(5, 40, 5, 40));
         contentVBox.setSpacing(4);
 
         titlesHBox = new HBox();
@@ -62,8 +60,8 @@ public class RelevanceTypeSelectorView extends BaseView {
             results.get(i).setPadding(new Insets(0, 10, 0, 10));
         }
         pagingButtonsHbox = new HBox();
-        pagingButtonsHbox.setPadding(new Insets(0, 185, 0, 185));
-        pagingButtonsHbox.setSpacing(50);
+        pagingButtonsHbox.setPadding(new Insets(0, 0, 0, 345));
+        pagingButtonsHbox.setSpacing(10);
 
     }
 
@@ -84,6 +82,8 @@ public class RelevanceTypeSelectorView extends BaseView {
         separacionInferiorPane = new Pane();
 
         // TODO: Imagenes de next y prev
+        prevPageButton = new ImageButton("../images/", "prevButton", 60, 30);
+        nextPageButton = new ImageButton("../images/", "nextButton", 60, 30);
     }
 
     private void buildPanes() {
@@ -104,6 +104,9 @@ public class RelevanceTypeSelectorView extends BaseView {
             ++i;
         }
 
+        pagingButtonsHbox.getChildren().add(prevPageButton);
+        pagingButtonsHbox.getChildren().add(nextPageButton);
+
         separacionSuperioPane.setMinSize(800, 1);
         separacionSuperioPane.setMaxSize(800, 1);
         separacionSuperioPane.setStyle("-fx-background-color: #ffffff");
@@ -116,16 +119,7 @@ public class RelevanceTypeSelectorView extends BaseView {
         contentVBox.getChildren().add(separacionSuperioPane);
         contentVBox.getChildren().addAll(results);
         contentVBox.getChildren().add(separacionInferiorPane);
-
-
-        // TODO: Botones next i prev
-        //PRUEBA DE MIERDA QUE NO SE USARA Y LA VOY A QUITAR AHORA
-        HBox hbox = new HBox();
-        next = new Button("Next");
-        prev = new Button("Prev");
-        hbox.getChildren().add(next);
-        hbox.getChildren().add(prev);
-        contentVBox.getChildren().add(hbox);
+        contentVBox.getChildren().add(pagingButtonsHbox);
 
     }
 
@@ -153,19 +147,22 @@ public class RelevanceTypeSelectorView extends BaseView {
                 }
             );
         }
-        next.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                ((RelevanceTypeSelectorPresenter)presenter).showMore();
-            }
-        });
 
-        prev.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                ((RelevanceTypeSelectorPresenter)presenter).showLess();
-            }
-        });
+        prevPageButton.setOnMousePressed(event -> prevPageButton.press());
+        prevPageButton.setOnMouseReleased(
+                event -> {
+                    prevPageButton.release();
+                    ((RelevanceTypeSelectorPresenter) presenter).showLess();
+                }
+        );
+
+        nextPageButton.setOnMousePressed(event -> nextPageButton.press());
+        nextPageButton.setOnMouseReleased(
+                event -> {
+                    nextPageButton.release();
+                    ((RelevanceTypeSelectorPresenter) presenter).showMore();
+                }
+        );
     }
 
     public void setContent(int index, String node) {
