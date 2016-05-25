@@ -48,10 +48,10 @@ public class MainView extends BaseView {
         searchTextHBox.setAlignment(Pos.CENTER);
         HBox.setHgrow(searchText, Priority.ALWAYS);
 
-        //Predictor predictor = new Predictor(DomainController.allNames(), 10);
-        //contentVBox.getChildren().add(predictor);
-        contentVBox.getChildren().add(searchTextHBox);
-        contentVBox.getChildren().add(searchButton);
+        Predictor predictor = new Predictor(DomainController.allNames(), 10);
+        contentVBox.getChildren().add(predictor);
+        //contentVBox.getChildren().add(searchTextHBox);
+        //contentVBox.getChildren().add(searchButton);
         contentVBox.setAlignment(Pos.CENTER);
     }
 

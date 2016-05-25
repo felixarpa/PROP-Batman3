@@ -45,32 +45,27 @@ public class Predictor extends VBox {
         resultStack = new Stack<>();
         resultBox = new VBox();
         lastLenght = 0;
-
         for (int i = 0; i < resultsToShow; ++i) {
             resultBox.getChildren().add(new Label());
         }
 
         getChildren().add(textToPredict);
         getChildren().add(resultBox);
-        textToPredict.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                int lenght = textToPredict.getText().length();
-                if (lenght > lastLenght) {
-                    nextStep();
-                }
-                else if (lenght < lastLenght) {
-                    previousStep();
-                }
-                lastLenght = lenght;
+        textToPredict.setOnKeyReleased(event -> {
+            int lenght = textToPredict.getText().length();
+            if (lenght > lastLenght) {
+                nextStep();
             }
+            else if (lenght < lastLenght) {
+                previousStep();
+            }
+            lastLenght = lenght;
         });
 
     }
 
     private void nextStep() {
         LinkedList<SearchString> result = new LinkedList<>();
-        Label predicted;
         int count = 0;
         if (resultStack.isEmpty()) {
             for (String word : data) {
@@ -105,13 +100,13 @@ public class Predictor extends VBox {
     }
 
     private void previousStep() {
-        if (resultStack.size() <= 1) {
+        if (!resultStack.empty()) resultStack.pop();
+        if (resultStack.empty()) {
             for (int count = 0; count < resultsToShow; ++count) {
                 ((Label)resultBox.getChildren().get(count)).setText("");
             }
             return;
         }
-        resultStack.pop();
         LinkedList<SearchString> previousResult = resultStack.peek();
         ListIterator<SearchString> it = previousResult.listIterator();
         int count = 0;
