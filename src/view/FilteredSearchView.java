@@ -35,7 +35,7 @@ public abstract class FilteredSearchView extends BaseView {
     protected ArrayList<ArrayList<Label>> number;
     protected ArrayList<ArrayList<Label>> name;
     protected ArrayList<ArrayList<Label>> id;
-    protected ArrayList<ArrayList<Label>> relevance;
+    protected ArrayList<ArrayList<HBox>> relevance;
     protected ArrayList<ArrayList<Label>> label;
     protected Font font;
     protected Font titleFont;
@@ -103,10 +103,24 @@ public abstract class FilteredSearchView extends BaseView {
         number = initializeArrayLabel();
         name = initializeArrayLabel();
         id = initializeArrayLabel();
-        relevance = initializeArrayLabel();
+        relevance = initializeRelevanceArray();
         label = initializeArrayLabel();
         next = new Button("Next");
         prev = new Button("Prev");
+    }
+
+    protected  ArrayList<ArrayList<HBox>> initializeRelevanceArray() {
+        ArrayList<ArrayList<HBox>> arrayList = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<HBox> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                HBox haux = new HBox();
+                //laux.setFont(new Font("Microsoft Sans Serif",15));
+                aux.add(haux);
+            }
+            arrayList.add(aux);
+        }
+        return arrayList;
     }
 
     private void buildPanes() {
@@ -207,7 +221,8 @@ public abstract class FilteredSearchView extends BaseView {
     }
 
 
-    public abstract void setContent(int index, String node, int type, int listSize);
+    public void setContent(int index, String node, int type, int listSize) {
+    }
 
     public void changeType(int type) {
         for (int i = 0; i < Config.LISTS_SIZE - numToShow; ++i) {
@@ -223,7 +238,7 @@ public abstract class FilteredSearchView extends BaseView {
             number.get(type).add(laux.get(0));
             name.get(type).add(laux.get(1));
             id.get(type).add(laux.get(2));
-            relevance.get(type).add(laux.get(3));
+            relevance.get(type).add(new HBox());
             label.get(type).add(laux.get(4));
         }
         contentVBox.getChildren().removeAll(contents);

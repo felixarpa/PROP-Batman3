@@ -92,19 +92,19 @@ public class DomainController {
 				resultTerm = new TreeSet<>(relevanceComparator);
 				Searcher.search(actual, resultPaper, resultConference, resultAuthor, resultTerm);
 				auxiliarPaper = new ArrayList<>(resultPaper.size());
-				for (Node n: resultPaper) {
+				for (Node n: resultPaper.descendingSet()) {
 					auxiliarPaper.add(n.toString());
 				}
 				auxiliarConference = new ArrayList<>(resultConference.size());
-				for (Node n: resultConference) {
+				for (Node n: resultConference.descendingSet()) {
 					auxiliarConference.add(n.toString());
 				}
 				auxiliarAuthor = new ArrayList<>(resultAuthor.size());
-				for (Node n: resultAuthor) {
+				for (Node n: resultAuthor.descendingSet()) {
 					auxiliarAuthor.add(n.toString());
 				}
 				auxiliarTerm = new ArrayList<>(resultTerm.size());
-				for (Node n: resultTerm) {
+				for (Node n: resultTerm.descendingSet()) {
 					auxiliarTerm.add(n.toString());
 				}
 

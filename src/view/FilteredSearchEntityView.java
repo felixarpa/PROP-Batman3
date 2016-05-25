@@ -1,7 +1,11 @@
 package view;
 
 
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import presentation.FilteredSearchEntityPresenter;
+
+import java.util.ArrayList;
 
 public class FilteredSearchEntityView extends FilteredSearchView {
     public FilteredSearchEntityView(FilteredSearchEntityPresenter filteredSearchEntityPresenter) {
@@ -19,9 +23,12 @@ public class FilteredSearchEntityView extends FilteredSearchView {
             id.get(type).get(index%listSize).setMinWidth(100);
             id.get(type).get(index%listSize).setMaxWidth(100);
             //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            relevance.get(type).get(index%listSize).setText("Relevance: " + elements[2]);
-            relevance.get(type).get(index%listSize).setMinWidth(300);
-            relevance.get(type).get(index%listSize).setMaxWidth(300);
+            Label laux = new Label();
+            laux.setText("Relevance: " + elements[2]);
+            laux.setMinWidth(300);
+            laux.setMaxWidth(300);
+            relevance.get(type).get(index%listSize).getChildren().clear();
+            relevance.get(type).get(index%listSize).getChildren().add(laux);
             //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
 
             label.get(type).get(index%listSize).setText("Label: " + elements[3]);
@@ -38,9 +45,12 @@ public class FilteredSearchEntityView extends FilteredSearchView {
             id.get(type).get(index%listSize).setMinWidth(100);
             id.get(type).get(index%listSize).setMaxWidth(100);
             //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            relevance.get(type).get(index%listSize).setText("");
-            relevance.get(type).get(index%listSize).setMinWidth(300);
-            relevance.get(type).get(index%listSize).setMaxWidth(300);
+            Label laux = new Label();
+            laux.setText("");
+            laux.setMinWidth(300);
+            laux.setMaxWidth(300);
+            relevance.get(type).get(index%listSize).getChildren().clear();
+            relevance.get(type).get(index%listSize).getChildren().add(laux);
             //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
             label.get(type).get(index%listSize).setText("");
             label.get(type).get(index%listSize).setMinWidth(75);
@@ -53,5 +63,6 @@ public class FilteredSearchEntityView extends FilteredSearchView {
         //name.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
 
     }
+
 
 }
