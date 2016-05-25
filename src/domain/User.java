@@ -48,7 +48,8 @@ public class User implements Comparable<User> {
 		isAdmin = (fields[2].equals("true"));
 		favorites = new TreeSet<>();
 		if (fields.length > 3) {
-			for (int i = 4; i < fields.length; ++i) {
+			for (int i = 3; i < fields.length; ++i) {
+				System.out.println(fields[i]);
 				Term t = Graph.getInstance().getNode(Term.makeId(Integer.parseInt(fields[i]))).asTerm();
 			}
 		}
