@@ -14,7 +14,7 @@ public abstract class  BasePresenter extends Presenter {
     private static boolean sessionClosed = false;
     protected BaseView actualView;
 
-    public void startSession() {
+    void startSession() {
         if (sessionClosed) domainController.recalculate();
         else sessionClosed = true;
     }
@@ -40,7 +40,7 @@ public abstract class  BasePresenter extends Presenter {
     public void relationshipSearch(){
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new SimilarRelevancePresenter());
+        MyApp.changePresenter(new RelationshipRelevanceResultPresenter());
     }
 
     public void clickAuthors() {

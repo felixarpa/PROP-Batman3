@@ -19,7 +19,7 @@ public class FilteredSearchRelationPresenter extends FilteredSearchPresenter {
 
     private void processResult() {
         ArrayList<ArrayList<String>> processed = new ArrayList<>(4);
-        for (int k = 0; k< 4; ++k) {
+        for (int k = 0; k < 4; ++k) {
             ArrayList<String> aux = new ArrayList<>();
             for (int i = 0; i < result.get(k).size(); ++i) {
                 int auxnum = Integer.parseInt(result.get(k).get(i));
