@@ -8,11 +8,24 @@ import java.util.ArrayList;
 
 public abstract class FilteredSearchPresenter extends BasePresenter{
     ArrayList<ArrayList<String>> result;
+    public String nodeName;
+    public String nodeId;
+    public String nodeLabel;
+    public String nodeRelevance;
+
     int index, actualType;
 
-    public FilteredSearchPresenter(ArrayList<ArrayList<String>> result) {
+    public FilteredSearchPresenter(ArrayList<ArrayList<String>> result, String node) {
         this.result = result;
+        convertNode(node);
+    }
 
+    private void convertNode(String node){
+        String[] values = node.split("\t");
+        nodeName = values[0];
+        nodeId = values[1];
+        nodeLabel = values[3];
+        nodeRelevance = values[2];
     }
 
     public void setType(int type) {

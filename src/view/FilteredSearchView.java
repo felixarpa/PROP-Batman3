@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -40,11 +41,24 @@ public abstract class FilteredSearchView extends BaseView {
     protected Font font;
     protected Font titleFont;
 
+    private HBox actualNodeBox;
+    private Label actualNodeName;
+    private Label actualNodeId;
+    protected Label actualNodeRelevance;
+    private Label actualNodeLabel;
+
+    private HBox separacionSuperioPane;
+
+    private HBox titlesHBox;
+    private Label nameLabel;
+    private Label idLabel;
+    private Label relevanceLabel;
+    private Label labelLabel;
+
     protected Button next;
     protected Button prev;
 
-    public final static int numToShow = 4;
-
+    public final static int numToShow = 3;
 
     public FilteredSearchView(FilteredSearchPresenter filteredSearchPresenter) {
         presenter = filteredSearchPresenter;
@@ -63,10 +77,18 @@ public abstract class FilteredSearchView extends BaseView {
     }
 
     private void initializePanes() {
-        topBarPane.setTop(null);
+
         contentVBox = new VBox();
         contents = new ArrayList<>(4);
-
+        actualNodeBox = new HBox();
+        actualNodeBox.setMaxSize(877,110);
+        actualNodeBox.setMinSize(877,110);
+        actualNodeBox.setAlignment(Pos.CENTER);
+        titlesHBox = new HBox();
+        titlesHBox.setPadding(new Insets(0, 10, 0, 100));
+        separacionSuperioPane = new HBox();
+        separacionSuperioPane.setPadding(new Insets(0, 60, 0, 50));
+        topBarPane.setTop(actualNodeBox);
 
     }
 
@@ -105,6 +127,29 @@ public abstract class FilteredSearchView extends BaseView {
         id = initializeArrayLabel();
         relevance = initializeRelevanceArray();
         label = initializeArrayLabel();
+        nameLabel = new Label("Name");
+        idLabel = new Label("ID");
+        relevanceLabel = new Label("Relevance");
+        labelLabel = new Label("Label");
+        actualNodeName = new Label(((FilteredSearchPresenter)presenter).nodeName);
+        actualNodeName.setFont(font);
+        actualNodeName.setTextFill(Paint.valueOf("white"));
+        actualNodeName.setMaxSize(450,0);
+        actualNodeName.setMinSize(450,0);
+        actualNodeRelevance = new Label(((FilteredSearchPresenter)presenter).nodeRelevance);
+        actualNodeRelevance.setFont(font);
+        actualNodeRelevance.setTextFill(Paint.valueOf("white"));
+        actualNodeId = new Label(((FilteredSearchPresenter)presenter).nodeId);
+        actualNodeId.setFont(font);
+        actualNodeId.setTextFill(Paint.valueOf("white"));
+        actualNodeId.setMinSize(100,0);
+        actualNodeId.setMaxSize(100,0);
+        actualNodeLabel = new Label(((FilteredSearchPresenter)presenter).nodeLabel);
+        actualNodeLabel.setFont(font);
+        actualNodeLabel.setTextFill(Paint.valueOf("white"));
+        actualNodeLabel.setMaxSize(300 ,0);
+        actualNodeLabel.setMinSize(300,0);
+        initializeTitleLabels();
         next = new Button("Next");
         prev = new Button("Prev");
     }
@@ -177,7 +222,26 @@ public abstract class FilteredSearchView extends BaseView {
 
         }
         contentVBox.getChildren().addAll(contents);
+        titlesHBox.getChildren().addAll(
+                nameLabel,
+                labelLabel,
+                idLabel,
+                relevanceLabel
+
+        );
+        HBox haux = new HBox();
+        haux.setMaxSize(830,1);
+        haux.setMinSize(830,1);
+        haux.setStyle("-fx-background-color: #ffffff");
+        actualNodeBox.getChildren().addAll(
+                actualNodeName,
+                actualNodeLabel,
+                actualNodeId,
+                actualNodeRelevance
+        );
+        separacionSuperioPane.getChildren().add(haux);
     }
+
 
     private void setListeners() {
         authorText.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -221,8 +285,7 @@ public abstract class FilteredSearchView extends BaseView {
     }
 
 
-    public void setContent(int index, String node, int type, int listSize) {
-    }
+    public abstract void setContent(int index, String node, int type, int listSize);
 
     public void changeType(int type) {
         for (int i = 0; i < Config.LISTS_SIZE - numToShow; ++i) {
@@ -243,6 +306,8 @@ public abstract class FilteredSearchView extends BaseView {
         }
         contentVBox.getChildren().removeAll(contents);
         VBox vaux = new VBox();
+
+
 
         HBox haux = new HBox();
         haux.setPadding(new Insets(0,0,0,50));
@@ -266,6 +331,12 @@ public abstract class FilteredSearchView extends BaseView {
                 break;
         }
         vaux.getChildren().add(haux);
+        haux = new HBox();
+        haux.setMinSize(0,20);
+        haux.setMaxSize(0,20);
+        vaux.getChildren().add(haux);
+        vaux.getChildren().add(titlesHBox);
+        vaux.getChildren().add(separacionSuperioPane);
         for (int j = 0; j < Config.LISTS_SIZE; ++j) {
             haux = new HBox();
             haux.setPadding(new Insets(4,0,4,50));
@@ -282,6 +353,28 @@ public abstract class FilteredSearchView extends BaseView {
         hbox.getChildren().add(prev);
         hbox.getChildren().add(next);
         contentVBox.getChildren().add(hbox);
+    }
+
+    private void initializeTitleLabels() {
+        nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        nameLabel.setMinSize(400, 20);
+        nameLabel.setMaxSize(400, 24);
+        nameLabel.setFont(new Font("Arial bold", 18));
+
+        idLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        idLabel.setMinSize(100, 20);
+        idLabel.setMaxSize(100, 24);
+        idLabel.setFont(new Font("Arial bold", 18));
+
+        relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        relevanceLabel.setMinSize(100, 20);
+        relevanceLabel.setMaxSize(100, 24);
+        relevanceLabel.setFont(new Font("Arial bold", 18));
+
+        labelLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        labelLabel.setMinSize(75, 20);
+        labelLabel.setMaxSize(75, 24);
+        labelLabel.setFont(new Font("Arial bold", 18));
     }
 
 }

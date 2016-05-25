@@ -7,12 +7,13 @@ import java.util.ArrayList;
 
 public class FilteredSearchRelationPresenter extends FilteredSearchPresenter {
 
-    public FilteredSearchRelationPresenter(ArrayList<ArrayList<String>> result) {
-        super(result);
+    public FilteredSearchRelationPresenter(ArrayList<ArrayList<String>> result,String node) {
+        super(result,node);
         processResult();
         actualView = new FilteredSearchRelationView(this);
 
         for (int i = 0; i < 4; ++i) initialFill(i);
+        nodeRelevance = "";
         MyApp.startScene(actualView.getContent());
     }
 

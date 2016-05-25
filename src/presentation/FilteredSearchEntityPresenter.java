@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class FilteredSearchEntityPresenter extends FilteredSearchPresenter {
 
-    public FilteredSearchEntityPresenter(ArrayList<ArrayList<String>> result) {
-      super(result);
+    public FilteredSearchEntityPresenter(ArrayList<ArrayList<String>> result, String node) {
+      super(result,node);
       actualView = new FilteredSearchEntityView(this);
 
         for (int i = 0; i < 4; ++i) initialFill(i);

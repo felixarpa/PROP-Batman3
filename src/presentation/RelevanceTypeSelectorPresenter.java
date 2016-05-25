@@ -27,7 +27,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
             ArrayList<ArrayList<String>> selected = domainController.firstSearch(node, ProjectConstants.NODE_RELEVANCE_RESULT);
             actualView.destroy();
             actualView = null;
-            MyApp.changePresenter(new FilteredSearchEntityPresenter(selected));
+            MyApp.changePresenter(new FilteredSearchEntityPresenter(selected,node));
         });
         thread.start();
     }
@@ -38,7 +38,7 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
             ArrayList<ArrayList<String>> selected = domainController.firstSearch(node, ProjectConstants.RELATION_RELEVANCE_RESULT);
             actualView.destroy();
             actualView = null;
-            MyApp.changePresenter(new FilteredSearchRelationPresenter(selected));
+            MyApp.changePresenter(new FilteredSearchRelationPresenter(selected,node));
         });
         thread.start();
     }

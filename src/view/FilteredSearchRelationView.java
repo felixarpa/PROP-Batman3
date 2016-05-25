@@ -2,6 +2,7 @@ package view;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import presentation.FilteredSearchRelationPresenter;
 
@@ -22,7 +23,7 @@ public class FilteredSearchRelationView extends FilteredSearchView{
             number.get(type).get(index%listSize).setMinWidth(50);
             number.get(type).get(index%listSize).setMaxWidth(50);
             //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
-            id.get(type).get(index%listSize).setText("Id: " + elements[1]);
+            id.get(type).get(index%listSize).setText(elements[1]);
             id.get(type).get(index%listSize).setMinWidth(100);
             id.get(type).get(index%listSize).setMaxWidth(100);
             //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
@@ -31,7 +32,7 @@ public class FilteredSearchRelationView extends FilteredSearchView{
             relevance.get(type).get(index%listSize).getChildren().add(paux);
             //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
 
-            label.get(type).get(index%listSize).setText("Label: " + elements[3]);
+            label.get(type).get(index%listSize).setText(elements[3]);
             label.get(type).get(index%listSize).setMinWidth(75);
             label.get(type).get(index%listSize).setMaxWidth(75);
             //label.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
