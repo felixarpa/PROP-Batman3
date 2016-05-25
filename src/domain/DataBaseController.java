@@ -357,7 +357,7 @@ public abstract class DataBaseController {
         try {
             BufferedWriter writter = new BufferedWriter(new FileWriter(new File(fileName)));
             for (User u : auxiliar) {
-                writter.write(u.toString());
+                writter.write(u.toString() + "\n");
             }
             writter.close();
         } catch(IOException e) {

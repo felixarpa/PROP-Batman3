@@ -1,0 +1,124 @@
+Con el Driver de DomainController podras probar las funcionalidades basicas de la aplicacion.
+Primeramente se te pedira iniciar sesion:
+ 
+  null:login~$ 
+  username: 
+  
+Donde deberas introducir tu nombre de usuario y contraseña. En caso de no tener uno o equivocarte al introducir los campos, la aplicacion 
+te dara la opcion a registrarte. Al registrarte puedes especificar si el nuevo usuario es administrador o no y si tienes temas favoritos.
+
+Una vez iniciado sesion de manera correcta la aplicacion cargara el grafo de la base de datos y ejecutara el PageRank, dando lugar a la siguiente pantalla:
+
+  Horacio:~$ 
+  
+Aqui podremos introducir diversas comandas, que podemos ver con el comando 'help':
+
+  Horacio:~$ help
+  search : Looks for a node of the graph.
+  edit: Edit graph (only admin)
+  delete user: Delete a user (only admin)
+  exit : Close the driver
+
+Veamos pues el uso de cada comanda:
+
+ ***SEARCH***
+
+Este comando te permite probar las busquedas. Se nos pedira introducir un tipo de busqueda de entre estas tres:
+
+  1- La busqueda 1 permite buscar nodos con un nombre especificado y todos los nodos relacionados a este. 
+     Por ejemplo, si buscamos 'Jose' la aplicacion nos da el siguiente resultado:
+      
+	Horacio:search/1~$ 
+	name: Jose
+	found:
+	1.- Name: Joemon M. Jose Id: 39596 Relevance: 15137.426670182183 class domain.graph.Author
+	2.- Name: Jose Medina Id: 366587 Relevance: 444.1039309544619 class domain.graph.Author
+	3.- Name: Jose Renato Santos Id: 165672 Relevance: 265.6662675840887 class domain.graph.Author
+     
+     Seguidamente se nos pedira el nodo del cual queremos ver los nodos relacionados, y si los queremos mostrar por la relevancia de estos
+     o por la relevancia de las relaciones que forman el nodo seleccionado y sus adyacentes. Observese que el driver solo muestra 10 nodos relacionados
+     de cada tipo como maximo ya que un nodo puede estar relacionado con cientos de nodos.
+  
+  2- La busqueda 2 nos muestra todos los nodos  del tipo especificado y los nodos del mismo tipo a uno seleccionado con relevancia similar, mayor o menor. 
+      Primero se nos pedira el tipo de nodo a buscar, que puede ser 'author', 'conference', 'paper' o 'term'. Por ejemplo, si queremos 
+      buscar todos los nodos de tipo autor:
+     
+	Horacio:search/2~$ 
+	type: author
+	1.- Name: Jonathan Klein Id: 109578 Relevance: 86.69338686433935 class domain.graph.Author
+	2.- Name: Graham Wood Id: 113204 Relevance: 86.69338686433935 class domain.graph.Author
+	3.- Name: Leng Leng Tan Id: 422825 Relevance: 86.69338686433935 class domain.graph.Author
+	4.- Name: A. Singer Id: 422132 Relevance: 87.06126855691996 class domain.graph.Author
+	5.- Name: Shigeki Sagayama Id: 11208 Relevance: 96.51670484108 class domain.graph.Author
+	6.- Name: Gen-ichiro Kikui Id: 26999 Relevance: 96.51670484108 class domain.graph.Author
+	7.- Name: Masaaki Nagata Id: 27289 Relevance: 96.51670484108 class domain.graph.Author
+	8.- Name: Mark Seligman Id: 27609 Relevance: 96.51670484108 class domain.graph.Author
+	9.- Name: Kenji Kita Id: 48747 Relevance: 96.51670484108 class domain.graph.Author
+	10.- Name: Masami Suzuki Id: 123588 Relevance: 96.51670484108 class domain.graph.Author
+	11.- Name: Herbert Tropf Id: 316459 Relevance: 96.51670484108 class domain.graph.Author
+	12.- Name: Jun-ichi Takami Id: 316460 Relevance: 96.51670484108 class domain.graph.Author
+	13.- Name: Kazumi Ohkura Id: 316461 Relevance: 96.51670484108 class domain.graph.Author
+	14.- Name: Honggang Zhang Id: 285180 Relevance: 99.58107287074894 class domain.graph.Author
+	15.- Name: Alazel Acheson Id: 422143 Relevance: 99.58107287074894 class domain.graph.Author
+	16.- Name: Ebru Ersan Id: 422146 Relevance: 99.58107287074894 class domain.graph.Author
+	17.- Name: Beysim Sezgin Id: 422149 Relevance: 99.58107287074894 class domain.graph.Author
+	18.- Name: C. Wei Id: 422217 Relevance: 100.20576840006653 class domain.graph.Author
+	19.- Name: Cevdet Dengi Id: 33783 Relevance: 105.0123013906289 class domain.graph.Author
+	20.- Name: Ebru Kilic Id: 157811 Relevance: 105.0123013906289 class domain.graph.Author
+	21.- Name: G?khan ?zhan Id: 157812 Relevance: 105.0123013906289 class domain.graph.Author
+	22.- Name: Cetin Ozkan Id: 156355 Relevance: 105.85914689144711 class domain.graph.Author
+	23.- Name: Ilker Durusoy Id: 156356 Relevance: 105.85914689144711 class domain.graph.Author
+	24.- Name: Ilker Altintas Id: 156357 Relevance: 105.85914689144711 class domain.graph.Author
+	25.- Name: James J. Feenan Jr. Id: 438190 Relevance: 107.36612530203284 class domain.graph.Author
+	26.- Name: James L. Finnerty Id: 438191 Relevance: 107.36612530203284 class domain.graph.Author
+	27.- Name: Harry Sun Id: 438193 Relevance: 107.36612530203284 class domain.graph.Author
+	28.- Name: David Thompson Id: 102428 Relevance: 108.06687205122482 class domain.graph.Author
+	29.- Name: David Richie Id: 413404 Relevance: 108.06687205122482 class domain.graph.Author
+	30.- Name: Boyd Gatlin Id: 413405 Relevance: 108.06687205122482 class domain.graph.Author
+	31.- Name: Bradley Berg Id: 422153 Relevance: 108.52989460614896 class domain.graph.Author
+	32.- Name: Anjali Jhingran Id: 422155 Relevance: 108.52989460614896 class domain.graph.Author
+	33.- Name: Benjamin Sznajder Id: 373002 Relevance: 111.3600574267761 class domain.graph.Author
+	34.- Name: Gene Alexander Id: 366691 Relevance: 114.00198944476502 class domain.graph.Author
+	35.- Name: Eric Reiman Id: 366692 Relevance: 114.00198944476502 class domain.graph.Author
+	36.- Name: Iris Howley Id: 15431 Relevance: 114.817651977898 class domain.graph.Author
+	37.- Name: Brian Pyles Id: 15439 Relevance: 114.817651977898 class domain.graph.Author
+	38.- Name: James Thiel Id: 15442 Relevance: 114.817651977898 class domain.graph.Author
+	39.- Name: Dan Venutolo Id: 15444 Relevance: 114.817651977898 class domain.graph.Author
+	40.- Name: Marc Winners Id: 15445 Relevance: 114.817651977898 class domain.graph.Author
+	41.- Name: D. Cho Id: 260283 Relevance: 118.21333193783693 class domain.graph.Author
+	42.- Name: J. D. Goldstein Id: 260286 Relevance: 118.21333193783693 class domain.graph.Author
+	
+      Observese que la busqueda solo muestra como maximo 42 nodos del tipo especificado ya que el grafo contiene miles de nodos del tipo autor. Seguidamente la 
+      aplicacion nos preguntara si queremos buscar nodos con relevancia similar, mayor o menor a uno escogido. En caso afirmativo, se nos pedira seleccionar un nodo del 
+      resultado (aqui si que se nos permite seleccionar un nodo de entre todos los resultantes) y seguidamente se nos pedira de introducir 'less', 'equal' or 'more'.
+      
+  3- La busqueda 3 nos muestra todas las relaciones entre dos tipos de nodo dados y las relaciones del mismo tipo a una seleccionada con relevancia similar, mayor o menor,
+     Primero se nos pediran los tipos de los nodos que forman la relacion a buscar, que pueden ser 'author', 'conference', 'paper' o 'term'. Por ejemplo, si queremos 
+     buscar todos las relaciones del tipo paper-term:
+	
+	Horacio:search/3~$ 
+	type 1: paper
+	type 2: conference
+	
+      Observese que el driver solo nos muestra 10 relaciones del tipo especificado ya que puede haber miles en el grafo. Seguidamente se nos preguntara por buscar relaciones
+      con relevancia similar, mayor o menor a una escogida. En caso afirmativo, se nos pedira seleccionar un nodo del 
+      resultado (aqui si que se nos permite seleccionar un nodo de entre todos los resultantes) y seguidamente se nos pedira de introducir 'less', 'equal' or 'more'.
+
+------------------------------------------------------------------------     
+
+  ***EDIT***
+  
+Este comando nos permitira modificar el grafo en caso de administrador. Si no lo somos y intentamos usarla, se nos notificara de que no somos administradores.
+Una vez ejecutada se nos preguntara si queremos añadir o borrar elementos ('add', 'remove'). Despues se nos preguntara si queremos añadir/borrar un nodo o 
+una arista del grafo ('node', 'edge'). Excepto en el caso de añadir un nodo, la aplicacion siempre nos pedira el tipo del nodo y una id para las diferentes operaciones.
+Puede darse el caso de que no exista un nodo en el grafo del tipo especificado con la id especificada, y se nos avisara mediante una excpecion de que algo ha ido mal.
+
+-------------------------------------------------------------------------
+
+  ***DELETE USER***
+
+Este comando nos permitira borrar usuarios de la base de dadas, pero solo si somos administrador. Si no lo somos y intentamos usarla, 
+se nos notificara de que no somos administradores. Una vez ejecutaoa se nos preguntara por el nombre del usuario que deseamos borrar. Si intentamos borrar al usuario
+activo o uno inexistente se nos notificara y la aplicacion ira de nuevo a la introduccion de comanda. En cualquier otro caso,  el usuario se borrara correctamente.
+
+      

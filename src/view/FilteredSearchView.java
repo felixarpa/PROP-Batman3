@@ -1,48 +1,67 @@
 package view;
 
-
 import javafx.event.EventHandler;
-import javafx.geometry.*;
-import javafx.scene.control.*;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import presentation.FilteredSearchResultPresenter;
+import presentation.FilteredSearchPresenter;
 import util.ProjectConstants;
 
 import java.util.ArrayList;
 
-public class FilteredSearchResultView extends BaseView {
+/**
+ * Created by mario.fernandez on 25/05/2016.
+ */
+public abstract class FilteredSearchView extends BaseView {
 
     //TODO: Padding de las HBOXES; añadir el nodo arriba del todo, añadir listeners, añadir botones de show more y show less, cambiar fuentes.
 
-    private VBox contentVBox;
-    private ArrayList<VBox> contents;
-    private HBox line;
+    protected VBox contentVBox;
+    protected ArrayList<VBox> contents;
+    protected HBox line;
 
 
-    private Label authorText;
-    private Label conferenceText;
-    private Label paperText;
-    private Label termText;
+    protected Label authorText;
+    protected Label conferenceText;
+    protected Label paperText;
+    protected Label termText;
 
-    private ArrayList<ArrayList<Label>> number;
-    private ArrayList<ArrayList<Label>> name;
-    private ArrayList<ArrayList<Label>> id;
-    private ArrayList<ArrayList<Label>> relevance;
-    private ArrayList<ArrayList<Label>> label;
-    private Font font;
-    private Font titleFont;
+    protected ArrayList<ArrayList<Label>> number;
+    protected ArrayList<ArrayList<Label>> name;
+    protected ArrayList<ArrayList<Label>> id;
+    protected ArrayList<ArrayList<HBox>> relevance;
+    protected ArrayList<ArrayList<Label>> label;
+    protected Font font;
+    protected Font titleFont;
 
-    private Button next;
-    private Button prev;
+    private HBox actualNodeBox;
+    private Label actualNodeName;
+    private Label actualNodeId;
+    protected Label actualNodeRelevance;
+    private Label actualNodeLabel;
 
-    public final static int numToShow = 4;
+    private HBox separacionSuperioPane;
 
+    private HBox titlesHBox;
+    private Label nameLabel;
+    private Label idLabel;
+    private Label relevanceLabel;
+    private Label labelLabel;
 
-    public FilteredSearchResultView(FilteredSearchResultPresenter filteredSearchResultPresenter) {
-        presenter = filteredSearchResultPresenter;
+    protected Button next;
+    protected Button prev;
+
+    public final static int numToShow = 3;
+
+    public FilteredSearchView(FilteredSearchPresenter filteredSearchPresenter) {
+        presenter = filteredSearchPresenter;
         initializeFonts();
         initializePanes();
         initializeViews();
@@ -54,14 +73,22 @@ public class FilteredSearchResultView extends BaseView {
 
     private void initializeFonts() {
         font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
-        titleFont = Font.loadFont(this.getClass().getResource("../fonts/Universal Serif.ttf").toExternalForm(),18);
+        titleFont = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(),18);
     }
 
     private void initializePanes() {
-        topBarPane.setTop(null);
+
         contentVBox = new VBox();
         contents = new ArrayList<>(4);
-
+        actualNodeBox = new HBox();
+        actualNodeBox.setMaxSize(877,110);
+        actualNodeBox.setMinSize(877,110);
+        actualNodeBox.setAlignment(Pos.CENTER);
+        titlesHBox = new HBox();
+        titlesHBox.setPadding(new Insets(0, 10, 0, 100));
+        separacionSuperioPane = new HBox();
+        separacionSuperioPane.setPadding(new Insets(0, 60, 0, 50));
+        topBarPane.setTop(actualNodeBox);
 
     }
 
@@ -98,10 +125,47 @@ public class FilteredSearchResultView extends BaseView {
         number = initializeArrayLabel();
         name = initializeArrayLabel();
         id = initializeArrayLabel();
-        relevance = initializeArrayLabel();
+        relevance = initializeRelevanceArray();
         label = initializeArrayLabel();
+        nameLabel = new Label("Name");
+        idLabel = new Label("ID");
+        relevanceLabel = new Label("Relevance");
+        labelLabel = new Label("Label");
+        actualNodeName = new Label(((FilteredSearchPresenter)presenter).nodeName);
+        actualNodeName.setFont(font);
+        actualNodeName.setTextFill(Paint.valueOf("white"));
+        actualNodeName.setMaxSize(450,0);
+        actualNodeName.setMinSize(450,0);
+        actualNodeRelevance = new Label(((FilteredSearchPresenter)presenter).nodeRelevance);
+        actualNodeRelevance.setFont(font);
+        actualNodeRelevance.setTextFill(Paint.valueOf("white"));
+        actualNodeId = new Label(((FilteredSearchPresenter)presenter).nodeId);
+        actualNodeId.setFont(font);
+        actualNodeId.setTextFill(Paint.valueOf("white"));
+        actualNodeId.setMinSize(100,0);
+        actualNodeId.setMaxSize(100,0);
+        actualNodeLabel = new Label(((FilteredSearchPresenter)presenter).nodeLabel);
+        actualNodeLabel.setFont(font);
+        actualNodeLabel.setTextFill(Paint.valueOf("white"));
+        actualNodeLabel.setMaxSize(300 ,0);
+        actualNodeLabel.setMinSize(300,0);
+        initializeTitleLabels();
         next = new Button("Next");
         prev = new Button("Prev");
+    }
+
+    protected  ArrayList<ArrayList<HBox>> initializeRelevanceArray() {
+        ArrayList<ArrayList<HBox>> arrayList = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<HBox> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                HBox haux = new HBox();
+                //laux.setFont(new Font("Microsoft Sans Serif",15));
+                aux.add(haux);
+            }
+            arrayList.add(aux);
+        }
+        return arrayList;
     }
 
     private void buildPanes() {
@@ -158,95 +222,70 @@ public class FilteredSearchResultView extends BaseView {
 
         }
         contentVBox.getChildren().addAll(contents);
+        titlesHBox.getChildren().addAll(
+                nameLabel,
+                labelLabel,
+                idLabel,
+                relevanceLabel
+
+        );
+        HBox haux = new HBox();
+        haux.setMaxSize(830,1);
+        haux.setMinSize(830,1);
+        haux.setStyle("-fx-background-color: #ffffff");
+        actualNodeBox.getChildren().addAll(
+                actualNodeName,
+                actualNodeLabel,
+                actualNodeId,
+                actualNodeRelevance
+        );
+        separacionSuperioPane.getChildren().add(haux);
     }
+
 
     private void setListeners() {
         authorText.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).setType(ProjectConstants.AUTHOR_TYPE);
+                ((FilteredSearchPresenter)presenter).setType(ProjectConstants.AUTHOR_TYPE);
             }
         });
         conferenceText.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).setType(ProjectConstants.CONFERENCE_TYPE);
+                ((FilteredSearchPresenter)presenter).setType(ProjectConstants.CONFERENCE_TYPE);
             }
         });
         paperText.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).setType(ProjectConstants.PAPER_TYPE);
+                ((FilteredSearchPresenter)presenter).setType(ProjectConstants.PAPER_TYPE);
             }
         });
         termText.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).setType(ProjectConstants.TERM_TYPE);
+                ((FilteredSearchPresenter)presenter).setType(ProjectConstants.TERM_TYPE);
             }
         });
 
         next.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).showMore();
+                ((FilteredSearchPresenter)presenter).showMore();
             }
         });
 
         prev.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ((FilteredSearchResultPresenter)presenter).showLess();
+                ((FilteredSearchPresenter)presenter).showLess();
             }
         });
     }
 
 
-    public void setContent(int index, String node, int type, int listSize) {
-        String[] elements = node.split("\t");
-        if (!elements[0].equals("")) {
-            number.get(type).get(index%listSize).setText(Integer.toString(index+1));
-            number.get(type).get(index%listSize).setMinWidth(50);
-            number.get(type).get(index%listSize).setMaxWidth(50);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
-            id.get(type).get(index%listSize).setText("Id: " + elements[1]);
-            id.get(type).get(index%listSize).setMinWidth(100);
-            id.get(type).get(index%listSize).setMaxWidth(100);
-            //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            relevance.get(type).get(index%listSize).setText("Relevance: " + elements[2]);
-            relevance.get(type).get(index%listSize).setMinWidth(300);
-            relevance.get(type).get(index%listSize).setMaxWidth(300);
-            //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-
-            label.get(type).get(index%listSize).setText("Label: " + elements[3]);
-            label.get(type).get(index%listSize).setMinWidth(75);
-            label.get(type).get(index%listSize).setMaxWidth(75);
-            //label.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-        }
-        else {
-            number.get(type).get(index%listSize).setText("");
-            number.get(type).get(index%listSize).setMinWidth(10);
-            number.get(type).get(index%listSize).setMaxWidth(10);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            id.get(type).get(index%listSize).setText("");
-            id.get(type).get(index%listSize).setMinWidth(100);
-            id.get(type).get(index%listSize).setMaxWidth(100);
-            //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            relevance.get(type).get(index%listSize).setText("");
-            relevance.get(type).get(index%listSize).setMinWidth(300);
-            relevance.get(type).get(index%listSize).setMaxWidth(300);
-            //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            label.get(type).get(index%listSize).setText("");
-            label.get(type).get(index%listSize).setMinWidth(75);
-            label.get(type).get(index%listSize).setMaxWidth(75);
-            //label.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-        }
-        name.get(type).get(index%listSize).setText(elements[0]);
-        name.get(type).get(index%listSize).setMinWidth(400);
-        name.get(type).get(index%listSize).setMaxWidth(400);
-        //name.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-
-    }
+    public abstract void setContent(int index, String node, int type, int listSize);
 
     public void changeType(int type) {
         for (int i = 0; i < Config.LISTS_SIZE - numToShow; ++i) {
@@ -262,11 +301,13 @@ public class FilteredSearchResultView extends BaseView {
             number.get(type).add(laux.get(0));
             name.get(type).add(laux.get(1));
             id.get(type).add(laux.get(2));
-            relevance.get(type).add(laux.get(3));
+            relevance.get(type).add(new HBox());
             label.get(type).add(laux.get(4));
         }
         contentVBox.getChildren().removeAll(contents);
         VBox vaux = new VBox();
+
+
 
         HBox haux = new HBox();
         haux.setPadding(new Insets(0,0,0,50));
@@ -290,6 +331,12 @@ public class FilteredSearchResultView extends BaseView {
                 break;
         }
         vaux.getChildren().add(haux);
+        haux = new HBox();
+        haux.setMinSize(0,20);
+        haux.setMaxSize(0,20);
+        vaux.getChildren().add(haux);
+        vaux.getChildren().add(titlesHBox);
+        vaux.getChildren().add(separacionSuperioPane);
         for (int j = 0; j < Config.LISTS_SIZE; ++j) {
             haux = new HBox();
             haux.setPadding(new Insets(4,0,4,50));
@@ -308,5 +355,26 @@ public class FilteredSearchResultView extends BaseView {
         contentVBox.getChildren().add(hbox);
     }
 
+    private void initializeTitleLabels() {
+        nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        nameLabel.setMinSize(400, 20);
+        nameLabel.setMaxSize(400, 24);
+        nameLabel.setFont(new Font("Arial bold", 18));
+
+        idLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        idLabel.setMinSize(100, 20);
+        idLabel.setMaxSize(100, 24);
+        idLabel.setFont(new Font("Arial bold", 18));
+
+        relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        relevanceLabel.setMinSize(100, 20);
+        relevanceLabel.setMaxSize(100, 24);
+        relevanceLabel.setFont(new Font("Arial bold", 18));
+
+        labelLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        labelLabel.setMinSize(75, 20);
+        labelLabel.setMaxSize(75, 24);
+        labelLabel.setFont(new Font("Arial bold", 18));
+    }
 
 }

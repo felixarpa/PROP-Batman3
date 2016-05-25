@@ -92,19 +92,19 @@ public class DomainController {
 				resultTerm = new TreeSet<>(relevanceComparator);
 				Searcher.search(actual, resultPaper, resultConference, resultAuthor, resultTerm);
 				auxiliarPaper = new ArrayList<>(resultPaper.size());
-				for (Node n: resultPaper) {
+				for (Node n: resultPaper.descendingSet()) {
 					auxiliarPaper.add(n.toString());
 				}
 				auxiliarConference = new ArrayList<>(resultConference.size());
-				for (Node n: resultConference) {
+				for (Node n: resultConference.descendingSet()) {
 					auxiliarConference.add(n.toString());
 				}
 				auxiliarAuthor = new ArrayList<>(resultAuthor.size());
-				for (Node n: resultAuthor) {
+				for (Node n: resultAuthor.descendingSet()) {
 					auxiliarAuthor.add(n.toString());
 				}
 				auxiliarTerm = new ArrayList<>(resultTerm.size());
-				for (Node n: resultTerm) {
+				for (Node n: resultTerm.descendingSet()) {
 					auxiliarTerm.add(n.toString());
 				}
 
@@ -116,7 +116,7 @@ public class DomainController {
 				TreeMap<Double, TreeSet<Author>> resultRelevanceAuthor = new TreeMap<>();
 				Searcher.search(actual, resultRelevancePaper, resultRelevanceConference, resultRelevanceAuthor, resultRelevanceTerm);
 				auxiliarAuthor = new ArrayList<>(resultRelevanceAuthor.size()*2);
-				for (Map.Entry<Double, TreeSet<Author>> nodes : resultRelevanceAuthor.entrySet()) {
+				for (Map.Entry<Double, TreeSet<Author>> nodes : resultRelevanceAuthor.descendingMap().entrySet()) {
 					auxiliarAuthor.add(Integer.toString(nodes.getValue().size()));
 					auxiliarAuthor.add(Double.toString(nodes.getKey()));
 					for (Node n : nodes.getValue()) {
@@ -124,7 +124,7 @@ public class DomainController {
 					}
 				}
 				auxiliarConference = new ArrayList<>(resultRelevanceConference.size()*2);
-				for (Map.Entry<Double, TreeSet<Conference>> nodes : resultRelevanceConference.entrySet()) {
+				for (Map.Entry<Double, TreeSet<Conference>> nodes : resultRelevanceConference.descendingMap().entrySet()) {
 					auxiliarConference.add(Integer.toString(nodes.getValue().size()));
 					auxiliarConference.add(Double.toString(nodes.getKey()));
 					for (Node n : nodes.getValue()) {
@@ -132,7 +132,7 @@ public class DomainController {
 					}
 				}
 				auxiliarTerm = new ArrayList<>(resultRelevanceTerm.size()*2);
-				for (Map.Entry<Double, TreeSet<Term>> nodes : resultRelevanceTerm.entrySet()) {
+				for (Map.Entry<Double, TreeSet<Term>> nodes : resultRelevanceTerm.descendingMap().entrySet()) {
 					auxiliarTerm.add(Integer.toString(nodes.getValue().size()));
 					auxiliarTerm.add(Double.toString(nodes.getKey()));
 					for (Node n : nodes.getValue()) {
@@ -140,7 +140,7 @@ public class DomainController {
 					}
 				}
 				auxiliarPaper = new ArrayList<>(resultRelevancePaper.size()*2);
-				for (Map.Entry<Double, TreeSet<Paper>> nodes : resultRelevancePaper.entrySet()) {
+				for (Map.Entry<Double, TreeSet<Paper>> nodes : resultRelevancePaper.descendingMap().entrySet()) {
 					auxiliarPaper.add(Integer.toString(nodes.getValue().size()));
 					auxiliarPaper.add(Double.toString(nodes.getKey()));
 					for (Node n : nodes.getValue()) {

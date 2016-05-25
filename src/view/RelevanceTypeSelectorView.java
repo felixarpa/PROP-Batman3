@@ -134,21 +134,21 @@ public class RelevanceTypeSelectorView extends BaseView {
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             final int index = i;
             entityButtons.get(i).setOnMousePressed(
-                event -> entityButtons.get(index).changeButtonImage("../images/entityRelevanceButtonPressed.png")
+                event -> entityButtons.get(index).press()
             );
             entityButtons.get(i).setOnMouseReleased(
                 event -> {
-                    entityButtons.get(index).changeButtonImage("../images/entityRelevanceButton.png");
+                    entityButtons.get(index).release();
                     ((RelevanceTypeSelectorPresenter) presenter).onClickEntityRelevance(index);
                 }
             );
 
             relationshipButtons.get(i).setOnMousePressed(
-                event -> relationshipButtons.get(index).changeButtonImage("../images/relationshipRelevanceButtonPressed.png")
+                event -> relationshipButtons.get(index).press()
             );
             relationshipButtons.get(i).setOnMouseReleased(
                 event -> {
-                    relationshipButtons.get(index).changeButtonImage("../images/relationshipRelevanceButton.png");
+                    relationshipButtons.get(index).release();
                     ((RelevanceTypeSelectorPresenter) presenter).onClickRelationshipRelevance(index);
                 }
             );
@@ -218,8 +218,8 @@ public class RelevanceTypeSelectorView extends BaseView {
             ids.get(i).setFont(font);
             ids.get(i).setTextFill(Paint.valueOf("white"));
 
-            entityButtons.add(new ImageButton("../images/entityRelevanceButton.png", 140, 24));
-            relationshipButtons.add(new ImageButton("../images/relationshipRelevanceButton.png", 140, 24));
+            entityButtons.add(new ImageButton("../images", "entityRelevanceButton", 140, 24));
+            relationshipButtons.add(new ImageButton("../images", "relationshipRelevanceButton", 140, 24));
         }
     }
 
