@@ -41,6 +41,8 @@ public class DomainController {
 		return currentUser;
 	}
 
+	public static String getCurrentUserName() {return  currentUser.getUsername();}
+
 	public ArrayList<String> searchingANode(String name) {
 		Collection<Node> result = graf.getNode(name);
 		if (result.isEmpty()) {
