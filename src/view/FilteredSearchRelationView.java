@@ -21,7 +21,7 @@ public class FilteredSearchRelationView extends FilteredSearchView{
             id.get(type).get(index%listSize).setMinWidth(100);
             id.get(type).get(index%listSize).setMaxWidth(100);
             //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            relevance.get(type).get(index%listSize).setText("Relevance: " + elements[2]);
+            relevance.get(type).get(index%listSize).setText("Relevance: " + elements[5]);
             relevance.get(type).get(index%listSize).setMinWidth(300);
             relevance.get(type).get(index%listSize).setMaxWidth(300);
             //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));

@@ -9,11 +9,30 @@ public class FilteredSearchRelationPresenter extends FilteredSearchPresenter {
 
     public FilteredSearchRelationPresenter(ArrayList<ArrayList<String>> result) {
         super(result);
+        processResult();
         actualView = new FilteredSearchRelationView(this);
 
         for (int i = 0; i < 4; ++i) initialFill(i);
         MyApp.startScene(actualView.getContent());
     }
 
+    private void processResult() {
+        ArrayList<ArrayList<String>> processed = new ArrayList<>(4);
+        for (int k = 0; k< 4; ++k) {
+            ArrayList<String> aux = new ArrayList<>();
+            for (int i = 0; i < result.get(k).size(); ++i) {
+                int auxnum = Integer.parseInt(result.get(k).get(i));
+                ++i;
+                String relevance = result.get(k).get(i);
+                ++i;
+                for (int j = 0; j < auxnum; ++j) {
+                    aux.add(result.get(k).get(i+j)+ "\t" + relevance);
+                }
+                i += auxnum-1;
+            }
+            processed.add(aux);
+        }
+        result = processed;
+    }
 
 }

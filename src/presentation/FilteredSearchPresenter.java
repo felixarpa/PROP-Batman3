@@ -28,7 +28,6 @@ public abstract class FilteredSearchPresenter extends BasePresenter{
         int nextIndex = FilteredSearchView.numToShow;
 
         for (int index = 0; index < max; ++index) {
-            if (actualView == null) System.out.println("ES NULL");
             ((FilteredSearchView) actualView).setContent(index, result.get(i).get(index), i,FilteredSearchView.numToShow);
         }
 
