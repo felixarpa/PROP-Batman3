@@ -11,30 +11,12 @@ import java.util.*;
 
 public class Predictor extends VBox {
 
-    private class SearchString {
-
-        private String string;
-        private int index;
-
-        public SearchString(String string, int index) {
-            this.string = string;
-            this.index = index;
-        }
-
-        public String getString() {
-            return string;
-        }
-
-        public int getIndex() {
-            return index;
-        }
-    }
-
     private TextField textToPredict;
     private Collection<String> data;
     private VBox resultBox;
-    private int resultsToShow;
+    private String actualWord;
 
+    private int resultsToShow;
     private int lastLength;
     private int selected;
 
@@ -73,13 +55,13 @@ public class Predictor extends VBox {
                 }
             }
             else {
-                int length = textToPredict.getText().length();
-                if (length == 0) {
+                actualWord = textToPredict.getText();
+                if (actualWord.length() == 0) {
                     resultBox.getChildren().remove(0, resultBox.getChildren().size());
-                } else if (length != lastLength) {
+                } else if (actualWord.length() != lastLength) {
                     slowStep();
                 }
-                lastLength = length;
+                lastLength = actualWord.length();
                 selected = -1;
             }
         });
@@ -90,9 +72,9 @@ public class Predictor extends VBox {
         int count = 0;
         resultBox.getChildren().remove(0,resultBox.getChildren().size());
         for (String word : data) {
-            if (word.contains(textToPredict.getText())) {
+            if (word.contains(actualWord)) {
                 if (count < resultsToShow) {
-                    Text predicted = new Text(word);
+                    Text predicted = new Text(actualWord);
                     resultBox.getChildren().add(predicted);
                     ++count;
                 }
