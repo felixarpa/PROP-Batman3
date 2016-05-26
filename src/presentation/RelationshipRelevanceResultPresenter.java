@@ -53,7 +53,7 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
         ArrayList<String> nextResult = domainController.searchSimilarRelationRelevance(nodeSrc.get(lastSelected), nodeDst.get(lastSelected), op);
         actualView.destroy();
         actualView = null;
-        //MyApp.changePresenter(new SimilarRelationRelevancePresenter(nextResult));
+//        MyApp.changePresenter(new SimilarRelationRelevancePresenter(nextResult));
     }
 
     public void reorder(int typeOfOrder, boolean ascending) {
