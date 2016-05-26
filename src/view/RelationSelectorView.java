@@ -32,6 +32,8 @@ public class RelationSelectorView extends BaseView {
     private Text selectSecondTypeText;
     private HBox firstTypeTextHBox;
     private HBox secondTypeTextHbox;
+    private HBox switchButtonHBox;
+    private ImageButton switchButton;
 
     public RelationSelectorView(RelationSelectorPresenter relationSelectorPresenter){
         presenter = relationSelectorPresenter;
@@ -48,6 +50,9 @@ public class RelationSelectorView extends BaseView {
     }
 
     private void initializePanes() {
+        switchButtonHBox = new HBox();
+        switchButtonHBox.setAlignment(Pos.CENTER);
+        switchButtonHBox.setPadding(new Insets(0,0,0,35));
         firstTypeTextHBox = new HBox();
         secondTypeTextHbox = new HBox();
         firstTypeTextHBox.setAlignment(Pos.CENTER);
@@ -85,6 +90,7 @@ public class RelationSelectorView extends BaseView {
                 "Term"
         );
 
+        switchButton = new ImageButton("../images","xButton",10,10);
         searchButton = new ImageButton("../images","searchButton",143,51);
         selectFirstTypeText = new Text("First node type: ");
         selectFirstTypeText.setFont(font);
@@ -103,7 +109,10 @@ public class RelationSelectorView extends BaseView {
         secondDropDownMenuVBox.getChildren().add(secondTypeTextHbox);
         secondDropDownMenuVBox.getChildren().add(secondDropDownMenu);
 
+        switchButtonHBox.getChildren().add(switchButton);
+
         dropDownHBox.getChildren().add(firstDropDownMenuVBox);
+        dropDownHBox.getChildren().add(switchButtonHBox);
         dropDownHBox.getChildren().add(secondDropDownMenuVBox);
         searchButtonHBox.getChildren().add(searchButton);
         contentVBox.getChildren().add(dropDownHBox);
@@ -125,11 +134,27 @@ public class RelationSelectorView extends BaseView {
                 ((RelationSelectorPresenter)presenter).onClickSearch();
             }
         });
+
+        switchButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                switchButton.press();
+            }
+        });
+
+        switchButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                switchButton.release();
+                switchTypes();
+            }
+        });
     }
 
     private void switchTypes() {
         Object aux = firstDropDownMenu.getValue();
-        firstDropDownMenu.setValue(secondDropDownMenu.);
+        firstDropDownMenu.setValue(secondDropDownMenu.getValue());
+        secondDropDownMenu.setValue(aux);
 
     }
 
