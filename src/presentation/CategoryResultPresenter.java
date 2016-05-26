@@ -2,16 +2,18 @@ package presentation;
 
 import domain.DomainController;
 import util.ProjectConstants;
-import view.CategoryResultView;
-import view.Config;
-import view.MyApp;
-import view.RelevanceTypeSelectorView;
+import view.*;
 
+import javax.swing.text.html.ListView;
 import java.util.ArrayList;
 
 public class CategoryResultPresenter extends ListPresenter  {
 
     private int lastSelected;
+
+    protected CategoryResultPresenter() {
+
+    }
 
     public CategoryResultPresenter(int type) {
         super(domainController.secondSearch(type));
@@ -21,7 +23,7 @@ public class CategoryResultPresenter extends ListPresenter  {
     }
 
     public void onClick(int index) {
-        lastSelected = index;
+        lastSelected = index+this.index;
         ((CategoryResultView)actualView).askSimilarOp();
     }
 
@@ -32,7 +34,7 @@ public class CategoryResultPresenter extends ListPresenter  {
         ArrayList<String> nextResult = domainController.searchSimilarRelevance(result.get(lastSelected), op);
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new SimilarRelevancePresenter(nextResult));
+        MyApp.changePresenter(new SimilarRelevancePresenter(nextResult, result.get(lastSelected)));
     }
 
     public void reorder(int typeOfOrder, boolean ascending) {
@@ -41,32 +43,17 @@ public class CategoryResultPresenter extends ListPresenter  {
         show();
     }
 
-    public void showMore() {
-        if (index + Config.LISTS_SIZE <= result.size()) {
-            index += Config.LISTS_SIZE;
-            show();
-        }
-    }
-
-    public void showLess() {
-        if (index - Config.LISTS_SIZE >= 0) {
-            index = index - Config.LISTS_SIZE;
-            show();
-        }
-
-    }
-
     @Override
     protected void show() {
         int max = index+Config.LISTS_SIZE;
         if (max > result.size()) max = result.size();
         max -= index;
         for (int i = 0; i < max; ++i) {
-            ((CategoryResultView) actualView).setContent(index+i, result.get(index+i));
+            ((ListResult) actualView).setContent(index+i, result.get(index+i));
         }
         max += index;
         for (;max < index+Config.LISTS_SIZE; ++max) {
-            ((CategoryResultView) actualView).setContent(max, "\t \t \t \t");
+            ((ListResult) actualView).setContent(max, "\t \t \t \t");
         }
     }
 

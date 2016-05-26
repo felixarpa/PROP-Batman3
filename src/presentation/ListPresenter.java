@@ -9,6 +9,10 @@ public abstract class ListPresenter extends BasePresenter {
     protected ArrayList<String> result;
     protected int index;
 
+    public ListPresenter() {
+        index = 0;
+    }
+
     public ListPresenter(ArrayList<String> result) {
         this.result = result;
         index = 0;

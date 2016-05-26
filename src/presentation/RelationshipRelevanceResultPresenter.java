@@ -9,18 +9,21 @@ import view.RelationshipRelevanceResultView;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
-public class RelationshipRelevanceResultPresenter extends BasePresenter  {
+public class RelationshipRelevanceResultPresenter extends ListPresenter  {
+
     private ArrayList<String> nodeSrc;
     private ArrayList<String> nodeDst;
     private ArrayList<Double> relevance;
-    private int index;
     private int lastSelected;
     private int type1;
     private int type2;
 
+    protected RelationshipRelevanceResultPresenter() {
+
+    }
+
     public RelationshipRelevanceResultPresenter(ArrayList<String> result, int type1, int type2) {
         transform(result);
-        index = 0;
         this.type1 = type1;
         this.type2 = type2;
         actualView = new RelationshipRelevanceResultView(this);
@@ -33,7 +36,7 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
         ((RelationshipRelevanceResultView)actualView).askSimilarOp();
     }
 
-    private void transform(ArrayList<String> dataFormat) {
+    protected void transform(ArrayList<String> dataFormat) {
         int i = 0;
         nodeSrc = new ArrayList<>();
         nodeDst = new ArrayList<>();
@@ -58,7 +61,7 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
         ArrayList<String> nextResult = domainController.searchSimilarRelationRelevance(nodeSrc.get(lastSelected), nodeDst.get(lastSelected), op);
         actualView.destroy();
         actualView = null;
-        //MyApp.changePresenter(new SimilarRelationRelevancePresenter(nextResult));
+        MyApp.changePresenter(new SimilarRelationRelevancePresenter(nextResult));
     }
 
     public void reorder(int typeOfOrder, boolean ascending) {
@@ -67,6 +70,7 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
         show();
     }
 
+    @Override
     public void showMore() {
         if (index + Config.LISTS_SIZE <= nodeSrc.size()) {
             index += Config.LISTS_SIZE;
@@ -74,14 +78,8 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
         }
     }
 
-    public void showLess() {
-        if (index - Config.LISTS_SIZE >= 0) {
-            index = index - Config.LISTS_SIZE;
-            show();
-        }
-    }
-
-    private void show() {
+    @Override
+    protected void show() {
         int max = index+Config.LISTS_SIZE;
         if (max > nodeSrc.size()) max = nodeSrc.size();
         max -= index;

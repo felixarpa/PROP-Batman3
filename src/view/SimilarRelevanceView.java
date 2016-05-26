@@ -20,4 +20,9 @@ public class SimilarRelevanceView extends BaseView {
     private void initializeViews(){}
     private void buildPanes(){}
     private void setListeners() {}
+
+    //TODO: aqui es donde se pone por pantalla el nodo que has seleccionado
+    public void setNode(String node) {
+
+    }
 }

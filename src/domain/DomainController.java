@@ -284,7 +284,7 @@ public class DomainController {
 		if (type < 0 || type > 3) throw new ProjectError("Invalid parameter type, must be between 0 and 3, we got "+type);
 		lastSearchResult = Searcher.allTypeNodes(type);
 		ArrayList<String> result = new ArrayList<>(lastSearchResult.size());
-		for (Node n : lastSearchResult) {
+		for (Node n : lastSearchResult.descendingSet()) {
 			result.add(n.toString());
 		}
 		return result;

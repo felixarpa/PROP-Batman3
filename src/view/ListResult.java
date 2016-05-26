@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.BasePresenter;
+import presentation.ListPresenter;
 import presentation.Presenter;
 import presentation.RelevanceTypeSelectorPresenter;
 
@@ -114,7 +115,7 @@ public abstract class ListResult extends BaseView {
         prevPageButton.setOnMouseReleased(
                 event -> {
                     prevPageButton.release();
-                    ((RelevanceTypeSelectorPresenter) presenter).showLess();
+                    ((ListPresenter) presenter).showLess();
                 }
         );
 
@@ -122,7 +123,7 @@ public abstract class ListResult extends BaseView {
         nextPageButton.setOnMouseReleased(
                 event -> {
                     nextPageButton.release();
-                    ((RelevanceTypeSelectorPresenter) presenter).showMore();
+                    ((ListPresenter) presenter).showMore();
                 }
         );
     }
