@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import presentation.RelationshipRelevanceResultPresenter;
 
 import java.util.ArrayList;
@@ -18,6 +19,10 @@ public class RelationshipRelevanceResultView extends BaseView {
     VBox contentVBox;
 
     HBox topBar;
+
+    Font font;
+    Font titleFont;
+
     Label firstType;
     Label secondType;
     Label relevanceWord;
@@ -40,6 +45,11 @@ public class RelationshipRelevanceResultView extends BaseView {
         setListeners();
         topBarPane.setCenter(contentVBox);
         topBarPane.setTop(topBar);
+    }
+
+    private void initializeFonts() {
+        font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
+        titleFont = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(),18);
     }
 
     private void initializePanes() {
@@ -68,14 +78,30 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     private void initializeViews(){
         firstType = new Label(((RelationshipRelevanceResultPresenter)presenter).getType(1));
+        firstType.setFont(titleFont);
+        firstType.setTextFill(Paint.valueOf("white"));
         secondType = new Label(((RelationshipRelevanceResultPresenter)presenter).getType(2));
+        secondType.setFont(titleFont);
+        secondType.setTextFill(Paint.valueOf("white"));
         relevanceWord = new Label("RELEVANCE");
+        relevanceWord.setFont(titleFont);
+        relevanceWord.setTextFill(Paint.valueOf("white"));
         index = new ArrayList<>(Config.LISTS_SIZE);
-        for (int i = 0; i < Config.LISTS_SIZE; ++i) index.add(new Label());
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
+            Label laux = new Label();
+            laux.setFont(titleFont);
+            laux.setTextFill(Paint.valueOf("white"));
+            index.add(laux);
+        }
         nodes = new ArrayList<>(2);
         for (int i = 0; i < 2; ++i) {
             ArrayList<Label> arrayaux = new ArrayList<>(Config.LISTS_SIZE);
-            for (int j = 0; j < Config.LISTS_SIZE; ++j) arrayaux.add(new Label());
+            for (int j = 0; j < Config.LISTS_SIZE; ++j) {
+                Label laux = new Label();
+                laux.setFont(titleFont);
+                laux.setTextFill(Paint.valueOf("white"));
+                arrayaux.add(laux);
+            }
             nodes.add(arrayaux);
         }
     }

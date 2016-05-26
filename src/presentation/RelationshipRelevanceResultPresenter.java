@@ -102,15 +102,13 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
         switch(i) {
             case ProjectConstants.AUTHOR_TYPE:
                 return "AUTHOR";
-            break;
             case ProjectConstants.CONFERENCE_TYPE:
                 return "CONFERENCE";
-            break;
             case ProjectConstants.PAPER_TYPE:
                 return "PAPER";
-            break;
             case ProjectConstants.TERM_TYPE:
                 return "TERM";
         }
+        return "Te has equivocado";
     }
 }
