@@ -1,6 +1,7 @@
 package domain.graph;
 
 import comparators.IdComparator;
+import domain.PageRank;
 import exceptions.ExistingEdge;
 import exceptions.NonExistentEdge;
 import exceptions.ProjectError;
@@ -387,7 +388,13 @@ public abstract class Node implements Comparable<Node> {
 
 	@Override
 	public String toString(){
-		return (name + "\t" + id + "\t" + relevance  + "\t" + (label == -1 ? " " :  label) + "\t" + getClass().getName());
+		return (name + "\t" + id + "\t" + normalizeRelevance()  + "\t" + (label == -1 ? " " :  label) + "\t" + getClass().getName());
+	}
+
+	private String normalizeRelevance() {
+		double normalized = ((relevance - PageRank.getMinRelevance())/(PageRank.getMaxRelevance()-PageRank.getMinRelevance()))*100;
+		String hola = String.format("%.2f", normalized);
+		return hola;
 	}
 
 	@Override
