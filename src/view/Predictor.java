@@ -1,5 +1,8 @@
 package view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -20,11 +23,12 @@ public class Predictor extends VBox {
     private int lastLength;
     private int selected;
 
-    public Predictor(Collection<String> data, int resultsToShow) {
+    public Predictor(Collection<String> data, int resultsToShow, Insets padding) {
         this.resultsToShow = resultsToShow;
         this.data = data;
         textToPredict = new TextField();
         resultBox = new VBox();
+        this.setPadding(padding);
         resultBox.setStyle("-fx-background-color: #FFFFFF;");
         lastLength = -1;
         selected = -1;
@@ -74,13 +78,21 @@ public class Predictor extends VBox {
         for (String word : data) {
             if (word.contains(actualWord)) {
                 if (count < resultsToShow) {
-                    Text predicted = new Text(actualWord);
+                    Text predicted = new Text(word);
                     resultBox.getChildren().add(predicted);
                     ++count;
                 }
                 else return;
             }
         }
+    }
+
+    public void setTextListener(EventHandler<ActionEvent> eventListener) {
+        textToPredict.setOnAction(eventListener);
+    }
+
+    public String getText() {
+        return textToPredict.getText();
     }
 
 }

@@ -11,12 +11,11 @@ public class MainView extends BaseView {
 
     private VBox contentVBox;
 
-    private TextField searchText;
     private HBox searchTextHBox;
 
     private ProgressIndicator progressIndicator;
-
     private ImageButton searchButton;
+    private Predictor predictor;
 
     public MainView(MainPresenter mainPresenter) {
         presenter = mainPresenter;
@@ -30,37 +29,34 @@ public class MainView extends BaseView {
     private void initializePanes() {
         contentVBox = new VBox();
         searchTextHBox = new HBox();
-        searchTextHBox.setPadding(new Insets(0,0,10,0));
+        searchTextHBox.setPadding(new Insets(0,0,10,80));
+        searchTextHBox.setSpacing(10);
     }
 
     private void initializeViews() {
         searchButton = new ImageButton("../images/searchButton.png", 143, 51);
-        searchText = new TextField();
+
+        predictor = new Predictor(DomainController.allNames(), 10, new Insets(8, 0, 0, 0));
+        predictor.setMaxSize(600,200);
+        predictor.setMinSize(600,200);
+
         progressIndicator = new ProgressIndicator();
         progressIndicator.setProgress(-1);
     }
 
     private void buildPanes() {
 
-        searchTextHBox.getChildren().add(searchText);
-        searchTextHBox.setMinWidth(500);
-        searchTextHBox.setMaxWidth(500);
-        searchTextHBox.setAlignment(Pos.CENTER);
-        HBox.setHgrow(searchText, Priority.ALWAYS);
+        searchTextHBox.getChildren().add(predictor);
+        searchTextHBox.getChildren().add(searchButton);
 
-        Predictor predictor = new Predictor(DomainController.allNames(), 10);
-        predictor.setMaxSize(600,200);
-        predictor.setMinSize(600,200);
-//        contentVBox.getChildren().add(predictor);
         contentVBox.getChildren().add(searchTextHBox);
-        contentVBox.getChildren().add(searchButton);
         contentVBox.setAlignment(Pos.CENTER);
     }
 
     private void setListeners() {
 
-        searchText.setOnAction(
-                event -> ((MainPresenter)presenter).clickSearchButton()
+        predictor.setTextListener(
+                event -> ((MainPresenter) presenter).clickSearchButton()
         );
 
         searchButton.setOnMousePressed(
@@ -88,13 +84,13 @@ public class MainView extends BaseView {
     public void stopProgress() {
         searchButton.setDisable(false);
         if (Platform.isFxApplicationThread()) {
-            searchTextHBox.getChildren().set(0, searchText);
+            searchTextHBox.getChildren().set(1, searchButton);
         }
         else {
-            Platform.runLater(() -> searchTextHBox.getChildren().set(0, searchText));
+            Platform.runLater(() -> searchTextHBox.getChildren().set(1, searchButton));
         }
     }
-    public String getSearchText() { return searchText.getText();}
+    public String getSearchText() { return predictor.getText();}
 
 
 }

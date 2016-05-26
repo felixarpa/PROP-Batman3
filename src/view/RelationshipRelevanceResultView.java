@@ -135,55 +135,40 @@ public class RelationshipRelevanceResultView extends BaseView {
     }
 
     public void setContent(int index, String nodeSrc, String nodeDst, double relevance) {
-        String[] elements = node.split("\t");
-        if (!elements[0].equals("")) {
-            number.get(type).get(index%listSize).setText(Integer.toString(index+1));
-            number.get(type).get(index%listSize).setMinWidth(50);
-            number.get(type).get(index%listSize).setMaxWidth(50);
+        String[] elements1 = nodeSrc.split("\t");
+        String[] elements2 = nodeDst.split("\t");
+        if (nodeSrc != null) {
+            this.index.get(index%Config.LISTS_SIZE).setText(Integer.toString(index+1));
+            this.index.get(index%Config.LISTS_SIZE).setMinWidth(50);
+            this.index.get(index%Config.LISTS_SIZE).setMaxWidth(50);
             //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
-            id.get(type).get(index%listSize).setText(elements[1]);
-            id.get(type).get(index%listSize).setMinWidth(100);
-            id.get(type).get(index%listSize).setMaxWidth(100);
-            //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            Label laux = new Label();
-            laux.setFont(font);
-            laux.setTextFill(Paint.valueOf("white"));
-            laux.setText(elements[2]);
-            laux.setMinWidth(300);
-            laux.setMaxWidth(300);
-            relevance.get(type).get(index%listSize).getChildren().clear();
-            relevance.get(type).get(index%listSize).getChildren().add(laux);
+            nodes.get(0).get(index%Config.LISTS_SIZE).setText(elements1[0]);
+            nodes.get(0).get(index%Config.LISTS_SIZE).setMinWidth(50);
+            nodes.get(0).get(index%Config.LISTS_SIZE).setMaxWidth(50);
+            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
+            relevanceBar.get(index%Config.LISTS_SIZE).setDisable(false);
+            relevanceBar.get(index%Config.LISTS_SIZE).setProgress(relevance);
             //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-
-            label.get(type).get(index%listSize).setText(elements[3]);
-            label.get(type).get(index%listSize).setMinWidth(75);
-            label.get(type).get(index%listSize).setMaxWidth(75);
-            //label.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
+            nodes.get(1).get(index%Config.LISTS_SIZE).setText(elements2[0]);
+            nodes.get(1).get(index%Config.LISTS_SIZE).setMinWidth(50);
+            nodes.get(1).get(index%Config.LISTS_SIZE).setMaxWidth(50);
+            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
         }
         else {
-            number.get(type).get(index%listSize).setText("");
-            number.get(type).get(index%listSize).setMinWidth(10);
-            number.get(type).get(index%listSize).setMaxWidth(10);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            id.get(type).get(index%listSize).setText("");
-            id.get(type).get(index%listSize).setMinWidth(100);
-            id.get(type).get(index%listSize).setMaxWidth(100);
-            //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            Label laux = new Label();
-            laux.setText("");
-            laux.setMinWidth(300);
-            laux.setMaxWidth(300);
-            relevance.get(type).get(index%listSize).getChildren().clear();
-            relevance.get(type).get(index%listSize).getChildren().add(laux);
+            this.index.get(index%Config.LISTS_SIZE).setText("");
+            this.index.get(index%Config.LISTS_SIZE).setMinWidth(50);
+            this.index.get(index%Config.LISTS_SIZE).setMaxWidth(50);
+            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
+            nodes.get(0).get(index%Config.LISTS_SIZE).setText("");
+            nodes.get(0).get(index%Config.LISTS_SIZE).setMinWidth(50);
+            nodes.get(0).get(index%Config.LISTS_SIZE).setMaxWidth(50);
+            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
+            relevanceBar.get(index%Config.LISTS_SIZE).setDisable(true);
             //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            label.get(type).get(index%listSize).setText("");
-            label.get(type).get(index%listSize).setMinWidth(75);
-            label.get(type).get(index%listSize).setMaxWidth(75);
-            //label.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
+            nodes.get(1).get(index%Config.LISTS_SIZE).setText("");
+            nodes.get(1).get(index%Config.LISTS_SIZE).setMinWidth(50);
+            nodes.get(1).get(index%Config.LISTS_SIZE).setMaxWidth(50);
+            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
         }
-        name.get(type).get(index%listSize).setText(elements[0]);
-        name.get(type).get(index%listSize).setMinWidth(400);
-        name.get(type).get(index%listSize).setMaxWidth(400);
-        //name.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
     }
 }
