@@ -40,7 +40,7 @@ public abstract class  BasePresenter extends Presenter {
     public void relationshipSearch(){
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new RelationshipRelevanceResultPresenter());
+        //MyApp.changePresenter(new RelationshipRelevanceResultPresenter());
     }
 
     public void clickAuthors() {
@@ -65,6 +65,12 @@ public abstract class  BasePresenter extends Presenter {
         actualView.destroy();
         actualView = null;
         MyApp.changePresenter(new CategoryResultPresenter(ProjectConstants.TERM_TYPE));
+    }
+
+    public void adminMode() {
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new AddNodePresenter());
     }
 
     public void logout() {

@@ -52,4 +52,8 @@ public abstract class UserController {
         currentUser.setPassword(newPassword);
     }
 
+    public static String getCurrentUserName() {return  DomainController.currentUser.getUsername();}
+
+    public static boolean isAdmin() {return DomainController.currentUser.getAdmin();}
+
  }
