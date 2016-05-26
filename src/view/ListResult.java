@@ -47,7 +47,6 @@ public abstract class ListResult extends BaseView {
 //    }
 
     protected void initializePanes() {
-        System.out.println("super.initializePanes()");
         contentVBox = new VBox();
         contentVBox.setPadding(new Insets(5, 40, 5, 40));
         contentVBox.setSpacing(4);
@@ -67,7 +66,6 @@ public abstract class ListResult extends BaseView {
     }
 
     protected void initializeViews() {
-        System.out.println("super.initializeViews()");
         nameLabel = new Label("Name");
         idLabel = new Label("ID");
         initializeTitleLabels();
@@ -85,14 +83,7 @@ public abstract class ListResult extends BaseView {
         nextPageButton = new ImageButton("../images/", "nextButton", 60, 30);
     }
 
-    protected void completePanes() {
-        System.out.println("super.completePanes()");
-        buildLine();
-        //buildPanes();
-    }
-
     protected void buildPanes() {
-        System.out.println("super.buildPanes()");
         titlesHBox.getChildren().addAll(
                 nameLabel,
                 idLabel
@@ -117,21 +108,7 @@ public abstract class ListResult extends BaseView {
 
     }
 
-    protected void buildLine() {
-//        System.out.println("super.buildLine()");
-//        int i = 0;
-//        for (HBox line : results) {
-//            line.getChildren().addAll(
-//                    numbers.get(i),
-//                    names.get(i),
-//                    ids.get(i)
-//            );
-//            ++i;
-//        }
-    }
-
     protected void setListeners() {
-        System.out.println("super.setListeners()");
 
         prevPageButton.setOnMousePressed(event -> prevPageButton.press());
         prevPageButton.setOnMouseReleased(
@@ -153,14 +130,12 @@ public abstract class ListResult extends BaseView {
     public abstract void setContent(int index, String node);
 
     protected void initializeArrayLabel() {
-        System.out.println("super.initializeArrayLabel()");
         Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 18);
 
         for (int i = 0; i < 10; ++i) {
             numbers.add(new Label());
             numbers.get(i).setMinSize(50, 20);
             numbers.get(i).setMaxSize(50, 24);
-
             numbers.get(i).setFont(font);
             numbers.get(i).setTextFill(Paint.valueOf("white"));
 
@@ -179,7 +154,6 @@ public abstract class ListResult extends BaseView {
     }
 
     protected void initializeTitleLabels() {
-        System.out.println("super.initializeTitleLabels()");
         nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
         nameLabel.setMinSize(380, 20);
         nameLabel.setMaxSize(380, 24);
@@ -190,5 +164,7 @@ public abstract class ListResult extends BaseView {
         idLabel.setMaxSize(75, 24);
         idLabel.setFont(new Font("Arial bold", 24));
     }
+
+    protected abstract void completePanes();
 
 }
