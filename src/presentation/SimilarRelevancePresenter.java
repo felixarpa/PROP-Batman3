@@ -16,4 +16,16 @@ public class SimilarRelevancePresenter extends CategoryResultPresenter  {
         MyApp.startScene(actualView.getContent());
     }
 
+    @Override
+    public void onClick(int index) {
+
+    }
+    @Override
+    public void onAcceptClick(int op) {
+
+    }
+    @Override
+    public void reorder(int typeOfOrder, boolean ascending) {
+    }
+
 }

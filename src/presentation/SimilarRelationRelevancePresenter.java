@@ -12,4 +12,14 @@ public class SimilarRelationRelevancePresenter extends RelationshipRelevanceResu
         ((SimilarRelationRelevanceView)actualView).setNode(nodeSrc, nodeDst, relevance);
     }
 
+    @Override
+    public void onClick(int index) {
+    }
+    @Override
+    public void onAcceptClick(int op) {
+    }
+    @Override
+    public void reorder(int typeOfOrder, boolean ascending) {
+    }
+
 }

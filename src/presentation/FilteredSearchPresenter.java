@@ -56,7 +56,7 @@ public abstract class FilteredSearchPresenter extends ListPresenter{
             show();
         }
     }
-    
+
 
     @Override
     protected void show() {
