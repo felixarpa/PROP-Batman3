@@ -5,6 +5,7 @@ import presentation.RelationshipRelevanceResultPresenter;
 
 public class RelationshipRelevanceResultView extends BaseView {
     VBox contentVBox;
+    
 
     RelationshipRelevanceResultView(RelationshipRelevanceResultPresenter relationshipRelevanceResultPresenter) {
         presenter = relationshipRelevanceResultPresenter;
