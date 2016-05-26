@@ -6,14 +6,14 @@ import view.MyApp;
 
 import java.util.ArrayList;
 
-public abstract class FilteredSearchPresenter extends BasePresenter{
+public abstract class FilteredSearchPresenter extends ListPresenter{
     ArrayList<ArrayList<String>> result;
     public String nodeName;
     public String nodeId;
     public String nodeLabel;
     public String nodeRelevance;
 
-    private int index, actualType;
+    private int actualType;
 
     public FilteredSearchPresenter(ArrayList<ArrayList<String>> result, String node) {
         this.result = result;
@@ -49,21 +49,17 @@ public abstract class FilteredSearchPresenter extends BasePresenter{
         }
     }
 
+    @Override
     public void showMore() {
         if (index + Config.LISTS_SIZE <= result.get(actualType).size()) {
             index += Config.LISTS_SIZE;
             show();
         }
     }
+    
 
-    public void showLess() {
-        if (index - Config.LISTS_SIZE >= 0) {
-            index = index - Config.LISTS_SIZE;
-            show();
-        }
-    }
-
-    private void show() {
+    @Override
+    protected void show() {
         int max = index+ Config.LISTS_SIZE;
         if (max> result.get(actualType).size()) max = result.get(actualType).size();
         for (int i = 0; i < max-index; ++i) {
