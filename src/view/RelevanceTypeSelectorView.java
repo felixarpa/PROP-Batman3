@@ -30,40 +30,18 @@ public class RelevanceTypeSelectorView extends ListResult {
     @Override
     protected void initializeViews() {
         super.initializeViews();
-        System.out.println("initializeViews()");
 
         entityButtons = new ArrayList<>(Config.LISTS_SIZE);
         relationshipButtons = new ArrayList<>(Config.LISTS_SIZE);
 
-        initializeButtons();
-    }
-
-    @Override
-    protected void completePanes() {
-        System.out.println("completePanes()");
-        buildLine();
-        buildPanes();
-    }
-
-    @Override
-    protected void buildLine() {
-        System.out.println("buildLine()");
-        int i = 0;
-        for (HBox line : results) {
-            line.getChildren().addAll(
-                    numbers.get(i),
-                    names.get(i),
-                    ids.get(i),
-                    entityButtons.get(i)
-                    ,relationshipButtons.get(i)
-            );
-            ++i;
+        for (int i = 0; i < 10; ++i) {
+            entityButtons.add(new ImageButton("../images", "entityRelevanceButton", 140, 24));
+            relationshipButtons.add(new ImageButton("../images", "relationshipRelevanceButton", 140, 24));
         }
     }
 
     protected void setListeners() {
         super.setListeners();
-        System.out.println("setListeners()");
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             final int index = i;
@@ -89,10 +67,27 @@ public class RelevanceTypeSelectorView extends ListResult {
         }
     }
 
+    protected void completePanes() {
+        buildLine();
+        buildPanes();
+    }
+
+    protected void buildLine() {
+        int i = 0;
+        for (HBox line : results) {
+            line.getChildren().addAll(
+                    numbers.get(i),
+                    names.get(i),
+                    ids.get(i),
+                    entityButtons.get(i),
+                    relationshipButtons.get(i)
+            );
+            ++i;
+        }
+    }
+
     @Override
     public void setContent(int index, String node) {
-        System.out.println("setContent(): " + node);
-
         int i = index++ % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
         names.get(i).setText(elements[0]);
@@ -117,21 +112,4 @@ public class RelevanceTypeSelectorView extends ListResult {
             relationshipButtons.get(i).setVisible(true);
         }
     }
-
-
-    private void initializeButtons() {
-        System.out.println("initializeButtons()");
-
-        for (int i = 0; i < 10; ++i) {
-            entityButtons.add(new ImageButton("../images", "entityRelevanceButton", 140, 24));
-            relationshipButtons.add(new ImageButton("../images", "relationshipRelevanceButton", 140, 24));
-        }
-    }
 }
-
-
-/*
- * TAMAÑO VENTANA DE DENTRO:
- * width = 900
- * height = 370
- */
