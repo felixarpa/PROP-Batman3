@@ -155,7 +155,6 @@ public class RelationSelectorView extends BaseView {
         Object aux = firstDropDownMenu.getValue();
         firstDropDownMenu.setValue(secondDropDownMenu.getValue());
         secondDropDownMenu.setValue(aux);
-
     }
 
     private int getType(String type) {
