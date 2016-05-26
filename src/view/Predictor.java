@@ -26,6 +26,7 @@ public class Predictor extends VBox {
     public Predictor(Collection<String> data, int resultsToShow, Insets padding) {
         this.resultsToShow = resultsToShow;
         this.data = data;
+
         textToPredict = new TextField();
         resultBox = new VBox();
         this.setPadding(padding);
@@ -34,6 +35,7 @@ public class Predictor extends VBox {
         selected = -1;
         getChildren().add(textToPredict);
         getChildren().add(resultBox);
+
         textToPredict.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.UP) {
                 if (selected > 0) {
@@ -52,11 +54,13 @@ public class Predictor extends VBox {
             else if (event.getCode() == KeyCode.ENTER) {
                 if (selected >= 0 && selected < resultBox.getChildren().size()) {
                     textToPredict.setText(((Text)resultBox.getChildren().get(selected)).getText());
+
                     if (selected >= 0 && selected < resultBox.getChildren().size()) {
                         textToPredict.setText(((Text)resultBox.getChildren().get(selected)).getText());
                         resultBox.getChildren().remove(0,resultBox.getChildren().size());
                     }
                 }
+                selected = -1;
             }
             else {
                 actualWord = textToPredict.getText();
@@ -88,7 +92,11 @@ public class Predictor extends VBox {
     }
 
     public void setTextListener(EventHandler<ActionEvent> eventListener) {
-        textToPredict.setOnAction(eventListener);
+        textToPredict.setOnAction(
+                event -> {
+                    if (selected == -1) eventListener.handle(null);
+                }
+        );
     }
 
     public String getText() {
