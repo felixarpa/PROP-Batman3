@@ -128,7 +128,7 @@ public class RelationSelectorView extends BaseView {
     }
 
     private int getType(String type) {
-        
+
         switch(type){
             case "Author":
                 return ProjectConstants.AUTHOR_TYPE;
