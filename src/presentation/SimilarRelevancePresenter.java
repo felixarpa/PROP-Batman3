@@ -14,4 +14,7 @@ public class SimilarRelevancePresenter extends BasePresenter  {
         actualView = new SimilarRelevanceView(this);
         MyApp.startScene(actualView.getContent());
     }
+
+
+
 }
