@@ -40,7 +40,7 @@ public abstract class  BasePresenter extends Presenter {
     public void relationshipSearch(){
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new RelationshipRelevanceResultPresenter());
+//        MyApp.changePresenter(new RelationshipRelevanceResultPresenter());
     }
 
     public void clickAuthors() {
