@@ -13,7 +13,7 @@ public abstract class FilteredSearchPresenter extends BasePresenter{
     public String nodeLabel;
     public String nodeRelevance;
 
-    int index, actualType;
+    private int index, actualType;
 
     public FilteredSearchPresenter(ArrayList<ArrayList<String>> result, String node) {
         this.result = result;
@@ -53,9 +53,7 @@ public abstract class FilteredSearchPresenter extends BasePresenter{
         if (index + Config.LISTS_SIZE <= result.get(actualType).size()) {
             index += Config.LISTS_SIZE;
             show();
-
         }
-
     }
 
     public void showLess() {
@@ -63,8 +61,6 @@ public abstract class FilteredSearchPresenter extends BasePresenter{
             index = index - Config.LISTS_SIZE;
             show();
         }
-
-
     }
 
     private void show() {

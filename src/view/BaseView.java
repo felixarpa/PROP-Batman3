@@ -1,6 +1,7 @@
 package view;
 
 import domain.DomainController;
+import domain.UserController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -34,74 +35,73 @@ public class BaseView {
     private Text settingsText;
     private Text searchText;
     private Text relationshipSearchText;
+    private Text adminModeText;
     private Text username;
 
     private ImageView appTitleImage;
     private HBox appTitleHBox;
-    private HBox categoryButtons;
+    protected HBox categoryButtons;
     private VBox titleAndButtons;
 
-    private ImageButton authorsButton;
-    private ImageButton conferencesButton;
-    private ImageButton papersButton;
-    private ImageButton termsButton;
-
-    private ImageButton lastPressed;
+    protected ImageButton authorsButton;
+    protected ImageButton conferencesButton;
+    protected ImageButton papersButton;
+    protected ImageButton termsButton;
 
     protected BasePresenter presenter;
 
-    BaseView() {
+    public BaseView() {
         initializePanes();
         initializeViews();
-        buildPanes();
         setListeners();
+        buildPanes();
     }
 
     private void setListeners() {
 
-        authorsButton.setOnMousePressed(
+        /*authorsButton.setOnMousePressed(
                 event -> {
                     authorsButton.press();
                     lastPressed.release();
                     lastPressed = authorsButton;
                 }
-        );
+        );*/
 
         authorsButton.setOnMouseReleased(
                 event -> presenter.clickAuthors()
         );
 
-        conferencesButton.setOnMousePressed(
+        /*conferencesButton.setOnMousePressed(
                 event -> {
                     conferencesButton.press();
                     lastPressed.release();
                     lastPressed = conferencesButton;
                 }
-        );
+        );*/
 
         conferencesButton.setOnMouseReleased(
                 event -> presenter.clickConferences()
         );
 
-        papersButton.setOnMousePressed(
+        /*papersButton.setOnMousePressed(
                 event -> {
                     papersButton.press();
                     lastPressed.release();
                     lastPressed = papersButton;
                 }
-        );
+        );*/
 
         papersButton.setOnMouseReleased(
                 event -> presenter.clickPapers()
         );
 
-        termsButton.setOnMousePressed(
+        /*termsButton.setOnMousePressed(
                 event -> {
                     termsButton.press();
                     lastPressed.release();
                     lastPressed = termsButton;
                 }
-        );
+        );*/
 
         termsButton.setOnMouseReleased(
                 event -> presenter.clickTerms()
@@ -130,6 +130,10 @@ public class BaseView {
         relationshipSearchText.setOnMouseReleased(
                 event -> presenter.relationshipSearch()
         );
+
+        adminModeText.setOnMouseReleased(
+                event -> presenter.adminMode()
+        );
     }
 
     public void destroy() { presenter = null; }
@@ -143,7 +147,8 @@ public class BaseView {
 
 
         sidebarBottom = new VBox();
-        sidebarBottom.setPadding(new Insets(125,5,10,5));
+        if (UserController.isAdmin()) sidebarBottom.setPadding(new Insets(70,5,10,5));
+        else sidebarBottom.setPadding(new Insets(125,5,10,5));
 
         sidebarBottomIcons = new HBox();
         sidebarBottomIcons.setPadding(new Insets(15,5,5,5));
@@ -192,7 +197,9 @@ public class BaseView {
         searchText.setFont(coolFont);
         relationshipSearchText = new Text("Relationship\nSearch");
         relationshipSearchText.setFont(coolFont);
-        username = new Text(DomainController.getCurrentUserName());
+        adminModeText = new Text("Admin\nMode");
+        adminModeText.setFont(coolFont);
+        username = new Text(UserController.getCurrentUserName());
         username.setFont(coolFont);
         username.setFill(Config.LABEL_CLEAR_COLOR);
         username.setTextAlignment(TextAlignment.CENTER);
@@ -204,16 +211,13 @@ public class BaseView {
         appTitleImage.setImage(image2);
         appTitleImage.setFitWidth(409);
         appTitleImage.setFitHeight(106);
-
-        authorsButton = new  ImageButton("../images", "authorsButton", 220, 75);
+        authorsButton = new ImageButton("../images", "authorsButton", 220, 75);
 
         conferencesButton = new ImageButton("../images", "conferencesButton", 225, 75);
 
         papersButton = new ImageButton("../images", "papersButton", 225, 75);
 
         termsButton = new ImageButton("../images", "termsButton", 225, 75);
-
-        lastPressed = new ImageButton("../images", "authorsButton", 225, 75);
     }
 
     private void buildPanes(){
@@ -225,7 +229,7 @@ public class BaseView {
         sidebarOptions.getChildren().add(settingsText);
         sidebarOptions.getChildren().add(searchText);
         sidebarOptions.getChildren().add(relationshipSearchText);
-
+        if (UserController.isAdmin()) sidebarOptions.getChildren().add(adminModeText);
         sidebarBottom.getChildren().add(username);
         sidebarBottom.getChildren().add(sidebarBottomIcons);
         sidebarBottom.setAlignment(Pos.CENTER);

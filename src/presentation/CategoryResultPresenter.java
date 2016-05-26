@@ -9,15 +9,12 @@ import view.RelevanceTypeSelectorView;
 
 import java.util.ArrayList;
 
-public class CategoryResultPresenter extends BasePresenter  {
+public class CategoryResultPresenter extends ListPresenter  {
 
-    private ArrayList<String> result;
-    private int index;
     private int lastSelected;
 
     public CategoryResultPresenter(int type) {
-        result = domainController.secondSearch(type);
-        index = 0;
+        super(domainController.secondSearch(type));
         actualView = new CategoryResultView(this);
         show();
         MyApp.startScene(actualView.getContent());
@@ -59,7 +56,8 @@ public class CategoryResultPresenter extends BasePresenter  {
 
     }
 
-    private void show() {
+    @Override
+    protected void show() {
         int max = index+Config.LISTS_SIZE;
         if (max > result.size()) max = result.size();
         max -= index;

@@ -41,7 +41,7 @@ public class DomainController {
 		return currentUser;
 	}
 
-	public static String getCurrentUserName() {return  currentUser.getUsername();}
+
 
 	public ArrayList<String> searchingANode(String name) {
 		Collection<Node> result = graf.getNode(name);
@@ -302,7 +302,7 @@ public class DomainController {
 
 	public ArrayList<String> thirdSearch(int typesrc, int typedst) {
 		lastRelevanceResult = Searcher.allRelevanceTypeNodes(typesrc, typedst);
-		return convertRelationResult(lastRelevanceResult);
+		return convertRelationResult(lastRelevanceResult.descendingSet());
 	}
 
 	public ArrayList<String> searchSimilarRelationRelevance(String src, String dst, int op) {
