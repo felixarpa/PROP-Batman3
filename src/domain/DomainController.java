@@ -302,7 +302,7 @@ public class DomainController {
 
 	public ArrayList<String> thirdSearch(int typesrc, int typedst) {
 		lastRelevanceResult = Searcher.allRelevanceTypeNodes(typesrc, typedst);
-		return convertRelationResult(lastRelevanceResult);
+		return convertRelationResult(lastRelevanceResult.descendingSet());
 	}
 
 	public ArrayList<String> searchSimilarRelationRelevance(String src, String dst, int op) {
