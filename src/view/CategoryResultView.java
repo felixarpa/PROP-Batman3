@@ -1,10 +1,13 @@
 package view;
 
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.CategoryResultPresenter;
+import util.ProjectConstants;
 
 import java.util.ArrayList;
 
@@ -14,9 +17,25 @@ public class CategoryResultView extends ListView {
 
     private Label relevanceLabel;
 
+    private ImageButton orderNamesImageButton;
+    private ImageButton orderIdsImageButton;
+    private ImageButton orderRelevanceImageButton;
+
+    private int ascendingNames;
+    private int ascendingIds;
+    private int ascendingRelevance;
+
+    private Pane spaceNamesIds;
+    private Pane spaceIdsRelevance;
+
+
     public CategoryResultView(CategoryResultPresenter presenter){
         super(presenter);
         this.presenter = presenter;
+
+        ascendingNames = -1;
+        ascendingIds = -1;
+        ascendingRelevance = 1;
 
         initializePanes();
         initializeViews();
@@ -31,15 +50,32 @@ public class CategoryResultView extends ListView {
 
         relevanceLabel = new Label("Relevance");
         relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        relevanceLabel.setMinSize(200, 20);
-        relevanceLabel.setMaxSize(200, 24);
+        relevanceLabel.setMinSize(130, 20);
+        relevanceLabel.setMaxSize(130, 24);
         relevanceLabel.setFont(new Font("Arial bold", 24));
 
-        idLabel.setMinSize(100, 20);
-        idLabel.setMaxSize(100, 24);
+        nameLabel.setMinSize(72, 20);
+        nameLabel.setMaxSize(72, 24);
+
+        idLabel.setMinSize(30, 20);
+        idLabel.setMaxSize(30, 24);
 
         relevance = new ArrayList<>(Config.LISTS_SIZE);
 
+        orderNamesImageButton = new ImageButton("../images/ascending.png", 20, 20);
+        orderIdsImageButton = new ImageButton("../images/ascending.png", 20, 20);
+        orderRelevanceImageButton = new ImageButton("../images/descending.png", 20, 20);
+
+        spaceNamesIds = new Pane();
+        spaceNamesIds.setMinSize(288, 20);
+        spaceNamesIds.setMaxSize(288, 20);
+
+        spaceIdsRelevance = new Pane();
+        spaceIdsRelevance.setMinSize(50, 20);
+        spaceIdsRelevance.setMinSize(50, 20);
+
+
+        setCorrectOrder();
 
         Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 18);
 
@@ -50,7 +86,7 @@ public class CategoryResultView extends ListView {
             relevance.get(i).setFont(font);
             relevance.get(i).setTextFill(Paint.valueOf("white"));
 
-            ids.get(i).setMinSize(100, 24);
+            ids.get(i).setMinSize(100, 24); //100
             ids.get(i).setMaxSize(100, 24);
         }
     }
@@ -71,7 +107,18 @@ public class CategoryResultView extends ListView {
     protected void completePanes() {
         buildLine();
         buildPanes();
-        titlesHBox.getChildren().add(relevanceLabel);
+
+        titlesHBox.getChildren().remove(0, titlesHBox.getChildren().size());
+        titlesHBox.getChildren().addAll(
+                nameLabel,
+                orderNamesImageButton,
+                spaceNamesIds,
+                idLabel,
+                orderIdsImageButton,
+                spaceIdsRelevance,
+                relevanceLabel,
+                orderRelevanceImageButton
+        );
     }
 
     protected void buildLine() {
@@ -87,7 +134,99 @@ public class CategoryResultView extends ListView {
         }
     }
 
+    @Override
+    protected void setListeners() {
+        super.setListeners();
+
+        nameLabel.setOnMouseReleased(
+                event -> {
+                    ascendingIds = -1;
+                    ascendingRelevance = -1;
+                    ((CategoryResultPresenter) presenter).reorder(
+                            ProjectConstants.NAME_ORDER,
+                            (ascendingNames != 1)
+                    );
+                    ascendingNames = (ascendingNames != 1) ? 1 : 0;
+                    setCorrectOrder();
+                }
+        );
+
+        idLabel.setOnMouseReleased(
+                event -> {
+                    ascendingNames = -1;
+                    ascendingRelevance = -1;
+                    ((CategoryResultPresenter) presenter).reorder(
+                            ProjectConstants.ID_ORDER,
+                            (ascendingIds != 1)
+                    );
+                    ascendingIds = (ascendingIds != 1) ? 1 : 0;
+                    setCorrectOrder();
+                }
+        );
+
+        relevanceLabel.setOnMouseReleased(
+                event -> {
+                    ascendingNames = -1;
+                    ascendingIds = -1;
+                    ((CategoryResultPresenter) presenter).reorder(
+                            ProjectConstants.RELEVANCE_ORDER,
+                            (ascendingRelevance != 1)
+                    );
+                    ascendingRelevance = (ascendingRelevance != 1) ? 1 : 0;
+                    setCorrectOrder();
+                }
+        );
+    }
+
     public void askSimilarOp() {
 
     }
+
+    private void setCorrectOrder() {
+        setCorrectOrder(ascendingNames, orderNamesImageButton, spaceNamesIds);
+        setCorrectOrder(ascendingIds, orderIdsImageButton, spaceIdsRelevance);
+        setCorrectOrder(ascendingRelevance, orderRelevanceImageButton, null);
+    }
+
+    private void setCorrectOrder(int orderStatus, ImageButton imageButton, Pane space) {
+        switch (orderStatus) {
+            case -1:
+                imageButton.setVisible(false);
+                imageButton.setDisable(true);
+
+                if (space != null) {
+                    space.setVisible(false);
+                    space.setDisable(true);
+                }
+
+                break;
+
+            case 0:
+                imageButton.changeButtonImage("../images/descending.png");
+
+                imageButton.setVisible(true);
+                imageButton.setDisable(false);
+
+                if (space != null) {
+                    space.setVisible(true);
+                    space.setDisable(false);
+                }
+
+                break;
+
+            case 1:
+                imageButton.changeButtonImage("../images/ascending.png");
+
+                imageButton.setVisible(true);
+                imageButton.setDisable(false);
+
+                if (space != null) {
+                    space.setVisible(true);
+                    space.setDisable(false);
+                }
+
+                break;
+        }
+    }
+
 }
