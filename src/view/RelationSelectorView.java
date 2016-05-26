@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -36,6 +37,7 @@ public class RelationSelectorView extends BaseView {
     private ImageButton switchButton;
     private HBox errorMessageHBox;
     private Text errorMessageText;
+    private ProgressIndicator progressIndicator;
 
     public RelationSelectorView(RelationSelectorPresenter relationSelectorPresenter){
         presenter = relationSelectorPresenter;
@@ -54,7 +56,6 @@ public class RelationSelectorView extends BaseView {
     private void initializePanes() {
         errorMessageHBox = new HBox();
         errorMessageHBox.setAlignment(Pos.CENTER);
-        errorMessageHBox.setPadding(new Insets(0,0,20,0));
         switchButtonHBox = new HBox();
         switchButtonHBox.setAlignment(Pos.CENTER);
         switchButtonHBox.setPadding(new Insets(0,0,0,35));
@@ -66,11 +67,13 @@ public class RelationSelectorView extends BaseView {
         secondTypeTextHbox.setPadding(new Insets(0,0,20,0));
         dropDownHBox = new HBox();
         dropDownHBox.setAlignment(Pos.CENTER);
+        dropDownHBox.setPadding(new Insets(10,0,0,0));
         searchButtonHBox = new HBox();
         searchButtonHBox.setAlignment(Pos.CENTER);
         searchButtonHBox.setPadding(new Insets(50,0,0,0));
         contentVBox = new VBox();
-        contentVBox.setPadding(new Insets(100,0,100,0));
+        contentVBox.setAlignment(Pos.CENTER);
+        contentVBox.setPadding(new Insets(90,0,100,0));
         firstDropDownMenuVBox = new VBox();
         firstDropDownMenuVBox.setAlignment(Pos.CENTER);
         secondDropDownMenuVBox = new VBox();
@@ -97,6 +100,7 @@ public class RelationSelectorView extends BaseView {
 
         errorMessageText = new Text();
         errorMessageText.setFill(Paint.valueOf("red"));
+        errorMessageText.setFont(font);
         switchButton = new ImageButton("../images","xButton",10,10);
         searchButton = new ImageButton("../images","searchButton",143,51);
         selectFirstTypeText = new Text("First node type: ");
@@ -105,6 +109,9 @@ public class RelationSelectorView extends BaseView {
         selectSecondTypeText = new Text("Second node type: ");
         selectSecondTypeText.setFont(font);
         selectSecondTypeText.setFill(Paint.valueOf("white"));
+
+        progressIndicator = new ProgressIndicator();
+        progressIndicator.setProgress(-1);
 
     }
     private void buildPanes() {
@@ -183,15 +190,27 @@ public class RelationSelectorView extends BaseView {
     }
 
     public int getFirstType() {
-        return getType(firstDropDownMenu.getValue().toString());
+        String s = firstDropDownMenu.getValue().toString();
+        if(s == null) return -1;
+        return getType(s);
     }
 
     public int getSecondType() {
-        return getType(secondDropDownMenu.getValue().toString());
+        String s = secondDropDownMenu.getValue().toString();
+        if(s == null) return -1;
+        return getType(s);
 
     }
 
     public void showError(String s) {
         errorMessageText.setText(s);
+    }
+
+    public void startProgress() {
+        searchButtonHBox.getChildren().set(0, progressIndicator);
+    }
+
+    public void stopProgress() {
+        searchButtonHBox.getChildren().set(0, searchButton);
     }
 }
