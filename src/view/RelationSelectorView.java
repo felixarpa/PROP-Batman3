@@ -34,6 +34,8 @@ public class RelationSelectorView extends BaseView {
     private HBox secondTypeTextHbox;
     private HBox switchButtonHBox;
     private ImageButton switchButton;
+    private HBox errorMessageHBox;
+    private Text errorMessageText;
 
     public RelationSelectorView(RelationSelectorPresenter relationSelectorPresenter){
         presenter = relationSelectorPresenter;
@@ -50,6 +52,9 @@ public class RelationSelectorView extends BaseView {
     }
 
     private void initializePanes() {
+        errorMessageHBox = new HBox();
+        errorMessageHBox.setAlignment(Pos.CENTER);
+        errorMessageHBox.setPadding(new Insets(0,0,20,0));
         switchButtonHBox = new HBox();
         switchButtonHBox.setAlignment(Pos.CENTER);
         switchButtonHBox.setPadding(new Insets(0,0,0,35));
@@ -90,6 +95,8 @@ public class RelationSelectorView extends BaseView {
                 "Term"
         );
 
+        errorMessageText = new Text();
+        errorMessageText.setFill(Paint.valueOf("red"));
         switchButton = new ImageButton("../images","xButton",10,10);
         searchButton = new ImageButton("../images","searchButton",143,51);
         selectFirstTypeText = new Text("First node type: ");
@@ -101,6 +108,9 @@ public class RelationSelectorView extends BaseView {
 
     }
     private void buildPanes() {
+
+        errorMessageHBox.getChildren().add(errorMessageText);
+
         firstTypeTextHBox.getChildren().add(selectFirstTypeText);
         firstDropDownMenuVBox.getChildren().add(firstTypeTextHBox);
         firstDropDownMenuVBox.getChildren().add(firstDropDownMenu);
@@ -115,6 +125,7 @@ public class RelationSelectorView extends BaseView {
         dropDownHBox.getChildren().add(switchButtonHBox);
         dropDownHBox.getChildren().add(secondDropDownMenuVBox);
         searchButtonHBox.getChildren().add(searchButton);
+        contentVBox.getChildren().add(errorMessageText);
         contentVBox.getChildren().add(dropDownHBox);
         contentVBox.getChildren().add(searchButtonHBox);
     }
@@ -180,7 +191,7 @@ public class RelationSelectorView extends BaseView {
 
     }
 
-    public void showError() {
-
+    public void showError(String s) {
+        errorMessageText.setText(s);
     }
 }
