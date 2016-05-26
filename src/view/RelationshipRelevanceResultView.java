@@ -60,6 +60,7 @@ public class RelationshipRelevanceResultView extends BaseView {
         topBar.setMinSize(900,110);
         topBar.setPadding(new Insets(4,0,4,110));
         topBar.setAlignment(Pos.CENTER_LEFT);
+        topBar.setSpacing(10);
         String actualNodeBG =  this.getClass().getResource("../images/blueTopBar.png").toExternalForm();
         topBar.setStyle(
                 "-fx-background-image: url('" + actualNodeBG + "'); " +
@@ -71,12 +72,16 @@ public class RelationshipRelevanceResultView extends BaseView {
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             HBox haux = new HBox();
             haux.setPadding(new Insets(0,0,0,60));
-            haux.setMinWidth(100);
-            haux.setMaxWidth(100);
+            haux.setSpacing(10);
             contents.add(haux);
         }
         relevanceBar = new ArrayList<>(Config.LISTS_SIZE);
-        for (int i = 0; i < Config.LISTS_SIZE; ++i) relevanceBar.add(new ProgressBar());
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
+            ProgressBar p = new ProgressBar();
+            p.setMaxWidth(125);
+            p.setMinWidth(125);
+            relevanceBar.add(p);
+        }
         buttonBar = new HBox();
         prevButton = new ImageButton("../images/", "prevButton", 60, 30);
         nextButton = new ImageButton("../images/", "nextButton", 60, 30);
@@ -85,18 +90,18 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     private void initializeViews(){
         firstType = new Label(((RelationshipRelevanceResultPresenter)presenter).getType(1));
-        firstType.setMinWidth(345);
-        firstType.setMaxWidth(345);
+        firstType.setMinWidth(250);
+        firstType.setMaxWidth(250);
         firstType.setFont(titleFont);
         firstType.setTextFill(Paint.valueOf("white"));
         secondType = new Label(((RelationshipRelevanceResultPresenter)presenter).getType(2));
-        secondType.setMinWidth(345);
-        secondType.setMaxWidth(345);
+        secondType.setMinWidth(295);
+        secondType.setMaxWidth(295);
         secondType.setFont(titleFont);
         secondType.setTextFill(Paint.valueOf("white"));
         relevanceWord = new Label("RELEVANCE");
-        relevanceWord.setMinWidth(100);
-        relevanceWord.setMaxWidth(100);
+        relevanceWord.setMinWidth(125);
+        relevanceWord.setMaxWidth(125);
         relevanceWord.setFont(titleFont);
         relevanceWord.setTextFill(Paint.valueOf("white"));
         index = new ArrayList<>(Config.LISTS_SIZE);
@@ -104,8 +109,8 @@ public class RelationshipRelevanceResultView extends BaseView {
             Label laux = new Label();
             laux.setFont(titleFont);
             laux.setTextFill(Paint.valueOf("white"));
-            laux.setMaxWidth(50);
-            laux.setMinWidth(50);
+            laux.setMaxWidth(40);
+            laux.setMinWidth(40);
             index.add(laux);
         }
         nodes = new ArrayList<>(2);
@@ -115,8 +120,8 @@ public class RelationshipRelevanceResultView extends BaseView {
                 Label laux = new Label();
                 laux.setFont(titleFont);
                 laux.setTextFill(Paint.valueOf("white"));
-                laux.setMaxWidth(345);
-                laux.setMinWidth(345);
+                laux.setMaxWidth(250);
+                laux.setMinWidth(250);
                 arrayaux.add(laux);
             }
             nodes.add(arrayaux);
