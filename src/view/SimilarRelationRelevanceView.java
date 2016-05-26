@@ -8,4 +8,8 @@ public class SimilarRelationRelevanceView extends BaseView {
         this.presenter = presenter;
     }
 
+    //TODO: igual que similarRelevanceView
+    public void setNode(String nodeSrc, String nodeDst, double relevance) {
+
+    }
 }

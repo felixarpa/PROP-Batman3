@@ -294,7 +294,7 @@ public class DomainController {
 		Node searhNode = stringToNode(node);
 		TreeSet<Node> treeSet = Searcher.similarRelevance(searhNode, op);
 		ArrayList<String> result = new ArrayList<>(treeSet.size());
-		for (Node n : treeSet) {
+		for (Node n : treeSet.descendingSet()) {
 			result.add(n.toString());
 		}
 		return result;
