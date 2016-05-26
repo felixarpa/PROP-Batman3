@@ -15,12 +15,15 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
     private ArrayList<Double> relevance;
     private int index;
     private int lastSelected;
+    private int type1;
+    private int type2;
 
     public RelationshipRelevanceResultPresenter(int type1, int type2) {
         transform(domainController.thirdSearch(type1, type2));
         index = 0;
+        this.type1 = type1;
+        this.type2 = type2;
         actualView = new RelationshipRelevanceResultView(this);
-        //((RelationshipRelevanceResultView)actualView)
         show();
         MyApp.startScene(actualView.getContent());
     }
