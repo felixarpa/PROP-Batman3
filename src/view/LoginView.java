@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import presentation.LoginPresenter;
 
@@ -39,6 +40,8 @@ public class LoginView {
     private ProgressIndicator progressIndicator;
     private Text errorText;
     private HBox errorHBox;
+
+    private Font coolFont;
 
     public LoginView(LoginPresenter loginPresenter) {
         this.loginPresenter = loginPresenter;
@@ -79,7 +82,7 @@ public class LoginView {
     }
 
     private void initializeViews() {
-
+        coolFont = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14.95);
         applicationLogo = new ImageView();
         Image image2 = new Image(getClass().getResourceAsStream("../images/login/titleLogo.png"));
 
@@ -87,7 +90,10 @@ public class LoginView {
         applicationLogo.setFitWidth(525);
         applicationLogo.setFitHeight(147);
 
+        usernameEditText.setFont(coolFont);
+
         passwordLabel = new Label("Password");
+        passwordLabel.setFont(coolFont);
         passwordLabel.setTextFill(Config.LABEL_DARK_COLOR);
         passwordTextField = new PasswordField();
 
@@ -110,6 +116,7 @@ public class LoginView {
         progressIndicator.setProgress(-1.0f);
 
         errorText = new Text();
+        errorText.setFont(coolFont);
         errorText.setFill(Color.valueOf("#6E0000"));
 
     }

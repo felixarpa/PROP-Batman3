@@ -4,10 +4,11 @@ import javafx.scene.layout.VBox;
 import presentation.RelationshipRelevanceResultPresenter;
 
 public class RelationshipRelevanceResultView extends BaseView {
+
     VBox contentVBox;
     
 
-    RelationshipRelevanceResultView(RelationshipRelevanceResultPresenter relationshipRelevanceResultPresenter) {
+    public RelationshipRelevanceResultView(RelationshipRelevanceResultPresenter relationshipRelevanceResultPresenter) {
         presenter = relationshipRelevanceResultPresenter;
         initializePanes();
         initializeViews();
@@ -20,4 +21,12 @@ public class RelationshipRelevanceResultView extends BaseView {
     private void initializeViews(){}
     private void buildPanes(){}
     private void setListeners() {}
+
+    public void askSimilarOp() {
+
+    }
+
+    public void setContent(int index, String nodeSrc, String nodeDst, double relevance) {
+
+    }
 }

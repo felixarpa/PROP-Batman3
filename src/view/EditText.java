@@ -3,6 +3,7 @@ package view;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 
 public class EditText extends Pane {
 
@@ -42,6 +43,8 @@ public class EditText extends Pane {
     public void setName(String name) {
         label.setText(name);
     }
+
+    public void setFont(Font font){ label.setFont(font);}
 
     public Pane getBase() {
         return hBox;

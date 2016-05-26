@@ -1,5 +1,6 @@
 package view;
 
+import domain.DomainController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -8,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import presentation.BasePresenter;
@@ -25,6 +27,8 @@ public class BaseView {
 
     private HBox sidebarBottomIcons;
     private VBox sidebar;
+
+    private Font coolFont;
 
     private Text manageFavoriteTopicsText;
     private Text settingsText;
@@ -161,6 +165,7 @@ public class BaseView {
     }
 
     private void initializeViews(){
+        coolFont = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14.95);
         applicationLogo = new ImageView();
         Image appLogoImage = new Image(this.getClass().getResourceAsStream("../images/sidebarLogo.png"));
         applicationLogo.setImage(appLogoImage);
@@ -180,12 +185,18 @@ public class BaseView {
         logoutIcon.setFitHeight(45);
 
         manageFavoriteTopicsText = new Text("Manage\nFavorite Topics");
+        manageFavoriteTopicsText.setFont(coolFont);
         settingsText = new Text("Settings");
+        settingsText.setFont(coolFont);
         searchText = new Text("Search");
+        searchText.setFont(coolFont);
         relationshipSearchText = new Text("Relationship\nSearch");
-        username = new Text("Username");
+        relationshipSearchText.setFont(coolFont);
+        username = new Text(DomainController.getCurrentUserName());
+        username.setFont(coolFont);
         username.setFill(Config.LABEL_CLEAR_COLOR);
         username.setTextAlignment(TextAlignment.CENTER);
+
 
         appTitleImage = new ImageView();
         Image image2 = new Image(this.getClass().getResourceAsStream("../images/appTitle.png"));

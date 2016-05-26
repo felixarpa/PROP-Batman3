@@ -5,10 +5,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.FilteredSearchPresenter;
@@ -41,11 +40,11 @@ public abstract class FilteredSearchView extends BaseView {
     protected Font font;
     protected Font titleFont;
 
-    private HBox actualNodeBox;
-    private Label actualNodeName;
-    private Label actualNodeId;
+    protected HBox actualNodeBox;
+    protected Label actualNodeName;
+    protected Label actualNodeId;
     protected Label actualNodeRelevance;
-    private Label actualNodeLabel;
+    protected Label actualNodeLabel;
 
     private HBox separacionSuperioPane;
 
@@ -55,8 +54,10 @@ public abstract class FilteredSearchView extends BaseView {
     private Label relevanceLabel;
     private Label labelLabel;
 
-    protected Button next;
-    protected Button prev;
+    protected ImageButton next;
+    protected ImageButton prev;
+
+    private HBox buttonsPane;
 
     public final static int numToShow = 3;
 
@@ -76,37 +77,40 @@ public abstract class FilteredSearchView extends BaseView {
         titleFont = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(),18);
     }
 
+    private void initializeTitleLabels() {
+        nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        nameLabel.setMinSize(400, 20);
+        nameLabel.setMaxSize(400, 24);
+        nameLabel.setFont(new Font("Arial bold", 18));
+
+        idLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        idLabel.setMinSize(100, 20);
+        idLabel.setMaxSize(100, 24);
+        idLabel.setFont(new Font("Arial bold", 18));
+
+        relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        relevanceLabel.setMinSize(100, 20);
+        relevanceLabel.setMaxSize(100, 24);
+        relevanceLabel.setFont(new Font("Arial bold", 18));
+
+        labelLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        labelLabel.setMinSize(75, 20);
+        labelLabel.setMaxSize(75, 24);
+        labelLabel.setFont(new Font("Arial bold", 18));
+    }
+
     private void initializePanes() {
 
         contentVBox = new VBox();
         contents = new ArrayList<>(4);
-        actualNodeBox = new HBox();
-        actualNodeBox.setMaxSize(877,110);
-        actualNodeBox.setMinSize(877,110);
-        actualNodeBox.setAlignment(Pos.CENTER);
         titlesHBox = new HBox();
         titlesHBox.setPadding(new Insets(0, 10, 0, 100));
         separacionSuperioPane = new HBox();
         separacionSuperioPane.setPadding(new Insets(0, 60, 0, 50));
-        topBarPane.setTop(actualNodeBox);
+        buttonsPane = new HBox();
+        buttonsPane.setPadding(new Insets(0, 0, 0, 345));
+        buttonsPane.setSpacing(10);
 
-    }
-
-    private ArrayList<ArrayList<Label>> initializeArrayLabel() {
-        ArrayList<ArrayList<Label>> arrayList = new ArrayList<>(4);
-        for (int i = 0; i < 4; ++i) {
-            ArrayList<Label> aux = new ArrayList<>(numToShow);
-            for (int j = 0; j < numToShow; ++j) {
-                Label laux = new Label();
-                laux.setFont(new Font(20));
-                laux.setTextFill(Paint.valueOf("white"));
-                laux.setFont(font);
-                //laux.setFont(new Font("Microsoft Sans Serif",15));
-                aux.add(laux);
-            }
-            arrayList.add(aux);
-        }
-        return arrayList;
     }
 
     private void initializeViews() {
@@ -131,41 +135,9 @@ public abstract class FilteredSearchView extends BaseView {
         idLabel = new Label("ID");
         relevanceLabel = new Label("Relevance");
         labelLabel = new Label("Label");
-        actualNodeName = new Label(((FilteredSearchPresenter)presenter).nodeName);
-        actualNodeName.setFont(font);
-        actualNodeName.setTextFill(Paint.valueOf("white"));
-        actualNodeName.setMaxSize(450,0);
-        actualNodeName.setMinSize(450,0);
-        actualNodeRelevance = new Label(((FilteredSearchPresenter)presenter).nodeRelevance);
-        actualNodeRelevance.setFont(font);
-        actualNodeRelevance.setTextFill(Paint.valueOf("white"));
-        actualNodeId = new Label(((FilteredSearchPresenter)presenter).nodeId);
-        actualNodeId.setFont(font);
-        actualNodeId.setTextFill(Paint.valueOf("white"));
-        actualNodeId.setMinSize(100,0);
-        actualNodeId.setMaxSize(100,0);
-        actualNodeLabel = new Label(((FilteredSearchPresenter)presenter).nodeLabel);
-        actualNodeLabel.setFont(font);
-        actualNodeLabel.setTextFill(Paint.valueOf("white"));
-        actualNodeLabel.setMaxSize(300 ,0);
-        actualNodeLabel.setMinSize(300,0);
         initializeTitleLabels();
-        next = new Button("Next");
-        prev = new Button("Prev");
-    }
-
-    protected  ArrayList<ArrayList<HBox>> initializeRelevanceArray() {
-        ArrayList<ArrayList<HBox>> arrayList = new ArrayList<>(4);
-        for (int i = 0; i < 4; ++i) {
-            ArrayList<HBox> aux = new ArrayList<>(numToShow);
-            for (int j = 0; j < numToShow; ++j) {
-                HBox haux = new HBox();
-                //laux.setFont(new Font("Microsoft Sans Serif",15));
-                aux.add(haux);
-            }
-            arrayList.add(aux);
-        }
-        return arrayList;
+        prev = new ImageButton("../images/", "prevButton", 60, 30);
+        next = new ImageButton("../images/", "nextButton", 60, 30);
     }
 
     private void buildPanes() {
@@ -233,15 +205,12 @@ public abstract class FilteredSearchView extends BaseView {
         haux.setMaxSize(830,1);
         haux.setMinSize(830,1);
         haux.setStyle("-fx-background-color: #ffffff");
-        actualNodeBox.getChildren().addAll(
-                actualNodeName,
-                actualNodeLabel,
-                actualNodeId,
-                actualNodeRelevance
+        buttonsPane.getChildren().addAll(
+                prev,
+                next
         );
         separacionSuperioPane.getChildren().add(haux);
     }
-
 
     private void setListeners() {
         authorText.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -269,21 +238,55 @@ public abstract class FilteredSearchView extends BaseView {
             }
         });
 
-        next.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                ((FilteredSearchPresenter)presenter).showMore();
-            }
-        });
+        prev.setOnMousePressed(event -> prev.press());
+        prev.setOnMouseReleased(
+                event -> {
+                    prev.release();
+                    ((FilteredSearchPresenter) presenter).showLess();
+                }
+        );
 
-        prev.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                ((FilteredSearchPresenter)presenter).showLess();
-            }
-        });
+        next.setOnMousePressed(event -> next.press());
+        next.setOnMouseReleased(
+                event -> {
+                    next.release();
+                    ((FilteredSearchPresenter) presenter).showMore();
+                }
+        );
     }
 
+    protected abstract void initializeActualNode();
+
+    private ArrayList<ArrayList<Label>> initializeArrayLabel() {
+        ArrayList<ArrayList<Label>> arrayList = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<Label> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                Label laux = new Label();
+                laux.setFont(new Font(20));
+                laux.setTextFill(Paint.valueOf("white"));
+                laux.setFont(font);
+                //laux.setFont(new Font("Microsoft Sans Serif",15));
+                aux.add(laux);
+            }
+            arrayList.add(aux);
+        }
+        return arrayList;
+    }
+
+    protected  ArrayList<ArrayList<HBox>> initializeRelevanceArray() {
+        ArrayList<ArrayList<HBox>> arrayList = new ArrayList<>(4);
+        for (int i = 0; i < 4; ++i) {
+            ArrayList<HBox> aux = new ArrayList<>(numToShow);
+            for (int j = 0; j < numToShow; ++j) {
+                HBox haux = new HBox();
+                //laux.setFont(new Font("Microsoft Sans Serif",15));
+                aux.add(haux);
+            }
+            arrayList.add(aux);
+        }
+        return arrayList;
+    }
 
     public abstract void setContent(int index, String node, int type, int listSize);
 
@@ -349,32 +352,9 @@ public abstract class FilteredSearchView extends BaseView {
 
         }
         contentVBox.getChildren().add(vaux);
-        HBox hbox = new HBox();
-        hbox.getChildren().add(prev);
-        hbox.getChildren().add(next);
-        contentVBox.getChildren().add(hbox);
+        contentVBox.getChildren().add(buttonsPane);
     }
 
-    private void initializeTitleLabels() {
-        nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        nameLabel.setMinSize(400, 20);
-        nameLabel.setMaxSize(400, 24);
-        nameLabel.setFont(new Font("Arial bold", 18));
 
-        idLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        idLabel.setMinSize(100, 20);
-        idLabel.setMaxSize(100, 24);
-        idLabel.setFont(new Font("Arial bold", 18));
-
-        relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        relevanceLabel.setMinSize(100, 20);
-        relevanceLabel.setMaxSize(100, 24);
-        relevanceLabel.setFont(new Font("Arial bold", 18));
-
-        labelLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        labelLabel.setMinSize(75, 20);
-        labelLabel.setMaxSize(75, 24);
-        labelLabel.setFont(new Font("Arial bold", 18));
-    }
 
 }

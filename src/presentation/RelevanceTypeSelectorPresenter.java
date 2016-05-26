@@ -13,7 +13,6 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
     private int index;
 
     public RelevanceTypeSelectorPresenter(ArrayList<String> result) {
-
         this.result = result;
         actualView = new RelevanceTypeSelectorView(this);
         index = 0;
@@ -47,7 +46,6 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
         if (index + Config.LISTS_SIZE <= result.size()) {
             index += Config.LISTS_SIZE;
             show();
-
         }
 
     }
@@ -57,13 +55,11 @@ public class RelevanceTypeSelectorPresenter extends BasePresenter  {
             index = index - Config.LISTS_SIZE;
             show();
         }
-
-
     }
 
     private void show() {
         int max = index+Config.LISTS_SIZE;
-        if (max> result.size()) max = result.size();
+        if (max > result.size()) max = result.size();
         for (int i = 0; i < max-index; ++i) {
             ((RelevanceTypeSelectorView) actualView).setContent(index+i, result.get(index+i));
         }
