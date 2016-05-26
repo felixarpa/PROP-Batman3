@@ -133,7 +133,7 @@ public abstract class ListResult extends BaseView {
     protected void initializeArrayLabel() {
         Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 18);
 
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             numbers.add(new Label());
             numbers.get(i).setMinSize(50, 20);
             numbers.get(i).setMaxSize(50, 24);

@@ -46,11 +46,11 @@ public class User implements Comparable<User> {
 		username = fields[0];
 		password = fields[1];
 		isAdmin = (fields[2].equals("true"));
-		favorites = new TreeSet<>();
+		favorites = new TreeSet<>(new IdComparator());
 		if (fields.length > 3) {
 			for (int i = 3; i < fields.length; ++i) {
-				System.out.println(fields[i]);
 				Term t = Graph.getInstance().getNode(Term.makeId(Integer.parseInt(fields[i]))).asTerm();
+				favorites.add(t);
 			}
 		}
 	}
