@@ -58,7 +58,7 @@ public class RelationshipRelevanceResultView extends BaseView {
         topBar = new HBox();
         topBar.setMaxSize(900,110);
         topBar.setMinSize(900,110);
-        topBar.setPadding(new Insets(4,0,4,100));
+        topBar.setPadding(new Insets(4,0,4,110));
         topBar.setAlignment(Pos.CENTER_LEFT);
         String actualNodeBG =  this.getClass().getResource("../images/blueTopBar.png").toExternalForm();
         topBar.setStyle(
@@ -68,9 +68,15 @@ public class RelationshipRelevanceResultView extends BaseView {
                         "-fx-background-size: 900 110;"
         );
         contents = new ArrayList<>(Config.LISTS_SIZE);
-        for (int i = 0; i < Config.LISTS_SIZE; ++i) contents.add(new HBox());
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
+            HBox haux = new HBox();
+            haux.setPadding(new Insets(0,0,0,60));
+            haux.setMinWidth(100);
+            haux.setMaxWidth(100);
+            contents.add(haux);
+        }
         relevanceBar = new ArrayList<>(Config.LISTS_SIZE);
-        for (int i = 0; i < Config.LISTS_SIZE; ++i) contents.add(new HBox());
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) relevanceBar.add(new ProgressBar());
         buttonBar = new HBox();
         prevButton = new ImageButton("../images/", "prevButton", 60, 30);
         nextButton = new ImageButton("../images/", "nextButton", 60, 30);
@@ -79,12 +85,18 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     private void initializeViews(){
         firstType = new Label(((RelationshipRelevanceResultPresenter)presenter).getType(1));
+        firstType.setMinWidth(345);
+        firstType.setMaxWidth(345);
         firstType.setFont(titleFont);
         firstType.setTextFill(Paint.valueOf("white"));
         secondType = new Label(((RelationshipRelevanceResultPresenter)presenter).getType(2));
+        secondType.setMinWidth(345);
+        secondType.setMaxWidth(345);
         secondType.setFont(titleFont);
         secondType.setTextFill(Paint.valueOf("white"));
         relevanceWord = new Label("RELEVANCE");
+        relevanceWord.setMinWidth(100);
+        relevanceWord.setMaxWidth(100);
         relevanceWord.setFont(titleFont);
         relevanceWord.setTextFill(Paint.valueOf("white"));
         index = new ArrayList<>(Config.LISTS_SIZE);
@@ -92,6 +104,8 @@ public class RelationshipRelevanceResultView extends BaseView {
             Label laux = new Label();
             laux.setFont(titleFont);
             laux.setTextFill(Paint.valueOf("white"));
+            laux.setMaxWidth(50);
+            laux.setMinWidth(50);
             index.add(laux);
         }
         nodes = new ArrayList<>(2);
@@ -101,6 +115,8 @@ public class RelationshipRelevanceResultView extends BaseView {
                 Label laux = new Label();
                 laux.setFont(titleFont);
                 laux.setTextFill(Paint.valueOf("white"));
+                laux.setMaxWidth(345);
+                laux.setMinWidth(345);
                 arrayaux.add(laux);
             }
             nodes.add(arrayaux);
@@ -110,6 +126,7 @@ public class RelationshipRelevanceResultView extends BaseView {
     private void buildPanes(){
         topBar.getChildren().addAll(
                 firstType,
+                relevanceWord,
                 secondType
         );
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
@@ -124,6 +141,10 @@ public class RelationshipRelevanceResultView extends BaseView {
                 prevButton,
                 nextButton
         );
+        HBox haux = new HBox();
+        haux.setMaxHeight(50);
+        haux.setMinHeight(50);
+        contentVBox.getChildren().add(haux);
         contentVBox.getChildren().addAll(contents);
         contentVBox.getChildren().add(buttonBar);
 
@@ -166,36 +187,17 @@ public class RelationshipRelevanceResultView extends BaseView {
         String[] elements2 = nodeDst.split("\t");
         if (nodeSrc != null) {
             this.index.get(index%Config.LISTS_SIZE).setText(Integer.toString(index+1));
-            this.index.get(index%Config.LISTS_SIZE).setMinWidth(50);
-            this.index.get(index%Config.LISTS_SIZE).setMaxWidth(50);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
             nodes.get(0).get(index%Config.LISTS_SIZE).setText(elements1[0]);
-            nodes.get(0).get(index%Config.LISTS_SIZE).setMinWidth(50);
-            nodes.get(0).get(index%Config.LISTS_SIZE).setMaxWidth(50);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
             relevanceBar.get(index%Config.LISTS_SIZE).setDisable(false);
             relevanceBar.get(index%Config.LISTS_SIZE).setProgress(relevance);
-            //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
             nodes.get(1).get(index%Config.LISTS_SIZE).setText(elements2[0]);
-            nodes.get(1).get(index%Config.LISTS_SIZE).setMinWidth(50);
-            nodes.get(1).get(index%Config.LISTS_SIZE).setMaxWidth(50);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
         }
         else {
-            this.index.get(index%Config.LISTS_SIZE).setText("");
-            this.index.get(index%Config.LISTS_SIZE).setMinWidth(50);
-            this.index.get(index%Config.LISTS_SIZE).setMaxWidth(50);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
-            nodes.get(0).get(index%Config.LISTS_SIZE).setText("");
-            nodes.get(0).get(index%Config.LISTS_SIZE).setMinWidth(50);
-            nodes.get(0).get(index%Config.LISTS_SIZE).setMaxWidth(50);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
-            relevanceBar.get(index%Config.LISTS_SIZE).setDisable(true);
-            //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
-            nodes.get(1).get(index%Config.LISTS_SIZE).setText("");
-            nodes.get(1).get(index%Config.LISTS_SIZE).setMinWidth(50);
-            nodes.get(1).get(index%Config.LISTS_SIZE).setMaxWidth(50);
-            //number.get(type).get(index%listSize).setPadding(new Insets(0,0,0,0));
+            this.index.get(index % Config.LISTS_SIZE).setText("");
+            nodes.get(0).get(index % Config.LISTS_SIZE).setText("");
+            relevanceBar.get(index % Config.LISTS_SIZE).setDisable(true);
+            nodes.get(1).get(index % Config.LISTS_SIZE).setText("");
         }
+
     }
 }
