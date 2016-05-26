@@ -1,5 +1,6 @@
 package presentation;
 
+import javafx.application.Platform;
 import view.MainView;
 import view.MyApp;
 

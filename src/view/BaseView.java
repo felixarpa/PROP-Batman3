@@ -1,6 +1,7 @@
 package view;
 
 import domain.DomainController;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -41,67 +42,65 @@ public class BaseView {
     private HBox categoryButtons;
     private VBox titleAndButtons;
 
-    private ImageButton authorsButton;
-    private ImageButton conferencesButton;
-    private ImageButton papersButton;
-    private ImageButton termsButton;
-
-    private ImageButton lastPressed;
+    protected ImageButton authorsButton;
+    protected ImageButton conferencesButton;
+    protected ImageButton papersButton;
+    protected ImageButton termsButton;
 
     protected BasePresenter presenter;
 
-    BaseView() {
+    public BaseView() {
         initializePanes();
         initializeViews();
-        buildPanes();
         setListeners();
+        buildPanes();
     }
 
     private void setListeners() {
 
-        authorsButton.setOnMousePressed(
+        /*authorsButton.setOnMousePressed(
                 event -> {
                     authorsButton.press();
                     lastPressed.release();
                     lastPressed = authorsButton;
                 }
-        );
+        );*/
 
         authorsButton.setOnMouseReleased(
                 event -> presenter.clickAuthors()
         );
 
-        conferencesButton.setOnMousePressed(
+        /*conferencesButton.setOnMousePressed(
                 event -> {
                     conferencesButton.press();
                     lastPressed.release();
                     lastPressed = conferencesButton;
                 }
-        );
+        );*/
 
         conferencesButton.setOnMouseReleased(
                 event -> presenter.clickConferences()
         );
 
-        papersButton.setOnMousePressed(
+        /*papersButton.setOnMousePressed(
                 event -> {
                     papersButton.press();
                     lastPressed.release();
                     lastPressed = papersButton;
                 }
-        );
+        );*/
 
         papersButton.setOnMouseReleased(
                 event -> presenter.clickPapers()
         );
 
-        termsButton.setOnMousePressed(
+        /*termsButton.setOnMousePressed(
                 event -> {
                     termsButton.press();
                     lastPressed.release();
                     lastPressed = termsButton;
                 }
-        );
+        );*/
 
         termsButton.setOnMouseReleased(
                 event -> presenter.clickTerms()
@@ -204,16 +203,13 @@ public class BaseView {
         appTitleImage.setImage(image2);
         appTitleImage.setFitWidth(409);
         appTitleImage.setFitHeight(106);
-
-        authorsButton = new  ImageButton("../images", "authorsButton", 220, 75);
+        authorsButton = new ImageButton("../images", "authorsButton", 220, 75);
 
         conferencesButton = new ImageButton("../images", "conferencesButton", 225, 75);
 
         papersButton = new ImageButton("../images", "papersButton", 225, 75);
 
         termsButton = new ImageButton("../images", "termsButton", 225, 75);
-
-        lastPressed = new ImageButton("../images", "authorsButton", 225, 75);
     }
 
     private void buildPanes(){
