@@ -1,11 +1,13 @@
 package presentation;
 
+import util.ProjectConstants;
 import view.CategoryResultView;
 import view.Config;
 import view.MyApp;
 import view.RelationshipRelevanceResultView;
 
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class RelationshipRelevanceResultPresenter extends BasePresenter  {
     private ArrayList<String> nodeSrc;
@@ -13,6 +15,8 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
     private ArrayList<Double> relevance;
     private int index;
     private int lastSelected;
+    private int type1;
+    private int type2;
 
     //TODO: Transfomrar el array que retorna la tercera búsqueda
     public RelationshipRelevanceResultPresenter(int type1, int type2) {
@@ -53,7 +57,7 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
         ArrayList<String> nextResult = domainController.searchSimilarRelationRelevance(nodeSrc.get(lastSelected), nodeDst.get(lastSelected), op);
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new SimilarRelationRelevancePresenter(nextResult));
+        //MyApp.changePresenter(new SimilarRelationRelevancePresenter(nextResult));
     }
 
     public void reorder(int typeOfOrder, boolean ascending) {
@@ -86,6 +90,27 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
         max += index;
         for (;max < index+Config.LISTS_SIZE; ++max) {
             ((RelationshipRelevanceResultView) actualView).setContent(max, null, null, 0);
+        }
+    }
+
+    public String getType(int i) {
+        if (i == 1) return transformType(type1);
+        else return transformType(type2);
+    }
+
+    private String transformType(int i) {
+        switch(i) {
+            case ProjectConstants.AUTHOR_TYPE:
+                return "AUTHOR";
+            break;
+            case ProjectConstants.CONFERENCE_TYPE:
+                return "CONFERENCE";
+            break;
+            case ProjectConstants.PAPER_TYPE:
+                return "PAPER";
+            break;
+            case ProjectConstants.TERM_TYPE:
+                return "TERM";
         }
     }
 }
