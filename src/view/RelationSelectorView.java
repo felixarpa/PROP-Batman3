@@ -1,7 +1,9 @@
 package view;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -87,7 +89,19 @@ public class RelationSelectorView extends BaseView {
     }
 
     private void setListeners(){
+        searchButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
+            }
+        });
+
+        searchButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ((RelationSelectorPresenter)presenter).onClickSearch();
+            }
+        });
     }
 
     private int getType(String type) {
