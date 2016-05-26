@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import presentation.RelationshipRelevanceResultPresenter;
 
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class RelationshipRelevanceResultView extends BaseView {
         topBar = new HBox();
         topBar.setMaxSize(900,110);
         topBar.setMinSize(900,110);
-        topBar.setPadding(new Insets(4,0,4,110));
+        topBar.setPadding(new Insets(4,0,4,100));
         topBar.setAlignment(Pos.CENTER_LEFT);
         topBar.setSpacing(10);
         String actualNodeBG =  this.getClass().getResource("../images/blueTopBar.png").toExternalForm();
@@ -71,7 +72,7 @@ public class RelationshipRelevanceResultView extends BaseView {
         contents = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             HBox haux = new HBox();
-            haux.setPadding(new Insets(0,0,0,60));
+            haux.setPadding(new Insets(0,50,0,50));
             haux.setSpacing(10);
             contents.add(haux);
         }
@@ -120,8 +121,11 @@ public class RelationshipRelevanceResultView extends BaseView {
                 Label laux = new Label();
                 laux.setFont(titleFont);
                 laux.setTextFill(Paint.valueOf("white"));
-                laux.setMaxWidth(250);
-                laux.setMinWidth(250);
+                if (i == 0) {
+                    laux.setMaxWidth(250);
+                    laux.setMinWidth(250);
+                    laux.setTextAlignment(TextAlignment.RIGHT);
+                }
                 arrayaux.add(laux);
             }
             nodes.add(arrayaux);
