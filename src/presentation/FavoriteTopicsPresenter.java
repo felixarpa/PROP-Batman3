@@ -2,6 +2,7 @@ package presentation;
 
 import domain.UserController;
 import view.FavoriteTopicsView;
+import view.MyApp;
 
 import java.util.ArrayList;
 
@@ -12,6 +13,7 @@ public class FavoriteTopicsPresenter extends BasePresenter  {
     public FavoriteTopicsPresenter() {
         favourites = UserController.getFavouriteTerms();
         actualView = new FavoriteTopicsView(this);
+        MyApp.startScene(actualView.getContent());
 
     }
     void onClickRemoveTopicButton(int index) {

@@ -21,7 +21,7 @@ public class FavoriteTopicsView extends ListResult {
         setListeners();
         topBarPane.setCenter(contentVBox);
     }
-    
+
     protected void initializeViews(){
         super.initializeViews();
         deleteButtons = new ArrayList<>(Config.LISTS_SIZE);
