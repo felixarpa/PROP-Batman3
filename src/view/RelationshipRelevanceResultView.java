@@ -183,9 +183,11 @@ public class RelationshipRelevanceResultView extends BaseView {
     }
 
     public void setContent(int index, String nodeSrc, String nodeDst, double relevance) {
-        String[] elements1 = nodeSrc.split("\t");
-        String[] elements2 = nodeDst.split("\t");
-        if (nodeSrc != null) {
+
+
+        if (nodeSrc != null ) {
+            String[] elements1 = nodeSrc.split("\t");
+            String[] elements2 = nodeDst.split("\t");
             this.index.get(index%Config.LISTS_SIZE).setText(Integer.toString(index+1));
             nodes.get(0).get(index%Config.LISTS_SIZE).setText(elements1[0]);
             relevanceBar.get(index%Config.LISTS_SIZE).setDisable(false);
@@ -193,6 +195,7 @@ public class RelationshipRelevanceResultView extends BaseView {
             nodes.get(1).get(index%Config.LISTS_SIZE).setText(elements2[0]);
         }
         else {
+
             this.index.get(index % Config.LISTS_SIZE).setText("");
             nodes.get(0).get(index % Config.LISTS_SIZE).setText("");
             relevanceBar.get(index % Config.LISTS_SIZE).setDisable(true);
