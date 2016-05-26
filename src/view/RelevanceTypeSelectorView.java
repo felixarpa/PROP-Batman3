@@ -1,17 +1,11 @@
 package view;
 
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 import presentation.RelevanceTypeSelectorPresenter;
 
 import java.util.ArrayList;
 
-public class RelevanceTypeSelectorView extends ListResult {
+public class RelevanceTypeSelectorView extends ListView {
 
     private ArrayList<ImageButton> entityButtons;
     private ArrayList<ImageButton> relationshipButtons;

@@ -14,7 +14,7 @@ import presentation.RelevanceTypeSelectorPresenter;
 
 import java.util.ArrayList;
 
-public abstract class ListResult extends BaseView {
+public abstract class ListView extends BaseView {
 
     protected VBox contentVBox;
 
@@ -35,17 +35,9 @@ public abstract class ListResult extends BaseView {
     protected ImageButton nextPageButton;
     protected ImageButton prevPageButton;
 
-    public ListResult(Presenter viewPresenter) {
+    public ListView(Presenter viewPresenter) {
         presenter = (BasePresenter) viewPresenter;
     }
-
-//    protected void startView() {
-//        initializePanes();
-//        initializeViews();
-//        completePanes();
-//        setListeners();
-//        topBarPane.setCenter(contentVBox);
-//    }
 
     protected void initializePanes() {
         contentVBox = new VBox();
@@ -131,23 +123,23 @@ public abstract class ListResult extends BaseView {
     public abstract void setContent(int index, String node);
 
     protected void initializeArrayLabel() {
-        Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 18);
+        Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 20);
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             numbers.add(new Label());
-            numbers.get(i).setMinSize(50, 20);
+            numbers.get(i).setMinSize(50, 24);
             numbers.get(i).setMaxSize(50, 24);
             numbers.get(i).setFont(font);
             numbers.get(i).setTextFill(Paint.valueOf("white"));
 
             names.add(new Label());
-            names.get(i).setMinSize(380, 20);
+            names.get(i).setMinSize(380, 24);
             names.get(i).setMaxSize(380, 24);
             names.get(i).setFont(font);
             names.get(i).setTextFill(Paint.valueOf("white"));
 
             ids.add(new Label());
-            ids.get(i).setMinSize(75, 20);
+            ids.get(i).setMinSize(75, 24);
             ids.get(i).setMaxSize(75, 24);
             ids.get(i).setFont(font);
             ids.get(i).setTextFill(Paint.valueOf("white"));

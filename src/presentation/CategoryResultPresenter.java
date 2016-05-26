@@ -1,10 +1,7 @@
 package presentation;
 
-import domain.DomainController;
-import util.ProjectConstants;
 import view.*;
 
-import javax.swing.text.html.ListView;
 import java.util.ArrayList;
 
 public class CategoryResultPresenter extends ListPresenter  {
@@ -49,11 +46,11 @@ public class CategoryResultPresenter extends ListPresenter  {
         if (max > result.size()) max = result.size();
         max -= index;
         for (int i = 0; i < max; ++i) {
-            ((ListResult) actualView).setContent(index+i, result.get(index+i));
+            ((ListView) actualView).setContent(index+i, result.get(index+i));
         }
         max += index;
         for (;max < index+Config.LISTS_SIZE; ++max) {
-            ((ListResult) actualView).setContent(max, "\t \t \t \t");
+            ((ListView) actualView).setContent(max, "\t \t \t \t");
         }
     }
 

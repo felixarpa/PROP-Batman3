@@ -6,7 +6,7 @@ import presentation.FavoriteTopicsPresenter;
 
 import java.util.ArrayList;
 
-public class FavoriteTopicsView extends ListResult {
+public class FavoriteTopicsView extends ListView {
 
     private ArrayList<ImageButton> deleteButtons;
     private ArrayList<Label> relevance;
