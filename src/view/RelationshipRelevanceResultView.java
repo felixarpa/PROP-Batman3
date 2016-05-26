@@ -39,6 +39,7 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     public RelationshipRelevanceResultView(RelationshipRelevanceResultPresenter relationshipRelevanceResultPresenter) {
         presenter = relationshipRelevanceResultPresenter;
+        initializeFonts();
         initializePanes();
         initializeViews();
         buildPanes();
