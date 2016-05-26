@@ -99,7 +99,7 @@ public class RelationSelectorView extends BaseView {
         );
 
         errorMessageText = new Text();
-        errorMessageText.setFill(Paint.valueOf("red"));
+        errorMessageText.setFill(Paint.valueOf("#A51212"));
         errorMessageText.setFont(font);
         switchButton = new ImageButton("../images","xButton",10,10);
         searchButton = new ImageButton("../images","searchButton",143,51);
@@ -112,6 +112,7 @@ public class RelationSelectorView extends BaseView {
 
         progressIndicator = new ProgressIndicator();
         progressIndicator.setProgress(-1);
+        progressIndicator.setMinSize(50,50);
 
     }
     private void buildPanes() {
@@ -190,15 +191,15 @@ public class RelationSelectorView extends BaseView {
     }
 
     public int getFirstType() {
-        String s = firstDropDownMenu.getValue().toString();
-        if(s == null) return -1;
-        return getType(s);
+        Object o = firstDropDownMenu.getValue();
+        if(o == null) return -1;
+        return getType(o.toString());
     }
 
     public int getSecondType() {
-        String s = secondDropDownMenu.getValue().toString();
-        if(s == null) return -1;
-        return getType(s);
+        Object o = secondDropDownMenu.getValue();
+        if(o == null) return -1;
+        return getType(o.toString());
 
     }
 

@@ -18,13 +18,19 @@ public class RelationSelectorPresenter extends BasePresenter {
         int type1 = ((RelationSelectorView)actualView).getFirstType();
         int type2 = ((RelationSelectorView)actualView).getSecondType();
         if (type1 != -1 && type2 != -1) {
-            if (type1 == type2 && type1 == ProjectConstants.PAPER_TYPE)
-                ((RelationSelectorView) actualView).showError("Cannot find relation between two papers.");
+            if (type1 == type2 && type1 == ProjectConstants.PAPER_TYPE) ((RelationSelectorView) actualView).showError("Cannot find relation between two papers.");
+            else if (type1 == type2 && type1 == ProjectConstants.CONFERENCE_TYPE) ((RelationSelectorView) actualView).showError("Cannot find relation between two conferences.");
             else {
-                actualView.destroy();
-                actualView = null;
-                MyApp.changePresenter(new RelationshipRelevanceResultPresenter(type1, type2));
+                ((RelationSelectorView)actualView).startProgress();
+                Thread thread = new Thread(() -> {
+                    actualView.destroy();
+                    actualView = null;
+                    ArrayList<String> result = domainController.thirdSearch(type1, type2);
+                    MyApp.changePresenter(new RelationshipRelevanceResultPresenter(result, type1, type2));
+                });
+                thread.start();
             }
         }
+        else ((RelationSelectorView) actualView).showError("Please especify the types.");
     }
 }

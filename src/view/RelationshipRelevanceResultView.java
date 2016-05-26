@@ -59,8 +59,8 @@ public class RelationshipRelevanceResultView extends BaseView {
         topBar = new HBox();
         topBar.setMaxSize(900,110);
         topBar.setMinSize(900,110);
-        topBar.setPadding(new Insets(4,0,4,100));
-        topBar.setAlignment(Pos.CENTER_LEFT);
+        //topBar.setPadding(new Insets(4,0,4,100));
+        topBar.setAlignment(Pos.CENTER);
         topBar.setSpacing(10);
         String actualNodeBG =  this.getClass().getResource("../images/blueTopBar.png").toExternalForm();
         topBar.setStyle(
@@ -95,11 +95,13 @@ public class RelationshipRelevanceResultView extends BaseView {
         firstType.setMaxWidth(250);
         firstType.setFont(titleFont);
         firstType.setTextFill(Paint.valueOf("white"));
+        firstType.setTextAlignment(TextAlignment.CENTER);
         secondType = new Label(((RelationshipRelevanceResultPresenter)presenter).getType(2));
         secondType.setMinWidth(295);
         secondType.setMaxWidth(295);
         secondType.setFont(titleFont);
         secondType.setTextFill(Paint.valueOf("white"));
+        secondType.setTextAlignment(TextAlignment.CENTER);
         relevanceWord = new Label("RELEVANCE");
         relevanceWord.setMinWidth(125);
         relevanceWord.setMaxWidth(125);

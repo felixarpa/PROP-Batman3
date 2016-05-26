@@ -18,8 +18,8 @@ public class RelationshipRelevanceResultPresenter extends BasePresenter  {
     private int type1;
     private int type2;
 
-    public RelationshipRelevanceResultPresenter(int type1, int type2) {
-        transform(domainController.thirdSearch(type1, type2));
+    public RelationshipRelevanceResultPresenter(ArrayList<String> result, int type1, int type2) {
+        transform(result);
         index = 0;
         this.type1 = type1;
         this.type2 = type2;
