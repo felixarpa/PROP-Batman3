@@ -16,6 +16,8 @@ public class AddNodePresenter extends MainAdminPresenter {
         String name = ((AddNodeView)actualView).getName();
         int label = ((AddNodeView)actualView).getLabel();
         int type = ((AddNodeView)actualView).getType();
+        if (name.length() == 0 || type == -1) ((AddNodeView)actualView).showMessage("You must fill all the fields.");
+
         try {
             adminController.addNewNode(name,label,type);
         } catch (ExistingNode existingNode) {
