@@ -15,6 +15,10 @@ public abstract class  BasePresenter extends Presenter {
     private static boolean sessionClosed = false;
     protected BaseView actualView;
 
+    BasePresenter() {
+        if (domainController == null) domainController = new DomainController();
+    }
+
     void startSession() {
         if (sessionClosed) domainController.recalculate();
         else sessionClosed = true;
