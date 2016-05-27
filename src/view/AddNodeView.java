@@ -1,9 +1,11 @@
 package view;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -29,11 +31,15 @@ public class AddNodeView extends MainAdminView {
     private HBox topPartHBox;
     private HBox buttonHBox;
     private HBox labelHBox;
+    private HBox nodeTextHBox;
+    private HBox messageHBox;
+
+    private Text message;
 
     private Font font;
 
     public AddNodeView(AddNodePresenter addNodePresenter) {
-        super(addNodePresenter);
+        presenter = addNodePresenter;
         initializeFonts();
         initializePanes();
         initializeViews();
@@ -49,17 +55,31 @@ public class AddNodeView extends MainAdminView {
     public void initializePanes(){
         contentVBox = new VBox();
         contentVBox.setAlignment(Pos.CENTER);
-        contentVBox.setPadding(new Insets(0,200,0,200));
+        //contentVBox.setPadding(new Insets(0,0,0,300));
+
+        nodeTextHBox = new HBox();
+        nodeTextHBox.setPadding(new Insets(0,0,10,0));
 
         leftVBox = new VBox();
+        leftVBox.setPadding(new Insets(0,50,0,0));
         rightVBox = new VBox();
+        rightVBox.setPadding(new Insets(0,0,0,50));
+        rightVBox.setAlignment(Pos.CENTER);
         topPartHBox = new HBox();
+        topPartHBox.setPadding(new Insets(0,0,50,0));
+        topPartHBox.setAlignment(Pos.CENTER);
         buttonHBox = new HBox();
+        buttonHBox.setAlignment(Pos.CENTER);
         labelHBox = new HBox();
+        labelHBox.setPadding(new Insets(10,0,0,0));
+
+        messageHBox = new HBox();
+        messageHBox.setAlignment(Pos.CENTER);
+        messageHBox.setPadding(new Insets(0,0,10,0));
     }
 
     public void initializeViews(){
-        nodeName = new EditText("Name ",Pos.CENTER);
+        nodeName = new EditText("Name",Pos.CENTER);
         nodeName.setFont(font);
         nodeName.setFill(Paint.valueOf("white"));
         nodeName.setMinSize(100,20);
@@ -86,34 +106,57 @@ public class AddNodeView extends MainAdminView {
         nodeSelectorText.setFont(font);
         nodeSelectorText.setFill(Paint.valueOf("white"));
         addNodeButton = new ImageButton("../images","addNodeButton",100,50);
+
+        message = new Text();
+        message.setFont(font);
+        message.setFill(Paint.valueOf("#A51212"));
+
     }
 
     public void buildPanes(){
         labelHBox.getChildren().add(labelLabel);
         labelHBox.getChildren().add(nodeLabel);
 
-        leftVBox.getChildren().add(nodeSelectorText);
+        nodeTextHBox.getChildren().add(nodeSelectorText);
+
+        leftVBox.getChildren().add(nodeTextHBox);
         leftVBox.getChildren().add(nodeSelector);
 
         rightVBox.getChildren().add(nodeName.getBase());
         rightVBox.getChildren().add(labelHBox);
 
         buttonHBox.getChildren().add(addNodeButton);
+        messageHBox.getChildren().add(message);
 
         topPartHBox.getChildren().add(leftVBox);
         topPartHBox.getChildren().add(rightVBox);
 
+        contentVBox.getChildren().add(message);
         contentVBox.getChildren().add(topPartHBox);
         contentVBox.getChildren().add(buttonHBox);
     }
 
     public void setListeners(){
-        ((AddNodePresenter)presenter).addNode(getName(),getType(), getLabel());
+        addNodeButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                addNodeButton.press();
+            }
+        });
+
+        addNodeButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                addNodeButton.release();
+                ((AddNodePresenter)presenter).addNode();
+            }
+        });
+
     }
 
     public int getLabel(){
         Object o = nodeLabel.getValue();
-        if(o == null)return -1;
+        if(o == null || o.toString().equals("No Label"))return -1;
         String s = o.toString();
         return Integer.parseInt(s);
     }
@@ -138,5 +181,8 @@ public class AddNodeView extends MainAdminView {
         return nodeName.getText();
     }
 
+    public void showMessage(String s) {
+        message.setText(s);
+    }
 
 }

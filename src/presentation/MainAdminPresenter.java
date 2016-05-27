@@ -3,12 +3,8 @@ package presentation;
 import view.MainAdminView;
 import view.MyApp;
 
-public class MainAdminPresenter extends BasePresenter {
+public abstract class MainAdminPresenter extends BasePresenter {
 
-    public MainAdminPresenter() {
-        actualView = new MainAdminView(this);
-        MyApp.startScene(actualView.getContent());
-    }
 
     public void clickAddNode() {
         actualView.destroy();

@@ -19,8 +19,8 @@ public class AddNodePresenter extends MainAdminPresenter {
         try {
             adminController.addNewNode(name,label,type);
         } catch (ExistingNode existingNode) {
-            throw new ProjectError("Lo has roto.");
+            throw new ProjectError("Lo has roto.\n" + existingNode.getMessage());
         }
-        ((AddNodeView)actualView).showMessage("Node added succsefully.");
+        ((AddNodeView)actualView).showMessage("Node added successfully.");
     }
 }

@@ -5,7 +5,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import presentation.MainAdminPresenter;
 
-public class MainAdminView extends BaseView {
+public abstract class MainAdminView extends BaseView {
 
         VBox contentVBox;
         private ImageButton addNodeButton;
@@ -14,13 +14,11 @@ public class MainAdminView extends BaseView {
         private ImageButton removeEdgeButton;
         private ImageButton lastPressed;
 
-        public MainAdminView(MainAdminPresenter mainAdminViewPresenter) {
-            presenter = mainAdminViewPresenter;
+        public MainAdminView() {
             initializePanes();
             initializeViews();
             buildPanes();
             setListeners();
-            topBarPane.setCenter(contentVBox);
         }
 
         private void initializePanes() {}
