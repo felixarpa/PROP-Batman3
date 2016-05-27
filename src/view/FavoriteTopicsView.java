@@ -39,18 +39,20 @@ public class FavoriteTopicsView extends ListView {
 
     @Override
     public void setContent(int index, String node) {
-        int i = index++ % Config.LISTS_SIZE;
+        super.setContent(index, node);
+        int i = index % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
-        names.get(i).setText(elements[0]);
-        ids.get(i).setText(elements[1]);
         relevance.get(i).setText(elements[2]);
-
-        if (elements[0].equals("")) numbers.get(i).setText("");
-        else numbers.get(i).setText(index + "");
     }
 
     @Override
     protected void completePanes() {
+        buildLine();
+        buildPanes();
+    }
+
+    @Override
+    protected void buildLine() {
         int i = 0;
         for (HBox line : results) {
             line.getChildren().addAll(

@@ -66,6 +66,7 @@ public class RelevanceTypeSelectorView extends ListView {
         buildPanes();
     }
 
+    @Override
     protected void buildLine() {
         int i = 0;
         for (HBox line : results) {
@@ -82,14 +83,12 @@ public class RelevanceTypeSelectorView extends ListView {
 
     @Override
     public void setContent(int index, String node) {
+        super.setContent(index, node);
+
         int i = index++ % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
-        names.get(i).setText(elements[0]);
-        ids.get(i).setText(elements[1]);
 
         if (elements[0].equals("")) {
-            numbers.get(i).setText("");
-
             entityButtons.get(i).setDisable(true);
             relationshipButtons.get(i).setDisable(true);
 
@@ -97,8 +96,6 @@ public class RelevanceTypeSelectorView extends ListView {
             relationshipButtons.get(i).setVisible(false);
         }
         else {
-            numbers.get(i).setText(index + "");
-
             entityButtons.get(i).setDisable(false);
             relationshipButtons.get(i).setDisable(false);
 

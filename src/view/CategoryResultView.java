@@ -25,8 +25,8 @@ public class CategoryResultView extends ListView {
     private int ascendingIds;
     private int ascendingRelevance;
 
-    private Pane spaceNamesIds;
-    private Pane spaceIdsRelevance;
+//    private Pane spaceNamesIds;
+//    private Pane spaceIdsRelevance;
 
 
     public CategoryResultView(CategoryResultPresenter presenter){
@@ -48,31 +48,33 @@ public class CategoryResultView extends ListView {
     protected void initializeViews() {
         super.initializeViews();
 
-        relevanceLabel = new Label("Relevance");
+        relevanceLabel = new Label("Relevance ▼");
         relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        relevanceLabel.setMinSize(130, 20);
-        relevanceLabel.setMaxSize(130, 24);
+//        relevanceLabel.setMinSize(130, 20);
+//        relevanceLabel.setMaxSize(130, 24);
+        relevanceLabel.setMinSize(200, 20);
+        relevanceLabel.setMaxSize(200, 24);
         relevanceLabel.setFont(new Font("Arial bold", 24));
 
-        nameLabel.setMinSize(72, 20);
-        nameLabel.setMaxSize(72, 24);
-
-        idLabel.setMinSize(30, 20);
-        idLabel.setMaxSize(30, 24);
+//        nameLabel.setMinSize(72, 20);
+//        nameLabel.setMaxSize(72, 24);
+//
+//        idLabel.setMinSize(30, 20);
+//        idLabel.setMaxSize(30, 24);
 
         relevance = new ArrayList<>(Config.LISTS_SIZE);
 
-        orderNamesImageButton = new ImageButton("../images/ascending.png", 20, 20);
-        orderIdsImageButton = new ImageButton("../images/ascending.png", 20, 20);
-        orderRelevanceImageButton = new ImageButton("../images/descending.png", 20, 20);
+//        orderNamesImageButton = new ImageButton("../images/ascending.png", 20, 20); // ▲ & ▼
+//        orderIdsImageButton = new ImageButton("../images/ascending.png", 20, 20);
+//        orderRelevanceImageButton = new ImageButton("../images/descending.png", 20, 20);
 
-        spaceNamesIds = new Pane();
-        spaceNamesIds.setMinSize(288, 20);
-        spaceNamesIds.setMaxSize(288, 20);
-
-        spaceIdsRelevance = new Pane();
-        spaceIdsRelevance.setMinSize(50, 20);
-        spaceIdsRelevance.setMinSize(50, 20);
+//        spaceNamesIds = new Pane();
+//        spaceNamesIds.setMinSize(288, 20);
+//        spaceNamesIds.setMaxSize(288, 20);
+//
+//        spaceIdsRelevance = new Pane();
+//        spaceIdsRelevance.setMinSize(50, 20);
+//        spaceIdsRelevance.setMinSize(50, 20);
 
 
         setCorrectOrder();
@@ -93,14 +95,11 @@ public class CategoryResultView extends ListView {
 
     @Override
     public void setContent(int index, String node) {
+        super.setContent(index, node);
+
         int i = index++ % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
-        names.get(i).setText(elements[0]);
-        ids.get(i).setText(elements[1]);
         relevance.get(i).setText(elements[2]);
-
-        if (elements[0].equals("")) numbers.get(i).setText("");
-        else numbers.get(i).setText(index + "");
     }
 
     @Override
@@ -108,19 +107,21 @@ public class CategoryResultView extends ListView {
         buildLine();
         buildPanes();
 
-        titlesHBox.getChildren().remove(0, titlesHBox.getChildren().size());
-        titlesHBox.getChildren().addAll(
-                nameLabel,
-                orderNamesImageButton,
-                spaceNamesIds,
-                idLabel,
-                orderIdsImageButton,
-                spaceIdsRelevance,
-                relevanceLabel,
-                orderRelevanceImageButton
-        );
+//        titlesHBox.getChildren().remove(0, titlesHBox.getChildren().size());
+//        titlesHBox.getChildren().addAll(
+//                nameLabel,
+//                orderNamesImageButton,
+//                spaceNamesIds,
+//                idLabel,
+//                orderIdsImageButton,
+//                spaceIdsRelevance,
+//                relevanceLabel,
+//                orderRelevanceImageButton
+//        );
+        titlesHBox.getChildren().add(relevanceLabel);
     }
 
+    @Override
     protected void buildLine() {
         int i = 0;
         for (HBox line : results) {
@@ -183,9 +184,28 @@ public class CategoryResultView extends ListView {
     }
 
     private void setCorrectOrder() {
-        setCorrectOrder(ascendingNames, orderNamesImageButton, spaceNamesIds);
-        setCorrectOrder(ascendingIds, orderIdsImageButton, spaceIdsRelevance);
-        setCorrectOrder(ascendingRelevance, orderRelevanceImageButton, null);
+//        setCorrectOrder(ascendingNames, orderNamesImageButton, spaceNamesIds);
+//        setCorrectOrder(ascendingIds, orderIdsImageButton, spaceIdsRelevance);
+//        setCorrectOrder(ascendingRelevance, orderRelevanceImageButton, null);
+        setCorrectOrder2(ascendingNames, nameLabel, "Name");
+        setCorrectOrder2(ascendingIds, idLabel, "ID");
+        setCorrectOrder2(ascendingRelevance, relevanceLabel, "Relevance");
+    }
+
+    private void setCorrectOrder2(int orderStatus, Label label, String name) {
+        switch (orderStatus) {
+            case -1:
+                label.setText(name);
+                break;
+
+            case 0:
+                label.setText(name + " ▼");
+                break;
+
+            case 1:
+                label.setText(name + " ▲");
+                break;
+        }
     }
 
     private void setCorrectOrder(int orderStatus, ImageButton imageButton, Pane space) {

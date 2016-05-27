@@ -120,7 +120,15 @@ public abstract class ListView extends BaseView {
         );
     }
 
-    public abstract void setContent(int index, String node);
+    public void setContent(int index, String node) {
+        int i = index++ % Config.LISTS_SIZE;
+        String[] elements = node.split("\t");
+        names.get(i).setText(elements[0]);
+        ids.get(i).setText(elements[1]);
+
+        if (elements[0].equals("")) numbers.get(i).setText("");
+        else numbers.get(i).setText(index + "");
+    }
 
     protected void initializeArrayLabel() {
         Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 20);
@@ -159,5 +167,7 @@ public abstract class ListView extends BaseView {
     }
 
     protected abstract void completePanes();
+
+    protected abstract void buildLine();
 
 }
