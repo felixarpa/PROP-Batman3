@@ -10,9 +10,10 @@ import java.util.ArrayList;
 public class AddTermSelectorPresenter extends ListPresenter{
 
     public AddTermSelectorPresenter (ArrayList result) {
-        super();
         actualView = new AddTermSelectorView(this);
         this.result = result;
+        show();
+        MyApp.startScene(actualView.getContent());
     }
 
     @Override
@@ -29,6 +30,7 @@ public class AddTermSelectorPresenter extends ListPresenter{
 
     public void addTerm(int index) {
         UserController.addNewFav(result.get(index));
+        System.out.println("He añadido (en teoria)");
         actualView.destroy();
         actualView = null;
         MyApp.changePresenter(new FavoriteTopicsPresenter());

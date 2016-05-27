@@ -132,7 +132,7 @@ public class User implements Comparable<User> {
 		favorites.remove(term);
 	}
 	
-	public boolean isFavorite(int term) {
+	public boolean isFavorite(Term term) {
 		return favorites.contains(term);
 	}
 	

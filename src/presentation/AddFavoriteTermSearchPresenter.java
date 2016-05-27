@@ -1,5 +1,6 @@
 package presentation;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import presentation.MainPresenter;
 import view.AddFavoriteTermSearchView;
 import view.MainView;
@@ -16,12 +17,16 @@ public class AddFavoriteTermSearchPresenter extends MainPresenter{
 
     @Override
     public void clickSearchButton() {
-        String nom = ((AddFavoriteTermSearchView)actualView).getSearchText();
-        ArrayList<String> result = domainController.searchingATerm(nom);
-        if (result != null) {
-            actualView.destroy();
-            actualView = null;
-            MyApp.changePresenter(new AddTermSelectorPresenter(result));
-        }
+        Thread thread = new Thread(() ->{
+            String nom = ((AddFavoriteTermSearchView)actualView).getSearchText();
+            ArrayList<String> result = domainController.searchingATerm(nom);
+            if (result != null) {
+                actualView.destroy();
+                actualView = null;
+                MyApp.changePresenter(new AddTermSelectorPresenter(result));
+            }
+            else System.out.println("Hola TONTO");
+        });
+        thread.start();
     }
 }

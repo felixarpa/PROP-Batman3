@@ -2,6 +2,8 @@ package view;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import presentation.AddTermSelectorPresenter;
 import view.ListView;
 
@@ -9,19 +11,26 @@ import java.util.ArrayList;
 
 public class AddTermSelectorView  extends ListView{
 
+    private Font font;
+
     private ArrayList<ImageButton> addButtons;
     private ArrayList<Label> relevance;
 
     public AddTermSelectorView(AddTermSelectorPresenter addTermSelectorPresenter) {
         presenter = addTermSelectorPresenter;
+        intializeFonts();
         initializePanes();
         initializeViews();
         completePanes();
-        buildPanes();
         setListeners();
         topBarPane.setCenter(contentVBox);
 
     }
+
+    private void intializeFonts() {
+        font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
+    }
+
 
     protected void initializeViews(){
         super.initializeViews();
@@ -30,9 +39,12 @@ public class AddTermSelectorView  extends ListView{
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             Label label = new Label();
+            label.setFont(font);
+            label.setTextFill(Paint.valueOf("white"));
             relevance.add(label);
-
             ImageButton imageButton = new ImageButton("../images", "xButton", 1, 1);
+            imageButton.setMaxSize(10,10);
+            imageButton.setMinSize(10,10);
             addButtons.add(imageButton);
 
         }
