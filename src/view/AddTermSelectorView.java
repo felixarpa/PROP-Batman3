@@ -28,7 +28,7 @@ public class AddTermSelectorView  extends ListView{
     }
 
     private void intializeFonts() {
-        font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
+        font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 20);
     }
 
 
@@ -41,10 +41,12 @@ public class AddTermSelectorView  extends ListView{
             Label label = new Label();
             label.setFont(font);
             label.setTextFill(Paint.valueOf("white"));
+            label.setMaxWidth(200);
+            label.setMinWidth(200);
             relevance.add(label);
             ImageButton imageButton = new ImageButton("../images", "xButton", 1, 1);
-            imageButton.setMaxSize(10,10);
-            imageButton.setMinSize(10,10);
+            imageButton.setMaxSize(20,20);
+            imageButton.setMinSize(20,20);
             addButtons.add(imageButton);
 
         }
