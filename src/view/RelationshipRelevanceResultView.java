@@ -84,6 +84,8 @@ public class RelationshipRelevanceResultView extends BaseView {
             relevanceBar.add(p);
         }
         buttonBar = new HBox();
+        buttonBar.setPadding(new Insets(0, 0, 0, 345));
+        buttonBar.setSpacing(10);
         prevButton = new ImageButton("../images/", "prevButton", 60, 30);
         nextButton = new ImageButton("../images/", "nextButton", 60, 30);
 
