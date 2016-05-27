@@ -124,7 +124,9 @@ public class User implements Comparable<User> {
 		isAdmin = admin;
 	}
 
-	public void addFavorite(Term term) {	favorites.add(term);}
+	public void addFavorite(Term term) {
+		favorites.add(term);
+	}
 
 	public void deleteFavorite(Term term) {
 		favorites.remove(term);

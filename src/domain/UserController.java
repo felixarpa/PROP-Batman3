@@ -29,11 +29,13 @@ public abstract class UserController {
     public static void addNewFav(String term) {
         Term t = DomainController.stringToNode(term).asTerm();
         DomainController.currentUser.addFavorite(t);
+        DomainController.recalculate();
     }
     
     public static void deleteFav(String term) {
         Term t = DomainController.stringToNode(term).asTerm();
         DomainController.currentUser.deleteFavorite(t);
+        DomainController.recalculate();
     }
 
     public static ArrayList<String> getFavouriteTerms() {

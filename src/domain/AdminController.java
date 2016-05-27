@@ -88,6 +88,7 @@ public class AdminController {
                 throw new ProjectError("Invalid parameter type: "+type);
         }
         Graph.getInstance().deleteNode(n);
+        DomainController.recalculate();
     }
 
     public void addNewEdge(int i1, String type1, int i2, String type2) throws ExistingEdge, NonExistentEdgeNodes {
@@ -125,6 +126,7 @@ public class AdminController {
                 throw new ProjectError("Invalid parameter type2: "+ type2);
         }
         Graph.getInstance().addEdge(id1, id2);
+        DomainController.recalculate();
     }
 
     public void deleteEdge (int i1, String type1, int i2, String type2) throws NonExistentEdgeNodes, NonExistentEdge {
@@ -164,5 +166,6 @@ public class AdminController {
         Node n1 = Graph.getInstance().getNode(id1);
         Node n2 = Graph.getInstance().getNode(id2);
         Graph.getInstance().deleteEdge(n1, n2);
+        DomainController.recalculate();
     }
 }

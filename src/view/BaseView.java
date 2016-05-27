@@ -1,6 +1,6 @@
 package view;
 
-import domain.DomainController;
+
 import domain.UserController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,7 +14,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import presentation.BasePresenter;
-import presentation.Presenter;
 
 public class BaseView {
 

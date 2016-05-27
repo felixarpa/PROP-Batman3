@@ -339,7 +339,7 @@ public class DomainController {
         return result;
     }
 
-	public void recalculate() {
+	public static void recalculate() {
 		Graph.getInstance().reset();
 		PageRank.execute();
 	}
