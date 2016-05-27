@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import presentation.MainPresenter;
 
+import java.util.Collection;
+
 public class MainView extends BaseView {
 
     private VBox contentVBox;
@@ -16,9 +18,11 @@ public class MainView extends BaseView {
     private ProgressIndicator progressIndicator;
     private ImageButton searchButton;
     private Predictor predictor;
+    protected Collection<String> resultToPredict;
 
-    public MainView(MainPresenter mainPresenter) {
+    public MainView(MainPresenter mainPresenter, Collection<String> resultToPredict) {
         presenter = mainPresenter;
+        this.resultToPredict = resultToPredict;
         initializePanes();
         initializeViews();
         buildPanes();
@@ -36,7 +40,7 @@ public class MainView extends BaseView {
     private void initializeViews() {
         searchButton = new ImageButton("../images/searchButton.png", 143, 51);
 
-        predictor = new Predictor(DomainController.allNames(), 10, new Insets(8, 0, 0, 0));
+        predictor = new Predictor(resultToPredict, 10, new Insets(8, 0, 0, 0));
         predictor.setMaxSize(600,200);
         predictor.setMinSize(600,200);
 
