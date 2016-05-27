@@ -65,19 +65,19 @@ public class AdminController {
         Graph.getInstance().addNode(nodeToInsert);
     }
 
-    public void deleteNode(int id, String type) throws NonExistentNode {
+    public void deleteNode(int id, int type) throws NonExistentNode {
         Node n;
         switch (type) {
-            case "author":
+            case ProjectConstants.AUTHOR_TYPE:
                 n = Graph.getInstance().getNode(Author.makeId(id));
                 break;
-            case "conference":
+            case ProjectConstants.CONFERENCE_TYPE:
                 n = Graph.getInstance().getNode(Conference.makeId(id));
                 break;
-            case "paper":
+            case ProjectConstants.PAPER_TYPE:
                 n = Graph.getInstance().getNode(Paper.makeId(id));
                 break;
-            case "term":
+            case ProjectConstants.TERM_TYPE:
                 n = Graph.getInstance().getNode(Term.makeId(id));
                 break;
             default:
@@ -87,35 +87,35 @@ public class AdminController {
         DomainController.recalculate();
     }
 
-    public void addNewEdge(int i1, String type1, int i2, String type2) throws ExistingEdge, NonExistentEdgeNodes {
+    public void addNewEdge(int i1, int type1, int i2, int type2) throws ExistingEdge, NonExistentEdgeNodes {
         Id id1, id2;
         switch (type1) {
-            case "author":
+            case ProjectConstants.AUTHOR_TYPE:
                 id1 = Author.makeId(i1);
                 break;
-            case "conference":
+            case ProjectConstants.CONFERENCE_TYPE:
                 id1 = Conference.makeId(i1);
                 break;
-            case "paper":
+            case ProjectConstants.PAPER_TYPE:
                 id1 = Paper.makeId(i1);
                 break;
-            case "term":
+            case ProjectConstants.TERM_TYPE:
                 id1 = Term.makeId(i1);
                 break;
             default:
                 throw new ProjectError("Invalid parameter type1: "+type1);
         }
         switch (type2) {
-            case "author":
+            case ProjectConstants.AUTHOR_TYPE:
                 id2 = Author.makeId(i2);
                 break;
-            case "conference":
+            case ProjectConstants.CONFERENCE_TYPE:
                 id2 = Conference.makeId(i2);
                 break;
-            case "paper":
+            case ProjectConstants.PAPER_TYPE:
                 id2 = Paper.makeId(i2);
                 break;
-            case "term":
+            case ProjectConstants.TERM_TYPE:
                 id2 = Term.makeId(i2);
                 break;
             default:
@@ -125,35 +125,35 @@ public class AdminController {
         DomainController.recalculate();
     }
 
-    public void deleteEdge (int i1, String type1, int i2, String type2) throws NonExistentEdgeNodes, NonExistentEdge {
+    public void deleteEdge (int i1, int type1, int i2, int type2) throws NonExistentEdgeNodes, NonExistentEdge {
         Id id1, id2;
         switch (type1) {
-            case "author":
+            case ProjectConstants.AUTHOR_TYPE:
                 id1 = Author.makeId(i1);
                 break;
-            case "conference":
+            case ProjectConstants.CONFERENCE_TYPE:
                 id1 = Conference.makeId(i1);
                 break;
-            case "paper":
+            case ProjectConstants.PAPER_TYPE:
                 id1 = Paper.makeId(i1);
                 break;
-            case "term":
+            case ProjectConstants.TERM_TYPE:
                 id1 = Term.makeId(i1);
                 break;
             default:
                 throw new ProjectError("Invalid parameter type1: "+type1);
         }
         switch (type2) {
-            case "author":
+            case ProjectConstants.AUTHOR_TYPE:
                 id2 = Author.makeId(i2);
                 break;
-            case "conference":
+            case ProjectConstants.CONFERENCE_TYPE:
                 id2 = Conference.makeId(i2);
                 break;
-            case "paper":
+            case ProjectConstants.PAPER_TYPE:
                 id2 = Paper.makeId(i2);
                 break;
-            case "term":
+            case ProjectConstants.TERM_TYPE:
                 id2 = Term.makeId(i2);
                 break;
             default:

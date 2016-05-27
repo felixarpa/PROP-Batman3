@@ -212,6 +212,7 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     public void askSimilarOp() {
         stackPane.getChildren().add(popUp);
+        stackPane.getChildren().get(0).setDisable(true);
 
     }
 
