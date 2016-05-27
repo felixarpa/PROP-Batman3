@@ -77,13 +77,24 @@ public class Predictor extends VBox {
     }
 
     private void slowStep() {
-        int count = 0;
+        TreeMap<Integer, LinkedList<String>> map = new TreeMap<>();
         resultBox.getChildren().remove(0,resultBox.getChildren().size());
         for (String word : data) {
-            if (word.contains(actualWord)) {
+            int index = word.indexOf(actualWord);
+            if (index >= 0) {
+                LinkedList<String> linkedList = map.get(index);
+                if (linkedList == null) {
+                    linkedList = new LinkedList<>();
+                    map.put(index, linkedList);
+                }
+                linkedList.add(word);
+            }
+        }
+        int count = 0;
+        for (LinkedList<String> list : map.values()) {
+            for (String string : list) {
                 if (count < resultsToShow) {
-                    Text predicted = new Text(word);
-                    resultBox.getChildren().add(predicted);
+                    resultBox.getChildren().add(new Text(string));
                     ++count;
                 }
                 else return;

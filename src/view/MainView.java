@@ -87,7 +87,7 @@ public class MainView extends BaseView {
             searchTextHBox.getChildren().set(1, searchButton);
         }
         else {
-            Platform.runLater(() -> searchTextHBox.getChildren().set(1, searchButton));
+            Platform.runLater(() -> searchTextHBox.getChildren().set(1, predictor));
         }
     }
     public String getSearchText() { return predictor.getText();}
