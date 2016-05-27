@@ -1,7 +1,9 @@
 package presentation;
 
+import domain.UserController;
 import view.AddTermSelectorView;
 import view.Config;
+import view.MyApp;
 
 import java.util.ArrayList;
 
@@ -25,5 +27,11 @@ public class AddTermSelectorPresenter extends ListPresenter{
         }
     }
 
+    public void addTerm(int index) {
+        UserController.addNewFav(result.get(index));
+        actualView.destroy();
+        actualView = null;
+        MyApp.changePresenter(new FavoriteTopicsPresenter());
+    }
 
 }

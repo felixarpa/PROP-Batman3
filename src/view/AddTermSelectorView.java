@@ -33,6 +33,7 @@ public class AddTermSelectorView  extends ListView{
             relevance.add(label);
 
             ImageButton imageButton = new ImageButton("../images", "xButton", 1, 1);
+            addButtons.add(imageButton);
 
         }
     }
@@ -46,7 +47,7 @@ public class AddTermSelectorView  extends ListView{
             addButtons.get(x).setOnMouseReleased(
                     event -> {
                         addButtons.get(x).release();
-                        ((AddTermSelectorPresenter) presenter).showMore();
+                        ((AddTermSelectorPresenter) presenter).addTerm(x);
                     }
             );
         }
