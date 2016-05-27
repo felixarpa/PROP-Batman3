@@ -6,6 +6,7 @@ import domain.graph.Node;
 import domain.graph.Term;
 import exceptions.ProjectError;
 
+import java.util.LinkedList;
 import java.util.TreeSet;
 
 public class User implements Comparable<User> {
@@ -14,7 +15,8 @@ public class User implements Comparable<User> {
 	private String username;
 	private String password;
 	private boolean isAdmin;	//true => es administrador
-	private TreeSet<Term> favorites;
+	private LinkedList<Integer> favorites;
+	private TreeSet<Term> favoriteTerms;
 	
 	/**
 	 * Función que crea un usuario vacío.
@@ -32,7 +34,8 @@ public class User implements Comparable<User> {
 		this.username = name;
 		this.password = password;
 		this.isAdmin = false;
-		favorites = new TreeSet<>(new IdComparator());
+		favorites = new LinkedList<>();
+		favoriteTerms = new TreeSet<>(new IdComparator());
 	}
 	
 	/**
@@ -46,11 +49,12 @@ public class User implements Comparable<User> {
 		username = fields[0];
 		password = fields[1];
 		isAdmin = (fields[2].equals("true"));
-		favorites = new TreeSet<>(new IdComparator());
+		favorites = new LinkedList<>();
+		favoriteTerms = new TreeSet<>(new IdComparator());
 		if (fields.length > 3) {
 			for (int i = 3; i < fields.length; ++i) {
-				Term t = Graph.getInstance().getNode(Term.makeId(Integer.parseInt(fields[i]))).asTerm();
-				favorites.add(t);
+				//Term t = Graph.getInstance().getNode(Term.makeId(Integer.parseInt(fields[i]))).asTerm();
+				favorites.add(Integer.parseInt(fields[i]));
 			}
 		}
 	}
@@ -125,19 +129,30 @@ public class User implements Comparable<User> {
 	}
 
 	public void addFavorite(Term term) {
-		favorites.add(term);
+		favoriteTerms.add(term);
 	}
 
 	public void deleteFavorite(Term term) {
-		favorites.remove(term);
+		favoriteTerms.remove(term);
 	}
 	
 	public boolean isFavorite(Term term) {
-		return favorites.contains(term);
+		return favoriteTerms.contains(term);
 	}
 	
 	public TreeSet<Term> getFavorites() {
-		return favorites;
+		updateTerms();
+		return favoriteTerms;
+	}
+
+	private void updateTerms() {
+		if (favorites != null) {
+			for (Integer term : favorites) {
+				favoriteTerms.add((Term)Graph.getInstance().getNode(Term.makeId(term)));
+			}
+			favorites.clear();
+			favorites = null;
+		}
 	}
 
 	@Override
@@ -152,9 +167,10 @@ public class User implements Comparable<User> {
 	
 	@Override
 	public String toString() {
+		updateTerms();
 		String result = (username + '\t' + password + '\t' + isAdmin );
-		for (Term term : favorites) {
-			result += ('\t' + term.getId().toString());
+		for (Term term : favoriteTerms) {
+			result += ("\t" + term.getId().getId());
 		}
 		return result;
 	}

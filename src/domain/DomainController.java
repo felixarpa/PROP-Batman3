@@ -27,11 +27,29 @@ public class DomainController {
 		PageRank.execute();
 	}
 
-	public static Set<String> allNames() {
-		TreeSet<String> result = new TreeSet<>();
+	public static Collection<String> allNames() {
+		LinkedList<String> result = new LinkedList<>();
 
+		Node ant = null;
 		for (Node node : Graph.getInstance().allNodes()) {
-			result.add(node.getName());
+			if (ant == null || !ant.getName().equals(node.getName())) {
+				result.add(node.getName());
+			}
+			ant = node;
+		}
+
+		return result;
+	}
+
+	public static Collection<String> allTermNames() {
+		LinkedList<String> result = new LinkedList<>();
+
+		Node ant = null;
+		for (Node node : Graph.getInstance().allNodes()) {
+			if (node.asTerm() != null && (ant == null || !ant.getName().equals(node.getName()))) {
+				result.add(node.getName());
+			}
+			ant = node;
 		}
 
 		return result;

@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.DomainController;
 import javafx.application.Platform;
 import view.MainView;
 import view.MyApp;
@@ -10,7 +11,7 @@ public class MainPresenter extends BasePresenter {
 
 
      public MainPresenter() {
-         actualView = new MainView(this);
+         actualView = new MainView(this, DomainController.allNames());
          MyApp.startScene(actualView.getContent());
      }
 

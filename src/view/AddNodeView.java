@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,21 +19,26 @@ import static java.lang.Integer.parseInt;
 
 public class AddNodeView extends MainAdminView {
 
-    private EditText nodeName;
+    private TextField nodeName;
     private ComboBox nodeLabel;
     private ComboBox nodeSelector;
-    private Label labelLabel;
+    private Text labelText;
     private Text nodeSelectorText;
+    private Text nodeNameText;
     private ImageButton addNodeButton;
 
     private VBox contentVBox;
     private VBox leftVBox;
     private VBox rightVBox;
+    private VBox generalVBox;
     private HBox topPartHBox;
     private HBox buttonHBox;
     private HBox labelHBox;
     private HBox nodeTextHBox;
     private HBox messageHBox;
+    private HBox bottomHBox;
+    private HBox labelTextHBox;
+    private HBox nameTextHBox;
 
     private Text message;
 
@@ -53,15 +59,28 @@ public class AddNodeView extends MainAdminView {
     }
 
     public void initializePanes(){
+        nameTextHBox = new HBox();
+        nameTextHBox.setAlignment(Pos.CENTER);
+        nameTextHBox.setPadding(new Insets(0,0,20,0));
+        generalVBox = new VBox();
+        generalVBox.setAlignment(Pos.CENTER);
         contentVBox = new VBox();
+        bottomHBox = new HBox();
+        bottomHBox.setAlignment(Pos.CENTER);
+        bottomHBox.setPadding(new Insets(25,0,0,0));
         contentVBox.setAlignment(Pos.CENTER);
         //contentVBox.setPadding(new Insets(0,0,0,300));
+        labelTextHBox = new HBox();
+        labelTextHBox.setAlignment(Pos.CENTER);
+        labelTextHBox.setPadding(new Insets(0,0,10,0));
 
         nodeTextHBox = new HBox();
+        nodeTextHBox.setAlignment(Pos.CENTER);
         nodeTextHBox.setPadding(new Insets(0,0,10,0));
 
         leftVBox = new VBox();
-        leftVBox.setPadding(new Insets(0,50,0,0));
+       // leftVBox.setPadding(new Insets(0,50,0,0));
+        leftVBox.setAlignment(Pos.CENTER);
         rightVBox = new VBox();
         rightVBox.setPadding(new Insets(0,0,0,50));
         rightVBox.setAlignment(Pos.CENTER);
@@ -70,20 +89,23 @@ public class AddNodeView extends MainAdminView {
         topPartHBox.setAlignment(Pos.CENTER);
         buttonHBox = new HBox();
         buttonHBox.setAlignment(Pos.CENTER);
+        buttonHBox.setPadding(new Insets(25,0,0,0));
         labelHBox = new HBox();
         labelHBox.setPadding(new Insets(10,0,0,0));
+        labelHBox.setAlignment(Pos.CENTER);
 
         messageHBox = new HBox();
         messageHBox.setAlignment(Pos.CENTER);
-        messageHBox.setPadding(new Insets(0,0,10,0));
+        messageHBox.setPadding(new Insets(0,0,20,0));
     }
 
     public void initializeViews(){
-        nodeName = new EditText("Name",Pos.CENTER);
-        nodeName.setFont(font);
-        nodeName.setFill(Paint.valueOf("white"));
-        nodeName.setMinSize(100,20);
-        nodeName.setMaxSize(100,20);
+        nodeNameText = new Text("Name");
+        nodeNameText.setFont(font);
+        nodeNameText.setFill(Paint.valueOf("white"));
+        nodeName = new TextField();
+        nodeName.setMinSize(400,20);
+        nodeName.setMaxSize(400,20);
         nodeLabel = new ComboBox();
         nodeLabel.getItems().addAll(
                 "No Label",
@@ -99,9 +121,9 @@ public class AddNodeView extends MainAdminView {
                 "Paper",
                 "Term"
         );
-        labelLabel = new Label("Label ");
-        labelLabel.setFont(font);
-        labelLabel.setTextFill(Paint.valueOf("white"));
+        labelText = new Text("Label");
+        labelText.setFont(font);
+        labelText.setFill(Paint.valueOf("white"));
         nodeSelectorText = new Text("Node Type");
         nodeSelectorText.setFont(font);
         nodeSelectorText.setFill(Paint.valueOf("white"));
@@ -114,26 +136,28 @@ public class AddNodeView extends MainAdminView {
     }
 
     public void buildPanes(){
-        labelHBox.getChildren().add(labelLabel);
-        labelHBox.getChildren().add(nodeLabel);
+        messageHBox.getChildren().add(message);
+        generalVBox.getChildren().add(messageHBox);
+
+        nameTextHBox.getChildren().add(nodeNameText);
+       // generalVBox.getChildren().add(nodeNameText);
+        generalVBox.getChildren().add(nameTextHBox);
+        generalVBox.getChildren().add(nodeName);
 
         nodeTextHBox.getChildren().add(nodeSelectorText);
-
+        labelTextHBox.getChildren().add(labelText);
         leftVBox.getChildren().add(nodeTextHBox);
         leftVBox.getChildren().add(nodeSelector);
+        rightVBox.getChildren().add(labelTextHBox);
+        rightVBox.getChildren().add(nodeLabel);
+        bottomHBox.getChildren().add(leftVBox);
+        bottomHBox.getChildren().add(rightVBox);
 
-        rightVBox.getChildren().add(nodeName.getBase());
-        rightVBox.getChildren().add(labelHBox);
+        generalVBox.getChildren().add(bottomHBox);
 
         buttonHBox.getChildren().add(addNodeButton);
-        messageHBox.getChildren().add(message);
-
-        topPartHBox.getChildren().add(leftVBox);
-        topPartHBox.getChildren().add(rightVBox);
-
-        contentVBox.getChildren().add(message);
-        contentVBox.getChildren().add(topPartHBox);
-        contentVBox.getChildren().add(buttonHBox);
+        generalVBox.getChildren().add(buttonHBox);
+        contentVBox.getChildren().add(generalVBox);
     }
 
     public void setListeners(){

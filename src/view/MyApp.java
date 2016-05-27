@@ -1,5 +1,6 @@
 package view;
 
+import domain.DomainController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -11,12 +12,10 @@ import presentation.Presenter;
 public class MyApp extends Application {
 
     private static Stage baseStage;
-    //public static Group root;
     private static Presenter currentPresenter;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //root = new Group();
         baseStage = primaryStage;
 
         baseStage.setTitle(Config.APPLICATION_NAME);
@@ -38,6 +37,11 @@ public class MyApp extends Application {
                 baseStage.show();
             });
         }
+    }
+
+    @Override
+    public void stop() {
+        currentPresenter.saveAndExit();
     }
 
     public static void changePresenter(Presenter nextPresenter) {

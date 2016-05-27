@@ -11,10 +11,13 @@ import view.MyApp;
 
 public abstract class  BasePresenter extends Presenter {
 
-    protected static DomainController domainController = new DomainController();
     protected static AdminController adminController = new AdminController();
     private static boolean sessionClosed = false;
     protected BaseView actualView;
+
+    BasePresenter() {
+        if (domainController == null) domainController = new DomainController();
+    }
 
     void startSession() {
         if (sessionClosed) domainController.recalculate();
@@ -84,6 +87,7 @@ public abstract class  BasePresenter extends Presenter {
 
     public void exit() {
         UserController.logOut();
+        domainController.close();
         actualView.destroy();
         actualView = null;
         MyApp.exit();
