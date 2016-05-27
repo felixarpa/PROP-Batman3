@@ -19,7 +19,6 @@ public class FavoriteTopicsPresenter extends ListPresenter  {
 
     public void onClickRemoveTopicButton(int index) {
         UserController.deleteFav(result.get(index + this.index));
-
     }
 
     public void onClickAddTopicButton() {
