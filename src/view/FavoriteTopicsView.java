@@ -75,7 +75,11 @@ public class FavoriteTopicsView extends ListView {
         separacionInferiorPane.setMaxSize(800, 1);
         separacionInferiorPane.setStyle("-fx-background-color: #ffffff");
 
-        contentVBox.getChildren().add(addFavorites);
+        HBox haux = new HBox();
+        haux.getChildren().add(addFavorites);
+        haux.setAlignment(Pos.CENTER);
+
+        contentVBox.getChildren().add(haux);
         contentVBox.getChildren().add(titlesHBox);
         contentVBox.getChildren().add(separacionSuperioPane);
         contentVBox.getChildren().addAll(results);
@@ -165,6 +169,11 @@ public class FavoriteTopicsView extends ListView {
     protected void setListeners() {
         super.setListeners();
 
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
+            int lol = i;
+            deleteButtons.get(i).setOnMousePressed(event -> deleteButtons.get(lol).press());
+        }
+
         addFavorites.setOnMousePressed(event -> addFavorites.press());
         addFavorites.setOnMouseReleased(event -> {
             addFavorites.release();
@@ -180,8 +189,18 @@ public class FavoriteTopicsView extends ListView {
         ids.get(i).setText(elements[1]);
         relevance.get(i).setText(elements[2]);
 
-        if (elements[0].equals("")) numbers.get(i).setText("");
-        else numbers.get(i).setText(index + "");
+        if (elements[0].length() == 0) {
+            numbers.get(i).setText("");
+            deleteButtons.get(i).setVisible(false);
+        }
+        else {
+            numbers.get(i).setText(index + "");
+            deleteButtons.get(i).setVisible(true);
+            deleteButtons.get(i).setOnMouseReleased(event -> {
+                deleteButtons.get(i).release();
+                ((FavoriteTopicsPresenter)presenter).onClickRemoveTopicButton(i);
+            });
+        }
     }
 
     @Override
