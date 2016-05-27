@@ -100,13 +100,13 @@ public class Graph {
 		return idMap.values();
 	}
 	
-	public Node isSingleTerm(String name) {
+	/*public Node isSingleTerm(String name) {
 		Set<Node> result = (graph.subSet(new Term(name, 0), true, new Term(name, 536870911), true));
 		if (result.size() == 1) {
 			for (Node n: result) return n;
 		}
 		return null;
-	}
+	}*/
 	
 	public Collection<Node> getNode(String name) {
 		LinkedList<Node> result = new LinkedList<>();

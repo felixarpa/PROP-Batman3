@@ -56,12 +56,8 @@ public class AdminController {
                 ++lastIdPaper;
                 break;
             case ProjectConstants.TERM_TYPE:
-            	Node existent = Graph.getInstance().isSingleTerm(name);
-            	if (existent == null) {
-                    nodeToInsert = new Term(name, lastIdTerm);
-                    ++lastIdTerm;	
-            	}
-            	else throw new ExistingNode(existent);
+                nodeToInsert = new Term(name, lastIdTerm);
+                ++lastIdTerm;
                 break;
             default:
                 throw new ProjectError("Invalid parameter type: "+type);

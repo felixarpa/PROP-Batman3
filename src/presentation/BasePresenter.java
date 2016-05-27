@@ -82,6 +82,7 @@ public abstract class  BasePresenter extends Presenter {
 
     public void exit() {
         UserController.logOut();
+        domainController.close();
         actualView.destroy();
         actualView = null;
         MyApp.exit();

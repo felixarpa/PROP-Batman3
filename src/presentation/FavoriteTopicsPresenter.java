@@ -13,6 +13,7 @@ public class FavoriteTopicsPresenter extends ListPresenter  {
     public FavoriteTopicsPresenter() {
         result = UserController.getFavouriteTerms();
         actualView = new FavoriteTopicsView(this);
+        show();
         MyApp.startScene(actualView.getContent());
 
     }
