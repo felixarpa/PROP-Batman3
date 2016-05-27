@@ -62,7 +62,7 @@ public class RemoveNodeView extends MainAdminView {
     private void setListeners() {
 
         predictor.setTextListener(
-                event -> ((MainPresenter) presenter).clickSearchButton()
+                event -> ((RemoveNodePresenter) presenter).clickRemoveNodeButton()
         );
 
         searchButton.setOnMousePressed(

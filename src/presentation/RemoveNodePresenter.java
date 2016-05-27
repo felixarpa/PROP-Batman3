@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class RemoveNodePresenter extends MainAdminPresenter {
 
+
+
     public RemoveNodePresenter() {
         actualView = new RemoveNodeView(this, DomainController.allNames());
         MyApp.startScene(actualView.getContent());
@@ -26,7 +28,7 @@ public class RemoveNodePresenter extends MainAdminPresenter {
             }
             actualView.destroy();
             actualView = null;
-            //MyApp.changePresenter();
+            MyApp.changePresenter(new RemoveNodeSelectorPresenter(result));
         });
         thread.start();
     }

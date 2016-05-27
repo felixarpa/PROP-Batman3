@@ -1,0 +1,31 @@
+JUANMI
+-Cambiar el boton de Favourite Topics.
+-Hacer Highlights de el sideBar.
+
+MARIO
+-Arreglar que no salga siempre el boto en añadir tema favorito
+-Aumentar letra del cuadro azul.
+-poner bien prev i next de filteredsearch.
+-Ajustar bien la barra azul de relationship selector
+-Arreglar las barras de relationshipresult.
+
+
+
+CARLOS
+-Hacer boton de +
+-Hacer boton d añadir favourite topic
+-Hacer boton del switch,
+-Hacer el boton de Accept
+-hacer highlight de admin.
+
+
+
+FELIX
+-CategoryView hacer que lso botones se queden iluminados.
+
+
+
+GENERAL
+-Discutir Labels
+-Discutir espaciado general de la pantalla
+-Asignar presentadores y vistas de add edge ,remove edge y similarrelationrelevance.
