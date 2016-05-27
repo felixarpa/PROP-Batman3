@@ -3,6 +3,7 @@ package view;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
 public class EditText extends Pane {
@@ -38,6 +39,10 @@ public class EditText extends Pane {
         hBox.getChildren().add(label);
         hBox.getChildren().add(textField);
         hBox.setAlignment(Pos.CENTER);
+    }
+
+    public void setFill(Paint paint){
+        label.setTextFill(paint);
     }
 
     public void setName(String name) {
