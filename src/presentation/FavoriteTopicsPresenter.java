@@ -17,12 +17,12 @@ public class FavoriteTopicsPresenter extends ListPresenter  {
 
     }
 
-    void onClickRemoveTopicButton(int index) {
+    public void onClickRemoveTopicButton(int index) {
         UserController.deleteFav(result.get(index + this.index));
 
     }
 
-    void onClickAddTopicButton() {
+    public void onClickAddTopicButton() {
         actualView.destroy();
         actualView = null;
         MyApp.changePresenter(new AddFavoriteTermSearchPresenter());
