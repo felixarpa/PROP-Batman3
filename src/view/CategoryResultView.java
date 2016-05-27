@@ -29,8 +29,7 @@ public class CategoryResultView extends ListView {
 //    private Pane spaceIdsRelevance;
 
 
-    public CategoryResultView(CategoryResultPresenter presenter){
-        super(presenter);
+    public CategoryResultView(CategoryResultPresenter presenter) {
         this.presenter = presenter;
 
         ascendingNames = -1;

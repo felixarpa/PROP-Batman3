@@ -12,7 +12,7 @@ public class FavoriteTopicsView extends ListView {
     private ArrayList<Label> relevance;
 
     public FavoriteTopicsView(FavoriteTopicsPresenter favoriteTopicsPresenter) {
-        super(favoriteTopicsPresenter);
+        //super(favoriteTopicsPresenter);
         presenter = favoriteTopicsPresenter;
         initializePanes();
         initializeViews();
@@ -30,6 +30,9 @@ public class FavoriteTopicsView extends ListView {
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             Label label = new Label();
             relevance.add(label);
+
+            ImageButton imageButton = new ImageButton("../images", "xButton", 1, 1);
+
         }
     }
 

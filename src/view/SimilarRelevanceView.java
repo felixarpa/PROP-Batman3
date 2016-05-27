@@ -17,7 +17,7 @@ public class SimilarRelevanceView extends ListView {
     private Label relevanceLabel;
 
     public SimilarRelevanceView(SimilarRelevancePresenter similarRelevancePresenter) {
-        super(similarRelevancePresenter);
+        //super(similarRelevancePresenter);
         presenter = similarRelevancePresenter;
 
         initializePanes();

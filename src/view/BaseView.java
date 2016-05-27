@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import presentation.BasePresenter;
+import presentation.Presenter;
 
 public class BaseView {
 
@@ -68,7 +69,9 @@ public class BaseView {
         );*/
 
         authorsButton.setOnMouseReleased(
-                event -> presenter.clickAuthors()
+                event -> {
+                    presenter.clickAuthors();
+                }
         );
 
         /*conferencesButton.setOnMousePressed(

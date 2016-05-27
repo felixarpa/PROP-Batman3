@@ -11,7 +11,7 @@ public class RelevanceTypeSelectorView extends ListView {
     private ArrayList<ImageButton> relationshipButtons;
 
     public RelevanceTypeSelectorView(RelevanceTypeSelectorPresenter relevanceTypeSelectorPresenter) {
-        super(relevanceTypeSelectorPresenter);
+        //super(relevanceTypeSelectorPresenter);
         presenter = relevanceTypeSelectorPresenter;
 
         initializePanes();

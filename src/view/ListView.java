@@ -35,9 +35,11 @@ public abstract class ListView extends BaseView {
     protected ImageButton nextPageButton;
     protected ImageButton prevPageButton;
 
-    public ListView(Presenter viewPresenter) {
-        presenter = (BasePresenter) viewPresenter;
-    }
+    //public ListView(Presenter viewPresenter) {
+    //    presenter = (BasePresenter) viewPresenter;
+    //}
+
+    public ListView() {}
 
     protected void initializePanes() {
         contentVBox = new VBox();
