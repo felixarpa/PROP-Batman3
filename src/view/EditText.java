@@ -51,6 +51,14 @@ public class EditText extends Pane {
 
     public void setFont(Font font){ label.setFont(font);}
 
+    public void setMinSize(int width, int height) {
+        textField.setMinSize(width, height);
+    }
+
+    public void setMaxSize(int width, int height) {
+        textField.setMaxSize(width, height);
+    }
+
     public Pane getBase() {
         return hBox;
     }
