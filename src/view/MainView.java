@@ -84,7 +84,7 @@ public class MainView extends BaseView {
     public void stopProgress() {
         searchButton.setDisable(false);
         if (Platform.isFxApplicationThread()) {
-            searchTextHBox.getChildren().set(1, searchButton);
+            searchTextHBox.getChildren().set(1, predictor);
         }
         else {
             Platform.runLater(() -> searchTextHBox.getChildren().set(1, predictor));
