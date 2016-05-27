@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.AdminController;
 import domain.DomainController;
 import domain.UserController;
 import sun.applet.Main;
@@ -11,6 +12,7 @@ import view.MyApp;
 public abstract class  BasePresenter extends Presenter {
 
     protected static DomainController domainController = new DomainController();
+    protected static AdminController adminController = new AdminController();
     private static boolean sessionClosed = false;
     protected BaseView actualView;
 
