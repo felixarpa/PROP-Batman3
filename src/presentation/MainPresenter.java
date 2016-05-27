@@ -11,6 +11,7 @@ public class MainPresenter extends BasePresenter {
 
 
      public MainPresenter() {
+         if (domainController == null) domainController = new DomainController();
          actualView = new MainView(this, DomainController.allNames());
          MyApp.startScene(actualView.getContent());
      }
