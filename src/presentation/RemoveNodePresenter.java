@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.DomainController;
 import view.MyApp;
 import view.RemoveNodeView;
 
@@ -9,7 +10,11 @@ import view.RemoveNodeView;
 public class RemoveNodePresenter extends MainAdminPresenter {
 
     public RemoveNodePresenter() {
-        actualView = new RemoveNodeView(this);
+        actualView = new RemoveNodeView(this, DomainController.allNames());
         MyApp.startScene(actualView.getContent());
+    }
+
+    public void clickRemoveNodeButton() {
+        System.out.println("Haz el presenter Juanmi (ﾉಠдಠ)ﾉ︵┻━┻");
     }
 }
