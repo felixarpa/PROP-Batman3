@@ -18,8 +18,10 @@ public class AddFavoriteTermSearchPresenter extends MainPresenter{
     public void clickSearchButton() {
         String nom = ((AddFavoriteTermSearchView)actualView).getSearchText();
         ArrayList<String> result = domainController.searchingATerm(nom);
-        actualView.destroy();
-        actualView = null;
-        //CAMBIAR A SELECCIONAR TEMA
+        if (result != null) {
+            actualView.destroy();
+            actualView = null;
+            MyApp.changePresenter(new AddTermSelectorPresenter(result));
+        }
     }
 }
