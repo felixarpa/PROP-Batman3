@@ -6,7 +6,9 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Set;
 
+import domain.DomainController;
 import exceptions.*;
+import sun.awt.image.ImageWatched;
 
 public class Graph {
 
@@ -109,24 +111,43 @@ public class Graph {
 	}*/
 	
 	public Collection<Node> getNode(String name) {
-		LinkedList<Node> result = new LinkedList<>();
+		TreeMap<Integer, LinkedList<Node>> map = new TreeMap<>();
 		for (Node node : graph) {
-			if (node.getName().toLowerCase().contains(name.toLowerCase())) {
-				result.add(node);
+			int index = node.getName().toLowerCase().indexOf(name.toLowerCase());
+			if (index >= 0) {
+				LinkedList<Node> nodes = map.get(index);
+				if (nodes == null) {
+					nodes = new LinkedList<>();
+					map.put(index, nodes);
+				}
+				nodes.add(node);
 			}
 		}
-		/*Set<Node> result = names.get(name);
-		if (result != null) return result;
-	    return graph.subSet(new Author(name, 0), true, new Term(name, 536870911), true);*/
+		LinkedList<Node> result = new LinkedList<>();
+		for (LinkedList<Node> nodes : map.values()) {
+			result.addAll(nodes);
+		}
 		return result;
 	}
 
 	public Collection<Term> getTerm(String name) {
-		LinkedList<Term> result = new LinkedList<>();
+		TreeMap<Integer, LinkedList<Term>> map = new TreeMap<>();
 		for (Node node : graph) {
-			if (node.asTerm() != null && node.getName().toLowerCase().contains(name.toLowerCase())) {
-				result.add(node.asTerm());
+			if (node.asTerm() != null && !DomainController.getCurrentUser().isFavorite(node.asTerm())) {
+				int index = node.getName().toLowerCase().indexOf(name.toLowerCase());
+				if (index >= 0) {
+					LinkedList<Term> nodes = map.get(index);
+					if (nodes == null) {
+						nodes = new LinkedList<>();
+						map.put(index, nodes);
+					}
+					nodes.add(node.asTerm());
+				}
 			}
+		}
+		LinkedList<Term> result = new LinkedList<>();
+		for (LinkedList<Term> nodes : map.values()) {
+			result.addAll(nodes);
 		}
 		return result;
 	}

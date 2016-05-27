@@ -30,7 +30,6 @@ public class AddTermSelectorPresenter extends ListPresenter{
 
     public void addTerm(int index) {
         UserController.addNewFav(result.get(index));
-        System.out.println("He añadido (en teoria)");
         actualView.destroy();
         actualView = null;
         MyApp.changePresenter(new FavoriteTopicsPresenter());

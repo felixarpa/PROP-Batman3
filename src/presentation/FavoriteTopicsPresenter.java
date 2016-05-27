@@ -15,7 +15,6 @@ public class FavoriteTopicsPresenter extends ListPresenter  {
         actualView = new FavoriteTopicsView(this);
         show();
         MyApp.startScene(actualView.getContent());
-
     }
 
     public void onClickRemoveTopicButton(int index) {
