@@ -7,6 +7,6 @@ import presentation.RemoveEdgePresenter;
  */
 public class RemoveEdgeView extends MainAdminView {
     public RemoveEdgeView(RemoveEdgePresenter removeEdgePresenter) {
-        super(removeEdgePresenter);
+        presenter = removeEdgePresenter;
     }
 }
