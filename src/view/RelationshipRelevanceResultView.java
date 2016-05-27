@@ -1,28 +1,33 @@
 package view;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import presentation.RelationshipRelevanceResultPresenter;
+import sun.awt.ConstrainableGraphics;
 
 import java.util.ArrayList;
 
 public class RelationshipRelevanceResultView extends BaseView {
 
     VBox contentVBox;
-
-    HBox topBar;
+    PopUp popUp;
 
     Font font;
     Font titleFont;
+
+
+    HBox topBar;
 
     Label firstType;
     Label secondType;
@@ -37,6 +42,7 @@ public class RelationshipRelevanceResultView extends BaseView {
     ImageButton prevButton;
     ImageButton nextButton;
     
+    StackPane stackPane;
 
     public RelationshipRelevanceResultView(RelationshipRelevanceResultPresenter relationshipRelevanceResultPresenter) {
         presenter = relationshipRelevanceResultPresenter;
@@ -45,7 +51,7 @@ public class RelationshipRelevanceResultView extends BaseView {
         initializeViews();
         buildPanes();
         setListeners();
-        topBarPane.setCenter(contentVBox);
+        topBarPane.setCenter(stackPane);
         topBarPane.setTop(topBar);
     }
 
@@ -55,6 +61,8 @@ public class RelationshipRelevanceResultView extends BaseView {
     }
 
     private void initializePanes() {
+        stackPane = new StackPane();
+       // popUp.setPadding(new Insets(100,100,100,100));
         contentVBox = new VBox();
         topBar = new HBox();
         topBar.setMaxSize(900,110);
@@ -86,12 +94,16 @@ public class RelationshipRelevanceResultView extends BaseView {
         buttonBar = new HBox();
         buttonBar.setPadding(new Insets(0, 0, 0, 345));
         buttonBar.setSpacing(10);
-        prevButton = new ImageButton("../images/", "prevButton", 60, 30);
-        nextButton = new ImageButton("../images/", "nextButton", 60, 30);
+
 
     }
 
     private void initializeViews(){
+
+        popUp = new PopUp("relations");
+        prevButton = new ImageButton("../images/", "prevButton", 60, 30);
+        nextButton = new ImageButton("../images/", "nextButton", 60, 30);
+
         firstType = new Label(((RelationshipRelevanceResultPresenter)presenter).getType(1));
         firstType.setMinWidth(250);
         firstType.setMaxWidth(250);
@@ -161,6 +173,10 @@ public class RelationshipRelevanceResultView extends BaseView {
         contentVBox.getChildren().addAll(contents);
         contentVBox.getChildren().add(buttonBar);
 
+
+
+        stackPane.getChildren().add(contentVBox);
+
     }
 
     private void setListeners() {
@@ -188,10 +204,14 @@ public class RelationshipRelevanceResultView extends BaseView {
                         ((RelationshipRelevanceResultPresenter) presenter).showMore();
                     }
             );
+            popUp.setListeners(event -> {
+                ((RelationshipRelevanceResultPresenter)presenter).onAcceptClick(popUp.getSelected());
+            });
         }
     }
 
     public void askSimilarOp() {
+        stackPane.getChildren().add(popUp);
 
     }
 
