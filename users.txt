@@ -1,1 +1,2 @@
 felix	felix	false
+admin	admin	true

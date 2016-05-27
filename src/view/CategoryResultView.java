@@ -17,16 +17,15 @@ public class CategoryResultView extends ListView {
 
     private Label relevanceLabel;
 
-    private ImageButton orderNamesImageButton;
-    private ImageButton orderIdsImageButton;
-    private ImageButton orderRelevanceImageButton;
-
+    /*
+     * ascending =  1   ->      Ordre ascendent
+     * ascending =  0   ->      Ordre descendent
+     * ascending = -1   ->      L'ordre no depen d'aquest parametre
+     */
     private int ascendingNames;
     private int ascendingIds;
     private int ascendingRelevance;
 
-//    private Pane spaceNamesIds;
-//    private Pane spaceIdsRelevance;
 
 
     public CategoryResultView(CategoryResultPresenter presenter) {
@@ -34,7 +33,7 @@ public class CategoryResultView extends ListView {
 
         ascendingNames = -1;
         ascendingIds = -1;
-        ascendingRelevance = 1;
+        ascendingRelevance = 0;
 
         initializePanes();
         initializeViews();
@@ -47,34 +46,15 @@ public class CategoryResultView extends ListView {
     protected void initializeViews() {
         super.initializeViews();
 
-        relevanceLabel = new Label("Relevance ▼");
+        relevanceLabel = new Label("Relevance");
         relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-//        relevanceLabel.setMinSize(130, 20);
-//        relevanceLabel.setMaxSize(130, 24);
+
         relevanceLabel.setMinSize(200, 20);
         relevanceLabel.setMaxSize(200, 24);
         relevanceLabel.setFont(new Font("Arial bold", 24));
 
-//        nameLabel.setMinSize(72, 20);
-//        nameLabel.setMaxSize(72, 24);
-//
-//        idLabel.setMinSize(30, 20);
-//        idLabel.setMaxSize(30, 24);
 
         relevance = new ArrayList<>(Config.LISTS_SIZE);
-
-//        orderNamesImageButton = new ImageButton("../images/ascending.png", 20, 20); // ▲ & ▼
-//        orderIdsImageButton = new ImageButton("../images/ascending.png", 20, 20);
-//        orderRelevanceImageButton = new ImageButton("../images/descending.png", 20, 20);
-
-//        spaceNamesIds = new Pane();
-//        spaceNamesIds.setMinSize(288, 20);
-//        spaceNamesIds.setMaxSize(288, 20);
-//
-//        spaceIdsRelevance = new Pane();
-//        spaceIdsRelevance.setMinSize(50, 20);
-//        spaceIdsRelevance.setMinSize(50, 20);
-
 
         setCorrectOrder();
 
@@ -106,17 +86,6 @@ public class CategoryResultView extends ListView {
         buildLine();
         buildPanes();
 
-//        titlesHBox.getChildren().remove(0, titlesHBox.getChildren().size());
-//        titlesHBox.getChildren().addAll(
-//                nameLabel,
-//                orderNamesImageButton,
-//                spaceNamesIds,
-//                idLabel,
-//                orderIdsImageButton,
-//                spaceIdsRelevance,
-//                relevanceLabel,
-//                orderRelevanceImageButton
-//        );
         titlesHBox.getChildren().add(relevanceLabel);
     }
 
@@ -183,18 +152,15 @@ public class CategoryResultView extends ListView {
     }
 
     private void setCorrectOrder() {
-//        setCorrectOrder(ascendingNames, orderNamesImageButton, spaceNamesIds);
-//        setCorrectOrder(ascendingIds, orderIdsImageButton, spaceIdsRelevance);
-//        setCorrectOrder(ascendingRelevance, orderRelevanceImageButton, null);
-        setCorrectOrder2(ascendingNames, nameLabel, "Name");
-        setCorrectOrder2(ascendingIds, idLabel, "ID");
-        setCorrectOrder2(ascendingRelevance, relevanceLabel, "Relevance");
+        setCorrectOrder(ascendingNames, nameLabel, "Name");
+        setCorrectOrder(ascendingIds, idLabel, "ID");
+        setCorrectOrder(ascendingRelevance, relevanceLabel, "Relevance");
     }
 
-    private void setCorrectOrder2(int orderStatus, Label label, String name) {
+    private void setCorrectOrder(int orderStatus, Label label, String name) {
         switch (orderStatus) {
             case -1:
-                label.setText(name);
+                label.setText(name + " ▬");
                 break;
 
             case 0:
@@ -203,47 +169,6 @@ public class CategoryResultView extends ListView {
 
             case 1:
                 label.setText(name + " ▲");
-                break;
-        }
-    }
-
-    private void setCorrectOrder(int orderStatus, ImageButton imageButton, Pane space) {
-        switch (orderStatus) {
-            case -1:
-                imageButton.setVisible(false);
-                imageButton.setDisable(true);
-
-                if (space != null) {
-                    space.setVisible(false);
-                    space.setDisable(true);
-                }
-
-                break;
-
-            case 0:
-                imageButton.changeButtonImage("../images/descending.png");
-
-                imageButton.setVisible(true);
-                imageButton.setDisable(false);
-
-                if (space != null) {
-                    space.setVisible(true);
-                    space.setDisable(false);
-                }
-
-                break;
-
-            case 1:
-                imageButton.changeButtonImage("../images/ascending.png");
-
-                imageButton.setVisible(true);
-                imageButton.setDisable(false);
-
-                if (space != null) {
-                    space.setVisible(true);
-                    space.setDisable(false);
-                }
-
                 break;
         }
     }
