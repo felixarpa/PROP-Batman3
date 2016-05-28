@@ -23,6 +23,8 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
 
     private Stage popUp;
 
+    private boolean secondPopUp;
+
     /*
      * ascending =  1   ->      Ordre ascendent
      * ascending =  0   ->      Ordre descendent
@@ -38,6 +40,8 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
         ascendingNames = -1;
         ascendingIds = -1;
         ascendingRelevance = 0;
+
+        secondPopUp = false;
 
         initializePanes();
         initializeViews();
@@ -165,6 +169,21 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
                     }
             );
         }
+
+        basePane.setOnMouseClicked(
+                event -> {
+                    if (secondPopUp) {
+                        popUp.close();
+                        for (HBox res : results) {
+                            res.setStyle(
+                                    "-fx-background-color: transparent;"
+                            );
+                        }
+                        secondPopUp = false;
+                    }
+                    else secondPopUp = true;
+                }
+        );
     }
 
     public void askSimilarOp(int index) {

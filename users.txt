@@ -1,3 +1,2 @@
 felix	felix	false
-admin	admin	true
-ramonino	ramonino	false
+gato	gato	true
