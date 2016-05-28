@@ -114,7 +114,7 @@ public class BaseView {
         );
 
         exitIcon.setOnMouseReleased(
-                event -> presenter.saveAndExit()
+                event -> MyApp.exit()
         );
 
         manageFavoriteTopicsText.setOnMouseReleased(
