@@ -55,4 +55,8 @@ public class MyApp extends Application {
     public static void exit() {
         Platform.exit();
     }
+
+    public static Stage getBaseStage() {
+        return baseStage;
+    }
 }

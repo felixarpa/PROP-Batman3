@@ -4,7 +4,7 @@ import view.*;
 
 import java.util.ArrayList;
 
-public class CategoryResultPresenter extends ListPresenter  {
+public class CategoryResultPresenter extends ListPresenter {
 
     private int lastSelected;
 
@@ -15,13 +15,14 @@ public class CategoryResultPresenter extends ListPresenter  {
     public CategoryResultPresenter(int type) {
         super(domainController.secondSearch(type));
         actualView = new CategoryResultView(this);
+        ((CategoryResultView) actualView).setType(type);
         show();
         MyApp.startScene(actualView.getContent());
     }
 
     public void onClick(int index) {
-        lastSelected = index+this.index;
-        ((CategoryResultView)actualView).askSimilarOp();
+        lastSelected = index + this.index;
+        ((CategoryResultView)actualView).askSimilarOp(index);
     }
 
     //op < 0 -> menos relevante

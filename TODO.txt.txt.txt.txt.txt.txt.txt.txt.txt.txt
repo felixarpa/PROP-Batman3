@@ -3,7 +3,7 @@ JUANMI
 -Hacer Highlights de el sideBar.
 
 MARIO
--Arreglar que no salga siempre el boto en a?adir tema favorito
+-Arreglar que no salga siempre el boto en a�adir tema favorito
 -Aumentar letra del cuadro azul.
 -poner bien prev i next de filteredsearch.
 -Ajustar bien la barra azul de relationship selector
@@ -13,7 +13,7 @@ MARIO
 
 CARLOS
 -Hacer boton de +
--Hacer boton d a?adir favourite topic
+-Hacer boton d a�adir favourite topic
 -Hacer boton del switch,
 -Hacer el boton de Accept
 -hacer highlight de admin.
@@ -21,7 +21,7 @@ CARLOS
 
 
 FELIX
--CategoryView hacer que lso botones se queden iluminados.
+-CategoryView hacer que los botones se queden iluminados.
 
 
 

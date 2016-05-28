@@ -29,7 +29,9 @@ public class SimilarRelevanceView extends ListView {
 
     @Override
     protected void initializeViews() {
-        relevanceLabel = new Label("Relevance ▼");
+        super.initializeViews();
+
+        relevanceLabel = new Label("relevance");
         relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
         relevanceLabel.setMinSize(200, 20);
         relevanceLabel.setMaxSize(200, 24);
@@ -48,6 +50,9 @@ public class SimilarRelevanceView extends ListView {
             ids.get(i).setMinSize(100, 24);
             ids.get(i).setMaxSize(100, 24);
         }
+
+        idLabel.setMinSize(100, 20);
+        idLabel.setMaxSize(100, 24);
     }
 
     @Override
