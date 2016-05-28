@@ -21,7 +21,7 @@ CARLOS
 
 
 FELIX
--CategoryView hacer que lso botones se queden iluminados.
+-
 
 
 
