@@ -41,7 +41,7 @@ public class FavoriteTopicsView extends ListView {
         results = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0 ; i < Config.LISTS_SIZE; ++i) {
             results.add(new HBox());
-            results.get(i).setPadding(new Insets(0, 0, 0, 60));
+            results.get(i).setMaxWidth(800);
             results.get(i).setStyle("-fx-border-color: #000000;" +
                                     "-fx-border-width: 0.4;");
         }
@@ -72,13 +72,17 @@ public class FavoriteTopicsView extends ListView {
 
         HBox haux = new HBox();
         haux.getChildren().add(addFavorites);
-        //haux.setPadding(new Insets(10, 0, 0, 0));
         haux.setAlignment(Pos.CENTER);
 
         contentVBox.getChildren().add(haux);
         contentVBox.getChildren().add(titlesHBox);
         contentVBox.getChildren().add(separacionSuperioPane);
-        contentVBox.getChildren().addAll(results);
+
+        VBox vaux = new VBox();
+        vaux.getChildren().addAll(results);
+        vaux.setAlignment(Pos.CENTER);
+
+        contentVBox.getChildren().addAll(vaux);
         contentVBox.getChildren().add(separacionInferiorPane);
         contentVBox.getChildren().add(pagingButtonsHbox);
     }
@@ -130,6 +134,7 @@ public class FavoriteTopicsView extends ListView {
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             numbers.add(new Label());
+            numbers.get(i).setPadding(new Insets(0, 0, 0, 10));
             numbers.get(i).setMinSize(50, 24);
             numbers.get(i).setMaxSize(50, 24);
             numbers.get(i).setFont(font);
