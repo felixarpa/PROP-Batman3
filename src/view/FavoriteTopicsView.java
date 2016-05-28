@@ -3,9 +3,11 @@ package view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.FavoriteTopicsPresenter;
@@ -17,13 +19,10 @@ public class FavoriteTopicsView extends ListView {
     private ArrayList<ImageButton> deleteButtons;
     private ArrayList<Label> relevance;
     private ImageButton addFavorites;
-    private Font font;
-    private Label numberLabel;
     private Label relevanceLabel;
 
     public FavoriteTopicsView(FavoriteTopicsPresenter favoriteTopicsPresenter) {
         presenter = favoriteTopicsPresenter;
-        initializeFonts();
         initializePanes();
         initializeViews();
         completePanes();
@@ -31,23 +30,20 @@ public class FavoriteTopicsView extends ListView {
         topBarPane.setCenter(contentVBox);
     }
 
-    private void initializeFonts() {
-        font = Font.loadFont(getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
-    }
-
     @Override
     public void initializePanes() {
         contentVBox = new VBox();
-        contentVBox.setPadding(new Insets(5, 40, 5, 40));
-        //contentVBox.setSpacing(4);
+        contentVBox.setAlignment(Pos.CENTER);
 
         titlesHBox = new HBox();
-        titlesHBox.setPadding(new Insets(0, 10, 0, 10));
+        titlesHBox.setPadding(new Insets(0, 0, 0, 60+50));
 
         results = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0 ; i < Config.LISTS_SIZE; ++i) {
             results.add(new HBox());
-            results.get(i).setPadding(new Insets(0, 10, 0, 10));
+            results.get(i).setPadding(new Insets(0, 0, 0, 60));
+            results.get(i).setStyle("-fx-border-color: #000000;" +
+                                    "-fx-border-width: 0.4;");
         }
         pagingButtonsHbox = new HBox();
         pagingButtonsHbox.setPadding(new Insets(5, 0, 0, 0));
@@ -58,7 +54,6 @@ public class FavoriteTopicsView extends ListView {
     @Override
     protected void buildPanes() {
         titlesHBox.getChildren().addAll(
-                numberLabel,
                 nameLabel,
                 idLabel,
                 relevanceLabel
@@ -77,6 +72,7 @@ public class FavoriteTopicsView extends ListView {
 
         HBox haux = new HBox();
         haux.getChildren().add(addFavorites);
+        //haux.setPadding(new Insets(10, 0, 0, 0));
         haux.setAlignment(Pos.CENTER);
 
         contentVBox.getChildren().add(haux);
@@ -89,9 +85,6 @@ public class FavoriteTopicsView extends ListView {
 
     @Override
     protected void initializeTitleLabels() {
-        numberLabel.setMaxSize(50, 24);
-        numberLabel.setMinSize(50, 24);
-
         nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
         nameLabel.setMinSize(500, 24);
         nameLabel.setMaxSize(500, 24);
@@ -109,7 +102,6 @@ public class FavoriteTopicsView extends ListView {
     }
 
     protected void initializeViews() {
-        numberLabel = new Label();
         nameLabel = new Label("Name");
         idLabel = new Label("ID");
         relevanceLabel = new Label("Relevance");
@@ -134,7 +126,7 @@ public class FavoriteTopicsView extends ListView {
 
     @Override
     protected void initializeArrayLabel() {
-        Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 20);
+        Font font = Font.loadFont(getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 20);
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             numbers.add(new Label());

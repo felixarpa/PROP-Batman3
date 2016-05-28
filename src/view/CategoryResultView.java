@@ -1,21 +1,27 @@
 package view;
 
-import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import presentation.CategoryResultPresenter;
 import util.ProjectConstants;
+import view.popUpMaterial.OnSelectRelevance;
+import view.popUpMaterial.RelevancePopUpView;
 
+import java.awt.*;
 import java.util.ArrayList;
 
-public class CategoryResultView extends ListView {
+public class CategoryResultView extends ListView implements OnSelectRelevance {
 
     private ArrayList<Label> relevance;
 
     private Label relevanceLabel;
+
+    private Stage popUp;
 
     /*
      * ascending =  1   ->      Ordre ascendent
@@ -25,8 +31,6 @@ public class CategoryResultView extends ListView {
     private int ascendingNames;
     private int ascendingIds;
     private int ascendingRelevance;
-
-
 
     public CategoryResultView(CategoryResultPresenter presenter) {
         this.presenter = presenter;
@@ -67,9 +71,12 @@ public class CategoryResultView extends ListView {
             relevance.get(i).setFont(font);
             relevance.get(i).setTextFill(Paint.valueOf("white"));
 
-            ids.get(i).setMinSize(100, 24); //100
+            ids.get(i).setMinSize(100, 24);
             ids.get(i).setMaxSize(100, 24);
         }
+
+        idLabel.setMinSize(100, 20);
+        idLabel.setMaxSize(100, 24);
     }
 
     @Override
@@ -145,10 +152,40 @@ public class CategoryResultView extends ListView {
                     setCorrectOrder();
                 }
         );
+
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
+            final int j = i;
+            results.get(i)
+            .setOnMouseClicked(
+                    event -> {
+                        results.get(j).setStyle(
+                                "-fx-background-color: #000000;"
+                        );
+                        ((CategoryResultPresenter) presenter).onClick(j);
+                    }
+            );
+        }
     }
 
-    public void askSimilarOp() {
-
+    public void askSimilarOp(int index) {
+        RelevancePopUpView popUpView = new RelevancePopUpView(this);
+        popUp = new Stage();
+        popUp.setTitle(names.get(index).getText());
+        popUp.setScene(new Scene(
+                popUpView,
+                350,
+                170
+        ));
+        popUp.setOnCloseRequest(
+                event -> {
+                    for (HBox res : results) {
+                        res.setStyle(
+                                "-fx-background-color: transparent;"
+                        );
+                    }
+                }
+        );
+        popUp.show();
     }
 
     private void setCorrectOrder() {
@@ -173,4 +210,34 @@ public class CategoryResultView extends ListView {
         }
     }
 
+    @Override
+    public void onAccept(int op) {
+        for (HBox res : results) {
+            res.setStyle(
+                    "-fx-background-color: transparent;"
+            );
+        }
+        popUp.close();
+        ((CategoryResultPresenter) presenter).onAcceptClick(op);
+    }
+
+    public void setType(int type) {
+        switch (type) {
+            case ProjectConstants.AUTHOR_TYPE:
+                authorsButton.press();
+                break;
+
+            case ProjectConstants.CONFERENCE_TYPE:
+                conferencesButton.press();
+                break;
+
+            case ProjectConstants.PAPER_TYPE:
+                papersButton.press();
+                break;
+
+            case ProjectConstants.TERM_TYPE:
+                termsButton.press();
+                break;
+        }
+    }
 }
