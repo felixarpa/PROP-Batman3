@@ -1,7 +1,5 @@
 package view;
 
-
-import com.sun.org.apache.bcel.internal.generic.POP;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -18,13 +16,13 @@ import java.util.ArrayList;
 
 public class PopUp extends VBox{
 
-    String name;
-    Font font;
-    ToggleGroup tooglegGroup;
-    ArrayList<RadioButton> popUpButtons;
-    Label popUpText;
-    ImageButton popUpButton;
-    ArrayList<HBox> popUpContents;
+    private String name;
+    private Font font;
+    private ToggleGroup tooglegGroup;
+    private ArrayList<RadioButton> popUpButtons;
+    private Label popUpText;
+    private ImageButton popUpButton;
+    private ArrayList<HBox> popUpContents;
 
     //Pasas como parametro x lo que quieras que salga aqui:
     //Show x that are:
