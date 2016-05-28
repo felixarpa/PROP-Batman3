@@ -20,8 +20,9 @@ public abstract class  BasePresenter extends Presenter {
     }
 
     void startSession() {
-        if (sessionClosed) domainController.recalculate();
+        if (sessionClosed) DomainController.recalculate();
         else sessionClosed = true;
+        DomainController.getCurrentUser().updateTerms();
     }
 
     public void manageFavoriteTopics() {

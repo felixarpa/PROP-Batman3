@@ -141,14 +141,15 @@ public class User implements Comparable<User> {
 	}
 	
 	public TreeSet<Term> getFavorites() {
-		updateTerms();
 		return favoriteTerms;
 	}
 
-	private void updateTerms() {
+	public void updateTerms() {
 		if (favorites != null) {
 			for (Integer term : favorites) {
-				favoriteTerms.add((Term)Graph.getInstance().getNode(Term.makeId(term)));
+				Term term1 = (Term)Graph.getInstance().getNode(Term.makeId(term));
+				if (term1 != null) favoriteTerms.add(term1);
+				else throw new ProjectError("FATAL ERROR: TERM "+ term+ " IN DATABASE NOT FOUND IN GRAPH");
 			}
 			favorites.clear();
 			favorites = null;
@@ -167,7 +168,6 @@ public class User implements Comparable<User> {
 	
 	@Override
 	public String toString() {
-		updateTerms();
 		String result = (username + '\t' + password + '\t' + isAdmin );
 		for (Term term : favoriteTerms) {
 			result += ("\t" + term.getId().getId());
