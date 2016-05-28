@@ -42,7 +42,8 @@ public class FavoriteTopicsView extends ListView {
         for (int i = 0 ; i < Config.LISTS_SIZE; ++i) {
             results.add(new HBox());
             results.get(i).setPadding(new Insets(0, 0, 0, 60));
-            results.get(i).setStyle("-fx-background-color: #ffffff");
+            results.get(i).setStyle("-fx-border-color: #000000;" +
+                                    "-fx-border-width: 0.4;");
         }
         pagingButtonsHbox = new HBox();
         pagingButtonsHbox.setPadding(new Insets(5, 0, 0, 0));

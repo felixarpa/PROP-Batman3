@@ -13,7 +13,7 @@ public class IncorrectPassword extends Exception {
 
     @Override
     public String getMessage() {
-        return "Invalid password for user: "+user+". Password entered: "+password;
+        return "Invalid password for user: "+user.getUsername() + " password: " + user.getPassword()+". Password entered: "+password;
     }
 
     public User getUser() {
