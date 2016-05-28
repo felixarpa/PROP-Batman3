@@ -34,14 +34,14 @@ public class FavoriteTopicsView extends ListView {
     public void initializePanes() {
         contentVBox = new VBox();
         contentVBox.setAlignment(Pos.CENTER);
+        contentVBox.setFillWidth(false);
 
         titlesHBox = new HBox();
-        titlesHBox.setPadding(new Insets(0, 0, 0, 60+50));
 
         results = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0 ; i < Config.LISTS_SIZE; ++i) {
             results.add(new HBox());
-            results.get(i).setMaxWidth(800);
+            results.get(i).setAlignment(Pos.CENTER);
             results.get(i).setStyle("-fx-border-color: #000000;" +
                                     "-fx-border-width: 0.4;");
         }
@@ -53,10 +53,18 @@ public class FavoriteTopicsView extends ListView {
 
     @Override
     protected void buildPanes() {
+        Label aux = new Label();
+        aux.setMinSize(50, 24);
+        aux.setMaxSize(50, 24);
+        Label aux2 = new Label();
+        aux2.setMinSize(20, 24);
+        aux2.setMaxSize(20, 24);
         titlesHBox.getChildren().addAll(
+                aux,
                 nameLabel,
                 idLabel,
-                relevanceLabel
+                relevanceLabel,
+                aux2
         );
 
         pagingButtonsHbox.getChildren().add(prevPageButton);
@@ -70,19 +78,11 @@ public class FavoriteTopicsView extends ListView {
         separacionInferiorPane.setMaxSize(800, 1);
         separacionInferiorPane.setStyle("-fx-background-color: #ffffff");
 
-        HBox haux = new HBox();
-        haux.getChildren().add(addFavorites);
-        haux.setAlignment(Pos.CENTER);
 
-        contentVBox.getChildren().add(haux);
+        contentVBox.getChildren().add(addFavorites);
         contentVBox.getChildren().add(titlesHBox);
         contentVBox.getChildren().add(separacionSuperioPane);
-
-        VBox vaux = new VBox();
-        vaux.getChildren().addAll(results);
-        vaux.setAlignment(Pos.CENTER);
-
-        contentVBox.getChildren().addAll(vaux);
+        contentVBox.getChildren().addAll(results);
         contentVBox.getChildren().add(separacionInferiorPane);
         contentVBox.getChildren().add(pagingButtonsHbox);
     }
@@ -134,7 +134,6 @@ public class FavoriteTopicsView extends ListView {
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             numbers.add(new Label());
-            numbers.get(i).setPadding(new Insets(0, 0, 0, 10));
             numbers.get(i).setMinSize(50, 24);
             numbers.get(i).setMaxSize(50, 24);
             numbers.get(i).setFont(font);
@@ -158,7 +157,7 @@ public class FavoriteTopicsView extends ListView {
             relevance.get(i).setFont(font);
             relevance.get(i).setTextFill(Paint.valueOf("white"));
 
-            ImageButton imageButton = new ImageButton("../images", "xButton", 20, 24);
+            ImageButton imageButton = new ImageButton("../images", "xButton", 20, 20);
             deleteButtons.add(imageButton);
         }
     }
@@ -211,11 +210,11 @@ public class FavoriteTopicsView extends ListView {
         int i = 0;
         for (HBox line : results) {
             line.getChildren().addAll(
-                    numbers.get(i),
-                    names.get(i),
-                    ids.get(i),
-                    relevance.get(i),
-                    deleteButtons.get(i)
+                   numbers.get(i),
+                   names.get(i),
+                   ids.get(i),
+                   relevance.get(i),
+                   deleteButtons.get(i)
             );
             ++i;
         }
