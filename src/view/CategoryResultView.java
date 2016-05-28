@@ -172,7 +172,7 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
 
         basePane.setOnMouseClicked(
                 event -> {
-                    if (secondPopUp) {
+                    if (popUp != null && secondPopUp) {
                         popUp.close();
                         for (HBox res : results) {
                             res.setStyle(
