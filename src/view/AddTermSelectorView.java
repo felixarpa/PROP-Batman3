@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -105,5 +106,16 @@ public class AddTermSelectorView  extends ListView{
             );
             ++i;
         }
+    }
+
+    public void startProgress(int index) {
+        ProgressIndicator progressIndicator = new ProgressIndicator(-1);
+        progressIndicator.setMinSize(20, 20);
+        progressIndicator.setMaxSize(20, 20);
+        results.get(index).getChildren().set(4, progressIndicator);
+    }
+
+    public void stopProgress(int index) {
+        results.get(index).getChildren().set(4, addButtons.get(index));
     }
 }

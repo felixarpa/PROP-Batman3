@@ -1,10 +1,6 @@
 JUANMI
--Cambiar el boton de Favourite Topics.
--Hacer Highlights de el sideBar.
 
 MARIO
--Ajustar bien la barra azul de relationship selector
--Arreglar las barras de relationshipresult.
 
 
 

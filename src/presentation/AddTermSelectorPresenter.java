@@ -1,6 +1,7 @@
 package presentation;
 
 import domain.UserController;
+import javafx.application.Platform;
 import view.AddTermSelectorView;
 import view.auxiliarViews.Config;
 import view.MyApp;
@@ -29,10 +30,18 @@ public class AddTermSelectorPresenter extends ListPresenter{
     }
 
     public void addTerm(int index) {
-        UserController.addNewFav(result.get(index));
-        actualView.destroy();
-        actualView = null;
-        MyApp.changePresenter(new FavoriteTopicsPresenter());
+        ((AddTermSelectorView)actualView).startProgress(index);
+        Thread thread = new Thread(() -> {
+            UserController.addNewFav(result.get(index));
+            Platform.runLater(() -> {
+                ((AddTermSelectorView)actualView).stopProgress(index);
+                actualView.destroy();
+                actualView = null;
+                MyApp.changePresenter(new FavoriteTopicsPresenter());
+            });
+        });
+        thread.start();
+
     }
 
 }
