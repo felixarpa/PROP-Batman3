@@ -66,24 +66,24 @@ public class AdminController {
     }
 
     public void deleteNode(int id, int type) throws NonExistentNode {
-        Node n;
+        Id nodeId;
         switch (type) {
             case ProjectConstants.AUTHOR_TYPE:
-                n = Graph.getInstance().getNode(Author.makeId(id));
+                nodeId = Author.makeId(id);
                 break;
             case ProjectConstants.CONFERENCE_TYPE:
-                n = Graph.getInstance().getNode(Conference.makeId(id));
+                nodeId = Conference.makeId(id);
                 break;
             case ProjectConstants.PAPER_TYPE:
-                n = Graph.getInstance().getNode(Paper.makeId(id));
+                nodeId = Paper.makeId(id);
                 break;
             case ProjectConstants.TERM_TYPE:
-                n = Graph.getInstance().getNode(Term.makeId(id));
+                nodeId = Term.makeId(id);
                 break;
             default:
-                throw new ProjectError("Invalid parameter type: "+type);
+                throw new ProjectError("Invalid parameter type: "+ type);
         }
-        Graph.getInstance().deleteNode(n);
+        Graph.getInstance().deleteNode(nodeId);
         DomainController.recalculate();
     }
 
