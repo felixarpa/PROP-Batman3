@@ -22,8 +22,10 @@ public class FavoriteTopicsView extends ListView {
     private ArrayList<Label> relevance;
     private ImageButton addFavorites;
     private Label relevanceLabel;
+    private boolean canTouch;
 
     public FavoriteTopicsView(FavoriteTopicsPresenter favoriteTopicsPresenter) {
+        canTouch = true;
         manageFavoriteTopics.press();
         presenter = favoriteTopicsPresenter;
         initializePanes();
@@ -197,7 +199,7 @@ public class FavoriteTopicsView extends ListView {
             deleteButtons.get(i).setVisible(true);
             deleteButtons.get(i).setOnMouseReleased(event -> {
                 deleteButtons.get(i).release();
-                ((FavoriteTopicsPresenter)presenter).onClickRemoveTopicButton(i);
+                if (canTouch) ((FavoriteTopicsPresenter)presenter).onClickRemoveTopicButton(i);
             });
         }
     }
@@ -224,6 +226,7 @@ public class FavoriteTopicsView extends ListView {
     }
 
     public void startProgress(int index) {
+        canTouch = false;
         ProgressIndicator progressIndicator = new ProgressIndicator(-1);
         progressIndicator.setMinSize(20, 20);
         progressIndicator.setMaxSize(20, 20);
@@ -231,6 +234,7 @@ public class FavoriteTopicsView extends ListView {
     }
 
     public void stopProgress(int index) {
+        canTouch = true;
         results.get(index).getChildren().set(4, deleteButtons.get(index));
     }
 
