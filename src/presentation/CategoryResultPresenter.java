@@ -1,6 +1,8 @@
 package presentation;
 
 import view.*;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ListView;
 
 import java.util.ArrayList;
 
@@ -43,7 +45,7 @@ public class CategoryResultPresenter extends ListPresenter {
 
     @Override
     protected void show() {
-        int max = index+Config.LISTS_SIZE;
+        int max = index+ Config.LISTS_SIZE;
         if (max > result.size()) max = result.size();
         max -= index;
         for (int i = 0; i < max; ++i) {

@@ -1,13 +1,11 @@
 package presentation;
 
 import util.ProjectConstants;
-import view.CategoryResultView;
-import view.Config;
+import view.auxiliarViews.Config;
 import view.MyApp;
 import view.RelationshipRelevanceResultView;
 
 import java.util.ArrayList;
-import java.util.StringJoiner;
 
 public class RelationshipRelevanceResultPresenter extends ListPresenter  {
 

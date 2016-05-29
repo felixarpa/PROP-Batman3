@@ -3,16 +3,16 @@ package view;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import presentation.CategoryResultPresenter;
 import util.ProjectConstants;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ListView;
 import view.popUpMaterial.OnSelectRelevance;
 import view.popUpMaterial.RelevancePopUpView;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class CategoryResultView extends ListView implements OnSelectRelevance {
@@ -22,6 +22,8 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
     private Label relevanceLabel;
 
     private Stage popUp;
+
+    private boolean secondPopUp;
 
     /*
      * ascending =  1   ->      Ordre ascendent
@@ -38,6 +40,8 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
         ascendingNames = -1;
         ascendingIds = -1;
         ascendingRelevance = 0;
+
+        secondPopUp = false;
 
         initializePanes();
         initializeViews();
@@ -165,6 +169,21 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
                     }
             );
         }
+
+        basePane.setOnMouseClicked(
+                event -> {
+                    if (popUp != null && secondPopUp) {
+                        popUp.close();
+                        for (HBox res : results) {
+                            res.setStyle(
+                                    "-fx-background-color: transparent;"
+                            );
+                        }
+                        secondPopUp = false;
+                    }
+                    else secondPopUp = true;
+                }
+        );
     }
 
     public void askSimilarOp(int index) {

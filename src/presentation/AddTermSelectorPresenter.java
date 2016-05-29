@@ -2,7 +2,7 @@ package presentation;
 
 import domain.UserController;
 import view.AddTermSelectorView;
-import view.Config;
+import view.auxiliarViews.Config;
 import view.MyApp;
 
 import java.util.ArrayList;

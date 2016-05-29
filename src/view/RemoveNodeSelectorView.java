@@ -7,12 +7,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import presentation.ListPresenter;
-import presentation.RelevanceTypeSelectorPresenter;
 import presentation.RemoveNodeSelectorPresenter;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ImageButton;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class RemoveNodeSelectorView extends MainAdminView {
 

@@ -1,4 +1,4 @@
-package view;
+package view.auxiliarViews;
 
 import javafx.scene.control.Button;
 
@@ -10,7 +10,7 @@ public class ImageButton extends Button {
     public ImageButton(String path, int width, int height) {
         this.width = width;
         this.height = height;
-        String image = getClass().getResource(path).toExternalForm();
+        String image = getClass().getResource("../" + path).toExternalForm();
         setMaxSize(width, height);
         setMinSize(width, height);
         setStyle(
@@ -25,7 +25,7 @@ public class ImageButton extends Button {
         this.name = name;
         this.width = width;
         this.height = height;
-        String image = getClass().getResource(path + "/" + name + ".png").toExternalForm();
+        String image = getClass().getResource("../../images/" + name + ".png").toExternalForm();
         setMaxSize(width, height);
         setMinSize(width, height);
         setStyle(
@@ -36,7 +36,7 @@ public class ImageButton extends Button {
     }
 
     public void press() {
-        String image = getClass().getResource(path + "/" + name + "Pressed.png").toExternalForm();
+        String image = getClass().getResource("../" + path + "/" + name + "Pressed.png").toExternalForm();
         setStyle(
                 "-fx-background-image: url('" + image + "');" +
                         "-fx-background-size: " + width + " " + height + ";" +
@@ -45,7 +45,7 @@ public class ImageButton extends Button {
     }
 
     public void release() {
-        String image = getClass().getResource(path + "/" + name + ".png").toExternalForm();
+        String image = getClass().getResource("../" + path + "/" + name + ".png").toExternalForm();
         setStyle(
                 "-fx-background-image: url('" + image + "');" +
                         "-fx-background-size: " + width + " " + height + ";" +
@@ -54,7 +54,7 @@ public class ImageButton extends Button {
     }
 
     public void changeButtonImage(String path) {
-        String image = getClass().getResource(path).toExternalForm();
+        String image = getClass().getResource("../" + path).toExternalForm();
         setStyle(
                 "-fx-background-image: url('" + image + "');" +
                 "-fx-background-size: " + width + " " + height + ";" +

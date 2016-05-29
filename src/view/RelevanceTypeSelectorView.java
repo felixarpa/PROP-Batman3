@@ -2,6 +2,9 @@ package view;
 
 import javafx.scene.layout.HBox;
 import presentation.RelevanceTypeSelectorPresenter;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ImageButton;
+import view.auxiliarViews.ListView;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package view;
+package view.auxiliarViews;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -7,10 +7,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import presentation.BasePresenter;
 import presentation.ListPresenter;
-import presentation.Presenter;
-import presentation.RelevanceTypeSelectorPresenter;
+import view.BaseView;
 
 import java.util.ArrayList;
 

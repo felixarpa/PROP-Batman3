@@ -1,8 +1,7 @@
 package presentation;
 
-import view.Config;
+import view.auxiliarViews.Config;
 import view.FilteredSearchView;
-import view.MyApp;
 
 import java.util.ArrayList;
 

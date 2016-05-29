@@ -6,8 +6,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import presentation.MainPresenter;
 import presentation.RemoveNodePresenter;
+import view.auxiliarViews.ImageButton;
+import view.auxiliarViews.Predictor;
 
 import java.util.Collection;
 

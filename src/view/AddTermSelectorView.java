@@ -5,7 +5,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.AddTermSelectorPresenter;
-import view.ListView;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ImageButton;
+import view.auxiliarViews.ListView;
 
 import java.util.ArrayList;
 
