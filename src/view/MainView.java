@@ -39,12 +39,10 @@ public class MainView extends BaseView {
         searchTextHBox.setSpacing(10);
     }
 
-    private void initializeViews() {
+    protected void initializeViews() {
         searchButton = new ImageButton("searchButton", 143, 51);
 
-        predictor = new Predictor(resultToPredict, 10, new Insets(8, 0, 0, 0), "Introduce the name of a node");
-        predictor.setMaxSize(600,200);
-        predictor.setMinSize(600,200);
+        initializePredictor("Introduce the name of the node.");
 
         progressIndicator = new ProgressIndicator();
         progressIndicator.setProgress(-1);
@@ -97,6 +95,13 @@ public class MainView extends BaseView {
         }
     }
     public String getSearchText() { return predictor.getText();}
+
+    protected void initializePredictor(String name) {
+        predictor = new Predictor(resultToPredict, 10, new Insets(8, 0, 0, 0), name);
+        predictor.setMaxSize(600,200);
+        predictor.setMinSize(600,200);
+
+    }
 
 
 }

@@ -1,10 +1,14 @@
 package presentation;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+import javafx.geometry.Insets;
+import javafx.scene.control.ProgressIndicator;
 import presentation.MainPresenter;
 import view.AddFavoriteTermSearchView;
 import view.MainView;
 import view.MyApp;
+import view.auxiliarViews.ImageButton;
+import view.auxiliarViews.Predictor;
 
 import java.util.ArrayList;
 
@@ -25,8 +29,10 @@ public class AddFavoriteTermSearchPresenter extends MainPresenter{
                 actualView = null;
                 MyApp.changePresenter(new AddTermSelectorPresenter(result));
             }
-            else System.out.println("Hola TONTO");
         });
         thread.start();
     }
+
+
+
 }
