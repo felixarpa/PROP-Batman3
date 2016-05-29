@@ -57,6 +57,14 @@ public class Graph {
 		if (idMap.remove(node.getId()) == null) throw new ProjectError("Graph not coherent with the id map");
 	}
 
+	public void deleteNode(Id id) throws NonExistentNode {
+		Node node = idMap.remove(id);
+		if (node == null) throw new NonExistentNode(id);
+
+		node.deleteNode();
+		if (!graph.remove(node)) throw new ProjectError("Graph not coherent with the id map");
+	}
+
 	public void addSingleEdge(Node src, Node dst, double weight) throws ExistingEdge, NonExistentEdgeNodes {
 		if (src.asPaper() != null || dst.asPaper() != null) throw new ProjectError("Attempted to add a single edge between two directly connected nodes");
         if (!existsNode(src)) throw new NonExistentEdgeNodes(src, null);

@@ -53,7 +53,7 @@ public class RemoveNodeSelectorPresenter extends MainAdminPresenter{
     }
 
     public void onClickRemoveNode(int index) {
-        String[] elements = result.get(index).split("\t");
+        String[] elements = result.get(this.index+index).split("\t");
         int id = Integer.parseInt(elements[1]);
         int type;
         switch (elements[4]){
@@ -70,20 +70,20 @@ public class RemoveNodeSelectorPresenter extends MainAdminPresenter{
                 type = ProjectConstants.TERM_TYPE;
                 break;
             default:
-                throw new ProjectError("Invalid Type" + elements[4]);
+                throw new ProjectError("Invalid parameter index: " + elements[4]);
 
         }
 
         ((RemoveNodeSelectorView)actualView).startProgress(index);
         Thread thread = new Thread(() -> {
             try {
-                adminController.deleteNode(id,type);
+                adminController.deleteNode(id, type);
+                result.remove(this.index+index);
             } catch (NonExistentNode nonExistentNode) {
                 throw new ProjectError(nonExistentNode.getMessage());
             }
             Platform.runLater(() -> {
                 ((RemoveNodeSelectorView)actualView).stopProgress(index);
-                result.remove(index);
                 show();
             });
         });
