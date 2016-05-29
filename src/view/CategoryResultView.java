@@ -87,7 +87,7 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
     public void setContent(int index, String node) {
         super.setContent(index, node);
 
-        int i = index++ % Config.LISTS_SIZE;
+        int i = index % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
         relevance.get(i).setText(elements[2]);
     }
@@ -180,20 +180,6 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
             );
         }
 
-        basePane.setOnMouseClicked(
-                event -> {
-//                    if (popUp != null && secondPopUp) {
-//                        secondPopUp = false;
-//                        popUp.close();
-//                        for (HBox res : results) {
-//                            res.setStyle(
-//                                    "-fx-background-color: transparent;"
-//                            );
-//                        }
-//                    }
-//                    else if (!secondPopUp) secondPopUp = true;
-                }
-        );
     }
 
     public void askSimilarOp(int index) {
@@ -215,6 +201,7 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
                     }
                 }
         );
+        popUp.setResizable(false);
         popUp.show();
     }
 
