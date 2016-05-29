@@ -24,6 +24,7 @@ public class MainView extends BaseView {
     public MainView(MainPresenter mainPresenter, Collection<String> resultToPredict) {
         presenter = mainPresenter;
         this.resultToPredict = resultToPredict;
+        search.press();
         initializePanes();
         initializeViews();
         buildPanes();

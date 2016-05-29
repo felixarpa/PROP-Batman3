@@ -10,12 +10,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import presentation.BasePresenter;
 import view.auxiliarViews.Config;
 import view.auxiliarViews.ImageButton;
+import view.auxiliarViews.SelectText;
 
 public class BaseView {
 
@@ -33,12 +35,12 @@ public class BaseView {
 
     private Font coolFont;
 
-    private Text manageFavoriteTopicsText;
-    private Text settingsText;
-    private Text searchText;
-    private Text relationshipSearchText;
-    private Text adminModeText;
-    private Text username;
+    protected SelectText manageFavoriteTopics;
+    protected SelectText settings;
+    protected SelectText search;
+    protected SelectText relationshipSearch;
+    protected SelectText adminMode;
+    protected Text username;
 
     private ImageView appTitleImage;
     private HBox appTitleHBox;
@@ -61,51 +63,20 @@ public class BaseView {
 
     private void setListeners() {
 
-        /*authorsButton.setOnMousePressed(
-                event -> {
-                    authorsButton.press();
-                    lastPressed.release();
-                    lastPressed = authorsButton;
-                }
-        );*/
-
         authorsButton.setOnMouseReleased(
                 event -> {
                     presenter.clickAuthors();
                 }
         );
 
-        /*conferencesButton.setOnMousePressed(
-                event -> {
-                    conferencesButton.press();
-                    lastPressed.release();
-                    lastPressed = conferencesButton;
-                }
-        );*/
-
         conferencesButton.setOnMouseReleased(
                 event -> presenter.clickConferences()
         );
 
-        /*papersButton.setOnMousePressed(
-                event -> {
-                    papersButton.press();
-                    lastPressed.release();
-                    lastPressed = papersButton;
-                }
-        );*/
 
         papersButton.setOnMouseReleased(
                 event -> presenter.clickPapers()
         );
-
-        /*termsButton.setOnMousePressed(
-                event -> {
-                    termsButton.press();
-                    lastPressed.release();
-                    lastPressed = termsButton;
-                }
-        );*/
 
         termsButton.setOnMouseReleased(
                 event -> presenter.clickTerms()
@@ -119,23 +90,23 @@ public class BaseView {
                 event -> MyApp.exit()
         );
 
-        manageFavoriteTopicsText.setOnMouseReleased(
+        manageFavoriteTopics.setOnMouseReleased(
                 event -> presenter.manageFavoriteTopics()
         );
 
-        settingsText.setOnMouseReleased(
+        settings.setOnMouseReleased(
                 event -> presenter.settings()
         );
 
-        searchText.setOnMouseReleased(
+        search.setOnMouseReleased(
                 event -> presenter.search()
         );
 
-        relationshipSearchText.setOnMouseReleased(
+        relationshipSearch.setOnMouseReleased(
                 event -> presenter.relationshipSearch()
         );
 
-        adminModeText.setOnMouseReleased(
+        adminMode.setOnMouseReleased(
                 event -> presenter.adminMode()
         );
     }
@@ -148,7 +119,6 @@ public class BaseView {
 
         sidebarOptions = new VBox(20);
         sidebarOptions.setPadding(new Insets(10,5,10,5));
-
 
         sidebarBottom = new VBox();
         if (UserController.isAdmin()) sidebarBottom.setPadding(new Insets(70,5,10,5));
@@ -173,7 +143,7 @@ public class BaseView {
 
     }
 
-    private void initializeViews(){
+    private void initializeViews() {
         coolFont = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14.95);
         applicationLogo = new ImageView();
         Image appLogoImage = new Image(this.getClass().getResourceAsStream("../images/sidebarLogo.png"));
@@ -193,21 +163,16 @@ public class BaseView {
         logoutIcon.setFitWidth(45);
         logoutIcon.setFitHeight(45);
 
-        manageFavoriteTopicsText = new Text("Manage\nFavorite Topics");
-        manageFavoriteTopicsText.setFont(coolFont);
-        settingsText = new Text("Settings");
-        settingsText.setFont(coolFont);
-        searchText = new Text("Search");
-        searchText.setFont(coolFont);
-        relationshipSearchText = new Text("Relationship\nSearch");
-        relationshipSearchText.setFont(coolFont);
-        adminModeText = new Text("Admin\nMode");
-        adminModeText.setFont(coolFont);
+        manageFavoriteTopics = new SelectText("Manage\nFavorite Topics", coolFont);
+        settings = new SelectText("Settings", coolFont);
+        search = new SelectText("Search", coolFont);
+        relationshipSearch = new SelectText("Relationship\nSearch", coolFont);
+        adminMode = new SelectText("Admin\nMode", coolFont);
+
         username = new Text(UserController.getCurrentUserName());
         username.setFont(coolFont);
         username.setFill(Config.LABEL_CLEAR_COLOR);
         username.setTextAlignment(TextAlignment.CENTER);
-
 
         appTitleImage = new ImageView();
         Image image2 = new Image(this.getClass().getResourceAsStream("../images/appTitle.png"));
@@ -215,12 +180,10 @@ public class BaseView {
         appTitleImage.setImage(image2);
         appTitleImage.setFitWidth(409);
         appTitleImage.setFitHeight(106);
+
         authorsButton = new ImageButton("authorsButton", 220, 75);
-
         conferencesButton = new ImageButton("conferencesButton", 225, 75);
-
         papersButton = new ImageButton("papersButton", 225, 75);
-
         termsButton = new ImageButton("termsButton", 225, 75);
     }
 
@@ -229,11 +192,11 @@ public class BaseView {
         sidebarBottomIcons.getChildren().add(logoutIcon);
         sidebarBottomIcons.getChildren().add(exitIcon);
 
-        sidebarOptions.getChildren().add(manageFavoriteTopicsText);
-        sidebarOptions.getChildren().add(settingsText);
-        sidebarOptions.getChildren().add(searchText);
-        sidebarOptions.getChildren().add(relationshipSearchText);
-        if (UserController.isAdmin()) sidebarOptions.getChildren().add(adminModeText);
+        sidebarOptions.getChildren().add(manageFavoriteTopics);
+        sidebarOptions.getChildren().add(settings);
+        sidebarOptions.getChildren().add(search);
+        sidebarOptions.getChildren().add(relationshipSearch);
+        if (UserController.isAdmin()) sidebarOptions.getChildren().add(adminMode);
         sidebarBottom.getChildren().add(username);
         sidebarBottom.getChildren().add(sidebarBottomIcons);
         sidebarBottom.setAlignment(Pos.CENTER);
@@ -262,7 +225,6 @@ public class BaseView {
         titleAndButtons.getChildren().add(appTitleHBox);
         titleAndButtons.getChildren().add(categoryButtons);
         topBarPane.setTop(titleAndButtons);
-       // topBarPane.setTop(categoryButtons);
 
         basePane.setCenter(topBarPane);
 
