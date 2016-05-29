@@ -124,7 +124,7 @@ public class PopUp extends VBox{
         popUpButton.setOnMouseReleased(
                 event -> {
                     popUpButton.release();
-                    eventListener.handle(null)
+                    eventListener.handle(null);
                 }
         );
     }
