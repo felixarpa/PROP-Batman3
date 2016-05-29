@@ -22,10 +22,12 @@ public class Predictor extends VBox {
     private int resultsToShow;
     private int lastLength;
     private int selected;
+    private boolean typed;
 
     public Predictor(Collection<String> data, int resultsToShow, Insets padding, String textToShow) {
         this.resultsToShow = resultsToShow;
         this.data = data;
+        typed = false;
 
         textToPredict = new TextField();
         textToPredict.setText(textToShow);
@@ -39,6 +41,10 @@ public class Predictor extends VBox {
         getChildren().add(resultBox);
 
         textToPredict.setOnKeyReleased(event -> {
+            if (!typed) {
+                textToPredict.setStyle("-fx-text-fill: #000000;");
+                typed = true;
+            }
             if (event.getCode() == KeyCode.UP) {
                 if (selected > 0) {
                     ((Text)resultBox.getChildren().get(selected)).setFill(Color.BLACK);
@@ -73,6 +79,14 @@ public class Predictor extends VBox {
                 }
                 lastLength = actualWord.length();
                 selected = -1;
+            }
+        });
+
+        textToPredict.setOnMousePressed(event -> {
+            if (!typed) {
+                textToPredict.setText("");
+                textToPredict.setStyle("-fx-text-fill: #000000;");
+                typed = true;
             }
         });
 
