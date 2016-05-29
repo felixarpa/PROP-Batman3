@@ -35,7 +35,10 @@ public class RemoveNodeSelectorView extends MainAdminView {
     protected ImageButton nextPageButton;
     protected ImageButton prevPageButton;
 
+    private boolean canTouch;
+
     public RemoveNodeSelectorView(RemoveNodeSelectorPresenter removeNodeSelectorPresenter) {
+        canTouch = true;
         presenter = removeNodeSelectorPresenter;
         removeNodeButton.press();
         initializePanes();
@@ -98,7 +101,7 @@ public class RemoveNodeSelectorView extends MainAdminView {
                 deleteButtons.get(i).setOnMouseReleased(
                         event -> {
                             deleteButtons.get(index).release();
-                            ((RemoveNodeSelectorPresenter) presenter).onClickRemoveNode(index);
+                            if (canTouch) ((RemoveNodeSelectorPresenter) presenter).onClickRemoveNode(index);
                         }
                 );
             }
@@ -222,6 +225,7 @@ public class RemoveNodeSelectorView extends MainAdminView {
     }
 
     public void startProgress(int index) {
+        canTouch = false;
         ProgressIndicator progressIndicator = new ProgressIndicator(-1);
         progressIndicator.setMinSize(20, 20);
         progressIndicator.setMaxSize(20, 20);
@@ -229,6 +233,7 @@ public class RemoveNodeSelectorView extends MainAdminView {
     }
 
     public void stopProgress(int index) {
+        canTouch = true;
         results.get(index).getChildren().set(3, deleteButtons.get(index));
     }
 

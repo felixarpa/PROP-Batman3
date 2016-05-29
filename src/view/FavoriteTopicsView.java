@@ -173,6 +173,10 @@ public class FavoriteTopicsView extends ListView {
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             int lol = i;
             deleteButtons.get(i).setOnMousePressed(event -> deleteButtons.get(lol).press());
+            deleteButtons.get(i).setOnMouseReleased(event -> {
+                deleteButtons.get(lol).release();
+                if (canTouch) ((FavoriteTopicsPresenter)presenter).onClickRemoveTopicButton(lol);
+            });
         }
 
         addFavorites.setOnMousePressed(event -> addFavorites.press());
@@ -197,10 +201,6 @@ public class FavoriteTopicsView extends ListView {
         else {
             numbers.get(i).setText(index + "");
             deleteButtons.get(i).setVisible(true);
-            deleteButtons.get(i).setOnMouseReleased(event -> {
-                deleteButtons.get(i).release();
-                if (canTouch) ((FavoriteTopicsPresenter)presenter).onClickRemoveTopicButton(i);
-            });
         }
     }
 
