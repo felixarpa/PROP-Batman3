@@ -82,18 +82,26 @@ public class Graph {
 	}
 
 	public void addEdge(Node node1, Node node2) throws NonExistentEdgeNodes, ExistingEdge {
-		Node exception1 = (existsNode(node1) ? null : node1);
-		Node exception2 = (existsNode(node2) ? null : node2);
-		if (exception1 != null || exception2 != null) throw new NonExistentEdgeNodes(node1, node2);
+		if (!existsNode(node1) || !existsNode(node2)) throw new NonExistentEdgeNodes(node1, node2);
 		node1.addEdge(node2, -1);
 		node2.addEdge(node1, -1);
 		edges += 2;
 	}
 
 	public void deleteEdge(Node src, Node dst) throws NonExistentEdge, NonExistentEdgeNodes {
-        if (!existsNode(src)) throw new NonExistentEdgeNodes(src, null);
+        if (!existsNode(src) || !existsNode(dst)) throw new NonExistentEdgeNodes(src, dst);
 		src.deleteEdge(dst);
 		dst.deleteEdge(src);
+		edges -= 2;
+	}
+
+	public void deleteEdge(Id src, Id dst) throws NonExistentEdgeNodes, NonExistentEdge {
+		Node node1 = idMap.get(src);
+		Node node2 = idMap.get(dst);
+		if (node1 == null || node2 == null) throw new NonExistentEdgeNodes(node1, node2);
+
+		node1.deleteEdge(node2);
+		node2.deleteEdge(node1);
 		edges -= 2;
 	}
 
@@ -108,14 +116,6 @@ public class Graph {
 	public Collection<Node> allNodesId() {
 		return idMap.values();
 	}
-	
-	/*public Node isSingleTerm(String name) {
-		Set<Node> result = (graph.subSet(new Term(name, 0), true, new Term(name, 536870911), true));
-		if (result.size() == 1) {
-			for (Node n: result) return n;
-		}
-		return null;
-	}*/
 	
 	public Collection<Node> getNode(String name) {
 		TreeMap<Integer, LinkedList<Node>> map = new TreeMap<>();

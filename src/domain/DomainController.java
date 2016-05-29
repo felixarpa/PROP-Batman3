@@ -326,7 +326,7 @@ public class DomainController {
 	public ArrayList<String> searchSimilarRelationRelevance(String src, String dst, int op) {
 		Node nodesrc = stringToNode(src);
 		Node nodedst = stringToNode(dst);
-		LinkedList<Relation> ret = Searcher.similarRelationRelevance(nodesrc, nodedst, op, lastRelevanceResult);
+		LinkedList<Relation> ret = Searcher.similarRelationRelevance(nodesrc, nodedst, op, lastRelevanceResult.descendingSet());
 		return convertRelationResult(ret);
 	}
 

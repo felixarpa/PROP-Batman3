@@ -141,7 +141,7 @@ public abstract class Searcher {
         return result;
     }
 
-    public static LinkedList<Relation> similarRelationRelevance(Node src, Node dst, int op, TreeSet<Relation> searcSet) {
+    public static LinkedList<Relation> similarRelationRelevance(Node src, Node dst, int op, Set<Relation> searcSet) {
         double weightToCompare = src.getWeight(dst);
         /*SortedMap<Double, TreeSet<Node[]>> result;
         if (op < 0) {
@@ -160,12 +160,10 @@ public abstract class Searcher {
         LinkedList<Relation> result = new LinkedList<>();
         Relation actual = new Relation(src, dst, 0);
         for (Relation relation : searcSet) {
-            //System.out.println(relation);
             if (!relation.equals(actual)) {
                 if ((op < 0 && relation.getRelevance() < weightToCompare) ||
                         (op == 0 && (abs(relation.getRelevance() - weightToCompare) <= 0.2)) ||
                         (op > 0 && relation.getRelevance() > weightToCompare)) {
-                    //System.out.println("picked");
                     result.add(relation);
                 }
             }

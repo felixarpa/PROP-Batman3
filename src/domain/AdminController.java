@@ -159,9 +159,7 @@ public class AdminController {
             default:
                 throw new ProjectError("Invalid parameter type2: "+ type2);
         }
-        Node n1 = Graph.getInstance().getNode(id1);
-        Node n2 = Graph.getInstance().getNode(id2);
-        Graph.getInstance().deleteEdge(n1, n2);
+        Graph.getInstance().deleteEdge(id1, id2);
         DomainController.recalculate();
     }
 }
