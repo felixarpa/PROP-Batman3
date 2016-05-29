@@ -82,6 +82,20 @@ public class RelationshipRelevanceResultView extends BaseView {
             HBox haux = new HBox();
             haux.setPadding(new Insets(0,50,0,50));
             haux.setAlignment(Pos.CENTER);
+            switch (i) {
+                case 0:
+                    haux.setMaxWidth(250);
+                    haux.setMinWidth(250);
+                    break;
+                case 1:
+                    haux.setMaxWidth(220);
+                    haux.setMinWidth(220);
+                    break;
+                case 2:
+                    haux.setMaxWidth(280);
+                    haux.setMinWidth(280);
+                    break;
+            }
             topBarContents.add(haux);
         }
 
@@ -98,8 +112,26 @@ public class RelationshipRelevanceResultView extends BaseView {
             for (int j = 0; j < 3; ++j) {
                 HBox haux = new HBox();
 //                haux.setPadding(new Insets(0,50,0,50));
-                haux.setAlignment(Pos.CENTER);
+
                 haux.setSpacing(10);
+                switch (j) {
+                    case 0:
+                        haux.setMaxWidth(250);
+                        haux.setMinWidth(250);
+                        haux.setAlignment(Pos.CENTER_LEFT);
+                        break;
+                    case 1:
+                        haux.setMaxWidth(220);
+                        haux.setMinWidth(220);
+                        haux.setAlignment(Pos.CENTER);
+                        break;
+                    case 2:
+                        haux.setMaxWidth(280);
+                        haux.setMinWidth(280);
+                        haux.setAlignment(Pos.CENTER_LEFT);
+                        break;
+                }
+
                 arrayaux.add(haux);
             }
             minicontents.add(arrayaux);
@@ -112,7 +144,7 @@ public class RelationshipRelevanceResultView extends BaseView {
             relevanceBar.add(p);
         }
         buttonBar = new HBox();
-        buttonBar.setPadding(new Insets(0, 0, 0, 345));
+        buttonBar.setPadding(new Insets(50, 0, 0, 375));
         buttonBar.setSpacing(10);
 
 
@@ -140,8 +172,8 @@ public class RelationshipRelevanceResultView extends BaseView {
             Label laux = new Label();
             laux.setFont(titleFont);
             laux.setTextFill(Paint.valueOf("white"));
-//            laux.setMaxWidth(40);
-//            laux.setMinWidth(40);
+           laux.setMaxWidth(60);
+            laux.setMinWidth(60);
             index.add(laux);
         }
         nodes = new ArrayList<>(2);
@@ -253,6 +285,7 @@ public class RelationshipRelevanceResultView extends BaseView {
             this.index.get(index%Config.LISTS_SIZE).setText(Integer.toString(index+1));
             nodes.get(0).get(index%Config.LISTS_SIZE).setText(elements1[0]);
             relevanceBar.get(index%Config.LISTS_SIZE).setDisable(false);
+            relevanceBar.get(index % Config.LISTS_SIZE).setVisible(true);
             relevanceBar.get(index%Config.LISTS_SIZE).setProgress(relevance);
             nodes.get(1).get(index%Config.LISTS_SIZE).setText(elements2[0]);
         }
@@ -261,6 +294,7 @@ public class RelationshipRelevanceResultView extends BaseView {
             this.index.get(index % Config.LISTS_SIZE).setText("");
             nodes.get(0).get(index % Config.LISTS_SIZE).setText("");
             relevanceBar.get(index % Config.LISTS_SIZE).setDisable(true);
+            relevanceBar.get(index % Config.LISTS_SIZE).setVisible(false);
             nodes.get(1).get(index % Config.LISTS_SIZE).setText("");
         }
 

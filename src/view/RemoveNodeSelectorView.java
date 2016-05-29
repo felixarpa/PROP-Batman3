@@ -2,6 +2,7 @@ package view;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -219,5 +220,17 @@ public class RemoveNodeSelectorView extends MainAdminView {
             deleteButtons.get(i).setVisible(true);
         }
     }
+
+    public void startProgress(int index) {
+        ProgressIndicator progressIndicator = new ProgressIndicator(-1);
+        progressIndicator.setMinSize(20, 20);
+        progressIndicator.setMaxSize(20, 20);
+        results.get(index).getChildren().set(3, progressIndicator);
     }
+
+    public void stopProgress(int index) {
+        results.get(index).getChildren().set(3, deleteButtons.get(index));
+    }
+
+}
 

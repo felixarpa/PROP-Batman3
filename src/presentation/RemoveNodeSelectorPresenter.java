@@ -2,6 +2,7 @@ package presentation;
 
 import exceptions.NonExistentNode;
 import exceptions.ProjectError;
+import javafx.application.Platform;
 import util.ProjectConstants;
 import view.auxiliarViews.Config;
 import view.MyApp;
@@ -72,13 +73,21 @@ public class RemoveNodeSelectorPresenter extends MainAdminPresenter{
                 throw new ProjectError("Invalid Type" + elements[4]);
 
         }
-        try {
-            adminController.deleteNode(id,type);
-        } catch (NonExistentNode nonExistentNode) {
-            throw new ProjectError(nonExistentNode.getMessage());
-        }
-        result.remove(index);
-        show();
+
+        ((RemoveNodeSelectorView)actualView).startProgress(index);
+        Thread thread = new Thread(() -> {
+            try {
+                adminController.deleteNode(id,type);
+            } catch (NonExistentNode nonExistentNode) {
+                throw new ProjectError(nonExistentNode.getMessage());
+            }
+            Platform.runLater(() -> {
+                ((RemoveNodeSelectorView)actualView).stopProgress(index);
+                result.remove(index);
+                show();
+            });
+        });
+        thread.start();
 
     }
 
