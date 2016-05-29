@@ -36,6 +36,7 @@ public class RemoveNodeSelectorView extends MainAdminView {
 
     public RemoveNodeSelectorView(RemoveNodeSelectorPresenter removeNodeSelectorPresenter) {
         presenter = removeNodeSelectorPresenter;
+        removeNodeButton.press();
         initializePanes();
         initializeViews();
         completePanes();
@@ -81,7 +82,7 @@ public class RemoveNodeSelectorView extends MainAdminView {
             deleteButtons = new ArrayList<>(Config.LISTS_SIZE);
 
             for (int i = 0; i < 10; ++i) {
-                deleteButtons.add(new ImageButton("entityRelevanceButton", 140, 24));
+                deleteButtons.add(new ImageButton("xButton", 20, 20));
             }
         }
 
