@@ -108,6 +108,7 @@ public abstract class FilteredSearchView extends BaseView {
         separacionSuperioPane = new HBox();
         separacionSuperioPane.setPadding(new Insets(0, 60, 0, 50));
         buttonsPane = new HBox();
+        //HEY!
         buttonsPane.setPadding(new Insets(0, 0, 0, 345));
         buttonsPane.setSpacing(10);
 
@@ -263,7 +264,6 @@ public abstract class FilteredSearchView extends BaseView {
             ArrayList<Label> aux = new ArrayList<>(numToShow);
             for (int j = 0; j < numToShow; ++j) {
                 Label laux = new Label();
-                laux.setFont(new Font(20));
                 laux.setTextFill(Paint.valueOf("white"));
                 laux.setFont(font);
                 //laux.setFont(new Font("Microsoft Sans Serif",15));
