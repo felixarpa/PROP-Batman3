@@ -33,7 +33,7 @@ public abstract class ListView extends BaseView {
     protected ImageButton nextPageButton;
     protected ImageButton prevPageButton;
 
-    public ListView() {}
+    protected ListView() {}
 
     protected void initializePanes() {
         contentVBox = new VBox();

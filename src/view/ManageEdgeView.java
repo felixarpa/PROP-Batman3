@@ -16,14 +16,14 @@ abstract class ManageEdgeView extends MainAdminView {
 
     private HBox predictorHBox;
 
-    protected Predictor node1;
-    protected Predictor node2;
+    private Predictor node1;
+    private Predictor node2;
 
-    protected Label errorLabel;
+    private Label errorLabel;
 
-    protected ImageButton button;
+    ImageButton button;
 
-    protected Collection<String> resultToPredict;
+    private Collection<String> resultToPredict;
 
     ManageEdgeView(BasePresenter presenter, Collection<String> resultToPredict) {
         this.presenter = presenter;
@@ -66,7 +66,11 @@ abstract class ManageEdgeView extends MainAdminView {
         topBarPane.setCenter(contentVBox);
     }
 
-    protected abstract void setListeners();
+    protected void setListeners() {
+        button.setOnMousePressed(
+                event -> button.press()
+        );
+    }
 
     public void setErrorMessage(String errorMessage) {
         errorLabel.setText(errorMessage);

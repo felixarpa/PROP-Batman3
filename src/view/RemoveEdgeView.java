@@ -1,13 +1,7 @@
 package view;
 
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import presentation.RemoveEdgePresenter;
-import view.auxiliarViews.Config;
 import view.auxiliarViews.ImageButton;
-import view.auxiliarViews.Predictor;
 
 import java.util.Collection;
 
@@ -32,9 +26,8 @@ public class RemoveEdgeView extends ManageEdgeView {
 
     @Override
     protected void setListeners() {
-        button.setOnMousePressed(
-                event -> button.press()
-        );
+        super.setListeners();
+
         button.setOnMouseReleased(
                 event -> {
                     button.release();

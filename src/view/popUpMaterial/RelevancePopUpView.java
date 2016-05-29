@@ -103,9 +103,7 @@ public class RelevancePopUpView extends VBox {
 
     public void setListeners() {
         popUpButton.setOnMousePressed(
-                event -> {
-                    popUpButton.press();
-                }
+                event -> popUpButton.press()
         );
         popUpButton.setOnMouseReleased(
                 event -> {
