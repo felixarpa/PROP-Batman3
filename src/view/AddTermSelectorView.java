@@ -18,6 +18,8 @@ public class AddTermSelectorView  extends ListView {
 
     private ArrayList<ImageButton> addButtons;
     private ArrayList<Label> relevance;
+    private Label relevanceLabel;
+
     private boolean canTouch;
 
     public AddTermSelectorView(AddTermSelectorPresenter addTermSelectorPresenter) {
@@ -28,6 +30,7 @@ public class AddTermSelectorView  extends ListView {
         initializeViews();
         completePanes();
         setListeners();
+        manageFavoriteTopics.press();
         topBarPane.setCenter(contentVBox);
 
     }
@@ -42,17 +45,26 @@ public class AddTermSelectorView  extends ListView {
         addButtons = new ArrayList<>(Config.LISTS_SIZE);
         relevance = new ArrayList<>(Config.LISTS_SIZE);
 
+
+        relevanceLabel = new Label("Relevance");
+        relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
+        relevanceLabel.setMinSize(200, 20);
+        relevanceLabel.setMaxSize(200, 24);
+        relevanceLabel.setFont(new Font("Arial bold", 24));
+
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             Label label = new Label();
             label.setFont(font);
             label.setTextFill(Paint.valueOf("white"));
-            label.setMaxWidth(200);
-            label.setMinWidth(200);
+            label.setMaxSize(100,24);
+            label.setMinSize(100,20);
             relevance.add(label);
             ImageButton imageButton = new ImageButton("orangeAddTopicButton", 22, 22);
             //imageButton.setMaxSize(22,22);
             //imageButton.setMinSize(22,22);
             addButtons.add(imageButton);
+            ids.get(i).setMinSize(100, 24);
+            ids.get(i).setMaxSize(100, 24);
 
         }
     }
@@ -93,6 +105,7 @@ public class AddTermSelectorView  extends ListView {
     protected void completePanes() {
         buildLine();
         buildPanes();
+        titlesHBox.getChildren().add(relevanceLabel);
     }
 
     @Override

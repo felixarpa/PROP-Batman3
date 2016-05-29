@@ -8,9 +8,11 @@ import java.util.ArrayList;
 
 public class SimilarRelevancePresenter extends CategoryResultPresenter  {
 
-    public SimilarRelevancePresenter(ArrayList<String> result, String node) {
+    public SimilarRelevancePresenter(ArrayList<String> result, String node, int type) {
         this.result = result;
         actualView = new SimilarRelevanceView(this);
+        ((SimilarRelevanceView) actualView).setType(type);
+
         ((SimilarRelevanceView)actualView).setNode(node);
         show();
         MyApp.startScene(actualView.getContent());

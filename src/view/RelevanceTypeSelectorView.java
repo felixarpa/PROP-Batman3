@@ -20,6 +20,7 @@ public class RelevanceTypeSelectorView extends ListView {
         initializeViews();
         setListeners();
         completePanes();
+        search.press();
         topBarPane.setCenter(contentVBox);
     }
 

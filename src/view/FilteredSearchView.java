@@ -68,6 +68,7 @@ public abstract class FilteredSearchView extends BaseView {
         initializeViews();
         buildPanes();
         setListeners();
+        search.press();
         topBarPane.setCenter(contentVBox);
 
     }

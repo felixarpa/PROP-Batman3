@@ -24,6 +24,7 @@ public class SimilarRelationRelevanceView extends ListView {
 
     public SimilarRelationRelevanceView(SimilarRelationRelevancePresenter presenter) {
         this.presenter = presenter;
+        relationshipSearch.press();
         initializePanes();
         initializeViews();
         setListeners();

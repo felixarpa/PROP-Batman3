@@ -5,6 +5,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.SimilarRelevancePresenter;
+import util.ProjectConstants;
 import view.auxiliarViews.Config;
 import view.auxiliarViews.ListView;
 
@@ -90,5 +91,25 @@ public class SimilarRelevanceView extends ListView {
         nameLabel.setText(elements[0]);
         idLabel.setText(elements[1]);
         relevanceLabel.setText(elements[2]);
+    }
+
+    public void setType(int type) {
+        switch (type) {
+            case ProjectConstants.AUTHOR_TYPE:
+                authorsButton.press();
+                break;
+
+            case ProjectConstants.CONFERENCE_TYPE:
+                conferencesButton.press();
+                break;
+
+            case ProjectConstants.PAPER_TYPE:
+                papersButton.press();
+                break;
+
+            case ProjectConstants.TERM_TYPE:
+                termsButton.press();
+                break;
+        }
     }
 }

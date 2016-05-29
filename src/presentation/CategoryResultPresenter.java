@@ -10,6 +10,8 @@ public class CategoryResultPresenter extends ListPresenter {
 
     private int lastSelected;
 
+    private int type;
+
     protected CategoryResultPresenter() {
 
     }
@@ -17,6 +19,7 @@ public class CategoryResultPresenter extends ListPresenter {
     public CategoryResultPresenter(int type) {
         super(domainController.secondSearch(type));
         actualView = new CategoryResultView(this);
+        this.type = type;
         ((CategoryResultView) actualView).setType(type);
         show();
         MyApp.startScene(actualView.getContent());
@@ -34,7 +37,7 @@ public class CategoryResultPresenter extends ListPresenter {
         ArrayList<String> nextResult = domainController.searchSimilarRelevance(result.get(lastSelected), op);
         actualView.destroy();
         actualView = null;
-        MyApp.changePresenter(new SimilarRelevancePresenter(nextResult, result.get(lastSelected)));
+        MyApp.changePresenter(new SimilarRelevancePresenter(nextResult, result.get(lastSelected),type));
     }
 
     public void reorder(int typeOfOrder, boolean ascending) {
