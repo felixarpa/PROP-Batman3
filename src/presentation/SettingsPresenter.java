@@ -14,6 +14,7 @@ public class SettingsPresenter extends BasePresenter  {
     }
 
     public void onSaveChangesClick() {
+        System.out.println("Noob");
         SettingsView view = (SettingsView)actualView;
         try {
             UserController.changePassword(view.getCurrentPassword(), view.getNewPassword(), view.getConfirmNewPassword());
