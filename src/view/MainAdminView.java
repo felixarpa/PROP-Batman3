@@ -16,6 +16,7 @@ public abstract class MainAdminView extends BaseView {
         protected ImageButton lastPressed;
 
         public MainAdminView() {
+            adminMode.press();
             initializePanes();
             initializeViews();
             buildPanes();

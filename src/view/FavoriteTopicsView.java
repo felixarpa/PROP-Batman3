@@ -23,6 +23,7 @@ public class FavoriteTopicsView extends ListView {
     private Label relevanceLabel;
 
     public FavoriteTopicsView(FavoriteTopicsPresenter favoriteTopicsPresenter) {
+        manageFavoriteTopics.press();
         presenter = favoriteTopicsPresenter;
         initializePanes();
         initializeViews();

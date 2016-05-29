@@ -39,7 +39,8 @@ public class RelationSelectorView extends BaseView {
     private Text errorMessageText;
     private ProgressIndicator progressIndicator;
 
-    public RelationSelectorView(RelationSelectorPresenter relationSelectorPresenter){
+    public RelationSelectorView(RelationSelectorPresenter relationSelectorPresenter) {
+        relationshipSearch.press();
         presenter = relationSelectorPresenter;
         initializeFonts();
         initializePanes();

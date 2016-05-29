@@ -35,6 +35,8 @@ public class RelationshipRelevanceResultView extends BaseView {
     ArrayList<HBox> topBarContents;
 
     ArrayList<HBox> contents;
+
+    ArrayList<ArrayList<HBox>> minicontents;
     ArrayList<Label> index;
     ArrayList<ProgressBar> relevanceBar;
     ArrayList<ArrayList<Label>> nodes;
@@ -65,11 +67,9 @@ public class RelationshipRelevanceResultView extends BaseView {
         stackPane = new StackPane();
         contentVBox = new VBox();
         topBar = new HBox();
-        topBar.setPadding(new Insets(0,100,0,100));
         topBar.setMaxSize(900,110);
         topBar.setMinSize(900,110);
         topBar.setAlignment(Pos.CENTER);
-        topBar.setSpacing(10);
         String actualNodeBG =  this.getClass().getResource("../images/blueTopBar.png").toExternalForm();
         topBar.setStyle(
                 "-fx-background-image: url('" + actualNodeBG + "'); " +
@@ -84,18 +84,31 @@ public class RelationshipRelevanceResultView extends BaseView {
             haux.setAlignment(Pos.CENTER);
             topBarContents.add(haux);
         }
+
         contents = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             HBox haux = new HBox();
-            haux.setPadding(new Insets(0,50,0,50));
-            haux.setSpacing(10);
+            haux.setAlignment(Pos.CENTER);
             contents.add(haux);
+        }
+
+        minicontents = new ArrayList<>(Config.LISTS_SIZE);
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
+            ArrayList arrayaux = new ArrayList(3);
+            for (int j = 0; j < 3; ++j) {
+                HBox haux = new HBox();
+//                haux.setPadding(new Insets(0,50,0,50));
+                haux.setAlignment(Pos.CENTER);
+                haux.setSpacing(10);
+                arrayaux.add(haux);
+            }
+            minicontents.add(arrayaux);
         }
         relevanceBar = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             ProgressBar p = new ProgressBar();
-            p.setMaxWidth(125);
-            p.setMinWidth(125);
+//            p.setMaxWidth(125);
+//            p.setMinWidth(125);
             relevanceBar.add(p);
         }
         buttonBar = new HBox();
@@ -127,8 +140,8 @@ public class RelationshipRelevanceResultView extends BaseView {
             Label laux = new Label();
             laux.setFont(titleFont);
             laux.setTextFill(Paint.valueOf("white"));
-            laux.setMaxWidth(40);
-            laux.setMinWidth(40);
+//            laux.setMaxWidth(40);
+//            laux.setMinWidth(40);
             index.add(laux);
         }
         nodes = new ArrayList<>(2);
@@ -139,8 +152,8 @@ public class RelationshipRelevanceResultView extends BaseView {
                 laux.setFont(titleFont);
                 laux.setTextFill(Paint.valueOf("white"));
                 if (i == 0) {
-                    laux.setMaxWidth(250);
-                    laux.setMinWidth(250);
+//                    laux.setMaxWidth(250);
+//                    laux.setMinWidth(250);
                     laux.setTextAlignment(TextAlignment.RIGHT);
                 }
                 arrayaux.add(laux);
@@ -169,12 +182,13 @@ public class RelationshipRelevanceResultView extends BaseView {
         topBar.getChildren().addAll(topBarContents);
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
-            contents.get(i).getChildren().addAll(
+            minicontents.get(i).get(0).getChildren().addAll(
                     index.get(i),
-                    nodes.get(0).get(i),
-                    relevanceBar.get(i),
-                    nodes.get(1).get(i)
+                    nodes.get(0).get(i)
             );
+            minicontents.get(i).get(1).getChildren().add(relevanceBar.get(i));
+            minicontents.get(i).get(2).getChildren().add(nodes.get(1).get(i));
+            contents.get(i).getChildren().addAll(minicontents.get(i));
         }
         buttonBar.getChildren().addAll(
                 prevButton,
