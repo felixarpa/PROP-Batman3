@@ -22,7 +22,7 @@ public abstract class ListView extends BaseView {
 
     protected Pane separacionSuperioPane;
 
-    protected ArrayList<HBox> results;
+    protected ArrayList<HBox> lineHBox;
     protected ArrayList<Label> numbers;
     protected ArrayList<Label> names;
     protected ArrayList<Label> ids;
@@ -43,10 +43,10 @@ public abstract class ListView extends BaseView {
         titlesHBox = new HBox();
         titlesHBox.setPadding(new Insets(0, 10, 0, 60));
 
-        results = new ArrayList<>(Config.LISTS_SIZE);
+        lineHBox = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0 ; i < Config.LISTS_SIZE; ++i) {
-            results.add(new HBox());
-            results.get(i).setPadding(new Insets(0, 10, 0, 10));
+            lineHBox.add(new HBox());
+            lineHBox.get(i).setPadding(new Insets(0, 10, 0, 10));
         }
         pagingButtonsHbox = new HBox();
         pagingButtonsHbox.setPadding(new Insets(0, 0, 0, 345));
@@ -91,7 +91,7 @@ public abstract class ListView extends BaseView {
 
         contentVBox.getChildren().add(titlesHBox);
         contentVBox.getChildren().add(separacionSuperioPane);
-        contentVBox.getChildren().addAll(results);
+        contentVBox.getChildren().addAll(lineHBox);
         contentVBox.getChildren().add(separacionInferiorPane);
         contentVBox.getChildren().add(pagingButtonsHbox);
 
@@ -137,14 +137,14 @@ public abstract class ListView extends BaseView {
             numbers.get(i).setTextFill(Paint.valueOf("white"));
 
             names.add(new Label());
-            names.get(i).setMinSize(380, 24);
-            names.get(i).setMaxSize(380, 24);
+            names.get(i).setMinSize(500, 24);
+            names.get(i).setMaxSize(500, 24);
             names.get(i).setFont(font);
             names.get(i).setTextFill(Paint.valueOf("white"));
 
             ids.add(new Label());
-            ids.get(i).setMinSize(75, 24);
-            ids.get(i).setMaxSize(75, 24);
+            ids.get(i).setMinSize(90, 24);
+            ids.get(i).setMaxSize(90, 24);
             ids.get(i).setFont(font);
             ids.get(i).setTextFill(Paint.valueOf("white"));
         }
@@ -152,13 +152,13 @@ public abstract class ListView extends BaseView {
 
     protected void initializeTitleLabels() {
         nameLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        nameLabel.setMinSize(380, 20);
-        nameLabel.setMaxSize(380, 24);
+        nameLabel.setMinSize(500, 20);
+        nameLabel.setMaxSize(500, 24);
         nameLabel.setFont(new Font("Arial bold", 24));
 
         idLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        idLabel.setMinSize(75, 20);
-        idLabel.setMaxSize(75, 24);
+        idLabel.setMinSize(90, 20);
+        idLabel.setMaxSize(90, 24);
         idLabel.setFont(new Font("Arial bold", 24));
     }
 

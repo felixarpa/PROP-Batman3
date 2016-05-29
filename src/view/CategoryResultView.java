@@ -57,8 +57,8 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
         relevanceLabel = new Label("Relevance");
         relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
 
-        relevanceLabel.setMinSize(200, 20);
-        relevanceLabel.setMaxSize(200, 24);
+        relevanceLabel.setMinSize(150, 20);
+        relevanceLabel.setMaxSize(150, 24);
         relevanceLabel.setFont(new Font("Arial bold", 24));
 
 
@@ -75,12 +75,7 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
             relevance.get(i).setFont(font);
             relevance.get(i).setTextFill(Paint.valueOf("white"));
 
-            ids.get(i).setMinSize(100, 24);
-            ids.get(i).setMaxSize(100, 24);
         }
-
-        idLabel.setMinSize(100, 20);
-        idLabel.setMaxSize(100, 24);
     }
 
     @Override
@@ -103,7 +98,7 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
     @Override
     protected void buildLine() {
         int i = 0;
-        for (HBox line : results) {
+        for (HBox line : lineHBox) {
             line.getChildren().addAll(
                     numbers.get(i),
                     names.get(i),
@@ -159,11 +154,11 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             final int j = i;
-            results.get(i)
+            lineHBox.get(i)
             .setOnMouseClicked(
                     event -> {
                         if (secondPopUp) {
-                            for (HBox res : results) {
+                            for (HBox res : lineHBox) {
                                 res.setStyle(
                                         "-fx-background-color: transparent;"
                                 );
@@ -172,7 +167,7 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
                             secondPopUp = false;
                         }
 
-                        results.get(j).setStyle(
+                        lineHBox.get(j).setStyle(
                                 "-fx-background-color: #000000;"
                         );
                         ((CategoryResultPresenter) presenter).onClick(j);
@@ -194,7 +189,7 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
         ));
         popUp.setOnCloseRequest(
                 event -> {
-                    for (HBox res : results) {
+                    for (HBox res : lineHBox) {
                         res.setStyle(
                                 "-fx-background-color: transparent;"
                         );
@@ -229,7 +224,7 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
 
     @Override
     public void onAccept(int op) {
-        for (HBox res : results) {
+        for (HBox res : lineHBox) {
             res.setStyle(
                     "-fx-background-color: transparent;"
             );

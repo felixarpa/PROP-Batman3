@@ -43,11 +43,11 @@ public class FavoriteTopicsView extends ListView {
 
         titlesHBox = new HBox();
 
-        results = new ArrayList<>(Config.LISTS_SIZE);
+        lineHBox = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0 ; i < Config.LISTS_SIZE; ++i) {
-            results.add(new HBox());
-            results.get(i).setAlignment(Pos.CENTER);
-            results.get(i).setStyle("-fx-border-color: #000000;" +
+            lineHBox.add(new HBox());
+            lineHBox.get(i).setAlignment(Pos.CENTER);
+            lineHBox.get(i).setStyle("-fx-border-color: #000000;" +
                                     "-fx-border-width: 0.4;");
         }
         pagingButtonsHbox = new HBox();
@@ -87,7 +87,7 @@ public class FavoriteTopicsView extends ListView {
         contentVBox.getChildren().add(addFavorites);
         contentVBox.getChildren().add(titlesHBox);
         contentVBox.getChildren().add(separacionSuperioPane);
-        contentVBox.getChildren().addAll(results);
+        contentVBox.getChildren().addAll(lineHBox);
         contentVBox.getChildren().add(separacionInferiorPane);
         contentVBox.getChildren().add(pagingButtonsHbox);
     }
@@ -213,7 +213,7 @@ public class FavoriteTopicsView extends ListView {
     @Override
     protected void buildLine() {
         int i = 0;
-        for (HBox line : results) {
+        for (HBox line : lineHBox) {
             line.getChildren().addAll(
                    numbers.get(i),
                    names.get(i),
@@ -230,12 +230,12 @@ public class FavoriteTopicsView extends ListView {
         ProgressIndicator progressIndicator = new ProgressIndicator(-1);
         progressIndicator.setMinSize(20, 20);
         progressIndicator.setMaxSize(20, 20);
-        results.get(index).getChildren().set(4, progressIndicator);
+        lineHBox.get(index).getChildren().set(4, progressIndicator);
     }
 
     public void stopProgress(int index) {
         canTouch = true;
-        results.get(index).getChildren().set(4, deleteButtons.get(index));
+        lineHBox.get(index).getChildren().set(4, deleteButtons.get(index));
     }
 
 }

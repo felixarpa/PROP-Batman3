@@ -74,7 +74,7 @@ public class SimilarRelevanceView extends ListView {
     @Override
     protected void buildLine() {
         int i = 0;
-        for (HBox line : results) {
+        for (HBox line : lineHBox) {
             line.getChildren().addAll(
                     numbers.get(i),
                     names.get(i),

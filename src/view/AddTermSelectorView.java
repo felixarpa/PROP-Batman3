@@ -12,7 +12,7 @@ import view.auxiliarViews.ListView;
 
 import java.util.ArrayList;
 
-public class AddTermSelectorView  extends ListView{
+public class AddTermSelectorView  extends ListView {
 
     private Font font;
 
@@ -98,7 +98,7 @@ public class AddTermSelectorView  extends ListView{
     @Override
     protected void buildLine() {
         int i = 0;
-        for (HBox line : results) {
+        for (HBox line : lineHBox) {
             line.getChildren().addAll(
                     numbers.get(i),
                     names.get(i),
@@ -115,10 +115,10 @@ public class AddTermSelectorView  extends ListView{
         ProgressIndicator progressIndicator = new ProgressIndicator(-1);
         progressIndicator.setMinSize(20, 20);
         progressIndicator.setMaxSize(20, 20);
-        results.get(index).getChildren().set(4, progressIndicator);
+        lineHBox.get(index).getChildren().set(4, progressIndicator);
     }
 
     public void stopProgress(int index) {
-        results.get(index).getChildren().set(4, addButtons.get(index));
+        lineHBox.get(index).getChildren().set(4, addButtons.get(index));
     }
 }

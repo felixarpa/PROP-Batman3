@@ -27,10 +27,15 @@ public class RelevanceTypeSelectorView extends ListView {
     protected void initializeViews() {
         super.initializeViews();
 
+        nameLabel.setMinSize(360, 20);
+        nameLabel.setMaxSize(360, 24);
+
         entityButtons = new ArrayList<>(Config.LISTS_SIZE);
         relationshipButtons = new ArrayList<>(Config.LISTS_SIZE);
 
         for (int i = 0; i < 10; ++i) {
+            names.get(i).setMinSize(360, 24);
+            names.get(i).setMaxSize(360, 24);
             entityButtons.add(new ImageButton("entityRelevanceButton", 140, 24));
             relationshipButtons.add(new ImageButton("relationshipRelevanceButton", 140, 24));
         }
@@ -71,7 +76,7 @@ public class RelevanceTypeSelectorView extends ListView {
     @Override
     protected void buildLine() {
         int i = 0;
-        for (HBox line : results) {
+        for (HBox line : lineHBox) {
             line.getChildren().addAll(
                     numbers.get(i),
                     names.get(i),
@@ -87,7 +92,7 @@ public class RelevanceTypeSelectorView extends ListView {
     public void setContent(int index, String node) {
         super.setContent(index, node);
 
-        int i = index++ % Config.LISTS_SIZE;
+        int i = index % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
 
         if (elements[0].equals("")) {

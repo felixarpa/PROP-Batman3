@@ -22,7 +22,7 @@ public class RemoveNodePresenter extends MainAdminPresenter {
         Thread thread = new Thread(() -> {
             ArrayList<String> result = domainController.searchingANode(nombre);
             if (result == null) {
-                System.out.println("No results found");
+                System.out.println("No lineHBox found");
                 ((RemoveNodeView)actualView).stopProgress();
                 return;
             }

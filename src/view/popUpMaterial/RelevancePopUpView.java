@@ -63,8 +63,8 @@ public class RelevancePopUpView extends VBox {
             popUpButtons.add(radioButton);
         }
 
-        setMaxSize(350,170);
-        setMinSize(350,170);
+        setMaxSize(350,190);
+        setMinSize(350,190);
         setSpacing(10);
         setPadding(new Insets(5,5,5,5));
         setStyle(
@@ -73,8 +73,7 @@ public class RelevancePopUpView extends VBox {
     }
 
     private void initializeViews() {
-
-        popUpButton = new ImageButton("nextButton", 60, 30);
+        popUpButton = new ImageButton("acceptButton", 141, 54);
     }
 
     private void buildPanes() {

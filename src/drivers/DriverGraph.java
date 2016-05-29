@@ -128,7 +128,7 @@ public class DriverGraph {
           Collection<Node> aux = test.getNode(name);
           System.out.println(name);
           System.out.println("----------");
-          if (aux == null || aux.size() == 0) System.out.println("The search found 0 results.");
+          if (aux == null || aux.size() == 0) System.out.println("The search found 0 lineHBox.");
           else {
         	  for (Node n:aux) {
         		  System.out.println(n);
