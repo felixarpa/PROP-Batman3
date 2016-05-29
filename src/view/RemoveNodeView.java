@@ -26,6 +26,7 @@ public class RemoveNodeView extends MainAdminView {
     public RemoveNodeView(RemoveNodePresenter removeNodePresenter, Collection<String> resultToPredict) {
         presenter = removeNodePresenter;
         this.resultToPredict = resultToPredict;
+        removeNodeButton.press();
         initializePanes();
         initializeViews();
         buildPanes();

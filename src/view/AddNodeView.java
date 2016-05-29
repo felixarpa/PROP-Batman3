@@ -46,6 +46,7 @@ public class AddNodeView extends MainAdminView {
 
     public AddNodeView(AddNodePresenter addNodePresenter) {
         presenter = addNodePresenter;
+        super.addNodeButton.press();
         initializeFonts();
         initializePanes();
         initializeViews();

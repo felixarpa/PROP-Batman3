@@ -125,7 +125,7 @@ public class FavoriteTopicsView extends ListView {
 
         prevPageButton = new ImageButton("prevButton", 60, 30);
         nextPageButton = new ImageButton("nextButton", 60, 30);
-        addFavorites = new ImageButton("addEdgeButton", 225, 50);
+        addFavorites = new ImageButton("addFavoriteTopicButton", 237, 57);
 
     }
 
