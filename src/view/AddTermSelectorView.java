@@ -18,8 +18,10 @@ public class AddTermSelectorView  extends ListView{
 
     private ArrayList<ImageButton> addButtons;
     private ArrayList<Label> relevance;
+    private boolean canTouch;
 
     public AddTermSelectorView(AddTermSelectorPresenter addTermSelectorPresenter) {
+        canTouch = true;
         presenter = addTermSelectorPresenter;
         intializeFonts();
         initializePanes();
@@ -64,7 +66,7 @@ public class AddTermSelectorView  extends ListView{
             addButtons.get(x).setOnMouseReleased(
                     event -> {
                         addButtons.get(x).release();
-                        ((AddTermSelectorPresenter) presenter).addTerm(x);
+                        if (canTouch) ((AddTermSelectorPresenter) presenter).addTerm(x);
                     }
             );
         }
@@ -109,6 +111,7 @@ public class AddTermSelectorView  extends ListView{
     }
 
     public void startProgress(int index) {
+        canTouch = false;
         ProgressIndicator progressIndicator = new ProgressIndicator(-1);
         progressIndicator.setMinSize(20, 20);
         progressIndicator.setMaxSize(20, 20);

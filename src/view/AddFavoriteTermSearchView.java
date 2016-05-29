@@ -10,6 +10,4 @@ public class AddFavoriteTermSearchView extends MainView {
         super(addFavoriteTermSearchPresenter, DomainController.allTermNames());
 
     }
-
-
 }
