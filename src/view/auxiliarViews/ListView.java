@@ -72,8 +72,8 @@ public abstract class ListView extends BaseView {
 
         separacionInferiorPane = new Pane();
 
-        prevPageButton = new ImageButton("../images/", "prevButton", 60, 30);
-        nextPageButton = new ImageButton("../images/", "nextButton", 60, 30);
+        prevPageButton = new ImageButton("prevButton", 60, 30);
+        nextPageButton = new ImageButton("nextButton", 60, 30);
     }
 
     protected void buildPanes() {

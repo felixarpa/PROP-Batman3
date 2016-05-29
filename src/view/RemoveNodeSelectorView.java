@@ -75,13 +75,13 @@ public class RemoveNodeSelectorView extends MainAdminView {
 
         separacionInferiorPane = new Pane();
 
-        prevPageButton = new ImageButton("../images/", "prevButton", 60, 30);
-        nextPageButton = new ImageButton("../images/", "nextButton", 60, 30);
+        prevPageButton = new ImageButton("prevButton", 60, 30);
+        nextPageButton = new ImageButton("nextButton", 60, 30);
 
             deleteButtons = new ArrayList<>(Config.LISTS_SIZE);
 
             for (int i = 0; i < 10; ++i) {
-                deleteButtons.add(new ImageButton("../images", "entityRelevanceButton", 140, 24));
+                deleteButtons.add(new ImageButton("entityRelevanceButton", 140, 24));
             }
         }
 

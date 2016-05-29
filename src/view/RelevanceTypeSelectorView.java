@@ -32,8 +32,8 @@ public class RelevanceTypeSelectorView extends ListView {
         relationshipButtons = new ArrayList<>(Config.LISTS_SIZE);
 
         for (int i = 0; i < 10; ++i) {
-            entityButtons.add(new ImageButton("../images", "entityRelevanceButton", 140, 24));
-            relationshipButtons.add(new ImageButton("../images", "relationshipRelevanceButton", 140, 24));
+            entityButtons.add(new ImageButton("entityRelevanceButton", 140, 24));
+            relationshipButtons.add(new ImageButton("relationshipRelevanceButton", 140, 24));
         }
     }
 

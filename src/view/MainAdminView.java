@@ -24,11 +24,11 @@ public abstract class MainAdminView extends BaseView {
 
         private void initializePanes() {}
         private void initializeViews(){
-            addNodeButton = new  ImageButton("../images", "addNodeButton", 220, 75);
-            removeNodeButton = new ImageButton("../images", "removeNodeButton", 225, 75);
-            addEdgeButton = new ImageButton("../images", "addEdgeButton", 225, 75);
-            removeEdgeButton = new ImageButton("../images", "removeEdgeButton", 225, 75);
-            lastPressed = new ImageButton("../images","addNodeButton",225,75);
+            addNodeButton = new  ImageButton("addNodeButton", 220, 75);
+            removeNodeButton = new ImageButton("removeNodeButton", 225, 75);
+            addEdgeButton = new ImageButton("addEdgeButton", 225, 75);
+            removeEdgeButton = new ImageButton("removeEdgeButton", 225, 75);
+            lastPressed = new ImageButton("addNodeButton",225,75);
         }
         private void buildPanes(){
             categoryButtons.getChildren().clear();

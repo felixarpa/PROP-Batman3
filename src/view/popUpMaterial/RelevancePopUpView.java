@@ -74,7 +74,7 @@ public class RelevancePopUpView extends VBox {
 
     private void initializeViews() {
 
-        popUpButton = new ImageButton("../images", "nextButton", 60, 30);
+        popUpButton = new ImageButton("nextButton", 60, 30);
     }
 
     private void buildPanes() {

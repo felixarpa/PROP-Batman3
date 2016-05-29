@@ -39,7 +39,7 @@ public class MainView extends BaseView {
     }
 
     private void initializeViews() {
-        searchButton = new ImageButton("../images/searchButton.png", 143, 51);
+        searchButton = new ImageButton("searchButton", 143, 51);
 
         predictor = new Predictor(resultToPredict, 10, new Insets(8, 0, 0, 0));
         predictor.setMaxSize(600,200);

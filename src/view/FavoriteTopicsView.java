@@ -123,9 +123,9 @@ public class FavoriteTopicsView extends ListView {
 
         separacionInferiorPane = new Pane();
 
-        prevPageButton = new ImageButton("../images/", "prevButton", 60, 30);
-        nextPageButton = new ImageButton("../images/", "nextButton", 60, 30);
-        addFavorites = new ImageButton("../images", "addEdgeButton", 225, 50);
+        prevPageButton = new ImageButton("prevButton", 60, 30);
+        nextPageButton = new ImageButton("nextButton", 60, 30);
+        addFavorites = new ImageButton("addEdgeButton", 225, 50);
 
     }
 
@@ -158,7 +158,7 @@ public class FavoriteTopicsView extends ListView {
             relevance.get(i).setFont(font);
             relevance.get(i).setTextFill(Paint.valueOf("white"));
 
-            ImageButton imageButton = new ImageButton("../images", "xButton", 20, 20);
+            ImageButton imageButton = new ImageButton("xButton", 20, 20);
             deleteButtons.add(imageButton);
         }
     }

@@ -127,7 +127,7 @@ public class AddNodeView extends MainAdminView {
         nodeSelectorText = new Text("Node Type");
         nodeSelectorText.setFont(font);
         nodeSelectorText.setFill(Paint.valueOf("white"));
-        addNodeButton = new ImageButton("../images","addNodeButton",100,50);
+        addNodeButton = new ImageButton("addNodeButton",100,50);
 
         message = new Text();
         message.setFont(font);
