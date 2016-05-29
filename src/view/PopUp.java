@@ -69,8 +69,8 @@ public class PopUp extends VBox{
             radioButton.setTextFill(Paint.valueOf("white"));
             popUpButtons.add(radioButton);
         }
-        setMaxSize(350,170);
-        setMinSize(350,170);
+        setMaxSize(350,190);
+        setMinSize(350,190);
         setSpacing(10);
         setPadding(new Insets(5,5,5,5));
         setStyle(
@@ -84,6 +84,7 @@ public class PopUp extends VBox{
         popUpText = new Label("Show " + name + " that are:");
         popUpText.setFont(font);
         popUpText.setTextFill(Paint.valueOf("white"));
+
         popUpText.setMaxWidth(200);
         popUpText.setMinWidth(200);
     }

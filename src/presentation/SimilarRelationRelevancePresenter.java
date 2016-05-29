@@ -1,5 +1,6 @@
 package presentation;
 
+import view.MyApp;
 import view.SimilarRelationRelevanceView;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class SimilarRelationRelevancePresenter extends RelationshipRelevanceResu
         transform(result);
         actualView = new SimilarRelationRelevanceView(this);
         ((SimilarRelationRelevanceView)actualView).setNode(nodeSrc, nodeDst, relevance);
+        MyApp.startScene(actualView.getContent());
     }
 
     @Override
