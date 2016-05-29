@@ -3,9 +3,6 @@ JUANMI
 -Hacer Highlights de el sideBar.
 
 MARIO
--Arreglar que no salga siempre el boto en a?adir tema favorito
--Aumentar letra del cuadro azul.
--poner bien prev i next de filteredsearch.
 -Ajustar bien la barra azul de relationship selector
 -Arreglar las barras de relationshipresult.
 
