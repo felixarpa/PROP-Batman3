@@ -3,15 +3,15 @@ package view;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.FilteredSearchPresenter;
 import util.ProjectConstants;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ImageButton;
 
 import java.util.ArrayList;
 

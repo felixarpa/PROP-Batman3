@@ -1,6 +1,5 @@
 package view;
 
-import domain.DomainController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -8,6 +7,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import presentation.LoginPresenter;
 import presentation.Presenter;
+import view.auxiliarViews.Config;
 
 public class MyApp extends Application {
 

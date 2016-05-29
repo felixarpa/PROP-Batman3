@@ -1,7 +1,7 @@
 package presentation;
 
 import util.ProjectConstants;
-import view.Config;
+import view.auxiliarViews.Config;
 import view.MyApp;
 import view.RelevanceTypeSelectorView;
 

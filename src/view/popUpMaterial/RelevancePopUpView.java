@@ -2,14 +2,13 @@ package view.popUpMaterial;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import view.ImageButton;
+import view.auxiliarViews.ImageButton;
 
 import java.util.ArrayList;
 

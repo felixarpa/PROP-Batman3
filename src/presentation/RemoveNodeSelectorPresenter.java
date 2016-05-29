@@ -1,13 +1,10 @@
 package presentation;
 
-import com.sun.java.browser.plugin2.DOM;
-import domain.DomainController;
 import exceptions.NonExistentNode;
 import exceptions.ProjectError;
 import util.ProjectConstants;
-import view.Config;
+import view.auxiliarViews.Config;
 import view.MyApp;
-import view.RelevanceTypeSelectorView;
 import view.RemoveNodeSelectorView;
 
 import java.util.ArrayList;

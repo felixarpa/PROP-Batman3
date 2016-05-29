@@ -14,11 +14,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import presentation.BasePresenter;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ImageButton;
 
 public class BaseView {
 
     protected BorderPane basePane;
-    BorderPane topBarPane;
+    protected BorderPane topBarPane;
 
     private ImageView applicationLogo;
     private ImageView exitIcon;

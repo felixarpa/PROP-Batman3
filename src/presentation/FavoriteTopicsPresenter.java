@@ -1,11 +1,9 @@
 package presentation;
 
 import domain.UserController;
-import view.Config;
+import view.auxiliarViews.Config;
 import view.FavoriteTopicsView;
 import view.MyApp;
-
-import java.util.ArrayList;
 
 public class FavoriteTopicsPresenter extends ListPresenter  {
 

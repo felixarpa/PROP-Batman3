@@ -1,11 +1,12 @@
 package view;
 
-import domain.DomainController;
 import javafx.application.Platform;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import presentation.MainPresenter;
+import view.auxiliarViews.ImageButton;
+import view.auxiliarViews.Predictor;
 
 import java.util.Collection;
 

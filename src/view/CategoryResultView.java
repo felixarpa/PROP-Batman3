@@ -3,16 +3,16 @@ package view;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import presentation.CategoryResultPresenter;
 import util.ProjectConstants;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ListView;
 import view.popUpMaterial.OnSelectRelevance;
 import view.popUpMaterial.RelevancePopUpView;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class CategoryResultView extends ListView implements OnSelectRelevance {

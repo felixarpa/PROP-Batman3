@@ -3,9 +3,10 @@ package view;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.SimilarRelationRelevancePresenter;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ListView;
 
 import java.util.ArrayList;
 

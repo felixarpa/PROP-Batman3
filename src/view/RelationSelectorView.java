@@ -5,7 +5,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -14,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import presentation.RelationSelectorPresenter;
 import util.ProjectConstants;
+import view.auxiliarViews.ImageButton;
 
 /**
  * Created by mario.fernandez on 26/05/2016.

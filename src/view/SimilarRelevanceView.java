@@ -2,11 +2,11 @@ package view;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import presentation.ListPresenter;
 import presentation.SimilarRelevancePresenter;
+import view.auxiliarViews.Config;
+import view.auxiliarViews.ListView;
 
 import java.util.ArrayList;
 

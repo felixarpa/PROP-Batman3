@@ -1,6 +1,6 @@
 package presentation;
 
-import view.Config;
+import view.auxiliarViews.Config;
 
 import java.util.ArrayList;
 
