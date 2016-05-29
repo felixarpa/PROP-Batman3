@@ -46,9 +46,9 @@ public class AddTermSelectorView  extends ListView{
             label.setMaxWidth(200);
             label.setMinWidth(200);
             relevance.add(label);
-            ImageButton imageButton = new ImageButton("xButton", 1, 1);
-            imageButton.setMaxSize(20,20);
-            imageButton.setMinSize(20,20);
+            ImageButton imageButton = new ImageButton("orangeAddTopicButton", 22, 22);
+            //imageButton.setMaxSize(22,22);
+            //imageButton.setMinSize(22,22);
             addButtons.add(imageButton);
 
         }
@@ -76,6 +76,14 @@ public class AddTermSelectorView  extends ListView{
         int i = index % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
         relevance.get(i).setText(elements[2]);
+        if (elements[0].length() == 0) {
+            addButtons.get(i).setDisable(true);
+            addButtons.get(i).setVisible(false);
+        }
+        else {
+            addButtons.get(i).setDisable(false);
+            addButtons.get(i).setVisible(true);
+        }
     }
 
     @Override

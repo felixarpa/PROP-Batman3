@@ -58,7 +58,7 @@ public class RelationSelectorView extends BaseView {
         errorMessageHBox.setAlignment(Pos.CENTER);
         switchButtonHBox = new HBox();
         switchButtonHBox.setAlignment(Pos.CENTER);
-        switchButtonHBox.setPadding(new Insets(0,0,0,35));
+        switchButtonHBox.setPadding(new Insets(35,0,0,40));
         firstTypeTextHBox = new HBox();
         secondTypeTextHbox = new HBox();
         firstTypeTextHBox.setAlignment(Pos.CENTER);
@@ -101,7 +101,7 @@ public class RelationSelectorView extends BaseView {
         errorMessageText = new Text();
         errorMessageText.setFill(Paint.valueOf("#A51212"));
         errorMessageText.setFont(font);
-        switchButton = new ImageButton("xButton",10,10);
+        switchButton = new ImageButton("swapButton",56,32);
         searchButton = new ImageButton("searchButton",143,51);
         selectFirstTypeText = new Text("First node type: ");
         selectFirstTypeText.setFont(font);

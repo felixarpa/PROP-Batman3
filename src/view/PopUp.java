@@ -80,7 +80,7 @@ public class PopUp extends VBox{
 
     private void initializeViews() {
 
-        popUpButton = new ImageButton("prevButton", 60, 30);
+        popUpButton = new ImageButton("acceptButton", 141, 54);
         popUpText = new Label("Show " + name + " that are:");
         popUpText.setFont(font);
         popUpText.setTextFill(Paint.valueOf("white"));

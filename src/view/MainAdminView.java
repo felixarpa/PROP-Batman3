@@ -9,11 +9,11 @@ import view.auxiliarViews.ImageButton;
 public abstract class MainAdminView extends BaseView {
 
         VBox contentVBox;
-        private ImageButton addNodeButton;
-        private ImageButton removeNodeButton;
-        private ImageButton addEdgeButton;
-        private ImageButton removeEdgeButton;
-        private ImageButton lastPressed;
+        protected ImageButton addNodeButton;
+        protected ImageButton removeNodeButton;
+        protected ImageButton addEdgeButton;
+        protected ImageButton removeEdgeButton;
+        protected ImageButton lastPressed;
 
         public MainAdminView() {
             adminMode.press();
