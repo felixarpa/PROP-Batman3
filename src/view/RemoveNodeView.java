@@ -44,7 +44,7 @@ public class RemoveNodeView extends MainAdminView {
     private void initializeViews() {
         searchButton = new ImageButton("removeNodeButton", 143, 51);
 
-        predictor = new Predictor(resultToPredict, 10, new Insets(8, 0, 0, 0));
+        predictor = new Predictor(resultToPredict, 10, new Insets(8, 0, 0, 0), "Introduce the name of the term");
         predictor.setMaxSize(600,200);
         predictor.setMinSize(600,200);
 

@@ -42,7 +42,7 @@ public class MainView extends BaseView {
     private void initializeViews() {
         searchButton = new ImageButton("searchButton", 143, 51);
 
-        predictor = new Predictor(resultToPredict, 10, new Insets(8, 0, 0, 0));
+        predictor = new Predictor(resultToPredict, 10, new Insets(8, 0, 0, 0), "Introduce the name of a node");
         predictor.setMaxSize(600,200);
         predictor.setMinSize(600,200);
 

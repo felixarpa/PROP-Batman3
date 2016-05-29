@@ -23,11 +23,13 @@ public class Predictor extends VBox {
     private int lastLength;
     private int selected;
 
-    public Predictor(Collection<String> data, int resultsToShow, Insets padding) {
+    public Predictor(Collection<String> data, int resultsToShow, Insets padding, String textToShow) {
         this.resultsToShow = resultsToShow;
         this.data = data;
 
         textToPredict = new TextField();
+        textToPredict.setText(textToShow);
+        textToPredict.setStyle("-fx-text-fill: #948598;");
         resultBox = new VBox();
         this.setPadding(padding);
         resultBox.setStyle("-fx-background-color: #FFFFFF;");
