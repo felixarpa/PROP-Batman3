@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import presentation.FilteredSearchEntityPresenter;
 import presentation.FilteredSearchPresenter;
 
@@ -33,20 +34,20 @@ public class FilteredSearchEntityView extends FilteredSearchView {
                         "-fx-background-size: 900 110;"
         );
         actualNodeName = new Label(((FilteredSearchPresenter)presenter).nodeName);
-        actualNodeName.setFont(font);
+        actualNodeName.setFont(titleFont);
         actualNodeName.setTextFill(Paint.valueOf("white"));
         actualNodeName.setMaxWidth(400);
         actualNodeName.setMinWidth(400);
         actualNodeRelevance = new Label(((FilteredSearchPresenter)presenter).nodeRelevance);
-        actualNodeRelevance.setFont(font);
+        actualNodeRelevance.setFont(titleFont);
         actualNodeRelevance.setTextFill(Paint.valueOf("white"));
         actualNodeId = new Label(((FilteredSearchPresenter)presenter).nodeId);
-        actualNodeId.setFont(font);
+        actualNodeId.setFont(titleFont);
         actualNodeId.setTextFill(Paint.valueOf("white"));
         actualNodeId.setMinWidth(100);
         actualNodeId.setMaxWidth(100);
         actualNodeLabel = new Label(((FilteredSearchPresenter)presenter).nodeLabel);
-        actualNodeLabel.setFont(font);
+        actualNodeLabel.setFont(titleFont);
         actualNodeLabel.setTextFill(Paint.valueOf("white"));
         actualNodeLabel.setMaxWidth(74);
         actualNodeLabel.setMinWidth(74);

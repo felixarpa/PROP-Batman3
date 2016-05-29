@@ -76,6 +76,14 @@ public class AddTermSelectorView  extends ListView{
         int i = index % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
         relevance.get(i).setText(elements[2]);
+        if (elements[0].length() == 0) {
+            addButtons.get(i).setDisable(true);
+            addButtons.get(i).setVisible(false);
+        }
+        else {
+            addButtons.get(i).setDisable(false);
+            addButtons.get(i).setVisible(true);
+        }
     }
 
     @Override

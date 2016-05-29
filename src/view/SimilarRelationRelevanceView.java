@@ -13,9 +13,10 @@ import java.util.ArrayList;
 public class SimilarRelationRelevanceView extends ListView {
 
     private ArrayList<ProgressBar> relevance;
+    private ArrayList<Label> names2;
 
     private Label relevanceLabel;
-
+    private Label name2Label;
 
     public SimilarRelationRelevanceView(SimilarRelationRelevancePresenter presenter) {
         this.presenter = presenter;
@@ -32,32 +33,37 @@ public class SimilarRelationRelevanceView extends ListView {
 
         relevanceLabel = new Label("relevance");
         relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        relevanceLabel.setMinSize(200, 20);
-        relevanceLabel.setMaxSize(200, 24);
+        relevanceLabel.setMinSize(125, 20);
+        relevanceLabel.setMaxSize(125, 24);
         relevanceLabel.setFont(new Font("Arial bold", 24));
 
+        name2Label = new Label("name2");
+        name2Label.setTextFill(Config.LABEL_CLEAR_COLOR);
+        name2Label.setMinSize(380, 20);
+        name2Label.setMaxSize(380, 24);
+        name2Label.setFont(new Font("Arial bold", 24));
+
         relevance = new ArrayList<>(Config.LISTS_SIZE);
+        names2 = new ArrayList<>(Config.LISTS_SIZE);
 
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             relevance.add(new ProgressBar());
-            relevance.get(i).setMinSize(120, 20);
-            relevance.get(i).setMaxSize(120, 24);
+            relevance.get(i).setMinSize(125, 20);
+            relevance.get(i).setMaxSize(125, 24);
 
-            ids.get(i).setMinSize(100, 24);
-            ids.get(i).setMaxSize(100, 24);
+            names2.add(new Label());
+            names2.get(i).setMinSize(380, 24);
+            names2.get(i).setMaxSize(380, 24);
         }
-
-        idLabel.setMinSize(100, 20);
-        idLabel.setMaxSize(100, 24);
     }
 
-    @Override
-    public void setContent(int index, String node) {
-        super.setContent(index, node);
-
+    public void setContent(int index, String nodeSrc, String nodeDst, double weight) {
         int i = index % Config.LISTS_SIZE;
-        String[] elements = node.split("\t");
-//        relevance.get(i).setText(elements[2]);
+        String[] srcElements = nodeSrc.split("\t");
+        String[] dstElements = nodeDst.split("\t");
+        names.get(i).setText(srcElements[0]);
+        names2.get(i).setText(dstElements[0]);
+        relevance.get(i).setProgress(weight);
     }
 
     @Override
@@ -65,7 +71,12 @@ public class SimilarRelationRelevanceView extends ListView {
         buildLine();
         buildPanes();
 
-        titlesHBox.getChildren().add(relevanceLabel);
+        titlesHBox.getChildren().clear();
+        titlesHBox.getChildren().addAll(
+                nameLabel,
+                relevanceLabel,
+                name2Label
+        );
     }
 
     @Override
@@ -75,17 +86,18 @@ public class SimilarRelationRelevanceView extends ListView {
             line.getChildren().addAll(
                     numbers.get(i),
                     names.get(i),
-                    ids.get(i),
-                    relevance.get(i)
+                    relevance.get(i),
+                    names2.get(i)
             );
             ++i;
         }
     }
 
-    public void setNode(String node) {
-        String[] elements = node.split("\t");
-        nameLabel.setText(elements[0]);
-        idLabel.setText(elements[1]);
-//        relevanceLabel.setText(elements[2]);
+    public void setNode(String nodeSrc, String nodeDst, double weight) {
+        String[] srcElements = nodeSrc.split("\t");
+        String[] dstElements = nodeDst.split("\t");
+        nameLabel.setText(srcElements[0]);
+        name2Label.setText(dstElements[0]);
+        relevanceLabel.setText(weight + "");
     }
 }
