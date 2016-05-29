@@ -6,12 +6,15 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import presentation.CategoryResultPresenter;
 import presentation.RelationshipRelevanceResultPresenter;
+import util.ProjectConstants;
 import view.auxiliarViews.Config;
 import view.auxiliarViews.ImageButton;
 
@@ -30,9 +33,18 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     Label firstType;
     Label secondType;
-    Label relevanceWord;
+    Label relevance;
+
+    private HBox titleHBox;
+    private ArrayList<HBox> titleHBoxes;
+
+    private Label firstNameWord;
+    private Label secondNameWord;
+    private Label relevanceWord;
 
     ArrayList<HBox> topBarContents;
+
+    protected Pane separacionSuperioPane;
 
     ArrayList<HBox> contents;
 
@@ -47,9 +59,16 @@ public class RelationshipRelevanceResultView extends BaseView {
     
     StackPane stackPane;
 
+    private int ascendingFirstNames;
+    private int ascendingSecondNames;
+    private int ascendingRelevance;
+
     public RelationshipRelevanceResultView(RelationshipRelevanceResultPresenter relationshipRelevanceResultPresenter) {
         presenter = relationshipRelevanceResultPresenter;
         relationshipSearch.press();
+        ascendingFirstNames = -1;
+        ascendingSecondNames = -1;
+        ascendingRelevance = 0;
         initializeFonts();
         initializePanes();
         initializeViews();
@@ -63,6 +82,7 @@ public class RelationshipRelevanceResultView extends BaseView {
         font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
         titleFont = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(),18);
     }
+
 
     private void initializePanes() {
         stackPane = new StackPane();
@@ -99,6 +119,33 @@ public class RelationshipRelevanceResultView extends BaseView {
             }
             topBarContents.add(haux);
         }
+
+        titleHBox = new HBox();
+        titleHBox.setMinWidth(900);
+        titleHBox.setMinWidth(900);
+        titleHBox.setAlignment(Pos.CENTER);
+        titleHBoxes = new ArrayList<>(3);
+        for (int i = 0; i < 3; ++i) {
+            HBox haux = new HBox();
+            haux.setPadding(new Insets(0,50,0,50));
+            haux.setAlignment(Pos.CENTER);
+            switch (i) {
+                case 0:
+                    haux.setMaxWidth(250);
+                    haux.setMinWidth(250);
+                    break;
+                case 1:
+                    haux.setMinSize(220, 20);
+                    haux.setMaxSize(220, 24);
+                    break;
+                case 2:
+                    haux.setMaxWidth(280);
+                    haux.setMinWidth(280);
+                    break;
+            }
+            titleHBoxes.add(haux);
+        }
+
 
         contents = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
@@ -165,9 +212,25 @@ public class RelationshipRelevanceResultView extends BaseView {
         secondType.setFont(titleFont);
         secondType.setTextFill(Paint.valueOf("white"));
         secondType.setTextAlignment(TextAlignment.CENTER);
-        relevanceWord = new Label("RELEVANCE");
+        relevance = new Label("RELEVANCE");
+        relevance.setFont(titleFont);
+        relevance.setTextFill(Paint.valueOf("white"));
+
+        separacionSuperioPane = new Pane();
+
+
+        firstNameWord = new Label("First Name");
+        firstNameWord.setFont(titleFont);
+        firstNameWord.setTextFill(Paint.valueOf("white"));
+        firstNameWord.setTextAlignment(TextAlignment.CENTER);
+        secondNameWord = new Label("Second Name");
+        secondNameWord.setFont(titleFont);
+        secondNameWord.setTextFill(Paint.valueOf("white"));
+        secondNameWord.setTextAlignment(TextAlignment.CENTER);
+        relevanceWord = new Label("Relevance");
         relevanceWord.setFont(titleFont);
         relevanceWord.setTextFill(Paint.valueOf("white"));
+
         index = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             Label laux = new Label();
@@ -204,7 +267,7 @@ public class RelationshipRelevanceResultView extends BaseView {
                     topBarContents.get(i).getChildren().add(firstType);
                     break;
                 case 1:
-                    topBarContents.get(i).getChildren().add(relevanceWord);
+                    topBarContents.get(i).getChildren().add(relevance);
                     break;
                 case 2:
                     topBarContents.get(i).getChildren().add(secondType);
@@ -213,6 +276,26 @@ public class RelationshipRelevanceResultView extends BaseView {
         }
 
         topBar.getChildren().addAll(topBarContents);
+
+        for (int i = 0; i < 3; ++i) {
+            switch (i) {
+                case 0:
+                    titleHBoxes.get(i).getChildren().add(firstNameWord);
+                    break;
+                case 1:
+                    titleHBoxes.get(i).getChildren().add(relevanceWord);
+                    break;
+                case 2:
+                    titleHBoxes.get(i).getChildren().add(secondNameWord);
+
+            }
+        }
+
+        titleHBox.getChildren().addAll(titleHBoxes);
+
+        separacionSuperioPane.setMinSize(800, 1);
+        separacionSuperioPane.setMaxSize(800, 1);
+        separacionSuperioPane.setStyle("-fx-background-color: #ffffff");
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             minicontents.get(i).get(0).getChildren().addAll(
@@ -227,10 +310,8 @@ public class RelationshipRelevanceResultView extends BaseView {
                 prevButton,
                 nextButton
         );
-        HBox haux = new HBox();
-        haux.setMaxHeight(50);
-        haux.setMinHeight(50);
-        contentVBox.getChildren().add(haux);
+        contentVBox.getChildren().add(titleHBox);
+        contentVBox.getChildren().add(separacionSuperioPane);
         contentVBox.getChildren().addAll(contents);
         contentVBox.getChildren().add(buttonBar);
 
@@ -268,6 +349,68 @@ public class RelationshipRelevanceResultView extends BaseView {
             popUp.setListeners(event -> {
                 ((RelationshipRelevanceResultPresenter)presenter).onAcceptClick(popUp.getSelected());
             });
+
+        }
+        firstNameWord.setOnMouseReleased(
+                event -> {
+                    ascendingSecondNames = -1;
+                    ascendingRelevance = -1;
+                    ((RelationshipRelevanceResultPresenter) presenter).reorder(
+                            ProjectConstants.NAME_ORDER1,
+                            (ascendingFirstNames != 1)
+                    );
+                    ascendingFirstNames = (ascendingFirstNames != 1) ? 1 : 0;
+                    setCorrectOrder();
+                }
+        );
+
+        secondNameWord.setOnMouseReleased(
+                event -> {
+                    ascendingFirstNames = -1;
+                    ascendingRelevance = -1;
+                    ((RelationshipRelevanceResultPresenter) presenter).reorder(
+                            ProjectConstants.NAME_ORDER2,
+                            (ascendingSecondNames != 1)
+                    );
+                    ascendingSecondNames = (ascendingSecondNames != 1) ? 1 : 0;
+                    setCorrectOrder();
+                }
+        );
+
+        relevanceWord.setOnMouseReleased(
+                event -> {
+                    ascendingFirstNames = -1;
+                    ascendingSecondNames = -1;
+                    ((RelationshipRelevanceResultPresenter) presenter).reorder(
+                            ProjectConstants.RELATION_RELEVANCE,
+                            (ascendingRelevance != 1)
+                    );
+                    ascendingRelevance = (ascendingRelevance != 1) ? 1 : 0;
+                    setCorrectOrder();
+                }
+        );
+
+    }
+
+    private void setCorrectOrder() {
+        setCorrectOrder(ascendingFirstNames, firstNameWord, "First Name");
+        setCorrectOrder(ascendingSecondNames, secondNameWord, "Second Name");
+        setCorrectOrder(ascendingRelevance, relevanceWord, "Relevance");
+    }
+
+    private void setCorrectOrder(int orderStatus, Label label, String name) {
+        switch (orderStatus) {
+            case -1:
+                label.setText(name + " ▬");
+                break;
+
+            case 0:
+                label.setText(name + " ▼");
+                break;
+
+            case 1:
+                label.setText(name + " ▲");
+                break;
         }
     }
 
