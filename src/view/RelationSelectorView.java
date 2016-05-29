@@ -15,9 +15,6 @@ import presentation.RelationSelectorPresenter;
 import util.ProjectConstants;
 import view.auxiliarViews.ImageButton;
 
-/**
- * Created by mario.fernandez on 26/05/2016.
- */
 public class RelationSelectorView extends BaseView {
 
     VBox contentVBox;

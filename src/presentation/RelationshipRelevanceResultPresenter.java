@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class RelationshipRelevanceResultPresenter extends ListPresenter  {
 
-    private ArrayList<String> nodeSrc;
-    private ArrayList<String> nodeDst;
-    private ArrayList<Double> relevance;
+    protected ArrayList<String> nodeSrc;
+    protected ArrayList<String> nodeDst;
+    protected ArrayList<Double> relevance;
     private int lastSelected;
     private int type1;
     private int type2;
@@ -59,7 +59,6 @@ public class RelationshipRelevanceResultPresenter extends ListPresenter  {
         ArrayList<String> nextResult = domainController.searchSimilarRelationRelevance(nodeSrc.get(lastSelected), nodeDst.get(lastSelected), op);
         actualView.destroy();
         actualView = null;
-        System.out.println("Cambiando de vista, op " + op);
         MyApp.changePresenter(new SimilarRelationRelevancePresenter(nextResult, nodeSrc.get(lastSelected), nodeDst.get(lastSelected), relevance.get(lastSelected)));
     }
 
