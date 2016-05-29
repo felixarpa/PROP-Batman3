@@ -137,8 +137,8 @@ public abstract class FilteredSearchView extends BaseView {
         relevanceLabel = new Label("Relevance");
         labelLabel = new Label("Label");
         initializeTitleLabels();
-        prev = new ImageButton("../images/", "prevButton", 60, 30);
-        next = new ImageButton("../images/", "nextButton", 60, 30);
+        prev = new ImageButton("prevButton", 60, 30);
+        next = new ImageButton("nextButton", 60, 30);
     }
 
     private void buildPanes() {

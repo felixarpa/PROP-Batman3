@@ -215,13 +215,13 @@ public class BaseView {
         appTitleImage.setImage(image2);
         appTitleImage.setFitWidth(409);
         appTitleImage.setFitHeight(106);
-        authorsButton = new ImageButton("../images", "authorsButton", 220, 75);
+        authorsButton = new ImageButton("authorsButton", 220, 75);
 
-        conferencesButton = new ImageButton("../images", "conferencesButton", 225, 75);
+        conferencesButton = new ImageButton("conferencesButton", 225, 75);
 
-        papersButton = new ImageButton("../images", "papersButton", 225, 75);
+        papersButton = new ImageButton("papersButton", 225, 75);
 
-        termsButton = new ImageButton("../images", "termsButton", 225, 75);
+        termsButton = new ImageButton("termsButton", 225, 75);
     }
 
     private void buildPanes(){

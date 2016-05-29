@@ -101,8 +101,8 @@ public class RelationSelectorView extends BaseView {
         errorMessageText = new Text();
         errorMessageText.setFill(Paint.valueOf("#A51212"));
         errorMessageText.setFont(font);
-        switchButton = new ImageButton("../images","xButton",10,10);
-        searchButton = new ImageButton("../images","searchButton",143,51);
+        switchButton = new ImageButton("xButton",10,10);
+        searchButton = new ImageButton("searchButton",143,51);
         selectFirstTypeText = new Text("First node type: ");
         selectFirstTypeText.setFont(font);
         selectFirstTypeText.setFill(Paint.valueOf("white"));

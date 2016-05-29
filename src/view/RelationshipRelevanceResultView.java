@@ -108,8 +108,8 @@ public class RelationshipRelevanceResultView extends BaseView {
     private void initializeViews(){
 
         popUp = new PopUp("relations");
-        prevButton = new ImageButton("../images/", "prevButton", 60, 30);
-        nextButton = new ImageButton("../images/", "nextButton", 60, 30);
+        prevButton = new ImageButton("prevButton", 60, 30);
+        nextButton = new ImageButton("nextButton", 60, 30);
 
         firstType = new Label(((RelationshipRelevanceResultPresenter)presenter).getType(1));
         firstType.setFont(titleFont);

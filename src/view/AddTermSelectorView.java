@@ -46,7 +46,7 @@ public class AddTermSelectorView  extends ListView{
             label.setMaxWidth(200);
             label.setMinWidth(200);
             relevance.add(label);
-            ImageButton imageButton = new ImageButton("../images", "xButton", 1, 1);
+            ImageButton imageButton = new ImageButton("xButton", 1, 1);
             imageButton.setMaxSize(20,20);
             imageButton.setMinSize(20,20);
             addButtons.add(imageButton);

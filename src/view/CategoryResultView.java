@@ -162,6 +162,16 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
             results.get(i)
             .setOnMouseClicked(
                     event -> {
+                        if (secondPopUp) {
+                            for (HBox res : results) {
+                                res.setStyle(
+                                        "-fx-background-color: transparent;"
+                                );
+                            }
+                            if (popUp != null) popUp.close();
+                            secondPopUp = false;
+                        }
+
                         results.get(j).setStyle(
                                 "-fx-background-color: #000000;"
                         );
@@ -172,21 +182,22 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
 
         basePane.setOnMouseClicked(
                 event -> {
-                    if (popUp != null && secondPopUp) {
-                        popUp.close();
-                        for (HBox res : results) {
-                            res.setStyle(
-                                    "-fx-background-color: transparent;"
-                            );
-                        }
-                        secondPopUp = false;
-                    }
-                    else secondPopUp = true;
+//                    if (popUp != null && secondPopUp) {
+//                        secondPopUp = false;
+//                        popUp.close();
+//                        for (HBox res : results) {
+//                            res.setStyle(
+//                                    "-fx-background-color: transparent;"
+//                            );
+//                        }
+//                    }
+//                    else if (!secondPopUp) secondPopUp = true;
                 }
         );
     }
 
     public void askSimilarOp(int index) {
+        secondPopUp = true;
         RelevancePopUpView popUpView = new RelevancePopUpView(this);
         popUp = new Stage();
         popUp.setTitle(names.get(index).getText());

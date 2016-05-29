@@ -99,7 +99,7 @@ public class LoginView {
         passwordLabel.setTextFill(Config.LABEL_DARK_COLOR);
         passwordTextField = new PasswordField();
 
-        loginButton = new ImageButton("../images/login", "loginButton", 227, 50);
+        loginButton = new ImageButton("loginButton", 227, 50);
 
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
@@ -110,7 +110,7 @@ public class LoginView {
                 "-fx-fill: #d0b494;" +
                 "-fx-font: 20px Caspian");
 
-        registerButton = new ImageButton("../images/login/registerButton.png", 148, 50);
+        registerButton = new ImageButton("login/registerButton", 148, 50);
 
         progressIndicator = new ProgressIndicator();
         progressIndicator.setMaxSize(227, 50);
