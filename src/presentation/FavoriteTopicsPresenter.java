@@ -1,6 +1,7 @@
 package presentation;
 
 import domain.UserController;
+import javafx.application.Platform;
 import view.auxiliarViews.Config;
 import view.FavoriteTopicsView;
 import view.MyApp;
@@ -16,9 +17,16 @@ public class FavoriteTopicsPresenter extends ListPresenter  {
     }
 
     public void onClickRemoveTopicButton(int index) {
-        UserController.deleteFav(result.get(index + this.index));
-        result.remove(index+ this.index);
-        show();
+        ((FavoriteTopicsView)actualView).startProgress(index);
+        Thread thread = new Thread(() -> {
+            UserController.deleteFav(result.get(index + this.index));
+            result.remove(index+ this.index);
+            Platform.runLater(() -> {
+                ((FavoriteTopicsView)actualView).stopProgress(index);
+                show();
+            });
+        });
+        thread.start();
     }
 
     public void onClickAddTopicButton() {
