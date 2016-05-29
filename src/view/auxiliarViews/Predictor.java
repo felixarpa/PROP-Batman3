@@ -33,7 +33,7 @@ public class Predictor extends VBox {
         textToPredict.setText(textToShow);
         textToPredict.setStyle("-fx-text-fill: #948598;");
         resultBox = new VBox();
-        this.setPadding(padding);
+        setPadding(padding);
         resultBox.setStyle("-fx-background-color: #FFFFFF;");
         lastLength = -1;
         selected = -1;
