@@ -1,23 +1,37 @@
 package view;
 
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.FilteredSearchEntityPresenter;
 import presentation.FilteredSearchPresenter;
+import util.ProjectConstants;
 
 import java.util.ArrayList;
 
 public class FilteredSearchEntityView extends FilteredSearchView {
+
+
+    private int ascendingNames;
+    private int ascendingIds;
+    private int ascendingRelevances;
+
     public FilteredSearchEntityView(FilteredSearchEntityPresenter filteredSearchEntityPresenter) {
         super(filteredSearchEntityPresenter);
         initializeActualNode();
+        ascendingNames = -1;
+        ascendingIds = -1;
+        ascendingRelevances = 0;
+        setCorrectOrder();
         topBarPane.setTop(actualNodeBox);
     }
+
 
     @Override
     protected void initializeActualNode() {
@@ -56,6 +70,49 @@ public class FilteredSearchEntityView extends FilteredSearchView {
                 actualNodeLabel,
                 actualNodeId,
                 actualNodeRelevance
+        );
+    }
+
+    @Override
+    protected void setListeners() {
+        super.setListeners();
+        nameLabel.setOnMouseReleased(
+                event -> {
+                    ascendingRelevances = -1;
+                    ascendingIds = -1;
+                    ((FilteredSearchPresenter) presenter).reorder(
+                            ProjectConstants.NAME_ORDER,
+                            (ascendingNames != 1)
+                    );
+                    ascendingNames = (ascendingNames != 1) ? 1 : 0;
+                    setCorrectOrder();
+                }
+        );
+
+        relevanceLabel.setOnMouseReleased(
+                event -> {
+                    ascendingNames = -1;
+                    ascendingIds = -1;
+                    ((FilteredSearchPresenter) presenter).reorder(
+                            ProjectConstants.RELEVANCE_ORDER,
+                            (ascendingRelevances != 1)
+                    );
+                    ascendingRelevances = (ascendingRelevances != 1) ? 1 : 0;
+                    setCorrectOrder();
+                }
+        );
+
+        idLabel.setOnMouseReleased(
+                event -> {
+                    ascendingNames = -1;
+                    ascendingRelevances = -1;
+                    ((FilteredSearchPresenter) presenter).reorder(
+                            ProjectConstants.ID_ORDER,
+                            (ascendingIds != 1)
+                    );
+                    ascendingIds = (ascendingIds != 1) ? 1 : 0;
+                    setCorrectOrder();
+                }
         );
     }
 
@@ -112,6 +169,28 @@ public class FilteredSearchEntityView extends FilteredSearchView {
         name.get(type).get(index%listSize).setMaxWidth(400);
         //name.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
 
+    }
+
+    private void setCorrectOrder() {
+        setCorrectOrder(ascendingNames, nameLabel, "Name");
+        setCorrectOrder(ascendingRelevances, relevanceLabel, "Relevance");
+        setCorrectOrder(ascendingIds, idLabel, "ID");
+    }
+
+    private void setCorrectOrder(int orderStatus, Label label, String name) {
+        switch (orderStatus) {
+            case -1:
+                label.setText(name + " ▬");
+                break;
+
+            case 0:
+                label.setText(name + " ▼");
+                break;
+
+            case 1:
+                label.setText(name + " ▲");
+                break;
+        }
     }
 
 

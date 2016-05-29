@@ -49,10 +49,10 @@ public abstract class FilteredSearchView extends BaseView {
     private HBox separacionSuperioPane;
 
     private HBox titlesHBox;
-    private Label nameLabel;
-    private Label idLabel;
-    private Label relevanceLabel;
-    private Label labelLabel;
+    protected Label nameLabel;
+    protected Label idLabel;
+    protected Label relevanceLabel;
+    protected Label labelLabel;
 
     protected ImageButton next;
     protected ImageButton prev;
@@ -60,6 +60,7 @@ public abstract class FilteredSearchView extends BaseView {
     private HBox buttonsPane;
 
     public final static int numToShow = 3;
+
 
     public FilteredSearchView(FilteredSearchPresenter filteredSearchPresenter) {
         presenter = filteredSearchPresenter;
@@ -90,8 +91,8 @@ public abstract class FilteredSearchView extends BaseView {
         idLabel.setFont(new Font("Arial bold", 18));
 
         relevanceLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
-        relevanceLabel.setMinSize(100, 20);
-        relevanceLabel.setMaxSize(100, 24);
+        relevanceLabel.setMinSize(120, 20);
+        relevanceLabel.setMaxSize(120, 24);
         relevanceLabel.setFont(new Font("Arial bold", 18));
 
         labelLabel.setTextFill(Config.LABEL_CLEAR_COLOR);
@@ -203,18 +204,18 @@ public abstract class FilteredSearchView extends BaseView {
                 relevanceLabel
 
         );
-        HBox haux = new HBox();
-        haux.setMaxSize(830,1);
-        haux.setMinSize(830,1);
-        haux.setStyle("-fx-background-color: #ffffff");
         buttonsPane.getChildren().addAll(
                 prev,
                 next
         );
+        HBox haux = new HBox();
+        haux.setMaxSize(830,1);
+        haux.setMinSize(830,1);
+        haux.setStyle("-fx-background-color: #ffffff");
         separacionSuperioPane.getChildren().add(haux);
     }
 
-    private void setListeners() {
+    protected void setListeners() {
         authorText.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -255,6 +256,7 @@ public abstract class FilteredSearchView extends BaseView {
                     ((FilteredSearchPresenter) presenter).showMore();
                 }
         );
+
     }
 
     protected abstract void initializeActualNode();
@@ -355,6 +357,8 @@ public abstract class FilteredSearchView extends BaseView {
         contentVBox.getChildren().add(vaux);
         contentVBox.getChildren().add(buttonsPane);
     }
+
+   
 
 
 

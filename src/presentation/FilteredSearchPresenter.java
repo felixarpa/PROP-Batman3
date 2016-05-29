@@ -1,5 +1,6 @@
 package presentation;
 
+import util.ProjectConstants;
 import view.auxiliarViews.Config;
 import view.FilteredSearchView;
 
@@ -12,7 +13,7 @@ public abstract class FilteredSearchPresenter extends ListPresenter{
     public String nodeLabel;
     public String nodeRelevance;
 
-    private int actualType;
+    protected int actualType;
 
     public FilteredSearchPresenter(ArrayList<ArrayList<String>> result, String node) {
         this.result = result;
@@ -46,6 +47,9 @@ public abstract class FilteredSearchPresenter extends ListPresenter{
         for (;max < nextIndex; ++max) {
             ((FilteredSearchView) actualView).setContent(max, "\t \t \t \t",i,FilteredSearchView.numToShow);
         }
+    }
+
+    public void reorder(int typeOfOrder, boolean ascending) {
     }
 
     @Override

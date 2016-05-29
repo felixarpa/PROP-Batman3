@@ -27,6 +27,7 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     Font font;
     Font titleFont;
+    Font titleFont2;
 
 
     HBox topBar;
@@ -44,7 +45,7 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     ArrayList<HBox> topBarContents;
 
-    protected Pane separacionSuperioPane;
+    private HBox separacionSuperioPane;
 
     ArrayList<HBox> contents;
 
@@ -74,6 +75,7 @@ public class RelationshipRelevanceResultView extends BaseView {
         initializeViews();
         buildPanes();
         setListeners();
+        setCorrectOrder();
         topBarPane.setCenter(stackPane);
         topBarPane.setTop(topBar);
     }
@@ -81,6 +83,8 @@ public class RelationshipRelevanceResultView extends BaseView {
     private void initializeFonts() {
         font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
         titleFont = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(),18);
+        titleFont2 = new Font("Arial bold", 18);
+
     }
 
 
@@ -105,8 +109,8 @@ public class RelationshipRelevanceResultView extends BaseView {
             haux.setAlignment(Pos.CENTER);
             switch (i) {
                 case 0:
-                    haux.setMaxWidth(250);
-                    haux.setMinWidth(250);
+                    haux.setMaxWidth(290);
+                    haux.setMinWidth(290);
                     break;
                 case 1:
                     haux.setMaxWidth(220);
@@ -124,11 +128,12 @@ public class RelationshipRelevanceResultView extends BaseView {
         titleHBox.setMinWidth(900);
         titleHBox.setMinWidth(900);
         titleHBox.setAlignment(Pos.CENTER);
+        titleHBox.setPadding(new Insets(20,0,0,20));
         titleHBoxes = new ArrayList<>(3);
         for (int i = 0; i < 3; ++i) {
             HBox haux = new HBox();
             haux.setPadding(new Insets(0,50,0,50));
-            haux.setAlignment(Pos.CENTER);
+            haux.setAlignment(Pos.CENTER_LEFT);
             switch (i) {
                 case 0:
                     haux.setMaxWidth(250);
@@ -146,6 +151,8 @@ public class RelationshipRelevanceResultView extends BaseView {
             titleHBoxes.add(haux);
         }
 
+        separacionSuperioPane = new HBox();
+        separacionSuperioPane.setPadding(new Insets(10, 60, 10, 50));
 
         contents = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
@@ -216,20 +223,10 @@ public class RelationshipRelevanceResultView extends BaseView {
         relevance.setFont(titleFont);
         relevance.setTextFill(Paint.valueOf("white"));
 
-        separacionSuperioPane = new Pane();
-
-
         firstNameWord = new Label("First Name");
-        firstNameWord.setFont(titleFont);
-        firstNameWord.setTextFill(Paint.valueOf("white"));
-        firstNameWord.setTextAlignment(TextAlignment.CENTER);
         secondNameWord = new Label("Second Name");
-        secondNameWord.setFont(titleFont);
-        secondNameWord.setTextFill(Paint.valueOf("white"));
-        secondNameWord.setTextAlignment(TextAlignment.CENTER);
         relevanceWord = new Label("Relevance");
-        relevanceWord.setFont(titleFont);
-        relevanceWord.setTextFill(Paint.valueOf("white"));
+        initializeTitleLabels();
 
         index = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
@@ -293,9 +290,11 @@ public class RelationshipRelevanceResultView extends BaseView {
 
         titleHBox.getChildren().addAll(titleHBoxes);
 
-        separacionSuperioPane.setMinSize(800, 1);
-        separacionSuperioPane.setMaxSize(800, 1);
-        separacionSuperioPane.setStyle("-fx-background-color: #ffffff");
+        HBox haux = new HBox();
+        haux.setMaxSize(830,1);
+        haux.setMinSize(830,1);
+        haux.setStyle("-fx-background-color: #ffffff");
+        separacionSuperioPane.getChildren().add(haux);
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             minicontents.get(i).get(0).getChildren().addAll(
@@ -318,6 +317,27 @@ public class RelationshipRelevanceResultView extends BaseView {
 
 
         stackPane.getChildren().add(contentVBox);
+
+    }
+
+    protected void initializeTitleLabels() {
+
+
+
+        firstNameWord.setFont(titleFont2);
+        firstNameWord.setTextFill(Config.LABEL_CLEAR_COLOR);
+        firstNameWord.setMaxHeight(24);
+        firstNameWord.setMinHeight(20);
+        firstNameWord.setTextAlignment(TextAlignment.CENTER);
+        secondNameWord.setFont(titleFont2);
+        secondNameWord.setTextFill(Config.LABEL_CLEAR_COLOR);
+        secondNameWord.setMaxHeight(24);
+        secondNameWord.setMinHeight(20);
+        secondNameWord.setTextAlignment(TextAlignment.CENTER);
+        relevanceWord.setFont(titleFont2);
+        relevanceWord.setTextFill(Config.LABEL_CLEAR_COLOR);
+        relevanceWord.setMaxHeight(24);
+        relevanceWord.setMinHeight(20);
 
     }
 

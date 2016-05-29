@@ -1,7 +1,9 @@
 package presentation;
 
+import util.ProjectConstants;
 import view.FilteredSearchRelationView;
 import view.MyApp;
+import view.auxiliarViews.Config;
 
 import java.util.ArrayList;
 
@@ -36,4 +38,11 @@ public class FilteredSearchRelationPresenter extends FilteredSearchPresenter {
         result = processed;
     }
 
+
+    @Override
+    public void reorder(int typeOfOrder, boolean ascending) {
+        result.set(actualType,domainController.reorderSearch(1,actualType,typeOfOrder,ascending));
+        index = 0;
+        show();
+    }
 }

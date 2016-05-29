@@ -16,5 +16,11 @@ public class FilteredSearchEntityPresenter extends FilteredSearchPresenter {
     }
 
 
+    @Override
+    public void reorder(int typeOfOrder, boolean ascending) {
+        result.set(actualType,domainController.reorderSearch(1,actualType,typeOfOrder,ascending));
+        index = 0;
+        show();
+    }
 
 }

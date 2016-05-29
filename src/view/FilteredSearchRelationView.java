@@ -110,4 +110,5 @@ public class FilteredSearchRelationView extends FilteredSearchView{
         //name.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
 
     }
+
 }
