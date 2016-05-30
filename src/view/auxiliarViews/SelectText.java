@@ -9,11 +9,6 @@ public class SelectText extends HBox {
 
     private Text text;
 
-    public SelectText(String text) {
-        this.text = new Text(text);
-        getChildren().add(this.text);
-    }
-
     public SelectText(String text, Font font) {
         this.text = new Text(text);
         this.text.setFont(font);

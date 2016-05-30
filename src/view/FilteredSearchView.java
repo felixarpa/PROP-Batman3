@@ -15,12 +15,7 @@ import view.auxiliarViews.ImageButton;
 
 import java.util.ArrayList;
 
-/**
- * Created by mario.fernandez on 25/05/2016.
- */
 public abstract class FilteredSearchView extends BaseView {
-
-    //TODO: Padding de las HBOXES; añadir el nodo arriba del todo, añadir listeners, añadir botones de show more y show less, cambiar fuentes.
 
     protected VBox contentVBox;
     protected ArrayList<VBox> contents;

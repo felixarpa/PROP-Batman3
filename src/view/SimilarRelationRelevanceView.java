@@ -1,13 +1,11 @@
 package view;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import presentation.SimilarRelationRelevancePresenter;
 import view.auxiliarViews.Config;
 import view.auxiliarViews.ListView;

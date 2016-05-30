@@ -19,7 +19,7 @@ public class MainView extends BaseView {
     private ProgressIndicator progressIndicator;
     private ImageButton searchButton;
     private Predictor predictor;
-    protected Collection<String> resultToPredict;
+    private Collection<String> resultToPredict;
 
     public MainView(MainPresenter mainPresenter, Collection<String> resultToPredict) {
         presenter = mainPresenter;
@@ -96,7 +96,7 @@ public class MainView extends BaseView {
     }
     public String getSearchText() { return predictor.getText();}
 
-    protected void initializePredictor(String name) {
+    void initializePredictor(String name) {
         predictor = new Predictor(resultToPredict, 10, new Insets(8, 0, 0, 0), name);
         predictor.setMaxSize(600,200);
         predictor.setMinSize(600,200);

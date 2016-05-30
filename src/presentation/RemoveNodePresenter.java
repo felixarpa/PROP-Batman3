@@ -16,7 +16,6 @@ public class RemoveNodePresenter extends MainAdminPresenter {
     }
 
     public void clickRemoveNodeButton() {
-        System.out.println("Haz el presenter Juanmi (ﾉಠдಠ)ﾉ︵┻━┻");
         String nombre = ((RemoveNodeView)actualView).getSearchText();
         ((RemoveNodeView)actualView).startProgress();
         Thread thread = new Thread(() -> {

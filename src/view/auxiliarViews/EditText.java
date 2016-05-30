@@ -3,7 +3,6 @@ package view.auxiliarViews;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
 public class EditText extends Pane {
@@ -12,25 +11,11 @@ public class EditText extends Pane {
     private Label label;
     private TextField textField;
 
-    public EditText() {
-        hBox = new HBox();
-        label = new Label();
-        textField = new TextField();
-        build();
-    }
-
     public EditText(String name) {
         hBox = new HBox();
         label = new Label(name);
         textField = new TextField();
         build();
-    }
-    public EditText(String name, Pos alignment) {
-        hBox = new HBox();
-        label = new Label(name);
-        textField = new TextField();
-        build();
-        hBox.setAlignment(alignment);
     }
 
     private void build() {
@@ -39,10 +24,6 @@ public class EditText extends Pane {
         hBox.getChildren().add(label);
         hBox.getChildren().add(textField);
         hBox.setAlignment(Pos.CENTER);
-    }
-
-    public void setFill(Paint paint){
-        label.setTextFill(paint);
     }
 
     public void setName(String name) {
