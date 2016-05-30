@@ -32,7 +32,7 @@ public class RemoveEdgeView extends ManageEdgeView {
         button.setOnMouseReleased(
                 event -> {
                     button.release();
-//                    ((RemoveEdgePresenter) presenter).removeEdge();
+                    ((RemoveEdgePresenter) presenter).removeEdge();
                 }
         );
     }
