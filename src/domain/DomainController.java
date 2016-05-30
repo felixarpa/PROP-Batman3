@@ -47,9 +47,9 @@ public class DomainController {
 			}
 			ant = node;
 		}
-
 		return result;
 	}
+
 
 	public static List<String> allNamesWithId() {
 		ArrayList<String> result = new ArrayList<>(Graph.getInstance().size());

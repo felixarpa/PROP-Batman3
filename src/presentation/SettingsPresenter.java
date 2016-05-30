@@ -6,6 +6,8 @@ import exceptions.PasswordMissMatch;
 import view.MyApp;
 import view.SettingsView;
 
+import java.awt.*;
+
 public class SettingsPresenter extends BasePresenter  {
 
     public SettingsPresenter() {
