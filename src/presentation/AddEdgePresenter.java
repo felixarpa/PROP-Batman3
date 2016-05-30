@@ -17,10 +17,20 @@ public class AddEdgePresenter extends MainAdminPresenter {
     }
 
     public void addEdge() {
-        int id1 = Integer.parseInt(((AddEdgeView)actualView).getId1());
-        int id2 = Integer.parseInt(((AddEdgeView)actualView).getId2());
-        int type1 = Integer.parseInt(((AddEdgeView)actualView).getType1());
-        int type2 = Integer.parseInt(((AddEdgeView)actualView).getType2());
+        int id1;
+        int id2;
+        int type1;
+        int type2;
+        try {
+            id1 = Integer.parseInt(((AddEdgeView) actualView).getId1());
+            id2 = Integer.parseInt(((AddEdgeView) actualView).getId2());
+            type1 = Integer.parseInt(((AddEdgeView) actualView).getType1());
+            type2 = Integer.parseInt(((AddEdgeView) actualView).getType2());
+        }
+        catch (Exception e) {
+            ((ManageEdgeView)actualView).setErrorMessage("Please select nodes to add an edge between them");
+            return;
+        }
         if (type1 != ProjectConstants.PAPER_TYPE && type2 != ProjectConstants.PAPER_TYPE) {
             ((ManageEdgeView)actualView).setErrorMessage("Can't make an edge between two nodes not directly connected (one of them must be paper)");
             return;
