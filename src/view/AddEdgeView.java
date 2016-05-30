@@ -31,7 +31,7 @@ public class AddEdgeView extends ManageEdgeView {
         button.setOnMouseReleased(
                 event -> {
                     button.release();
-//                    ((AddEdgePresenter) presenter).addEdge();
+                    ((AddEdgePresenter) presenter).addEdge();
                 }
         );
     }

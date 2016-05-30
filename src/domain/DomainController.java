@@ -41,6 +41,16 @@ public class DomainController {
 		return result;
 	}
 
+	public static Collection<String> allNamesWithId() {
+		LinkedList<String> result = new LinkedList<>();
+
+		for (Node node : Graph.getInstance().allNodes()) {
+			result.add(node.getName() + "\t" + node.getId() + "\t" + node.getId().getType());
+		}
+
+		return result;
+	}
+
 	public static Collection<String> allTermNames() {
 		LinkedList<String> result = new LinkedList<>();
 
