@@ -358,7 +358,7 @@ public abstract class FilteredSearchView extends BaseView {
         contentVBox.getChildren().add(buttonsPane);
     }
 
-   
+
 
 
 
