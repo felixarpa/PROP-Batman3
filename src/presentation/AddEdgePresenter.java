@@ -10,4 +10,7 @@ public class AddEdgePresenter extends MainAdminPresenter {
         actualView = new AddEdgeView(this, DomainController.allNames());
         MyApp.startScene(actualView.getContent());
     }
+
+    public void addEdge() {
+    }
 }
