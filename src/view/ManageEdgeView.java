@@ -11,6 +11,7 @@ import view.auxiliarViews.ImageButton;
 import view.auxiliarViews.Predictor;
 
 import java.util.Collection;
+import java.util.List;
 
 public abstract class ManageEdgeView extends MainAdminView {
 
@@ -23,9 +24,9 @@ public abstract class ManageEdgeView extends MainAdminView {
 
     ImageButton button;
 
-    private Collection<String> resultToPredict;
+    private List<String> resultToPredict;
 
-    ManageEdgeView(BasePresenter presenter, Collection<String> resultToPredict) {
+    ManageEdgeView(BasePresenter presenter, List<String> resultToPredict) {
         this.presenter = presenter;
         this.resultToPredict = resultToPredict;
     }

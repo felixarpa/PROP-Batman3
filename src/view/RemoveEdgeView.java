@@ -4,10 +4,11 @@ import presentation.RemoveEdgePresenter;
 import view.auxiliarViews.ImageButton;
 
 import java.util.Collection;
+import java.util.List;
 
 public class RemoveEdgeView extends ManageEdgeView {
 
-    public RemoveEdgeView(RemoveEdgePresenter presenter, Collection<String> resultToPredict) {
+    public RemoveEdgeView(RemoveEdgePresenter presenter, List<String> resultToPredict) {
         super(presenter, resultToPredict);
         this.presenter = presenter;
         removeEdgeButton.press();

@@ -37,7 +37,7 @@ public class DomainController {
 		PageRank.execute();
 	}
 
-	public static Collection<String> allNames() {
+	public static List<String> allNames() {
 		LinkedList<String> result = new LinkedList<>();
 
 		Node ant = null;
@@ -51,8 +51,8 @@ public class DomainController {
 		return result;
 	}
 
-	public static Collection<String> allNamesWithId() {
-		LinkedList<String> result = new LinkedList<>();
+	public static List<String> allNamesWithId() {
+		ArrayList<String> result = new ArrayList<>(Graph.getInstance().size());
 
 		for (Node node : Graph.getInstance().allNodes()) {
 			result.add(node.getName() + "\t" + node.getId() + "\t" + node.getId().getType());
@@ -61,7 +61,7 @@ public class DomainController {
 		return result;
 	}
 
-	public static Collection<String> allTermNames() {
+	public static List<String> allTermNames() {
 		LinkedList<String> result = new LinkedList<>();
 
 		Node ant = null;

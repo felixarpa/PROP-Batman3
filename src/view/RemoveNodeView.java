@@ -11,6 +11,7 @@ import view.auxiliarViews.ImageButton;
 import view.auxiliarViews.Predictor;
 
 import java.util.Collection;
+import java.util.List;
 
 public class RemoveNodeView extends MainAdminView {
 
@@ -21,9 +22,9 @@ public class RemoveNodeView extends MainAdminView {
     private ProgressIndicator progressIndicator;
     private ImageButton searchButton;
     private Predictor predictor;
-    protected Collection<String> resultToPredict;
+    protected List<String> resultToPredict;
 
-    public RemoveNodeView(RemoveNodePresenter removeNodePresenter, Collection<String> resultToPredict) {
+    public RemoveNodeView(RemoveNodePresenter removeNodePresenter, List<String> resultToPredict) {
         presenter = removeNodePresenter;
         this.resultToPredict = resultToPredict;
         removeNodeButton.press();

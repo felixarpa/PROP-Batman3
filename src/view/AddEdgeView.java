@@ -4,10 +4,11 @@ import presentation.AddEdgePresenter;
 import view.auxiliarViews.ImageButton;
 
 import java.util.Collection;
+import java.util.List;
 
 public class AddEdgeView extends ManageEdgeView {
 
-    public AddEdgeView(AddEdgePresenter presenter, Collection<String> resultToPredict) {
+    public AddEdgeView(AddEdgePresenter presenter, List<String> resultToPredict) {
         super(presenter, resultToPredict);
         this.presenter = presenter;
         addEdgeButton.press();

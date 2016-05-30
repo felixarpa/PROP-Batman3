@@ -8,7 +8,7 @@ import presentation.MainPresenter;
 import view.auxiliarViews.ImageButton;
 import view.auxiliarViews.Predictor;
 
-import java.util.Collection;
+import java.util.List;
 
 public class MainView extends BaseView {
 
@@ -19,9 +19,9 @@ public class MainView extends BaseView {
     private ProgressIndicator progressIndicator;
     private ImageButton searchButton;
     private Predictor predictor;
-    private Collection<String> resultToPredict;
+    private List<String> resultToPredict;
 
-    public MainView(MainPresenter mainPresenter, Collection<String> resultToPredict) {
+    public MainView(MainPresenter mainPresenter, List<String> resultToPredict) {
         presenter = mainPresenter;
         this.resultToPredict = resultToPredict;
         search.press();

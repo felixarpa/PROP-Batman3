@@ -20,7 +20,7 @@ import java.util.*;
 public class Predictor extends VBox {
 
     private TextField textToPredict;
-    private Collection<String> data;
+    private List<String> data;
     private ArrayList<String> nameList;
     private ArrayList<String> idList;
     private ArrayList<String> types;
@@ -33,7 +33,7 @@ public class Predictor extends VBox {
     private int selected;
     private boolean typed;
 
-    public Predictor(Collection<String> data, String split, int resultsToShow, Insets padding, String textToShow) {
+    public Predictor(List<String> data, String split, int resultsToShow, Insets padding, String textToShow) {
         initialize(data, resultsToShow, padding, textToShow);
         nameList = new ArrayList<>(data.size());
         idList = new ArrayList<>(data.size());
@@ -76,7 +76,6 @@ public class Predictor extends VBox {
                         resultBox.getChildren().remove(0, resultBox.getChildren().size());
                     }
                 }
-                //selected = -1;
             }
             else {
                 actualWord = textToPredict.getText();
@@ -99,7 +98,7 @@ public class Predictor extends VBox {
         });
     }
 
-    public Predictor(Collection<String> data, int resultsToShow, Insets padding, String textToShow) {
+    public Predictor(List<String> data, int resultsToShow, Insets padding, String textToShow) {
         initialize(data, resultsToShow, padding, textToShow);
         textToPredict.setOnKeyReleased(event -> {
             if (!typed) {
@@ -152,7 +151,7 @@ public class Predictor extends VBox {
         });
     }
 
-    private void initialize(Collection<String> data, int resultsToShow, Insets padding, String textToShow) {
+    private void initialize(List<String> data, int resultsToShow, Insets padding, String textToShow) {
         this.resultsToShow = resultsToShow;
         this.data = data;
         typed = false;
@@ -170,24 +169,26 @@ public class Predictor extends VBox {
     }
 
     private void slowStep() {
-        TreeMap<Integer, LinkedList<String>> map = new TreeMap<>();
+        TreeMap<Integer, LinkedList<Integer>> map = new TreeMap<>();
         resultBox.getChildren().remove(0,resultBox.getChildren().size());
+        int i = 0;
         for (String word : data) {
             int index = word.indexOf(actualWord);
             if (index >= 0) {
-                LinkedList<String> linkedList = map.get(index);
+                LinkedList<Integer> linkedList = map.get(index);
                 if (linkedList == null) {
                     linkedList = new LinkedList<>();
                     map.put(index, linkedList);
                 }
-                linkedList.add(word);
+                linkedList.add(i);
             }
+            ++i;
         }
         int count = 0;
-        for (LinkedList<String> list : map.values()) {
-            for (String string : list) {
+        for (LinkedList<Integer> list : map.values()) {
+            for (int string : list) {
                 if (count < resultsToShow) {
-                    resultBox.getChildren().add(new Label(string));
+                    resultBox.getChildren().add(new Label(data.get(string)));
                     ++count;
                 }
                 else return;
