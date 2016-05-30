@@ -10,7 +10,7 @@ import java.util.TreeSet;
 
 public abstract class DataBaseController {
 
-    private static void loadNodes(){
+    private static void loadNodes(String original){
         System.out.println("Begin loadNodes");
 
         String fileName = null;
@@ -19,16 +19,16 @@ public abstract class DataBaseController {
         for (int i = 0; i < 4; ++i) {
             switch (i) {
                 case 0:
-                    fileName = "author.txt";
+                    fileName = original + "author.txt";
                     break;
                 case 1:
-                    fileName = "paper.txt";
+                    fileName = original + "paper.txt";
                     break;
                 case 2:
-                    fileName = "conf.txt";
+                    fileName = original + "conf.txt";
                     break;
                 case 3:
-                    fileName = "term.txt";
+                    fileName = original + "term.txt";
                     break;
             }
             try {
@@ -70,7 +70,7 @@ public abstract class DataBaseController {
         System.out.println("End loadNodes");
     }
 
-    private static void loadEdges() {
+    private static void loadEdges(String original) {
         System.out.println("Begin loadEdges");
 
         Graph graph = Graph.getInstance();
@@ -79,13 +79,13 @@ public abstract class DataBaseController {
         for (int i = 0; i < 3; ++i) {
             switch (i) {
                 case 0:
-                    fileName = "paper_author.txt";
+                    fileName = original + "paper_author.txt";
                     break;
                 case 1:
-                    fileName = "paper_conf.txt";
+                    fileName = original + "paper_conf.txt";
                     break;
                 case 2:
-                    fileName = "paper_term.txt";
+                    fileName = original + "paper_term.txt";
                     break;
             }
             try {
@@ -126,7 +126,7 @@ public abstract class DataBaseController {
         System.out.println("End loadEdges");
     }
 
-    private static void loadLabels() {
+    private static void loadLabels(String original) {
         System.out.println("Begin loadLabels");
 
         Graph graph = Graph.getInstance();
@@ -135,13 +135,13 @@ public abstract class DataBaseController {
         for (int i = 0; i < 3; ++i) {
             switch(i) {
                 case 0:
-                    fileName = "author_label.txt";
+                    fileName = original + "author_label.txt";
                     break;
                 case 1:
-                    fileName = "paper_label.txt";
+                    fileName = original + "paper_label.txt";
                     break;
                 case 2:
-                    fileName = "conf_label.txt";
+                    fileName = original + "conf_label.txt";
                     break;
             }
             try {
@@ -176,9 +176,15 @@ public abstract class DataBaseController {
     }
 
     public static void load() {
-        loadNodes();
-        loadEdges();
-        loadLabels();
+        loadNodes("");
+        loadEdges("");
+        loadLabels("");
+    }
+
+    public static void loadOriginal() {
+        loadNodes("original/");
+        loadEdges("original/");
+        loadLabels("original/");
     }
 
     private static void downloadNodes() {

@@ -25,6 +25,13 @@ public class Graph {
 		return instance;
 	}
 
+
+	public void resetGraph() {
+		idMap.clear();
+		graph.clear();
+		edges = 0;
+	}
+
 	public void addNode(Node node) throws ExistingNode {
 		Node replace  = idMap.get(node.getId());
 		if (replace != null) throw new ExistingNode(replace);
