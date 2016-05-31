@@ -49,7 +49,6 @@ public class MainView extends BaseView {
     }
 
     private void buildPanes() {
-
         searchTextHBox.getChildren().add(predictor);
         searchTextHBox.getChildren().add(searchButton);
 
