@@ -3,31 +3,23 @@ package view.auxiliarViews;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
-import sun.awt.image.ImageWatched;
-import sun.awt.image.IntegerComponentRaster;
-
-import javax.swing.text.LabelView;
 import java.util.*;
 
 public class Predictor extends VBox {
 
     private TextField textToPredict;
+
     private List<String> data;
     private ArrayList<String> nameList;
     private ArrayList<String> idList;
     private ArrayList<String> types;
-    private ArrayList<Integer> actualndex;
+    private ArrayList<Integer> actualIndex;
+
     private VBox resultBox;
     private String actualWord;
 
@@ -41,8 +33,8 @@ public class Predictor extends VBox {
         nameList = new ArrayList<>(data.size());
         idList = new ArrayList<>(data.size());
         types = new ArrayList<>(data.size());
-        actualndex = new ArrayList<>(resultsToShow);
-        for (int i = 0; i < resultsToShow; ++i) actualndex.add(-1);
+        actualIndex = new ArrayList<>(resultsToShow);
+        for (int i = 0; i < resultsToShow; ++i) actualIndex.add(-1);
         for (String string : data) {
             String[] elements = string.split(split);
             nameList.add(elements[0]);
@@ -250,7 +242,7 @@ public class Predictor extends VBox {
                     });
 
                     resultBox.getChildren().add(hbox);
-                    actualndex.set(count, index);
+                    actualIndex.set(count, index);
                     ++count;
                 }
                 else return;
@@ -267,15 +259,15 @@ public class Predictor extends VBox {
     }
 
     public String getNameSelected() {
-        return (selected >= 0 ? nameList.get(actualndex.get(selected)) : "");
+        return (selected >= 0 ? nameList.get(actualIndex.get(selected)) : "");
     }
 
     public String getIdSelected() {
-        return (selected >= 0 ? idList.get(actualndex.get(selected)) : "");
+        return (selected >= 0 ? idList.get(actualIndex.get(selected)) : "");
     }
 
     public String getTypeSelected() {
-        return (selected >= 0 ? types.get(actualndex.get(selected)) : "");
+        return (selected >= 0 ? types.get(actualIndex.get(selected)) : "");
     }
 
     public String getText() {

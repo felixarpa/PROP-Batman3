@@ -68,7 +68,7 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
 
         Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 18);
 
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
             relevance.add(new Label());
             relevance.get(i).setMinSize(100, 20);
             relevance.get(i).setMaxSize(100, 24);
