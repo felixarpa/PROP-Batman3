@@ -22,7 +22,7 @@ public class SimilarRelationRelevancePresenter extends RelationshipRelevanceResu
         if (max > nodeSrc.size()) max = nodeSrc.size();
         max -= index;
         for (int i = 0; i < max; ++i) {
-            ((SimilarRelationRelevanceView) actualView).setContent(index+i, nodeSrc.get(index+i), nodeDst.get(index+i), relevance.get(index+1));
+            ((SimilarRelationRelevanceView) actualView).setContent(index+i, nodeSrc.get(index+i), nodeDst.get(index+i), relevance.get(index+i));
         }
         max += index;
         for (;max < index+Config.LISTS_SIZE; ++max) {

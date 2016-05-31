@@ -443,7 +443,6 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     public void setContent(int index, String nodeSrc, String nodeDst, double relevance) {
 
-
         if (nodeSrc != null ) {
             String[] elements1 = nodeSrc.split("\t");
             String[] elements2 = nodeDst.split("\t");
