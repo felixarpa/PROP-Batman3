@@ -73,13 +73,29 @@ public class SimilarRelationRelevanceView extends ListView {
 
     public void setContent(int index, String nodeSrc, String nodeDst, double weight) {
         int i = index++ % Config.LISTS_SIZE;
-        String[] srcElements = nodeSrc.split("\t");
-        String[] dstElements = nodeDst.split("\t");
 
-        numbers.get(i).setText(index + "");
-        names.get(i).setText(srcElements[0]);
-        names2.get(i).setText(dstElements[0]);
-        relevance.get(i).setProgress(weight);
+        if (nodeDst != null) {
+            String[] srcElements = nodeSrc.split("\t");
+            String[] dstElements = nodeDst.split("\t");
+            numbers.get(i).setText(index + "");
+            names.get(i).setText(srcElements[0]);
+            names2.get(i).setText(dstElements[0]);
+
+            relevance.get(i).setDisable(false);
+            relevance.get(i).setProgress(weight);
+            relevance.get(i).setVisible(true);
+
+        }
+        else  {
+            numbers.get(i).setText("");
+            names.get(i).setText("");
+            names2.get(i).setText("");
+            relevance.get(i).setProgress(weight);
+            relevance.get(i).setVisible(false);
+            relevance.get(i).setDisable(true);
+
+
+        }
     }
 
     @Override
