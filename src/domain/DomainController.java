@@ -27,15 +27,7 @@ public class DomainController {
 		PageRank.execute();
 	}
 
-	public void resetGraph() {
-		graf.resetGraph();
-	}
 
-	public void restoreGrapgh() {
-		resetGraph();
-		DataBaseController.loadOriginal();
-		PageRank.execute();
-	}
 
 	public static List<String> allNames() {
 		LinkedList<String> result = new LinkedList<>();

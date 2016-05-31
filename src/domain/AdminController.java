@@ -36,6 +36,16 @@ public class AdminController {
         ++lastIdTerm;
     }
 
+    public void resetGraph() {
+        Graph.getInstance().resetGraph();
+    }
+
+    public void restoreGrapgh() {
+        resetGraph();
+        DataBaseController.loadOriginal();
+        PageRank.execute();
+    }
+
     public void addNewNode(String name, int label, int type) throws ExistingNode {
         Node nodeToInsert;
         if (lastIdAuthor < 0) lastId();

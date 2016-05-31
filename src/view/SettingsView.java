@@ -1,10 +1,12 @@
 package view;
 
+import domain.UserController;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -46,8 +48,12 @@ public class SettingsView extends BaseView {
     private PasswordField confirmNewPasswordPasswordField;
     private ImageButton saveChangesButton;
 
+    private ImageButton clearGraphButton;
+    private ImageButton resetGraphButton;
+
     private HBox errorMessageHBox;
     private Text errorMessage;
+    private VBox leftVBoxGrande;
 
     private HBox changePasswordButtonHBox;
 
@@ -90,12 +96,18 @@ public class SettingsView extends BaseView {
         confirmNewPasswordPasswordField = new PasswordField();
         confirmNewPasswordPasswordField.setMinWidth(300);
         saveChangesButton = new ImageButton("saveChangesButton",134,53);
-
+        clearGraphButton = new ImageButton("clearGraphButton",208,51);
+        resetGraphButton = new ImageButton("resetGraphButton",208,51);
     }
 
     private void initializePanes() {
         changePasswordButtonHBox = new HBox();
-        changePasswordButtonHBox.setPadding(new Insets(0,100,0,0));
+        changePasswordButtonHBox.setAlignment(Pos.CENTER);
+        //changePasswordButtonHBox.setPadding(new Insets(0,100,0,0));
+
+        leftVBoxGrande = new VBox();
+        leftVBoxGrande.setAlignment(Pos.CENTER);
+        leftVBoxGrande.setPadding(new Insets(0,20,0,0));
 
         errorMessageHBox = new HBox();
         //errorMessageHBox.setAlignment(Pos.CENTER);
@@ -119,7 +131,12 @@ public class SettingsView extends BaseView {
         settingsTextHBox = new HBox();
         settingsTextHBox.setPadding(new Insets(5,0,0,20));
         leftVBox = new VBox();
+        leftVBox.setPadding(new Insets(0,80,0,0));
+        leftVBox.setMaxWidth(200);
         leftVBox.setAlignment(Pos.CENTER);
+        leftVBox.setSpacing(5);
+       // leftVBoxGrande.setPadding(new Insets(0,20,0,0));
+        leftVBoxGrande.setAlignment(Pos.CENTER);
         rightVBox = new VBox();
         rightVBox.setPadding(new Insets(35,0,0,25));
         blackVBoxContent = new VBox();
@@ -144,8 +161,17 @@ public class SettingsView extends BaseView {
         settingsTextHBox.getChildren().add(settingsText);
         errorMessageHBox.getChildren().add(errorMessage);
         changePasswordButtonHBox.getChildren().add(changePasswordButton);
+
+        if(UserController.isAdmin()){
+            leftVBox.getChildren().add(clearGraphButton);
+            leftVBox.getChildren().add(resetGraphButton);
+        }
+
         leftVBox.getChildren().add(changePasswordButtonHBox);
-        leftVBox.getChildren().add(errorMessageHBox);
+        //leftVBoxGrande.setFillWidth(false);
+
+        leftVBoxGrande.getChildren().add(leftVBox);
+        leftVBoxGrande.getChildren().add(errorMessageHBox);
         blackVBoxContent.getChildren().add(currentPasswordText);
         blackVBoxContent.getChildren().add(currentPasswordPasswordField);
         blackVBoxContent.getChildren().add(newPasswordText);
@@ -156,7 +182,7 @@ public class SettingsView extends BaseView {
         blackVBox.getChildren().add(saveChangesButton);
         rightVBox.getChildren().add(blackVBox);
         rightVBox.setVisible(false);
-        contentHBox.getChildren().add(leftVBox);
+        contentHBox.getChildren().add(leftVBoxGrande);
         contentHBox.getChildren().add(verticalSeparator);
         contentHBox.getChildren().add(verticalSeparator2);
         contentHBox.getChildren().add(rightVBox);
@@ -167,6 +193,37 @@ public class SettingsView extends BaseView {
     }
 
     private void setListeners() {
+
+        clearGraphButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                clearGraphButton.press();
+            }
+        });
+
+        clearGraphButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                clearGraphButton.release();
+                ((SettingsPresenter)presenter).onClearGraph();
+            }
+        });
+
+        resetGraphButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                resetGraphButton.press();
+            }
+        });
+
+        resetGraphButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                resetGraphButton.release();
+                ((SettingsPresenter)presenter).onResetGraph();
+            }
+        });
+
         changePasswordButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

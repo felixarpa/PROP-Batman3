@@ -27,4 +27,12 @@ public class SettingsPresenter extends BasePresenter  {
             view.showError("The confirmed password does not match with the password entered");
         }
     }
+
+    public void onClearGraph() {
+        adminController.resetGraph();
+    }
+
+    public void onResetGraph() {
+        adminController.restoreGrapgh();
+    }
 }

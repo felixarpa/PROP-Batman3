@@ -394,6 +394,7 @@ public abstract class Node implements Comparable<Node> {
 	private String normalizeRelevance() {
 		double normalized = ((relevance - PageRank.getMinRelevance())/(PageRank.getMaxRelevance()-PageRank.getMinRelevance()))*100;
 		String hola = String.format("%.2f", normalized);
+		if (relevance == 1) return "1";
 		return hola;
 	}
 
