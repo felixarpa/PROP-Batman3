@@ -4,6 +4,7 @@ import domain.UserController;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -52,8 +53,7 @@ public class SettingsView extends BaseView {
     private ImageButton resetGraphButton;
 
     private HBox errorMessageHBox;
-    private Text errorMessage;
-    private VBox leftVBoxGrande;
+    private Label errorMessage;
 
     private HBox changePasswordButtonHBox;
 
@@ -76,9 +76,12 @@ public class SettingsView extends BaseView {
     }
 
     private void initializeViews() {
-        errorMessage = new Text();
-        errorMessage.setFill(Paint.valueOf("#A51212"));
+        errorMessage = new Label();
+        errorMessage.setTextFill(Paint.valueOf("#A51212"));
         errorMessage.setFont(fontError);
+        errorMessage.setMaxWidth(400);
+        errorMessage.setMinWidth(100);
+
         settingsText = new Text("Settings");
         settingsText.setFont(font2);
         settingsText.setFill(Paint.valueOf("white"));
@@ -105,9 +108,6 @@ public class SettingsView extends BaseView {
         changePasswordButtonHBox.setAlignment(Pos.CENTER);
         //changePasswordButtonHBox.setPadding(new Insets(0,100,0,0));
 
-        leftVBoxGrande = new VBox();
-        leftVBoxGrande.setAlignment(Pos.CENTER);
-        leftVBoxGrande.setPadding(new Insets(0,20,0,0));
 
         errorMessageHBox = new HBox();
         //errorMessageHBox.setAlignment(Pos.CENTER);
@@ -131,12 +131,12 @@ public class SettingsView extends BaseView {
         settingsTextHBox = new HBox();
         settingsTextHBox.setPadding(new Insets(5,0,0,20));
         leftVBox = new VBox();
-        leftVBox.setPadding(new Insets(0,80,0,0));
-        leftVBox.setMaxWidth(200);
+        //leftVBox.setPadding(new Insets(0,80,0,0));
+        leftVBox.setMaxWidth(400);
+        leftVBox.setMinWidth(400);
         leftVBox.setAlignment(Pos.CENTER);
+        leftVBox.setFillWidth(false);
         leftVBox.setSpacing(5);
-       // leftVBoxGrande.setPadding(new Insets(0,20,0,0));
-        leftVBoxGrande.setAlignment(Pos.CENTER);
         rightVBox = new VBox();
         rightVBox.setPadding(new Insets(35,0,0,25));
         blackVBoxContent = new VBox();
@@ -149,7 +149,7 @@ public class SettingsView extends BaseView {
 
 
         contentHBox = new HBox();
-        contentHBox.setAlignment(Pos.CENTER);
+        //contentHBox.setAlignment(Pos.CENTER);
         contentHBox.setPadding(new Insets(0,0,0,0));
         contentHBox.setSpacing(10);
         contentVBox = new VBox();
@@ -170,8 +170,7 @@ public class SettingsView extends BaseView {
         leftVBox.getChildren().add(changePasswordButtonHBox);
         //leftVBoxGrande.setFillWidth(false);
 
-        leftVBoxGrande.getChildren().add(leftVBox);
-        leftVBoxGrande.getChildren().add(errorMessageHBox);
+        leftVBox.getChildren().add(errorMessage);
         blackVBoxContent.getChildren().add(currentPasswordText);
         blackVBoxContent.getChildren().add(currentPasswordPasswordField);
         blackVBoxContent.getChildren().add(newPasswordText);
@@ -182,7 +181,7 @@ public class SettingsView extends BaseView {
         blackVBox.getChildren().add(saveChangesButton);
         rightVBox.getChildren().add(blackVBox);
         rightVBox.setVisible(false);
-        contentHBox.getChildren().add(leftVBoxGrande);
+        contentHBox.getChildren().add(leftVBox);
         contentHBox.getChildren().add(verticalSeparator);
         contentHBox.getChildren().add(verticalSeparator2);
         contentHBox.getChildren().add(rightVBox);
@@ -266,6 +265,14 @@ public class SettingsView extends BaseView {
     }
 
     public void showError(String error) {
+        errorMessage.setTextFill(Paint.valueOf("#A51212"));
+        errorMessage.setText(error);
+    }
+
+    public void showSuccess(String error) {
+
+        errorMessage.setTextFill(Paint.valueOf("green"));
+
         errorMessage.setText(error);
     }
 }

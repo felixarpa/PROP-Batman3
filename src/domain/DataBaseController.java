@@ -194,16 +194,16 @@ public abstract class DataBaseController {
         System.out.println("Begin downloadNodes");
         try {
 
-            BufferedWriter author = new BufferedWriter(new FileWriter(new File("o_author.txt")));
-            BufferedWriter paper = new BufferedWriter(new FileWriter(new File("o_paper.txt")));
-            BufferedWriter term = new BufferedWriter(new FileWriter(new File("o_term.txt")));
-            BufferedWriter conference = new BufferedWriter(new FileWriter(new File("o_conf.txt")));
-            BufferedWriter paperAuthor = new BufferedWriter(new FileWriter(new File("o_paper_author.txt")));
-            BufferedWriter paperTerm = new BufferedWriter(new FileWriter(new File("o_paper_term.txt")));
-            BufferedWriter paperConference = new BufferedWriter(new FileWriter(new File("o_paper_conf.txt")));
-            BufferedWriter authorLabel = new BufferedWriter(new FileWriter(new File("o_author_label.txt")));
-            BufferedWriter paperLabel = new BufferedWriter(new FileWriter(new File("o_paper_label.txt")));
-            BufferedWriter conferenceLabel = new BufferedWriter(new FileWriter(new File("o_conference_label.txt")));
+            BufferedWriter author = new BufferedWriter(new FileWriter(new File("data/author.txt")));
+            BufferedWriter paper = new BufferedWriter(new FileWriter(new File("data/paper.txt")));
+            BufferedWriter term = new BufferedWriter(new FileWriter(new File("data/term.txt")));
+            BufferedWriter conference = new BufferedWriter(new FileWriter(new File("data/conf.txt")));
+            BufferedWriter paperAuthor = new BufferedWriter(new FileWriter(new File("data/paper_author.txt")));
+            BufferedWriter paperTerm = new BufferedWriter(new FileWriter(new File("data/paper_term.txt")));
+            BufferedWriter paperConference = new BufferedWriter(new FileWriter(new File("data/paper_conf.txt")));
+            BufferedWriter authorLabel = new BufferedWriter(new FileWriter(new File("data/author_label.txt")));
+            BufferedWriter paperLabel = new BufferedWriter(new FileWriter(new File("data/paper_label.txt")));
+            BufferedWriter conferenceLabel = new BufferedWriter(new FileWriter(new File("data/conference_label.txt")));
 
             for (Node node : graph.allNodes()) {
                 String string = node.getId() + "\t" + node.getName()+"\n";

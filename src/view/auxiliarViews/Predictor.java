@@ -3,28 +3,23 @@ package view.auxiliarViews;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import sun.awt.image.ImageWatched;
-import sun.awt.image.IntegerComponentRaster;
-
-import javax.swing.text.LabelView;
 import java.util.*;
 
 public class Predictor extends VBox {
 
     private TextField textToPredict;
+
     private List<String> data;
     private ArrayList<String> nameList;
     private ArrayList<String> idList;
     private ArrayList<String> types;
-    private ArrayList<Integer> actualndex;
+    private ArrayList<Integer> actualIndex;
+
     private VBox resultBox;
     private String actualWord;
 
@@ -34,12 +29,12 @@ public class Predictor extends VBox {
     private boolean typed;
 
     public Predictor(List<String> data, String split, int resultsToShow, Insets padding, String textToShow) {
-        initialize(data, resultsToShow, padding, textToShow);
+        initialize(resultsToShow, padding, textToShow);
         nameList = new ArrayList<>(data.size());
         idList = new ArrayList<>(data.size());
         types = new ArrayList<>(data.size());
-        actualndex = new ArrayList<>(resultsToShow);
-        for (int i = 0; i < resultsToShow; ++i) actualndex.add(-1);
+        actualIndex = new ArrayList<>(resultsToShow);
+        for (int i = 0; i < resultsToShow; ++i) actualIndex.add(-1);
         for (String string : data) {
             String[] elements = string.split(split);
             nameList.add(elements[0]);
@@ -99,7 +94,8 @@ public class Predictor extends VBox {
     }
 
     public Predictor(List<String> data, int resultsToShow, Insets padding, String textToShow) {
-        initialize(data, resultsToShow, padding, textToShow);
+        this.data = data;
+        initialize(resultsToShow, padding, textToShow);
         textToPredict.setOnKeyReleased(event -> {
             if (!typed) {
                 textToPredict.setStyle("-fx-text-fill: #000000;");
@@ -107,26 +103,23 @@ public class Predictor extends VBox {
             }
             if (event.getCode() == KeyCode.UP) {
                 if (selected > 0) {
-                    ((Label)resultBox.getChildren().get(selected)).setTextFill(Color.BLACK);
+                    resultBox.getChildren().get(selected).setStyle("-fx-background-color: transparent");
                     --selected;
-                    ((Label)resultBox.getChildren().get(selected)).setTextFill(Color.GRAY);
+                    resultBox.getChildren().get(selected).setStyle("-fx-background-color: #948598");
                 }
             }
             else if (event.getCode() == KeyCode.DOWN) {
                 if (selected < resultBox.getChildren().size()-1) {
-                    if (selected >= 0)((Label)resultBox.getChildren().get(selected)).setTextFill(Color.BLACK);
+                    if (selected >= 0) resultBox.getChildren().get(selected).setStyle("-fx-background-color: transparent");
                     ++selected;
-                    ((Label)resultBox.getChildren().get(selected)).setTextFill(Color.GRAY);
+                    resultBox.getChildren().get(selected).setStyle("-fx-background-color: #948598");
                 }
             }
             else if (event.getCode() == KeyCode.ENTER) {
                 if (selected >= 0 && selected < resultBox.getChildren().size()) {
-                    textToPredict.setText(((Label)resultBox.getChildren().get(selected)).getText());
-
-                    if (selected >= 0 && selected < resultBox.getChildren().size()) {
-                        textToPredict.setText(((Label)resultBox.getChildren().get(selected)).getText());
-                        resultBox.getChildren().remove(0,resultBox.getChildren().size());
-                    }
+                    HBox hBox = (HBox) resultBox.getChildren().get(selected);
+                    textToPredict.setText(((Label)hBox.getChildren().get(0)).getText());
+                    resultBox.getChildren().remove(0,resultBox.getChildren().size());
                 }
                 selected = -1;
             }
@@ -151,9 +144,8 @@ public class Predictor extends VBox {
         });
     }
 
-    private void initialize(List<String> data, int resultsToShow, Insets padding, String textToShow) {
+    private void initialize(int resultsToShow, Insets padding, String textToShow) {
         this.resultsToShow = resultsToShow;
-        this.data = data;
         typed = false;
 
         textToPredict = new TextField();
@@ -188,7 +180,21 @@ public class Predictor extends VBox {
         for (LinkedList<Integer> list : map.values()) {
             for (int string : list) {
                 if (count < resultsToShow) {
-                    resultBox.getChildren().add(new Label(data.get(string)));
+                    int lol = count;
+                    HBox hbox = new HBox();
+                    Label label = new Label(data.get(string));
+                    hbox.getChildren().add(label);
+                    hbox.setOnMouseClicked(event -> {
+                        HBox hBox = (HBox) resultBox.getChildren().get(lol);
+                        textToPredict.setText(((Label)hBox.getChildren().get(0)).getText());
+                        resultBox.getChildren().remove(0,resultBox.getChildren().size());
+                    });
+                    hbox.setOnMouseEntered(event -> {
+                        if (selected >= 0 && selected < resultBox.getChildren().size()) resultBox.getChildren().get(selected).setStyle("-fx-background-color: transparent");
+                        selected = lol;
+                        resultBox.getChildren().get(selected).setStyle("-fx-background-color: #948598");
+                    });
+                    resultBox.getChildren().add(hbox);
                     ++count;
                 }
                 else return;
@@ -223,8 +229,20 @@ public class Predictor extends VBox {
                     id.setMinWidth(40);
                     hbox.getChildren().add(name);
                     hbox.getChildren().add(id);
+                    int lol = count;
+                    hbox.setOnMouseClicked(event -> {
+                        HBox hBox = (HBox) resultBox.getChildren().get(lol);
+                        textToPredict.setText(((Label)hBox.getChildren().get(0)).getText());
+                        resultBox.getChildren().remove(0,resultBox.getChildren().size());
+                    });
+                    hbox.setOnMouseEntered(event -> {
+                        if (selected >= 0 && selected < resultBox.getChildren().size()) resultBox.getChildren().get(selected).setStyle("-fx-background-color: transparent");
+                        selected = lol;
+                        resultBox.getChildren().get(selected).setStyle("-fx-background-color: #948598");
+                    });
+
                     resultBox.getChildren().add(hbox);
-                    actualndex.set(count, index);
+                    actualIndex.set(count, index);
                     ++count;
                 }
                 else return;
@@ -241,15 +259,15 @@ public class Predictor extends VBox {
     }
 
     public String getNameSelected() {
-        return (selected >= 0 ? nameList.get(actualndex.get(selected)) : "");
+        return (selected >= 0 ? nameList.get(actualIndex.get(selected)) : "");
     }
 
     public String getIdSelected() {
-        return (selected >= 0 ? idList.get(actualndex.get(selected)) : "");
+        return (selected >= 0 ? idList.get(actualIndex.get(selected)) : "");
     }
 
     public String getTypeSelected() {
-        return (selected >= 0 ? types.get(actualndex.get(selected)) : "");
+        return (selected >= 0 ? types.get(actualIndex.get(selected)) : "");
     }
 
     public String getText() {

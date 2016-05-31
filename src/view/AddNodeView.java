@@ -206,7 +206,15 @@ public class AddNodeView extends MainAdminView {
         return nodeName.getText();
     }
 
-    public void showMessage(String s) {
+    public void showErrorMessage(String s) {
+        message.setFill(Paint.valueOf("#A51212"));
+        message.setText(s);
+    }
+
+
+    public void showSuccessMessage(String s) {
+        message.setFill(Paint.valueOf("green"));
+
         message.setText(s);
     }
 

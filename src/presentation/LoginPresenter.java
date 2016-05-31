@@ -57,7 +57,7 @@ public class LoginPresenter extends Presenter {
         Thread thread = new Thread(() -> {
             try {
                 UserController.register(username, password);
-                loginView.displayErrorMessage("User registered successfully");
+                loginView.displaySuccessMessage("User registered successfully");
                 System.out.println("Success register");
             } catch (ExistingUser existingUser) {
                 System.out.println(existingUser.getMessage());
