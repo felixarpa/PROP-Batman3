@@ -1,6 +1,7 @@
 package presentation;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.ProgressIndicator;
 import presentation.MainPresenter;
@@ -28,6 +29,11 @@ public class AddFavoriteTermSearchPresenter extends MainPresenter{
                 actualView.destroy();
                 actualView = null;
                 MyApp.changePresenter(new AddTermSelectorPresenter(result));
+            }
+            else {
+                Platform.runLater(()->{
+                    ((MainView)actualView).showError("No results found");
+                });
             }
         });
         thread.start();

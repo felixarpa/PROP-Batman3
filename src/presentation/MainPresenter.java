@@ -21,7 +21,9 @@ public class MainPresenter extends BasePresenter {
         Thread thread = new Thread(() -> {
             ArrayList<String> result = domainController.searchingANode(nombre);
             if (result == null) {
-                System.out.println("No lineHBox found");
+                Platform.runLater(()->{
+                        ((MainView)actualView).showError("No results found");
+                });
                 ((MainView)actualView).stopProgress();
                 return;
             }
