@@ -97,7 +97,7 @@ public class DriverSearch {
 					return compare;
 				}
 			});
-            search.search(vnode.get(choice), resultPaper, resultConference, resultAuthor, resultTerm);
+            Searcher.search(vnode.get(choice), resultPaper, resultConference, resultAuthor, resultTerm);
             System.out.println("AUTHORS");
            
             for (Node n : resultAuthor) {
@@ -127,7 +127,7 @@ public class DriverSearch {
             TreeMap<Double,TreeSet<Term>> resultTerm = new TreeMap<>();
             TreeMap<Double,TreeSet<Conference>> resultConference = new TreeMap<>();
             TreeMap<Double,TreeSet<Author>> resultAuthor = new TreeMap<>();
-            search.search(vnode.get(choice), resultPaper, resultConference, resultAuthor, resultTerm);
+            Searcher.search(vnode.get(choice), resultPaper, resultConference, resultAuthor, resultTerm);
             System.out.println("AUTHORS");
             for (Map.Entry<Double, TreeSet<Author>> nodes : resultAuthor.entrySet()) {
             	System.out.println("RELEVANCE :" + nodes.getKey());
@@ -352,7 +352,7 @@ public class DriverSearch {
 	}
 	
 	private static void calculate() {
-		pr.execute();
+		PageRank.execute();
 		System.out.println("The PageRank has been executed successfully.");
 	}
 	
@@ -399,7 +399,7 @@ public class DriverSearch {
 			test.addEdge(vnode.get(7).getId(), vnode.get(1).getId());
 			test.addEdge(vnode.get(14).getId(), vnode.get(1).getId());
 			test.addEdge(vnode.get(14).getId(), vnode.get(2).getId());
-			test.addEdge(vnode.get(2).getId(), vnode.get(10).getId());;
+			test.addEdge(vnode.get(2).getId(), vnode.get(10).getId());
 			test.addEdge(vnode.get(10).getId(), vnode.get(3).getId());
 			test.addEdge(vnode.get(3).getId(), vnode.get(8).getId());
 			test.addEdge(vnode.get(9).getId(), vnode.get(2).getId());

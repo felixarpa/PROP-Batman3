@@ -43,7 +43,7 @@ public class Relation implements Comparable<Relation> {
     @Override
     public boolean equals(Object obj) {
         Relation rel = (Relation)obj;
-        return (node1.equal(rel.node1) ? node2.equal(rel.node2) : false);
+        return (node1.equal(rel.node1) && node2.equal(rel.node2));
     }
 
     @Override

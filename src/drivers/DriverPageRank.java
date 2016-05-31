@@ -51,7 +51,7 @@ public class DriverPageRank {
 			test.addEdge(vnode.get(7).getId(), vnode.get(1).getId());
 			test.addEdge(vnode.get(14).getId(), vnode.get(1).getId());
 			test.addEdge(vnode.get(14).getId(), vnode.get(2).getId());
-			test.addEdge(vnode.get(2).getId(), vnode.get(10).getId());;
+			test.addEdge(vnode.get(2).getId(), vnode.get(10).getId());
 			test.addEdge(vnode.get(10).getId(), vnode.get(3).getId());
 			test.addEdge(vnode.get(3).getId(), vnode.get(8).getId());
 			System.out.println("This driver just applies the Page Rank algorithm on this Graph:\n");

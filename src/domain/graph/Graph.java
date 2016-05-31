@@ -138,9 +138,7 @@ public class Graph {
 			}
 		}
 		LinkedList<Node> result = new LinkedList<>();
-		for (LinkedList<Node> nodes : map.values()) {
-			result.addAll(nodes);
-		}
+		map.values().forEach(result::addAll);
 		return result;
 	}
 
@@ -160,9 +158,7 @@ public class Graph {
 			}
 		}
 		LinkedList<Term> result = new LinkedList<>();
-		for (LinkedList<Term> nodes : map.values()) {
-			result.addAll(nodes);
-		}
+		map.values().forEach(result::addAll);
 		return result;
 	}
 
@@ -178,7 +174,7 @@ public class Graph {
         return edges/2;
     }
 
-	public boolean existsNode(Node node) {
+	private boolean existsNode(Node node) {
 		return idMap.containsKey(node.getId());
 	}
 

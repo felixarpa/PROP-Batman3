@@ -1,8 +1,6 @@
 package domain.graph;
 
 import domain.DomainController;
-import domain.PageRank;
-import jdk.nashorn.internal.runtime.GlobalConstants;
 import util.ProjectConstants;
 
 import java.util.LinkedList;

@@ -51,13 +51,13 @@ public class DriverMugendo {
             choice1 = sc.nextInt();
             choice2 = sc.nextInt();
         }
-        double result  = edge.calculateRelevance(vnode.get(choice1),vnode.get(choice2));
+        double result  = MugendoAlgorithm.calculateRelevance(vnode.get(choice1),vnode.get(choice2));
         System.out.println("The resulted relevance is " + result);
         
 	}
 	
 	private static void calculate() {
-		pr.execute();
+		PageRank.execute();
 		System.out.println("The PageRank has been executed successfully.");
 	}
     
@@ -104,7 +104,7 @@ public class DriverMugendo {
 			test.addEdge(vnode.get(7).getId(), vnode.get(1).getId());
 			test.addEdge(vnode.get(14).getId(), vnode.get(1).getId());
 			test.addEdge(vnode.get(14).getId(), vnode.get(2).getId());
-			test.addEdge(vnode.get(2).getId(), vnode.get(10).getId());;
+			test.addEdge(vnode.get(2).getId(), vnode.get(10).getId());
 			test.addEdge(vnode.get(10).getId(), vnode.get(3).getId());
 			test.addEdge(vnode.get(3).getId(), vnode.get(8).getId());
 		}

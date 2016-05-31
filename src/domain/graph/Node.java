@@ -6,7 +6,6 @@ import exceptions.ExistingEdge;
 import exceptions.NonExistentEdge;
 import exceptions.ProjectError;
 
-import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;

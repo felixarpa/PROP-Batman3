@@ -1,6 +1,5 @@
 package domain.graph;
 
-import domain.PageRank;
 import util.ProjectConstants;
 
 import java.util.LinkedList;

@@ -25,3 +25,10 @@ GENERAL
 -Discutir Labels
 -Discutir espaciado general de la pantalla
 -Asignar presentadores y vistas de add edge ,remove edge y similarrelationrelevance.
+
+Eduard H. Hovy - 0,07
+Rada Mihalcea - 0,09
+Dan Roth - 0,23 (539)
+Graeme Hirst - 0,02
+Felisa Verdejo - 0,02
+Christopher D. Manning - 0,20

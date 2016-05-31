@@ -16,8 +16,11 @@ public class SettingsPresenter extends BasePresenter  {
     }
 
     public void onSaveChangesClick() {
-        System.out.println("Noob");
         SettingsView view = (SettingsView)actualView;
+        if (view.getNewPassword().length() == 0) {
+            view.showError("Incorrect password");
+            return;
+        }
         try {
             UserController.changePassword(view.getCurrentPassword(), view.getNewPassword(), view.getConfirmNewPassword());
             view.showError("Password changed successfully");
