@@ -26,7 +26,7 @@ public class SimilarRelationRelevancePresenter extends RelationshipRelevanceResu
         }
         max += index;
         for (;max < index+Config.LISTS_SIZE; ++max) {
-            ((SimilarRelationRelevanceView) actualView).setContent(max, "\t \t", "\t \t", 0);
+            ((SimilarRelationRelevanceView) actualView).setContent(max, null, null, 0);
         }
     }
 
