@@ -17,6 +17,7 @@ public abstract class UserController {
     }
 
     public static void logOut(){
+        if (DomainController.currentUser == null) return;
         DataBaseController.logOut(DomainController.currentUser);
         DomainController.currentUser = null;
     }
