@@ -63,12 +63,12 @@ public abstract class ManageEdgeView extends MainAdminView {
     protected void initializeViews() {
         font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14);
         node1 = new Predictor(resultToPredict, "\t", Config.LISTS_SIZE, new Insets(0, 0, 0, 0), "Node 1");
-        node1.setMinSize(200, 20);
-        node1.setMaxSize(200, 24);
+        node1.setMinSize(400, 20);
+        node1.setMaxSize(400, 24);
 
         node2 = new Predictor(resultToPredict, "\t", Config.LISTS_SIZE, new Insets(0, 0, 0, 0), "Node 2");
-        node2.setMinSize(200, 20);
-        node2.setMaxSize(200, 24);
+        node2.setMinSize(400, 20);
+        node2.setMaxSize(400, 24);
 
         errorLabel = new Label();
         errorLabel.setFont(font);

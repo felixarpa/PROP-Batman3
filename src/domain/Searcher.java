@@ -162,7 +162,7 @@ public abstract class Searcher {
         for (Relation relation : searcSet) {
             if (!relation.equals(actual)) {
                 if ((op < 0 && relation.getRelevance() < weightToCompare) ||
-                        (op == 0 && (abs(relation.getRelevance() - weightToCompare) <= 0.2)) ||
+                        (op == 0 && (abs(relation.getRelevance() - weightToCompare) <= 0.05)) ||
                         (op > 0 && relation.getRelevance() > weightToCompare)) {
                     result.add(relation);
                 }
