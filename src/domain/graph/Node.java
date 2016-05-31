@@ -399,5 +399,9 @@ public abstract class Node implements Comparable<Node> {
 		}
 	}
 
+	void clear() {
+		adjacent.clear();
+	}
+
 	// MUGENDO > TEAKWONDO
 }

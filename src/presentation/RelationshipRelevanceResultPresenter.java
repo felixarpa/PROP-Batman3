@@ -36,9 +36,9 @@ public class RelationshipRelevanceResultPresenter extends ListPresenter  {
 
     protected void transform(ArrayList<String> dataFormat) {
         int i = 0;
-        nodeSrc = new ArrayList<>();
-        nodeDst = new ArrayList<>();
-        relevance = new ArrayList<>();
+        nodeSrc = new ArrayList<>(dataFormat.size());
+        nodeDst = new ArrayList<>(dataFormat.size());
+        relevance = new ArrayList<>(dataFormat.size());
         while (i < dataFormat.size()) {
             int size = (Integer.parseInt(dataFormat.get(i)) << 1);
             double rel = Double.parseDouble(dataFormat.get(i+1));

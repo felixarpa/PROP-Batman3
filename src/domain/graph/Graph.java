@@ -37,9 +37,13 @@ public class Graph {
 	 * <p><b>Post:</b></p> El Graf queda net, buit
      */
 	public void resetGraph() {
+		for (Node node : graph) {
+			node.clear();
+		}
 		idMap.clear();
 		graph.clear();
 		edges = 0;
+		System.gc();
 	}
 
 	/**
