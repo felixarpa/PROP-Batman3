@@ -10,6 +10,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.FilteredSearchPresenter;
 import presentation.FilteredSearchRelationPresenter;
+import view.CoolProgressBar.CoolProgressBar;
 
 public class FilteredSearchRelationView extends FilteredSearchView{
 
@@ -74,7 +75,7 @@ public class FilteredSearchRelationView extends FilteredSearchView{
             id.get(type).get(index%listSize).setMaxWidth(100);
             //id.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));
 
-            ProgressBar paux = new ProgressBar(Double.parseDouble(elements[5]));
+            CoolProgressBar paux = new CoolProgressBar(Double.parseDouble(elements[5]));
             relevance.get(type).get(index%listSize).getChildren().clear();
             relevance.get(type).get(index%listSize).getChildren().add(paux);
             //relevance.get(type).get(index%listSize).setPadding(new Insets(0,50,0,0));

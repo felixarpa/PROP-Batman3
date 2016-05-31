@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presentation.SimilarRelationRelevancePresenter;
+import view.CoolProgressBar.CoolProgressBar;
 import view.auxiliarViews.Config;
 import view.auxiliarViews.ListView;
 
@@ -14,10 +15,10 @@ import java.util.ArrayList;
 
 public class SimilarRelationRelevanceView extends ListView {
 
-    private ArrayList<ProgressBar> relevance;
+    private ArrayList<CoolProgressBar> relevance;
     private ArrayList<Label> names2;
 
-    private ProgressBar relevanceProgressBar;
+    private CoolProgressBar relevanceProgressBar;
     private Label name2Label;
 
     public SimilarRelationRelevanceView(SimilarRelationRelevancePresenter presenter) {
@@ -37,7 +38,7 @@ public class SimilarRelationRelevanceView extends ListView {
         nameLabel.setMinSize(310, 20);
         nameLabel.setMaxSize(310, 24);
 
-        relevanceProgressBar = new ProgressBar();
+        relevanceProgressBar = new CoolProgressBar();
         relevanceProgressBar.setMinSize(120, 20);
         relevanceProgressBar.setMaxSize(120, 24);
         relevanceProgressBar.setPadding(new Insets(0, 10, 0, 10));
@@ -54,7 +55,7 @@ public class SimilarRelationRelevanceView extends ListView {
         Font font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 20);
 
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
-            relevance.add(new ProgressBar());
+            relevance.add(new CoolProgressBar());
             relevance.get(i).setMinSize(120, 20);
             relevance.get(i).setMaxSize(120, 24);
             relevance.get(i).setPadding(new Insets(0, 10, 0, 10));

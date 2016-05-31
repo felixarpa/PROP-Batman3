@@ -15,6 +15,7 @@ import javafx.scene.text.TextAlignment;
 import presentation.CategoryResultPresenter;
 import presentation.RelationshipRelevanceResultPresenter;
 import util.ProjectConstants;
+import view.CoolProgressBar.CoolProgressBar;
 import view.auxiliarViews.Config;
 import view.auxiliarViews.ImageButton;
 
@@ -51,7 +52,7 @@ public class RelationshipRelevanceResultView extends BaseView {
 
     ArrayList<ArrayList<HBox>> minicontents;
     ArrayList<Label> index;
-    ArrayList<ProgressBar> relevanceBar;
+    ArrayList<CoolProgressBar> relevanceBar;
     ArrayList<ArrayList<Label>> nodes;
 
     HBox buttonBar;
@@ -193,7 +194,7 @@ public class RelationshipRelevanceResultView extends BaseView {
         }
         relevanceBar = new ArrayList<>(Config.LISTS_SIZE);
         for (int i = 0; i < Config.LISTS_SIZE; ++i) {
-            ProgressBar p = new ProgressBar();
+            CoolProgressBar p = new CoolProgressBar();
 //            p.setMaxWidth(125);
 //            p.setMinWidth(125);
             relevanceBar.add(p);
