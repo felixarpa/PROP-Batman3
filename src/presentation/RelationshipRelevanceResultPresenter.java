@@ -30,7 +30,7 @@ public class RelationshipRelevanceResultPresenter extends ListPresenter  {
     }
 
     public void onClick(int index) {
-        lastSelected = index;
+        lastSelected = index + this.index;
         ((RelationshipRelevanceResultView)actualView).askSimilarOp();
     }
 
