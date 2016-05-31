@@ -105,8 +105,8 @@ public class AddNodeView extends MainAdminView {
         nodeNameText.setFont(font);
         nodeNameText.setFill(Paint.valueOf("white"));
         nodeName = new TextField();
-        nodeName.setMinSize(400,20);
-        nodeName.setMaxSize(400,20);
+        nodeName.setMinSize(400,25);
+        nodeName.setMaxSize(400,25);
         nodeLabel = new ComboBox();
         nodeLabel.getItems().addAll(
                 "No Label",

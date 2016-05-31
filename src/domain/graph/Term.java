@@ -42,6 +42,7 @@ public class Term extends Node {
 
 	@Override
 	void resetRelevance() {
+        super.resetRelevance();
 		if (DomainController.getCurrentUser().isFavorite(this)) {
 			relevance = Graph.getInstance().size();
 		}

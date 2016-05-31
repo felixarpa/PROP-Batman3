@@ -45,7 +45,9 @@ public abstract class MugendoAlgorithm {
     private static double get1HopRelevance(Node src, Node dst) {
         double total = 0;
         for (Node node : dst.getAdjacentNode()) {
-            if (node.getId().getType() == src.getId().getType()) total += node.getRelevance();
+            if (node.getId().getType() == src.getId().getType()) {
+                total += node.getRelevance();
+            }
         }
         return (src.getRelevance() / total);
     }

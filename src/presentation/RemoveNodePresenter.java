@@ -1,6 +1,9 @@
 package presentation;
 
+
+import com.sun.org.apache.regexp.internal.RE;
 import domain.DomainController;
+import javafx.application.Platform;
 import view.MyApp;
 import view.RemoveNodeView;
 
@@ -18,10 +21,14 @@ public class RemoveNodePresenter extends MainAdminPresenter {
     public void clickRemoveNodeButton() {
         String nombre = ((RemoveNodeView)actualView).getSearchText();
         ((RemoveNodeView)actualView).startProgress();
-        Thread thread = new Thread(() -> {
+
+         Thread thread = new Thread(() -> {
             ArrayList<String> result = domainController.searchingANode(nombre);
             if (result == null) {
-                System.out.println("No lineHBox found");
+
+                Platform.runLater(()-> {
+                    ((RemoveNodeView)actualView).showError("No results found");
+                } );
                 ((RemoveNodeView)actualView).stopProgress();
                 return;
             }

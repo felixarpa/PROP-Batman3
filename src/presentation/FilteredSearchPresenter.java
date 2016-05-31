@@ -6,7 +6,7 @@ import view.FilteredSearchView;
 
 import java.util.ArrayList;
 
-public abstract class FilteredSearchPresenter extends ListPresenter{
+public abstract class  FilteredSearchPresenter extends ListPresenter{
     ArrayList<ArrayList<String>> result;
     public String nodeName;
     public String nodeId;

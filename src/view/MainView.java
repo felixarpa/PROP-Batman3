@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import presentation.MainPresenter;
 import view.auxiliarViews.ImageButton;
 import view.auxiliarViews.Predictor;
@@ -14,12 +16,17 @@ public class MainView extends BaseView {
 
     private VBox contentVBox;
 
+    private HBox errorHBox;
+    private Label errorLabel;
+
     private HBox searchTextHBox;
 
     private ProgressIndicator progressIndicator;
     private ImageButton searchButton;
     private Predictor predictor;
     private List<String> resultToPredict;
+
+     private Font font;
 
     public MainView(MainPresenter mainPresenter, List<String> resultToPredict) {
         presenter = mainPresenter;
@@ -34,12 +41,19 @@ public class MainView extends BaseView {
 
     private void initializePanes() {
         contentVBox = new VBox();
+        errorHBox = new HBox();
+        errorHBox.setAlignment(Pos.CENTER);
         searchTextHBox = new HBox();
         searchTextHBox.setPadding(new Insets(0,0,10,80));
         searchTextHBox.setSpacing(10);
     }
 
     protected void initializeViews() {
+        font = Font.loadFont(this.getClass().getResource("../fonts/Nilland-Black.ttf").toExternalForm(), 14.95);
+        errorLabel = new Label();
+        errorLabel.setFont(font);
+        errorLabel.setTextFill(Paint.valueOf("#6E0000"));
+
         searchButton = new ImageButton("searchButton", 143, 51);
 
         initializePredictor("Introduce the name of the node.");
@@ -51,8 +65,12 @@ public class MainView extends BaseView {
     private void buildPanes() {
         searchTextHBox.getChildren().add(predictor);
         searchTextHBox.getChildren().add(searchButton);
+        errorHBox.getChildren().add(errorLabel);
 
-        contentVBox.getChildren().add(searchTextHBox);
+        contentVBox.getChildren().addAll(
+                errorHBox,
+                searchTextHBox
+        );
         contentVBox.setAlignment(Pos.CENTER);
     }
 
@@ -102,5 +120,8 @@ public class MainView extends BaseView {
 
     }
 
+    public void showError(String s) {
+        errorLabel.setText(s);
+    }
 
 }

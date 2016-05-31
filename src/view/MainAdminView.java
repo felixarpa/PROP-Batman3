@@ -1,14 +1,20 @@
 package view;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import presentation.MainAdminPresenter;
 import view.auxiliarViews.ImageButton;
 
 public abstract class MainAdminView extends BaseView {
 
         VBox contentVBox;
+
         protected ImageButton addNodeButton;
         protected ImageButton removeNodeButton;
         protected ImageButton addEdgeButton;
@@ -23,7 +29,11 @@ public abstract class MainAdminView extends BaseView {
             setListeners();
         }
 
-        private void initializePanes() {}
+        private void initializePanes() {
+
+
+        }
+
         private void initializeViews(){
             addNodeButton = new  ImageButton("addNodeButton", 220, 75);
             removeNodeButton = new ImageButton("removeNodeButton", 225, 75);
@@ -32,6 +42,8 @@ public abstract class MainAdminView extends BaseView {
             lastPressed = new ImageButton("addNodeButton",225,75);
         }
         private void buildPanes(){
+
+
             categoryButtons.getChildren().clear();
             categoryButtons.getChildren().add(addNodeButton);
             categoryButtons.getChildren().add(removeNodeButton);

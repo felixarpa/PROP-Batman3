@@ -309,7 +309,6 @@ public class Graph {
      */
 	public void reset() {
         for (Node node : graph) {
-            node.resetRelevance();
             if (node.asPaper() == null) {
                 LinkedList<Node> copy = new LinkedList<>(node.getAdjacentNode());
                 for (Node adjacent : copy) {
@@ -322,6 +321,7 @@ public class Graph {
                     }
                 }
             }
+			node.resetRelevance();
         }
     }
 

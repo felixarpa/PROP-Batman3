@@ -394,8 +394,10 @@ public abstract class Node implements Comparable<Node> {
 
 	void resetRelevance() {
 		relevance = 1;
+		for (Map.Entry<Node, Double> entry : adjacent.entrySet()) {
+			entry.setValue(-1.0);
+		}
 	}
-
 
 	// MUGENDO > TEAKWONDO
 }

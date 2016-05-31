@@ -165,6 +165,7 @@ public abstract class DataBaseController {
                             break;
                     }
                     Node node = graph.getNode(idd);
+                    System.out.println(line);
                     node.setLabel(label);
                     sc.close();
                 }
@@ -203,7 +204,7 @@ public abstract class DataBaseController {
             BufferedWriter paperConference = new BufferedWriter(new FileWriter(new File("data/paper_conf.txt")));
             BufferedWriter authorLabel = new BufferedWriter(new FileWriter(new File("data/author_label.txt")));
             BufferedWriter paperLabel = new BufferedWriter(new FileWriter(new File("data/paper_label.txt")));
-            BufferedWriter conferenceLabel = new BufferedWriter(new FileWriter(new File("data/conference_label.txt")));
+            BufferedWriter conferenceLabel = new BufferedWriter(new FileWriter(new File("data/conf_label.txt")));
 
             for (Node node : graph.allNodes()) {
                 String string = node.getId() + "\t" + node.getName()+"\n";
