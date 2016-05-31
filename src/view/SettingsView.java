@@ -265,6 +265,14 @@ public class SettingsView extends BaseView {
     }
 
     public void showError(String error) {
+        errorMessage.setTextFill(Paint.valueOf("#A51212"));
+        errorMessage.setText(error);
+    }
+
+    public void showSuccess(String error) {
+
+        errorMessage.setTextFill(Paint.valueOf("green"));
+
         errorMessage.setText(error);
     }
 }

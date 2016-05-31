@@ -29,18 +29,18 @@ public class RemoveEdgePresenter extends MainAdminPresenter {
             type2 = Integer.parseInt(((RemoveEdgeView) actualView).getType2());
         }
         catch (Exception e) {
-            ((ManageEdgeView)actualView).setErrorMessage("Please select nodes to add an edge between them");
+            ((ManageEdgeView)actualView).showErrorMessage("Please select nodes to remove an edge between them");
             return;
         }
         if (type1 != ProjectConstants.PAPER_TYPE && type2 != ProjectConstants.PAPER_TYPE) {
-            ((ManageEdgeView)actualView).setErrorMessage("Can't remove an edge between two nodes not directly connected (one of them must be paper)");
+            ((ManageEdgeView)actualView).showErrorMessage("Can't remove an edge between two nodes not directly connected (one of them must be paper)");
             return;
         }
         try {
             adminController.deleteEdge(id1, type1, id2, type2);
-            ((ManageEdgeView)actualView).setErrorMessage("Edge removed successfully");
+            ((ManageEdgeView)actualView).showSuccessMessage("Edge removed successfully");
         } catch (NonExistentEdge existingEdge) {
-            ((ManageEdgeView)actualView).setErrorMessage("No edge exists between the nodes");
+            ((ManageEdgeView)actualView).showErrorMessage("No edge exists between the nodes");
         } catch (NonExistentEdgeNodes existingEdge) {
             throw new ProjectError(existingEdge.getMessage());
         }

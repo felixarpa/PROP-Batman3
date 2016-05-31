@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import presentation.LoginPresenter;
@@ -183,7 +184,15 @@ public class LoginView {
 
     public void displayErrorMessage(String errorMessage){
         errorText.setText(errorMessage);
+
+        errorText.setFill(Paint.valueOf("#6E0000"));
         System.out.println("Login Failure");
+    }
+
+    public void displaySuccessMessage(String errorMessage){
+
+        errorText.setText(errorMessage);
+        errorText.setFill(Paint.valueOf("green"));
     }
 
     private void setListeners() {

@@ -23,7 +23,7 @@ public class SettingsPresenter extends BasePresenter  {
         }
         try {
             UserController.changePassword(view.getCurrentPassword(), view.getNewPassword(), view.getConfirmNewPassword());
-            view.showError("Password changed successfully");
+            view.showSuccess("Password changed successfully");
         } catch (IncorrectPassword incorrectPassword) {
             view.showError("The password you entered is not your current password");
         } catch (PasswordMissMatch passwordMissMatch) {
