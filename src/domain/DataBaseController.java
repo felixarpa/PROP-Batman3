@@ -165,7 +165,6 @@ public abstract class DataBaseController {
                             break;
                     }
                     Node node = graph.getNode(idd);
-                    System.out.println(line);
                     node.setLabel(label);
                     sc.close();
                 }
