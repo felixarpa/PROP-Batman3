@@ -212,19 +212,19 @@ public class Graph {
 	}
 
 	/**
-	 * Dona una col·leccio de ids
+	 * Dona una colleccio de ids
 	 *
-	 * <p><b>Return:</b></p> Col·leccio de totes les IDs
+	 * <p><b>Return:</b></p> Colleccio de totes les IDs
      */
 	public Collection<Node> allNodesId() {
 		return idMap.values();
 	}
 
 	/**
-	 * Dona una col·leccio de nodes per nom
+	 * Dona una colleccio de nodes per nom
 	 *
-	 * <p><b>Param:</b></p>
-	 * <p><b>Return:</b></p>
+	 * <p><b>Param:</b></p> Nom que es vol buscar
+	 * <p><b>Return:</b></p> Colleccio dels nodes que contenen "name"
      */
 	public Collection<Node> getNode(String name) {
 		TreeMap<Integer, LinkedList<Node>> map = new TreeMap<>();
@@ -245,10 +245,10 @@ public class Graph {
 	}
 
 	/**
-	 * Dona una col·leccio amb tots els temes
+	 * Dona una colleccio amb tots els temes
 	 *
-	 * <p><b>Param:</b></p>
-	 * <p><b>Return:</b></p>
+	 * <p><b>Param:</b></p> Nom que es vol buscar
+	 * <p><b>Return:</b></p> Colleccio dels temes que contenen "name"
      */
 	public Collection<Term> getTerm(String name) {
 		TreeMap<Integer, LinkedList<Term>> map = new TreeMap<>();
@@ -273,8 +273,8 @@ public class Graph {
 	/**
 	 * Retorna el node amb id = id
 	 *
-	 * <p><b>Param:</b></p>
-	 * <p><b>Post:</b></p>
+	 * <p><b>Param:</b></p> id del node que es vol buscar
+	 * <p><b>Post:</b></p> Node amb id = id
      */
 	public Node getNode(Id id) {
 		return idMap.get(id);
@@ -283,7 +283,7 @@ public class Graph {
 	/**
 	 * Dona el numero de nodes del graf
 	 *
-	 * <p><b>Return:</b></p>
+	 * <p><b>Return:</b></p> Mida del graf
      */
 	public int size() {
 		return graph.size();
@@ -292,7 +292,7 @@ public class Graph {
 	/**
 	 * Dona el numero d'aristes del graf
 	 *
-	 * <p><b>Return:</b></p>
+	 * <p><b>Return:</b></p> Nombre de connexions
      */
     public int edgeSize() {
         return edges/2;
@@ -305,7 +305,7 @@ public class Graph {
 	/**
 	 * Fa reset al graf, dona els valors per defecte. Borra els nodes i aristes afegits i esborrats.
 	 *
-	 * <p><b>Return:</b></p>
+	 * <p><b>Post:</b></p> Esborra tot el graf
      */
 	public void reset() {
         for (Node node : graph) {
