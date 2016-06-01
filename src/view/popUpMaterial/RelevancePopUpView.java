@@ -4,10 +4,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import org.omg.PortableServer.POA;
 import view.auxiliarViews.ImageButton;
 
 import java.util.ArrayList;
@@ -35,7 +37,6 @@ public class RelevancePopUpView extends VBox {
 
     private void initializePanes() {
         ToggleGroup tooglegGroup = new ToggleGroup();
-
         popUpContents = new ArrayList<>(3);
         for (int i = 0; i < 3; ++i) {
             HBox haux = new HBox();
