@@ -9,8 +9,8 @@ public class Author extends Node {
     /**
      * Crea un autor amb nom = name i id = id
      *
-     * <p><b>Param:</b></p> <p>name Nom que se li donara al nou autor</p>
-     * <p><b>Param:</b></p> <p>id Id que rebra el nou autor</p>
+     * <p><b>Param:</b></p> <p><em>name</em>: Nom que se li donara al nou autor</p>
+     * <p><b>Param:</b></p> <p><em>id</em>: Id que rebra el nou autor</p>
      * <p><b>Pre:</b></p> <p>name no es null i l'id no esta repetit</p>
      * <p><b>Post:</b></p> <p>Es crea un autor amb nom = name, rellevancia = 1, etiqueta = -1 i 0 adjacents</p>
      */
@@ -22,9 +22,9 @@ public class Author extends Node {
     /**
      * Crea un autor amb nom = name, id = id i etiqueta = label
      *
-     * <p><b>Param:</b></p> <p>name Nom que se li donara al nou autor</p>
-     * <p><b>Param:</b></p> <p>id Id que rebra el nou autor</p>
-     * <p><b>Param:</b></p> <p>label Etiqueta que rebra el nou autor</p>
+     * <p><b>Param:</b></p> <p><em>name</em>: Nom que se li donara al nou autor</p>
+     * <p><b>Param:</b></p> <p><em>id</em>: Id que rebra el nou autor</p>
+     * <p><b>Param:</b></p> <p><em>label</em>: Etiqueta que rebra el nou autor</p>
      * <p><b>Pre:</b></p> <p>name no es null i label entre 0 i 3</p>
      * <p><b>Post:</b></p> <p>Es crea un autor amb nom = name, rellevancia = 1, etiqueta = label i 0 adjacents</p>
      */
@@ -53,7 +53,7 @@ public class Author extends Node {
     /**
      * Retorna tots els Articles relacionats directament amb ell
      *
-     * <p><b>Return:</b></p> Articles adjacents
+     * <p><b>Return:</b></p> <p>Articles adjacents</p>
      */
 	public LinkedList<Paper> getPapers() {
         LinkedList<Paper> papers = new LinkedList<>();
@@ -66,7 +66,7 @@ public class Author extends Node {
     /**
      * Transforma la Id generica a Id d'autor
      *
-     * <p><b>Return:</b></p> Id id de tipus autor
+     * <p><b>Return:</b></p> <p>Id id de tipus autor</p>
      */
     public static Id makeId(int id) {
         return new Id(id, ProjectConstants.AUTHOR_TYPE);

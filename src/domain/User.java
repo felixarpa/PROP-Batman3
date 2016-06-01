@@ -19,7 +19,7 @@ public class User implements Comparable<User> {
 	private TreeSet<Term> favoriteTerms;
 	
 	/**
-	 * Función que crea un usuario vacío.
+	 * Funcion que crea un usuario vacio.
 	 */
 	User() {}
 
@@ -27,8 +27,8 @@ public class User implements Comparable<User> {
 	 * Funcion que crea el usuario a partir de un nombre de usuario,
 	 * password y privilegio.
 	 * 
-	 * @param name nombre de usuario que se le quiere dar al nuevo usuario.
-	 * @param password password que se le quiere dar al nuevo usuario.
+	 * <p><b>Param:</b></p> <p><em>name</em>: nombre de usuario que se le quiere dar al nuevo usuario.</p>
+	 * <p><b>Param:</b></p> <p><em>password</em>: password que se le quiere dar al nuevo usuario.</p>
 	 */
 	public User(String name, String password) {
 		this.username = name;
@@ -39,9 +39,9 @@ public class User implements Comparable<User> {
 	}
 	
 	/**
-	 * Funci�n que crea el usuario a partir de una linea de la base de datos.
+	 * Funcion que crea el usuario a partir de una linea de la base de datos.
 	 * 
-	 * @param DBline linea de la base de datos que contiene un nombre, un password y un booleano de privilegio.
+	 * <p><b>Param:</b></p> <p><em>DBline</em>: linea de la base de datos que contiene un nombre, un password y un booleano de privilegio.</p>
 	 */
 	User(String DBline) {
 		String[] fields = DBline.split("\t");
@@ -65,64 +65,64 @@ public class User implements Comparable<User> {
 //	}
 	
 	/**
-	 * Funci�n que devuelve true si password coincide con el password del usuario, de otro modo devuelve false.
+	 * Funcion que devuelve true si password coincide con el password del usuario, de otro modo devuelve false.
 	 * 
-	 * @param pass password que se quiere validar.
-	 * @return	true si password es igual al password del usuario, false en cualquier otro caso.
+	 * <p><b>Param:</b></p> <p><em>pass</em>: password que se quiere validar.</p>
+	 * <p><b>Return:</b></p> <p>true si password es igual al password del usuario, false en cualquier otro caso.</p>
 	 */
 	public boolean validPass(String pass){
 		return (pass.equals(this.password));
 	}
 	
 	/**
-	 * Funci�n que devuelve el username del usuario.
+	 * Funcion que devuelve el username del usuario.
 	 * 
-	 * @return	el nombre de usuario de este usuario.
+	 * <p><b>Return:</b></p> <p>el nombre de usuario de este usuario.</p>
 	 */
 	public String getUsername(){
 		return username;
 	}
 	
 	/**
-	 * Funci�n que devuelve el password del usuario.
+	 * Funcion que devuelve el password del usuario.
 	 * 
-	 * @return	el password de este usuario.
+	 * <p><b>Return:</b></p> <p>el password de este usuario.</p>
 	 */
 	public String getPassword(){
 		return password;
 	}
 	
 	/**
-	 * Funci�n que devuelve el nivel de privilegio del usuario.
+	 * Funcion que devuelve el nivel de privilegio del usuario.
 	 * 
-	 * @return	true si el usuario es admin, false en cualquier otro caso.
+	 * <p><b>Return:</b></p> <p>true si el usuario es admin, false en cualquier otro caso.</p>
 	 */
 	public boolean getAdmin(){
 		return isAdmin;
 	}
 	
 	/**
-	 * Funci�n que modifica el username del usuario.
+	 * Funcion que modifica el username del usuario.
 	 * 
-	 * @param name nombre de usuario que se le quiere dar al usuario.
+	 * <p><b>Param:</b></p> <p><em>name</em>: nombre de usuario que se le quiere dar al usuario.</p>
 	 */
 	public void setUsername(String name){
 		username = name;
 	}
 	
 	/**
-	 * Funci�n que modifica el password del usuario.
+	 * Funcion que modifica el password del usuario.
 	 * 
-	 * @param password password que se le quiere dar al usuario.
+	 * <p><b>Param:</b></p> <p><em>password</em>: password que se le quiere dar al usuario.</p>
 	 */
 	public void setPassword(String password){
 		this.password = password;
 	}
 	
 	/**
-	 * Funci�n que modifica el privilegio del usuario.
+	 * Funcion que modifica el privilegio del usuario.
 	 * 
-	 * @param admin privilegio que se le quiere dar al usuario. True si privilegio, false en cualquier otro caso.
+	 * <p><b>Param:</b></p> <p><em>admin</em>: privilegio que se le quiere dar al usuario. True si privilegio, false en cualquier otro caso.</p>
 	 */
 	public void setAdmin(boolean admin){
 		isAdmin = admin;

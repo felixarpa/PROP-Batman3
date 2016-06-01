@@ -10,8 +10,8 @@ public class Term extends Node {
     /**
      * Crea un tema amb nom = name i id = id
      *
-     * <p><b>Param:</b></p> <p>name Nom que se li donara al nou autor</p>
-     * <p><b>Param:</b></p> <p>id Id que rebra el nou autor</p>
+     * <p><b>Param:</b></p> <p><em>name</em>: Nom que se li donara al nou autor</p>
+     * <p><b>Param:</b></p> <p><em>id</em>: Id que rebra el nou autor</p>
      * <p><b>Pre:</b></p> <p>name no es null i l'id no esta repetit</p>
      * <p><b>Post:</b></p> <p>Es crea un tema amb nom = name, rellevancia = 1, etiqueta = -1 i 0 adjacents</p>
      */
@@ -52,7 +52,7 @@ public class Term extends Node {
     /**
      * Retorna tots els Articles relacionats directament amb ell
      *
-     * <p><b>Return:</b></p> Articles adjacents
+     * <p><b>Return:</b></p> <p>Articles adjacents</p>
      */
     public LinkedList<Paper> getPapers() {
         LinkedList<Paper> papers = new LinkedList<>();
@@ -65,7 +65,7 @@ public class Term extends Node {
     /**
      * Transforma la Id generica a Id de tema
      *
-     * <p><b>Return:</b></p> Id id de tipus tema
+     * <p><b>Return:</b></p> <p>Id id de tipus tema</p>
      */
     public static Id makeId(int id) {
         return new Id(id, ProjectConstants.TERM_TYPE);

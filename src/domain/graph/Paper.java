@@ -10,8 +10,8 @@ public class Paper extends Node {
 	/**
 	 * Crea un article amb nom = name i id = id
 	 *
-	 * <p><b>Param:</b></p> <p>name Nom que se li donara al nou article</p>
-	 * <p><b>Param:</b></p> <p>id Id que rebra el nou article</p>
+	 * <p><b>Param:</b></p> <p><em>name</em>: Nom que se li donara al nou article</p>
+	 * <p><b>Param:</b></p> <p><em>id</em>: Id que rebra el nou article</p>
 	 * <p><b>Pre:</b></p> <p>name no es null i l'id no esta repetit</p>
 	 * <p><b>Post:</b></p> <p>Es crea un article amb nom = name, rellevancia = 1, etiqueta = -1 i 0 adjacents</p>
 	 */
@@ -23,9 +23,9 @@ public class Paper extends Node {
 	/**
 	 * Crea un article amb nom = name, id = id i etiqueta = label
 	 *
-	 * <p><b>Param:</b></p> <p>name Nom que se li donara al nou artile</p>
-	 * <p><b>Param:</b></p> <p>id Id que rebra el nou article</p>
-	 * <p><b>Param:</b></p> <p>label Etiqueta que rebra el nou article</p>
+	 * <p><b>Param:</b></p> <p><em>name</em>: Nom que se li donara al nou artile</p>
+	 * <p><b>Param:</b></p> <p><em>id</em>: Id que rebra el nou article</p>
+	 * <p><b>Param:</b></p> <p><em>label</em>: Etiqueta que rebra el nou article</p>
 	 * <p><b>Pre:</b></p> <p>name no es null i label entre 0 i 3</p>
 	 * <p><b>Post:</b></p> <p>Es crea un article amb nom = name, rellevancia = 1, etiqueta = label i 0 adjacents</p>
 	 */
@@ -51,7 +51,7 @@ public class Paper extends Node {
 	/**
 	 * Retorna tots els autors relacionats directament amb ell
 	 *
-	 * <p><b>Return:</b></p> Autors adjacents
+	 * <p><b>Return:</b></p> <p>Autors adjacents</p>
 	 */
 	public LinkedList<Author> getAuthors() {
 		Set<Node> adjacents = getAdjacentNode();
@@ -65,7 +65,7 @@ public class Paper extends Node {
 	/**
 	 * Retorna tots les conferencies relacionades directament amb ell
 	 *
-	 * <p><b>Return:</b></p> Conferencies adjacents
+	 * <p><b>Return:</b></p> <p>Conferencies adjacents</p>
 	 */
 	public LinkedList<Conference> getConferences() {
 		Set<Node> adjacents = getAdjacentNode();
@@ -79,7 +79,7 @@ public class Paper extends Node {
 	/**
 	 * Retorna tots els tmes relacionats directament amb ell
 	 *
-	 * <p><b>Return:</b></p> Temes adjacents
+	 * <p><b>Return:</b></p> <p>Temes adjacents</p>
 	 */
 	public LinkedList<Term> getTerms() {
 		Set<Node> adjacents = getAdjacentNode();
@@ -93,7 +93,7 @@ public class Paper extends Node {
 	/**
 	 * Transforma la Id generica a Id d'article
 	 *
-	 * <p><b>Return:</b></p> Id id de tipus article
+	 * <p><b>Return:</b></p> <p>Id id de tipus article</p>
 	 */
 	public static Id makeId(int id) {
 		return new Id(id, ProjectConstants.PAPER_TYPE);

@@ -24,7 +24,7 @@ public class Graph {
 	/**
 	 * Dona la unica instancia del Graf
 	 *
-	 * <p><b>Return:</b></p> Unica instancia del Graf
+	 * <p><b>Return:</b></p> <p>Unica instancia del Graf</p>
      */
 	public static Graph getInstance() {
 		return instance;
@@ -34,7 +34,7 @@ public class Graph {
 	/**
 	 * Nateja el graf
 	 *
-	 * <p><b>Post:</b></p> El Graf queda net, buit
+	 * <p><b>Post:</b></p> <p>El Graf queda net, buit</p>
      */
 	public void resetGraph() {
 		for (Node node : graph) {
@@ -49,9 +49,9 @@ public class Graph {
 	/**
 	 * Afageig un node
 	 *
-	 * <p><b>Param:</b></p> Node que es vol afegir
-	 * <p><b>Post:</b></p> El graf tindra un nou node
-	 * <p><b>Exception:</b></p> El node ja existeix
+	 * <p><b>Param:</b></p> <p><em>node</em>: Node que es vol afegir</p>
+	 * <p><b>Post:</b></p> <p>El graf tindra un nou node</p>
+	 * <p><b>Exception:</b></p> <p>El node ja existeix</p>
      */
 	public void addNode(Node node) throws ExistingNode {
 		Node replace  = idMap.get(node.getId());
@@ -73,9 +73,9 @@ public class Graph {
 	/**
 	 * Esborra un node
 	 *
-	 * <p><b>Param:</b></p> Node que es vol esborrar del graf
-	 * <p><b>Post:</b></p> El graf ja no conte el node
-	 * <p><b>Exception:</b></p> El node no existeix
+	 * <p><b>Param:</b></p> <p><em>node</em>: Node que es vol esborrar del graf</p>
+	 * <p><b>Post:</b></p> <p>El graf ja no conte el node</p>
+	 * <p><b>Exception:</b></p> <p>El node no existeix</p>
      */
 	public void deleteNode(Node node) throws NonExistentNode {
 		if (!existsNode(node)) throw new NonExistentNode(node);
@@ -95,9 +95,9 @@ public class Graph {
 	/**
 	 * Esborra un node amb id = id
 	 *
-	 * <p><b>Param:</b></p> Id del node que es vol esborrar
-	 * <p><b>Post:</b></p> El node amb id = id
-	 * <p><b>Exception:</b></p> No existeix cap el ndoe
+	 * <p><b>Param:</b></p> <p><em>id</em>: Id del node que es vol esborrar</p>
+	 * <p><b>Post:</b></p> <p>El node amb id = id</p>
+	 * <p><b>Exception:</b></p> <p>No existeix cap el ndoe</p>
      */
 	public void deleteNode(Id id) throws NonExistentNode {
 		Node node = idMap.remove(id);
@@ -110,12 +110,12 @@ public class Graph {
 	/**
 	 * Afageix una arista en una sola direccio
 	 *
-	 * <p><b>Param:</b></p> src Node origen de la nova arista
-	 * <p><b>Param:</b></p> dst Node desti de la nova arista
-	 * <p><b>Param:</b></p> weight Pes de la nova arista
-	 * <p><b>Post:</b></p> Nova arista entre src i dst amb pes weight
-	 * <p><b>Exception:</b></p> L'arista ja existeix
-	 * <p><b>Exception:</b></p> No existeix algun dels dos nodes
+	 * <p><b>Param:</b></p> <p><em>src</em>: Node origen de la nova arista</p>
+	 * <p><b>Param:</b></p> <p><em>dst</em>: Node desti de la nova arista</p>
+	 * <p><b>Param:</b></p> <p><em>weight</em>: Pes de la nova arista</p>
+	 * <p><b>Post:</b></p> <p>Nova arista entre src i dst amb pes weight</p>
+	 * <p><b>Exception:</b></p> <p>L'arista ja existeix</p>
+	 * <p><b>Exception:</b></p> <p>No existeix algun dels dos nodes</p>
      */
 	public void addSingleEdge(Node src, Node dst, double weight) throws ExistingEdge, NonExistentEdgeNodes {
 		if (src.asPaper() != null || dst.asPaper() != null) throw new ProjectError("Attempted to add a single edge between two directly connected nodes");
@@ -127,11 +127,11 @@ public class Graph {
 	/**
 	 * Afageix una arista en les dues direccions per id
 	 *
-	 * <p><b>Param:</b></p> id1, id del primer node
-	 * <p><b>Param:</b></p> id2, id del segon node
-	 * <p><b>Post:</b></p> Afegeix l'arista entre el primer i segon node
-	 * <p><b>Exception:</b></p> L'arista ja existeix
-	 * <p><b>Exception:</b></p> No existeix algun dels dos nodes
+	 * <p><b>Param:</b></p> <p><em>id1</em>: Id del primer node</p>
+	 * <p><b>Param:</b></p> <p><em>id2</em>: Id del segon node</p>
+	 * <p><b>Post:</b></p> <p>Afegeix l'arista entre el primer i segon node</p>
+	 * <p><b>Exception:</b></p> <p>L'arista ja existeix</p>
+	 * <p><b>Exception:</b></p> <p>No existeix algun dels dos nodes</p>
      */
 	public void addEdge(Id id1, Id id2) throws ExistingEdge, NonExistentEdgeNodes {
 		Node node1 = idMap.get(id1);
@@ -145,11 +145,11 @@ public class Graph {
 	/**
 	 * Afageix una arista en les dues direccions
 	 *
-	 * <p><b>Param:</b></p> Primer node de la nova arista
-	 * <p><b>Param:</b></p> Segon node de la nova arista
-	 * <p><b>Post:</b></p> Afegeix l'arista entre el primer i segon node
-	 * <p><b>Exception:</b></p> L'arista ja existeix
-	 * <p><b>Exception:</b></p> No existeix algun dels dos nodes
+	 * <p><b>Param:</b></p> <p><em>node1</em>: Primer node de la nova arista</p>
+	 * <p><b>Param:</b></p> <p><em>node2</em>: Segon node de la nova arista</p>
+	 * <p><b>Post:</b></p> <p>Afegeix l'arista entre el primer i segon node</p>
+	 * <p><b>Exception:</b></p> <p>L'arista ja existeix</p>
+	 * <p><b>Exception:</b></p> <p>No existeix algun dels dos nodes</p>
      */
 	public void addEdge(Node node1, Node node2) throws NonExistentEdgeNodes, ExistingEdge {
 		if (!existsNode(node1) || !existsNode(node2)) throw new NonExistentEdgeNodes(node1, node2);
@@ -161,11 +161,11 @@ public class Graph {
 	/**
 	 * Esborra una arista
 	 *
-	 * <p><b>Param:</b></p> Primer node de l'arista a esborrar
-	 * <p><b>Param:</b></p> Segon node de l'arista a esborrar
-	 * <p><b>Post:</b></p> Esborra l'arista entre el primer i segon node
-	 * <p><b>Exception:</b></p> No existeix l'arista
-	 * <p><b>Exception:</b></p> No existeix algun dels dos nodes
+	 * <p><b>Param:</b></p> <p><em>node1</em>: Primer node de l'arista a esborrar</p>
+	 * <p><b>Param:</b></p> <p><em>node2</em>: Segon node de l'arista a esborrar</p>
+	 * <p><b>Post:</b></p> <p>Esborra l'arista entre el primer i segon node</p>
+	 * <p><b>Exception:</b></p> <p>No existeix l'arista</p>
+	 * <p><b>Exception:</b></p> <p>No existeix algun dels dos nodes</p>
      */
 	public void deleteEdge(Node src, Node dst) throws NonExistentEdge, NonExistentEdgeNodes {
         if (!existsNode(src) || !existsNode(dst)) throw new NonExistentEdgeNodes(src, dst);
@@ -177,11 +177,11 @@ public class Graph {
 	/**
 	 * Esborra una arista per id
 	 *
-	 * <p><b>Param:</b></p> id1, id del primer node
-	 * <p><b>Param:</b></p> id2, id del segon node
-	 * <p><b>Post:</b></p> Esborra l'arista entre el primer i segon node
-	 * <p><b>Exception:</b></p> No existeix l'arista
-	 * <p><b>Exception:</b></p> No existeix algun dels dos nodes
+	 * <p><b>Param:</b></p> <p><em>id1</em>: Id del primer node</p>
+	 * <p><b>Param:</b></p> <p><em>id2</em>: Id del segon node</p>
+	 * <p><b>Post:</b></p> <p>Esborra l'arista entre el primer i segon node</p>
+	 * <p><b>Exception:</b></p> <p>No existeix l'arista</p>
+	 * <p><b>Exception:</b></p> <p>No existeix algun dels dos nodes</p>
      */
 	public void deleteEdge(Id src, Id dst) throws NonExistentEdgeNodes, NonExistentEdge {
 		Node node1 = idMap.get(src);
@@ -196,11 +196,11 @@ public class Graph {
 	/**
 	 * Dona un valor a una arista
 	 *
-	 * <p><b>Param:</b></p> src Node origen de l'arista
-	 * <p><b>Param:</b></p> dst Node desti de l'arista
-	 * <p><b>Param:</b></p> weight Pes de l'arista
-	 * <p><b>Post:</b></p> L'arista entre src i dst te pes weight
-	 * <p><b>Exception:</b></p> L'arista no existeix
+	 * <p><b>Param:</b></p> <p><em>src</em>: Node origen de l'arista</p>
+	 * <p><b>Param:</b></p> <p><em>dst</em>: Node desti de l'arista</p>
+	 * <p><b>Param:</b></p> <p><em>weight</em>: Pes de l'arista</p>
+	 * <p><b>Post:</b></p> <p>L'arista entre src i dst te pes weight</p>
+	 * <p><b>Exception:</b></p> <p>L'arista no existeix</p>
      */
 	public void setWeight(Node src, Node dst, double weight) throws NonExistentEdge {
 		src.setWeight(dst, weight);
@@ -209,7 +209,7 @@ public class Graph {
 	/**
 	 * Dona el set de nodes del graf
 	 *
-	 * <p><b>Return:</b></p> Tots els nodes
+	 * <p><b>Return:</b></p> <p>Tots els nodes</p>
      */
 	public Set<Node> allNodes() {
 		return graph;
@@ -218,7 +218,7 @@ public class Graph {
 	/**
 	 * Dona una colleccio de ids
 	 *
-	 * <p><b>Return:</b></p> Colleccio de totes les IDs
+	 * <p><b>Return:</b></p> <p>Colleccio de totes les IDs</p>
      */
 	public Collection<Node> allNodesId() {
 		return idMap.values();
@@ -227,8 +227,8 @@ public class Graph {
 	/**
 	 * Dona una colleccio de nodes per nom
 	 *
-	 * <p><b>Param:</b></p> Nom que es vol buscar
-	 * <p><b>Return:</b></p> Colleccio dels nodes que contenen "name"
+	 * <p><b>Param:</b></p> <p><em>name</em>: Nom que es vol buscar</p>
+	 * <p><b>Return:</b></p> <p>Colleccio dels nodes que contenen "name"</p>
      */
 	public Collection<Node> getNode(String name) {
 		TreeMap<Integer, LinkedList<Node>> map = new TreeMap<>();
@@ -251,8 +251,8 @@ public class Graph {
 	/**
 	 * Dona una colleccio amb tots els temes
 	 *
-	 * <p><b>Param:</b></p> Nom que es vol buscar
-	 * <p><b>Return:</b></p> Colleccio dels temes que contenen "name"
+	 * <p><b>Param:</b></p> <p><em>name</em>: Nom que es vol buscar</p>
+	 * <p><b>Return:</b></p> <p>Colleccio dels temes que contenen "name"</p>
      */
 	public Collection<Term> getTerm(String name) {
 		TreeMap<Integer, LinkedList<Term>> map = new TreeMap<>();
@@ -277,8 +277,8 @@ public class Graph {
 	/**
 	 * Retorna el node amb id = id
 	 *
-	 * <p><b>Param:</b></p> id del node que es vol buscar
-	 * <p><b>Post:</b></p> Node amb id = id
+	 * <p><b>Param:</b></p> <p><em>id</em>: Id del node que es vol buscar</p>
+	 * <p><b>Post:</b></p> <p>Node amb id = id</p>
      */
 	public Node getNode(Id id) {
 		return idMap.get(id);
@@ -287,7 +287,7 @@ public class Graph {
 	/**
 	 * Dona el numero de nodes del graf
 	 *
-	 * <p><b>Return:</b></p> Mida del graf
+	 * <p><b>Return:</b></p> <p>Mida del graf</p>
      */
 	public int size() {
 		return graph.size();
@@ -296,7 +296,7 @@ public class Graph {
 	/**
 	 * Dona el numero d'aristes del graf
 	 *
-	 * <p><b>Return:</b></p> Nombre de connexions
+	 * <p><b>Return:</b></p> <p>Nombre de connexions</p>
      */
     public int edgeSize() {
         return edges/2;
@@ -309,7 +309,7 @@ public class Graph {
 	/**
 	 * Fa reset al graf, dona els valors per defecte. Borra els nodes i aristes afegits i esborrats.
 	 *
-	 * <p><b>Post:</b></p> Esborra tot el graf
+	 * <p><b>Post:</b></p> <p>Esborra tot el graf</p>
      */
 	public void reset() {
         for (Node node : graph) {
