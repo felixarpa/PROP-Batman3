@@ -1,2 +1,2 @@
 felix	felix	false
-gato	gato	false
+gato	gato	true

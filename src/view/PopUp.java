@@ -25,6 +25,8 @@ public class PopUp extends VBox{
     private ImageButton popUpButton;
     private ArrayList<HBox> popUpContents;
 
+    private ImageButton closeButton;
+
     //Pasas como parametro x lo que quieras que salga aqui:
     //Show x that are:
     //   As relevant as
@@ -79,20 +81,25 @@ public class PopUp extends VBox{
     }
 
     private void initializeViews() {
+        closeButton = new ImageButton("xButton",10,10);
 
         popUpButton = new ImageButton("acceptButton", 141, 54);
         popUpText = new Label("Show " + name + " that are:");
         popUpText.setFont(font);
         popUpText.setTextFill(Paint.valueOf("white"));
-
-        popUpText.setMaxWidth(200);
-        popUpText.setMinWidth(200);
+        popUpText.setMaxWidth(320);
+        popUpText.setMinWidth(320);
+//
+//        popUpText.setMaxWidth(200);
+//        popUpText.setMinWidth(200);
     }
 
     private void buildPanes() {
+
+
         popUpContents.get(0).getChildren().add(popUpText);
         popUpContents.get(0).setPadding(new Insets(5,0,0,5));
-
+        popUpContents.get(0).getChildren().add(closeButton);
         VBox vaux = new VBox();
         vaux.getChildren().add(popUpButtons.get(0));
         vaux.getChildren().add(popUpButtons.get(1));
@@ -117,7 +124,7 @@ public class PopUp extends VBox{
         return -1;
     }
 
-    public void setListeners(EventHandler<ActionEvent> eventListener) {
+    public void setListeners(EventHandler<ActionEvent> eventListener, EventHandler<ActionEvent> closeListener) {
         popUpButton.setOnMousePressed(
                 event -> {
                     popUpButton.press();
@@ -129,6 +136,18 @@ public class PopUp extends VBox{
                     eventListener.handle(null);
                 }
         );
+        closeButton.setOnMousePressed(
+                event ->  {
+                    closeButton.press();
+                }
+        );
+        closeButton.setOnMouseReleased(
+                event ->  {
+                    closeButton.release();
+                    closeListener.handle(null);
+                }
+        );
+
     }
 
 
