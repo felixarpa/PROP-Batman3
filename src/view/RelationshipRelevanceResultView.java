@@ -367,9 +367,15 @@ public class RelationshipRelevanceResultView extends BaseView {
                         ((RelationshipRelevanceResultPresenter) presenter).showMore();
                     }
             );
-            popUp.setListeners(event -> {
-                ((RelationshipRelevanceResultPresenter)presenter).onAcceptClick(popUp.getSelected());
-            });
+            popUp.setListeners(
+                    event -> {
+                         ((RelationshipRelevanceResultPresenter)presenter).onAcceptClick(popUp.getSelected());
+                    },
+                    event -> {
+                        stackPane.getChildren().remove(1);
+                        stackPane.getChildren().get(0).setDisable(false);
+                    }
+            );
 
         }
         firstNameWord.setOnMouseReleased(
