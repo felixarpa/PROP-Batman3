@@ -85,6 +85,29 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
         int i = index % Config.LISTS_SIZE;
         String[] elements = node.split("\t");
         relevance.get(i).setText(elements[2]);
+        if (elements[0].equals("")) lineHBox.get(i).setOnMouseClicked(null);
+        else {
+            final int j = i;
+            lineHBox.get(i)
+                    .setOnMouseClicked(
+                            event -> {
+                                if (secondPopUp) {
+                                    for (HBox res : lineHBox) {
+                                        res.setStyle(
+                                                "-fx-background-color: transparent;"
+                                        );
+                                    }
+                                    if (popUp != null) popUp.close();
+                                    secondPopUp = false;
+                                }
+
+                                lineHBox.get(j).setStyle(
+                                        "-fx-background-color: #000000;"
+                                );
+                                ((CategoryResultPresenter) presenter).onClick(j);
+                            }
+                    );
+        }
     }
 
     @Override
@@ -151,29 +174,6 @@ public class CategoryResultView extends ListView implements OnSelectRelevance {
                     setCorrectOrder();
                 }
         );
-
-        for (int i = 0; i < Config.LISTS_SIZE; ++i) {
-            final int j = i;
-            lineHBox.get(i)
-            .setOnMouseClicked(
-                    event -> {
-                        if (secondPopUp) {
-                            for (HBox res : lineHBox) {
-                                res.setStyle(
-                                        "-fx-background-color: transparent;"
-                                );
-                            }
-                            if (popUp != null) popUp.close();
-                            secondPopUp = false;
-                        }
-
-                        lineHBox.get(j).setStyle(
-                                "-fx-background-color: #000000;"
-                        );
-                        ((CategoryResultPresenter) presenter).onClick(j);
-                    }
-            );
-        }
 
     }
 

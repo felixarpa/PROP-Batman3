@@ -24,7 +24,7 @@ public class User implements Comparable<User> {
 	User() {}
 
 	/**
-	 * Funci�n que crea el usuario a partir de un nombre de usuario,
+	 * Funcion que crea el usuario a partir de un nombre de usuario,
 	 * password y privilegio.
 	 * 
 	 * @param name nombre de usuario que se le quiere dar al nuevo usuario.
@@ -45,7 +45,7 @@ public class User implements Comparable<User> {
 	 */
 	User(String DBline) {
 		String[] fields = DBline.split("\t");
-        if (fields.length < 3) throw new ProjectError("FATAL ERROR: CORRUPTED DATABASA D:D:D:D:D");
+        if (fields.length < 3) throw new ProjectError("FATAL ERROR: Corrupted database");
 		username = fields[0];
 		password = fields[1];
 		isAdmin = (fields[2].equals("true"));
@@ -149,7 +149,7 @@ public class User implements Comparable<User> {
 			for (Integer term : favorites) {
 				Term term1 = (Term)Graph.getInstance().getNode(Term.makeId(term));
 				if (term1 != null) favoriteTerms.add(term1);
-				else throw new ProjectError("FATAL ERROR: TERM "+ term+ " IN DATABASE NOT FOUND IN GRAPH");
+				else throw new ProjectError("FATAL ERROR: Term "+ term+ " in database not found in graph");
 			}
 			favorites.clear();
 			favorites = null;

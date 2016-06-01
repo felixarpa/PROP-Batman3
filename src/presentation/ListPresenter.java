@@ -19,11 +19,10 @@ public abstract class ListPresenter extends BasePresenter {
     }
 
     public void showMore() {
-        if (index + Config.LISTS_SIZE <= result.size()) {
+        if (index + Config.LISTS_SIZE < result.size()) {
             index += Config.LISTS_SIZE;
             show();
         }
-
     }
 
     public void showLess() {
@@ -34,6 +33,5 @@ public abstract class ListPresenter extends BasePresenter {
     }
 
     protected abstract void show();
-
 
 }
